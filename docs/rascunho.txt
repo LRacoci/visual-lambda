@@ -1,0 +1,19 @@
+Primeira Iteração
+    Definição de linguagem funcional: funções, constantes, apenas números
+        Tokens
+        Gramática
+    Linguagem intermediária lambda em árvore
+    Geração da imagem dinâmica
+        Tradução da Linguagem Intermediária
+
+Segunda Iteração
+    Extender a linguagem: duplas, where, let, tipos
+    Otimizações: Dead Code Elimination
+    Geração da imagem levando em consideração duplas e tipos
+
+Terceira Iteração
+    Extender a linguagem: pattern matching e listas
+        Multiplas definições de funções
+    Otimizações: Constant Folding e Constant Propagation
+        Reaching Definitions
+    Geração da imagem levando em consideração listas
