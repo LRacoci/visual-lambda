@@ -29,7 +29,11 @@ Por fim, a árvore será formatada para ser enviada para o front-end através de
 Também conhecida cálculo lambda, é um sistema formal e um modelo computacional turing completo usado na teoria da computabilidade, lógica e linguística. 
 Serviu como inspiração para o paradigma de programação funcional, presentes em sua forma mais pura em linguagens como LISP e Hasekell e como abstração em quase todas as linguagens mais conhecidas, tais como C/C++, Java, Javascript e Python.
 
-###
+#### Definição
+
+Uma das formas mais intuitiva de definir este modelo é pensando-o como uma forma de definir funções anônimas que recebem como argumento uma função anônima e retornam uma função anônima.
+
+Para isso usa-se a notação E := (E E) | λV.E, onde V é uma variável 
 
 ### Visualização
 
