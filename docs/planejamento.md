@@ -18,7 +18,7 @@ A ideia do projeto é implementar um programa que recebe como entrada um código
 
 O projeto será dividido em duas partes: um front-end e um back-end, que se comunicam através de uma REST. O front-end será desenvolvido em JavaScript com AngularJS. Nele, será possível enviar um arquivo em uma linguagem funcional que se aproxima de haskell, que será definida mais abaixo, ou o texto poderá ser escrito no próprio navegador. O texto será enviado através de um JSON para o back-end utilizando comunicação via REST.
 
-O back-end será desenvolvido em Python, com o auxílio do Flaks para gerenciar a REST. Ele receberá o JSON enviado pelo front-end com o texto da linguagem funcional e utilizará um lexer e um parser para transformar o código funcional para uma representação em formato de árvore, baseada na notação lambda. Neste ponto, durante o projeto serão aplicadas otimizações na representação em árvore, como constant folding, constant propagation, common subexpression elimination e dead code elimination.
+O back-end será desenvolvido em Python, com o auxílio do Flask para gerenciar a REST. Ele receberá o JSON enviado pelo front-end com o texto da linguagem funcional e utilizará um lexer e um parser para transformar o código funcional para uma representação em formato de árvore, baseada na notação lambda. Neste ponto, durante o projeto serão aplicadas otimizações na representação em árvore, como constant folding e constant propagation.
 
 Por fim, a árvore será formatada para ser enviada para o front-end através de um JSON. No front-end, será mostrado o código em formato de árvore, com o auxílio da biblioteca D3.js para visualizar a imagem. Na imagem, será possível visualizar o código como um todo, expandir nós e ver os resultados da execução pela árvore. Existirão operações com listas, como map e fold, e duplas. Também será implementado visualmente as beta reductions da notação lambda, que é um processo de substituição de variáveis.
 
@@ -33,6 +33,10 @@ fib n = fib (n-1) + fib (n-2)
 ```
 
 Como um todo, haverá definição de funções, if-else, definição e checagem de tipos, listas, operações map e fold em listas, duplas, pattern matching em funções, where, constantes.
+
+Como ponto de entrada do programa, será obrigado a definição de uma função main, onde o código comecará a ser rodado.
+
+Para simular entrada de dados fora do programa, ou seja, para existirem variáveis que não são consideradas constantes, será definido que os argumentos da função main serão variáveis, ou seja, não serão tratados como constantes.
 
 ### Notação Lambda
 
@@ -57,8 +61,16 @@ ISZERO ≡ λn.n (λx.F) T
 
 ### Visualização
 
+Como visualização, no front-end serão exibidas várias árvores. Uma conterá a visualização do código como foi digitado, sem otimizações e sem execução de funções. Outras árvores conterão as otimizações descritas abaixo. Por fim, haverá uma árvore onde será possível ver a execução do código.
+
 ### Otimizações
 
+Da matéria de compiladores, serão feitas as otimizações:
+
+- constant folding: processo de avaliar expressões constantes em tempo de compilação.
+- constant propagation: processo de propagar uma constante para outras expressões.
+
+Levando em consideração o cálculo lambda, será usada a redução beta como otimização, que é o processo de calcular o resultado da aplicação de uma função a uma expressão. Também será usada a redução eta, que é tirar uma abstração lambda mantendo o código equivalente.
 
 ## Objetivos
 
