@@ -24,6 +24,16 @@ Por fim, a árvore será formatada para ser enviada para o front-end através de
 
 ### Linguagem Funcional
 
+A linguagem que será utilizada como entrada é baseada em Haskell, como no exemplo abaixo:
+
+```
+fib 0 = 0
+fib 1 = 1
+fib n = fib (n-1) + fib (n-2)
+```
+
+Como um todo, haverá definição de funções, if-else, definição e checagem de tipos, listas, operações map e fold em listas, duplas, pattern matching em funções, where, constantes.
+
 ### Notação Lambda
 
 Também conhecida cálculo lambda, é um sistema formal e um modelo computacional turing completo usado na teoria da computabilidade, lógica e linguística. 
@@ -33,7 +43,17 @@ Serviu como inspiração para o paradigma de programação funcional, presentes 
 
 Uma das formas mais intuitiva de definir este modelo é pensando-o como uma forma de definir funções anônimas que recebem como argumento uma função anônima e retornam uma função anônima.
 
-Para isso normalmente é usada a notação E := λV.E | (E E) | V, onde V é uma variável e E é uma expressão. Note que há apenas dois operadores, o de abstração (λV. E) e o de aplicação (E E), nessa ordem de precedência. O primeiro introduz uma nova função e seu argumento. O segundo, infixo e normalmente representado pelo carácter ' ' de espaço indica que a expressão da direita é o argumento para a da esquerda.
+Para isso normalmente é usada a notação E := λV.E | E E | V, onde V é uma variável e E é uma expressão. Note que há apenas dois operadores, o de abstração (λV.E) e o de aplicação (E E), nessa ordem de precedência. O primeiro introduz uma nova função e seu argumento. O segundo, infixo e normalmente representado pelo carácter ' ' de espaço indica que a expressão da direita é o argumento para a da esquerda.
+
+#### Exemplos
+
+Definição de True: T ≡ λx.λy.x
+
+Definição de False: F ≡ λx.λy.y
+
+Definição do número zero: 0 ≡ λf.λx.x
+
+ISZERO ≡ λn.n (λx.F) T
 
 ### Visualização
 
