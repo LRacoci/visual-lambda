@@ -59,10 +59,6 @@ Definição do número zero: 0 ≡ λf.λx.x
 
 ISZERO ≡ λn.n (λx.F) T
 
-### Visualização
-
-Como visualização, no front-end serão exibidas várias árvores. Uma conterá a visualização do código como foi digitado, sem otimizações e sem execução de funções. Outras árvores conterão as otimizações descritas abaixo. Por fim, haverá uma árvore onde será possível ver a execução do código.
-
 ### Otimizações
 
 Da matéria de compiladores, serão feitas as otimizações:
@@ -74,4 +70,10 @@ Levando em consideração o cálculo lambda, será usada a redução beta como o
 
 ## Objetivos
 
+O objetivo do projeto é obter uma representação visual em formato de árvore de um código em uma linguagem funcional. Para atingir isso, a notação lambda será estudada juntamente com as possíveis otimizações.
+
 ## Resultados Esperados
+
+### Visualização
+
+Como visualização, no front-end serão exibidas várias árvores. Uma conterá a visualização do código como foi digitado, sem otimizações e sem execução de funções. Outras árvores conterão as otimizações descritas. Por fim, haverá uma árvore onde será possível ver a execução do código. Também serão colocadas cores diferentes para os nós para cada tipo de dado.
