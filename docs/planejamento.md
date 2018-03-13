@@ -27,13 +27,16 @@ Por fim, a árvore será formatada para ser enviada para o front-end através de
 ### Notação Lambda
 
 Também conhecida cálculo lambda, é um sistema formal e um modelo computacional turing completo usado na teoria da computabilidade, lógica e linguística. 
-Serviu como inspiração para o paradigma de programação funcional, presentes em sua forma mais pura em linguagens como LISP e Hasekell e como abstração em quase todas as linguagens mais conhecidas, tais como C/C++, Java, Javascript e Python.
+Serviu como inspiração para o paradigma de programação funcional, presentes em sua forma mais pura em linguagens como LISP e Haskell e como abstração em quase todas as linguagens mais conhecidas, tais como C/C++, Java, Javascript e Python.
 
 #### Definição
 
 Uma das formas mais intuitiva de definir este modelo é pensando-o como uma forma de definir funções anônimas que recebem como argumento uma função anônima e retornam uma função anônima.
 
-Para isso usa-se a notação E := (E E) | λV.E, onde V é uma variável 
+Para isso normalmente é usada a notação E := λV. E | (E E) | V, onde V é uma variável e E é uma expressão. Note que há apenas dois operadores, o de abstração e o de aplicação, nessa ordem de precedência. O primeiro introduz uma nova função e seu argumento. O segundo, infixo e normalmente representado pelo carácter ' ' de espaço indica que a expressão da direita é o argumento para a da esquerda.
+
+No nosso projeto mudaremos um pouco a sintaxe para fascilitar a visualização, dessa forma, consideraremos E := E E | E λV. em que o operador ' ' terá associatividade a direita.
+Assim, o combinador de ponto fixo Y, que pode ser expresso por λf.(λy. y y) (λx. f (x x)) em nossa sintaxe é expresso por y y λy. f x x λx. λf. , tornando todos os parenteses desnecessários.
 
 ### Visualização
 
