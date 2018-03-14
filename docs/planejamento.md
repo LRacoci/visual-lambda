@@ -12,15 +12,15 @@
 
 ## Resumo
 
-A ideia do projeto é implementar um programa que recebe como entrada um código em uma linguagem funcional que se aproxima de Haskell, converte para uma representação intermediária em formato de árvore baseada na notação lambda de funções anônimas, e mostra na tela o código em formato de árvore. O projeto será dividido em duas camadas: um front-end em JavaScript que receberá a entrada e mostrará a imagem do código na tela, enquanto o back-end será feito em Python que fará analises léxica e sintática, e devolverá um JSON que o front-end processará para mostrar as informações na tela. A comunicação entre as duas camadas será feita através de uma REST implementada com o auxílio do Flask.
+A ideia do projeto é implementar um programa que recebe como entrada um código em uma linguagem funcional que se aproxima de Haskell, converte para uma representação intermediária em formato de árvore baseada na notação lambda de funções anônimas, e mostra na tela o código em formato de árvore. O projeto será dividido em duas camadas: um cliente web em JavaScript que receberá a entrada e mostrará a imagem do código na tela, enquanto o servidor será feito em Python que fará analises léxica e sintática, e devolverá um JSON que o cliente web processará para mostrar as informações na tela. A comunicação entre as duas camadas será feita através de uma REST implementada com o auxílio do Flask.
 
 ## Descrição
 
-O projeto será dividido em duas partes: um front-end e um back-end, que se comunicam através de uma REST. O front-end será desenvolvido em JavaScript com AngularJS. Nele, será possível enviar um arquivo em uma linguagem funcional que se aproxima de haskell, que será definida mais abaixo, ou o texto poderá ser escrito no próprio navegador. O texto será enviado através de um JSON para o back-end utilizando comunicação via REST.
+O projeto será dividido em duas partes: um cliente web e um servidor, que se comunicam através de uma REST. O cliente web será desenvolvido em JavaScript com AngularJS. Nele, será possível enviar um arquivo em uma linguagem funcional que se aproxima de haskell, que será definida mais abaixo, ou o texto poderá ser escrito no próprio navegador. O texto será enviado através de um JSON para o servidor utilizando comunicação via REST.
 
-O back-end será desenvolvido em Python, com o auxílio do Flask para gerenciar a REST. Ele receberá o JSON enviado pelo front-end com o texto da linguagem funcional e utilizará um lexer e um parser para transformar o código funcional para uma representação em formato de árvore, baseada na notação lambda. Neste ponto, durante o projeto serão aplicadas otimizações na representação em árvore, como constant folding e constant propagation.
+O servidor será desenvolvido em Python, com o auxílio do Flask para gerenciar a REST. Ele receberá o JSON enviado pelo cliente web com o texto da linguagem funcional e utilizará um lexer e um parser para transformar o código funcional para uma representação em formato de árvore, baseada na notação lambda. Neste ponto, durante o projeto serão aplicadas otimizações na representação em árvore, como constant folding e constant propagation.
 
-Por fim, a árvore será formatada para ser enviada para o front-end através de um JSON. No front-end, será mostrado o código em formato de árvore, com o auxílio da biblioteca D3.js para visualizar a imagem. Na imagem, será possível visualizar o código como um todo, expandir nós e ver os resultados da execução pela árvore. Existirão operações com listas, como map e fold, e duplas. Também será implementado visualmente as beta reductions da notação lambda, que é um processo de substituição de variáveis.
+Por fim, a árvore será formatada para ser enviada para o cliente web através de um JSON. No cliente web, será mostrado o código em formato de árvore, com o auxílio da biblioteca D3.js para visualizar a imagem. Na imagem, será possível visualizar o código como um todo, expandir nós e ver os resultados da execução pela árvore. Existirão operações com listas, como map e fold, e duplas. Também será implementado visualmente as beta reductions da notação lambda, que é um processo de substituição de variáveis.
 
 ### Linguagem Funcional
 
@@ -76,4 +76,4 @@ O objetivo do projeto é obter uma representação visual em formato de árvore 
 
 ### Visualização
 
-Como visualização, no front-end serão exibidas várias árvores. Uma conterá a visualização do código como foi digitado, sem otimizações e sem execução de funções. Outras árvores conterão as otimizações descritas. Por fim, haverá uma árvore onde será possível ver a execução do código. Também serão colocadas cores diferentes para os nós para cada tipo de dado.
+Como visualização, no cliente web serão exibidas várias árvores. Uma conterá a visualização do código como foi digitado, sem otimizações e sem execução de funções. Outras árvores conterão as otimizações descritas. Por fim, haverá uma árvore onde será possível ver a execução do código. Também serão colocadas cores diferentes para os nós para cada tipo de dado.
