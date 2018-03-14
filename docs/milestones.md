@@ -154,3 +154,7 @@ Configurar mais testes para o docker.
 ### Entregáveis
 
 Na terceira iteração, o código também aceitará listas e duplas, além do pattern matching de funções e listas do haskell. As otimizações também poderão ser visualizadas pelo cliente web nas árvores.
+
+## Divisão de Tarefas
+
+![](tarefas.png)
