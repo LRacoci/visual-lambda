@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+
+<div ng-app="myApp" ng-controller="myCtrl" ng-init="init()">
+
+<form>
+Digite seu código abaixo ou mande um arquivo texto:<br />
+<input type="file" on-read-file="readFile($fileContent)" /><br />
+<textarea ng-model="code" rows="40" cols="40"></textarea><br />
+<input ng-click="translateCode()" type="button" value="submit" />
+</form>
+
+<p ng-bind="value"></p>
+<p ng-bind="statusText"></p>
+<p ng-bind="errorText"></p>
+
+</div>
+
+<script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+
+</body>
+</html>
