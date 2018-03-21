@@ -10,10 +10,8 @@ def printTree(tree):
             resp = "  "*n + str(tree) + "\n"
         return resp
     return printTreeAux(-1, tree)
-  
 
 if __name__ == "__main__":
-    parser = Parser()
     from glob import glob
     
     for problem in glob('tests/arq*.hs'):
@@ -25,13 +23,13 @@ if __name__ == "__main__":
         
         with open(answer) as a:
             answer = a.read()
-        
-        #print problem
-        #print answer
-        result = parser.parse(problem)
-        print "Result == ", result
+
+        parser.parse(problem)
+        print names
+        #result = parser.parse(problem)
+        #print "Result == ", result
         #result = printTree(result)
-        if result != answer:
-            print result
-        else:
-            print "ok"
+        #if result != answer:
+        #    print result
+        #else:
+        #    print "ok"
