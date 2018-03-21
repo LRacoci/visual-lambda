@@ -13,23 +13,33 @@ def printTree(tree):
 
 if __name__ == "__main__":
     from glob import glob
+    import json
     
-    for problem in glob('tests/arq*.hs'):
-        print problem
-        answer = problem[:-2] + 'res'
+    for inpFileName in glob('tests/arq*.hs'):
+        print inpFileName
         
-        with open(problem) as p:
-            problem = p.read()
+        with open(inpFileName) as inpFile:
+            problem = inpFile.read()
         
+        parser.parse(problem)
+        output = names
+        
+        outFileName = inpFileName.replace(".hs", "_out.json")
+        with open(outFileName, "w") as outFile:
+            json.dump(output, outFile, indent = 2)
+        
+        output = json.dumps(output, indent=2)
+        
+        
+        answer = inpFileName.replace(".hs", ".json")
         with open(answer) as a:
             answer = a.read()
-
-        parser.parse(problem)
-        print names
-        #result = parser.parse(problem)
-        #print "Result == ", result
-        #result = printTree(result)
-        #if result != answer:
-        #    print result
-        #else:
-        #    print "ok"
+        
+        if answer == output:
+            print "ok"
+        else:
+            from itertools import *
+            for a,o in izip_longest(answer.split("\n"), output.split("\n")):
+                if a != o:
+                    print "answer: ", a 
+                    print "output: ", o
