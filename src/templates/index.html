@@ -1,5 +1,8 @@
 <!DOCTYPE html>
 <html>
+<head>
+<link rel="stylesheet" type="text/css" href="../static/style.css">
+</head>
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
@@ -7,7 +10,7 @@
 <div ng-app="myApp" ng-controller="myCtrl" ng-init="init()">
 
 <form>
-Digite seu código abaixo ou mande um arquivo texto:<br />
+Digite seu c&oacute;digo abaixo ou mande um arquivo texto:<br />
 <input type="file" on-read-file="readFile($fileContent)" /><br />
 <textarea ng-model="code" rows="40" cols="40"></textarea><br />
 <input ng-click="translateCode()" type="button" value="submit" />
@@ -20,6 +23,10 @@ Digite seu código abaixo ou mande um arquivo texto:<br />
 </div>
 
 <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
+
+<!-- load the d3.js library -->
+<script src="https://d3js.org/d3.v4.min.js"></script>
+<script src="../static/collapse.js"></script>
 
 </body>
 </html>
