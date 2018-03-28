@@ -19,7 +19,21 @@ def p_statement_assign(t):
 def p_expression_binop(t):
     '''expression : expression PLUS expression
                   | expression TIMES expression
-                  | expression DIVIDE expression'''
+                  | expression DIVIDE expression
+                  | expression "and" expression
+                  | expression "xor" expression
+                  | expression "or" expression
+                  | expression "==" expression
+                  | expression ">=" expression
+                  | expression "=<" expression
+                  | expression "!=" expression
+                  | expression "<" expression
+                  | expression ">" expression
+                  '''
+    t[0] = [[t[2], t[1]], t[3]]
+
+def p_expression_ifelse(t):
+    'expression : expression "if" expression "else" expression'
     t[0] = [[t[2], t[1]], t[3]]
 
 def p_expression_minus(t):
