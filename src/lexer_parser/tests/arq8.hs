@@ -1,0 +1,1 @@
+main = 0 if 0 < 1 else 1 if 1 == 1 else 2 if 2 > 1 else 1/0

@@ -52,8 +52,22 @@ def p_args(t):
 def p_expression_binop(t):
     '''expression : expression PLUS expression
                   | expression TIMES expression
-                  | expression DIVIDE expression'''
+                  | expression DIVIDE expression
+                  | expression AND expression
+                  | expression XOR expression
+                  | expression IOR expression
+                  | expression EQL expression
+                  | expression GTE expression
+                  | expression LTE expression
+                  | expression DIF expression
+                  | expression LT expression
+                  | expression GT expression
+                  '''
     t[0] = [[t[2], t[1]], t[3]]
+
+def p_expression_ifelse(t):
+    'expression : expression IF expression ELSE expression'
+    t[0] = [[["cond", t[3]], t[1]], t[5]]
 
 def p_expression_minus(t):
     'expression : expression MINUS expression'

@@ -1,5 +1,1 @@
-main = 0
-
-outro a b = a + b
-
-outra b = b / 3
+main = 0 if 0 < 1 else 1
