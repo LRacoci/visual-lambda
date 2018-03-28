@@ -10,11 +10,44 @@ precedence = (
 )
 
 # Dicionario de nomes
-names = {}
+names = {
+    'functions' : {},
+    'args' : {}
+}
 
-def p_statement_assign(t):
-    'statement : MAIN DEFINITION expression'
-    names[t[1]] = t[3]
+namesOut = {
+    'functions' : {},
+    'args' : {}
+}
+
+def p_start(t):
+    'start : functionList'
+    namesOut['functions'] = dict(names['functions'])
+    namesOut['args'] = dict(names['args'])
+    names['functions'] = {}
+    names['args'] = {}
+
+def p_functionList(t):
+    '''functionList : functionList function
+                    | function '''
+
+def p_function_assign(t):
+    'function : NAME DEFINITION expression'
+    names['functions'][t[1]] = t[3]
+    names['args'][t[1]] = []
+
+def p_function_args(t):
+    'function : NAME argList DEFINITION expression'
+    names['functions'][t[1]] = t[4]
+    names['args'][t[1]] = t[2]
+
+def p_args_list(t):
+    'argList : argList NAME'
+    t[0] = t[1] + [t[2]]
+
+def p_args(t):
+    'argList : NAME'
+    t[0] = [t[1]]
 
 def p_expression_binop(t):
     '''expression : expression PLUS expression
@@ -36,6 +69,10 @@ def p_expression_group(t):
 
 def p_expression_number(t):
     'expression : NATURAL'
+    t[0] = t[1]
+
+def p_expression_name(t):
+    'expression : NAME'
     t[0] = t[1]
 
 def p_error(t):

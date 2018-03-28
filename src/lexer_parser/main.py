@@ -17,14 +17,14 @@ if __name__ == "__main__":
     
     for inpFileName in glob('tests/arq*.hs'):
         print inpFileName
-        
+
         with open(inpFileName) as inpFile:
             problem = inpFile.read()
         
         parser.parse(problem)
-        output = names
-        
-        outFileName = inpFileName.replace(".hs", "_out.json")
+        output = namesOut
+        print output
+        '''outFileName = inpFileName.replace(".hs", "_out.json")
         with open(outFileName, "w") as outFile:
             json.dump(output, outFile, indent = 2)
         
@@ -42,4 +42,4 @@ if __name__ == "__main__":
             for a,o in izip_longest(answer.split("\n"), output.split("\n")):
                 if a != o:
                     print "answer: ", a 
-                    print "output: ", o
+                    print "output: ", o'''
