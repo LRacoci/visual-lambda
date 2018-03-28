@@ -13,3 +13,9 @@
   stroke: #ccc;
   stroke-width: 2px;
 }
+
+.zoom {
+  cursor: move;
+  fill: none;
+  pointer-events: all;
+}
