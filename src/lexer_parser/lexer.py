@@ -2,12 +2,11 @@ import ply.lex as lex
 
 tokens = (
     'PLUS','MINUS','TIMES','DIVIDE','DEFINITION',
-    'NATURAL','LPAREN','RPAREN','MAIN',
+    'NATURAL','LPAREN','RPAREN','NAME',
 )
 
 # Tokens
 
-t_MAIN = r'main'
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -15,6 +14,7 @@ t_DIVIDE = r'/'
 t_DEFINITION = r'='
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
+t_NAME = r'[a-zA-Z_]+'
 
 def t_NATURAL(t):
     r'\d+'
