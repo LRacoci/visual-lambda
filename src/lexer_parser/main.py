@@ -23,8 +23,8 @@ if __name__ == "__main__":
         
         parser.parse(problem)
         output = namesOut
-        print output
-        '''outFileName = inpFileName.replace(".hs", "_out.json")
+        #print output
+        outFileName = inpFileName.replace(".hs", "_out.json")
         with open(outFileName, "w") as outFile:
             json.dump(output, outFile, indent = 2)
         
@@ -42,4 +42,4 @@ if __name__ == "__main__":
             for a,o in izip_longest(answer.split("\n"), output.split("\n")):
                 if a != o:
                     print "answer: ", a 
-                    print "output: ", o'''
+                    print "output: ", o
