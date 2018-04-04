@@ -9,9 +9,9 @@ variables:
   IMAGE_TAG: $CI_REGISTRY/mc911-2018-s1/group-2:docker
 
 before_script:
-  - docker login -u "$CI_REGISTRY_USER" -p $CI_JOB_TOKEN $CI_REGISTRY
+  - docker login -u "$CI_REGISTRY_USER" --password-stdin $CI_JOB_TOKEN $CI_REGISTRY
 
 build:
   stage: build
   script:
-    - docker run -it --rm --volume=$(pwd):/builds --workdir=/builds $IMAGE_TAG bash -c "make"
+    - docker exec -it $IMAGE_TAG echo "Hello from container!"
