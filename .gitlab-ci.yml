@@ -1,0 +1,7 @@
+image: $CI_REGISTRY/mc911-2018-s1/group-2:docker
+
+build:
+  stage: build
+  
+  script: 
+    - make
