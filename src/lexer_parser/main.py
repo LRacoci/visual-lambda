@@ -11,6 +11,16 @@ def printTree(tree):
         return resp
     return printTreeAux(-1, tree)
 
+
+from itertools import *
+def diff(a,b):
+    if type(a) is dict and type(b) is dict:
+        return {x: diff(a[x],b[x]) if x in b else a[x] for x in a}
+    elif type(a) is list and type(b) is list:
+        return [diff(x, y) for x, y in izip(a, b)]
+    else:
+        return a
+
 if __name__ == "__main__":
     from glob import glob
     import json
@@ -23,23 +33,23 @@ if __name__ == "__main__":
         
         parser.parse(problem)
         output = namesOut
-        #print output
         outFileName = inpFileName.replace(".hs", "_out.json")
         with open(outFileName, "w") as outFile:
             json.dump(output, outFile, indent = 2)
         
-        output = json.dumps(output, indent=2)
-        
-        
         answer = inpFileName.replace(".hs", ".json")
         with open(answer) as a:
-            answer = a.read()
+            answer = json.load(a)
         
-        if answer == output:
+        ao = diff(answer, output)
+        oa = diff(output, answer)
+        if ao != {}:
+            print "answer - output == "
+            print json.dumps(ao, indent = 2)
+        
+        if oa != {}:
+            print "output - answer == "
+            print json.dumps(oa, indent = 2)
+        
+        if oa == {} == ao:
             print "ok"
-        else:
-            from itertools import *
-            for a,o in izip_longest(answer.split("\n"), output.split("\n")):
-                if a != o:
-                    print "answer: ", a 
-                    print "output: ", o
