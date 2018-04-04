@@ -1,4 +1,4 @@
-image: docker:latest
+image: $CI_REGISTRY/mc911-2018-s1/group-2:docker
 services:
   - docker:dind
 
