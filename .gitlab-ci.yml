@@ -1,7 +1,10 @@
 image: $CI_REGISTRY/mc911-2018-s1/group-2:docker
 
+before_script:
+    - docker login -u gitlab-ci-token -p $CI_BUILD_TOKEN registry.gitlab.com
+
 build:
   stage: build
-  
+
   script: 
     - make
