@@ -1,9 +1,12 @@
-image: $CI_REGISTRY/mc911-2018-s1/group-2:docker
+image: docker:latest
 services:
   - docker:dind
 
 stages:
   - build
+
+variables:
+  IMAGE_TAG: $CI_REGISTRY/mc911-2018-s1/group-2:docker
 
 before_script:
   - docker login -u "$CI_REGISTRY_USER" -p $CI_JOB_TOKEN $CI_REGISTRY
@@ -11,4 +14,4 @@ before_script:
 build:
   stage: build
   script:
-    - make
+    - docker pull $IMAGE_TAG
