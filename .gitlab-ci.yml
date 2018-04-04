@@ -10,12 +10,9 @@ variables:
 
 before_script:
   - docker login -u "$CI_REGISTRY_USER" -p $CI_JOB_TOKEN $CI_REGISTRY
-  - echo $CI_REGISTRY_USER
-  - echo $CI_JOB_TOKEN
-  - echo $CI_REGISTRY
   - docker pull $IMAGE_TAG
 
 build:
   stage: build
   script:
-    - make
+    - docker run -it $IMAGE_TAG bash -c "make"
