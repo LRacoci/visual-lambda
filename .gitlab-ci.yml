@@ -14,4 +14,4 @@ before_script:
 build:
   stage: build
   script:
-    - docker run -it --rm --volume=$(shell pwd):/builds --workdir=/builds $IMAGE_TAG bash -c "make"
+    - docker run -it --rm --volume=$(pwd):/builds --workdir=/builds $IMAGE_TAG bash -c "make"
