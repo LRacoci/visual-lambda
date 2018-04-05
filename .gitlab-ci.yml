@@ -1,4 +1,4 @@
-image: $CI_REGISTRY/mc911/2018-s1/group-2:latest
+image: gitlabci.ic.unicamp.br/mc911/2018-s1/group-2:latest
 
 stages:
   - build
