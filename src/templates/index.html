@@ -6,33 +6,39 @@
 <body>
 
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
-<div id="wrapper">
-  <div style="display:table; table-layout: fixed" id="table">
 
-    <div style="display:table-cell" ng-app="myApp" ng-controller="myCtrl" ng-init="init()" id="menu">
-      <form>
-      Digite seu c&oacute;digo abaixo ou mande um arquivo texto:<br />
-      <input type="file" on-read-file="readFile($fileContent)" /><br />
-      <textarea ng-model="code" rows="40" cols="40"></textarea><br />
-      <input ng-click="translateCode()" type="button" value="submit" />
-      </form>
-      <p ng-bind="value"></p>
-      <p ng-bind="statusText"></p>
-      <p ng-bind="errorText"></p>
-    </div>
-    <div class="not-menu" style="display:table-cell; background-color:white">
-      <div style="display:table-row">
-        <h1>⚡<span class="striped"> LAMB</span><span class="h1graph">graph</span> </h1>
-      </div>
-      <div id="tree" style="display:table-row"></div>
-    </div>
-  </div>
+<div id="wrapper">
+	<div style="display:table; table-layout: fixed" id="table">
+		<div style="display:table-cell" ng-app="myApp" ng-controller="MainCtrl" ng-init="init()" id="menu">
+			 <form>
+				 Digite seu c&oacute;digo abaixo ou mande um arquivo texto:<br />
+				 <input type="file" on-read-file="showContent($fileContent)" />
+				 <div ng-if="content">
+					 <h2>File content is:</h2>
+					 <pre>{{ content }}</pre>
+				 </div>
+				 <textarea ng-model="code" rows="40" cols="40"></textarea><br />
+		         <input ng-click="translateCode()" type="button" value="Submit" />
+			 </form>
+			 <p ng-bind="value"></p>
+	         <p ng-bind="statusText"></p>
+	         <p ng-bind="errorText"></p>
+
+		</div>
+		<div class="not-menu" style="display:table-cell; background-color:white">
+			<div style="display:table-row">
+	          <h1>⚡<span class="striped"> LAMB</span><span class="h1graph">graph</span> </h1>
+	        </div>
+			<div id="tree" style="display:table-row"></div>
+		</div>
+	</div>
 </div>
 <script type="text/javascript" src="{{ url_for('static', filename='app.js') }}"></script>
 
 <!-- load the d3.js library -->
 <script src="https://d3js.org/d3.v4.min.js"></script>
 <script src="../static/collapse.js"></script>
+
 
 </body>
 </html>
