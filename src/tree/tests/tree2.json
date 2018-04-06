@@ -1,21 +1,24 @@
 {
- "main": {
-  "name": " ", 
-  "children": [
-   {
-    "name": " ", 
-    "children": [
-     {
-      "name": "+"
-     }, 
-     {
-      "name": "0"
-     }
-    ]
-   }, 
-   {
-    "name": "1"
-   }
-  ]
- }
+  "main": {
+    "name": "main", 
+    "children": {
+      "name": " ", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "+"
+            }, 
+            {
+              "name": "0"
+            }
+          ]
+        }, 
+        {
+          "name": "1"
+        }
+      ]
+    }
+  }
 }

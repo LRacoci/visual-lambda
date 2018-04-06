@@ -1,5 +1,8 @@
 {
- "main": {
-  "name": "0"
- }
+  "main": {
+    "name": "main", 
+    "children": {
+      "name": "0"
+    }
+  }
 }
