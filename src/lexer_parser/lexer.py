@@ -1,6 +1,18 @@
 import ply.lex as lex
 
+reserved = {
+    'if': 'IF',
+    'then': 'THEN',
+    'else': 'ELSE',
+    "true": "TRUE",
+    "false" : "FALSE",
+    "and" : 'AND',
+    "xor" : 'XOR',
+    "ior" : 'IOR',
+}
+
 tokens = (
+    'NAME',
     'PLUS',
     'MINUS',
     'TIMES',
@@ -9,19 +21,21 @@ tokens = (
     'NATURAL',
     'LPAREN',
     'RPAREN',
-    'NAME',
-    'AND',
-    'XOR',
-    'IOR',
     'EQL',
     'GTE',
     'LTE',
     'DIF',
     'LT',
     'GT',
-    'IF',
-    'ELSE',
+    'BOOL'
 )
+
+tokens = list(tokens) + list(reserved.values())
+
+def t_NAME(t):
+    r'[a-zA-Z_][a-zA-Z_0-9]*'
+    t.type = reserved.get(t.value, "NAME")    # Check for reserved words
+    return t
 
 # Tokens
 
@@ -32,10 +46,6 @@ t_DIVIDE = r'/'
 t_DEFINITION = r'='
 t_LPAREN = r'\('
 t_RPAREN = r'\)'
-t_NAME = r'[a-zA-Z_]+'
-t_AND = r'and'
-t_XOR = r'xor'
-t_IOR = r'ior'
 t_EQL = r'=='
 t_GTE = r'>='
 t_LTE = r'<='
@@ -43,7 +53,7 @@ t_DIF = r'!='
 t_LT = r'<'
 t_GT = r'>'
 t_IF = r'if'
-t_ELSE = r'else'
+t_BOOL = r'(true)|(false)'
 
 
 def t_NATURAL(t):

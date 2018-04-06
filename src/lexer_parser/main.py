@@ -14,12 +14,32 @@ def printTree(tree):
 
 from itertools import *
 def diff(a,b):
+    if a == b:
+        return None
+
     if type(a) is dict and type(b) is dict:
-        return {x: diff(a[x],b[x]) if x in b else a[x] for x in a}
-    elif type(a) is list and type(b) is list:
-        return [diff(x, y) for x, y in izip(a, b)]
-    else:
-        return a
+        resp = {}
+        for x in a:
+            if x in b:
+                delta = diff(a[x], b[x])
+            else:
+                delta = a[x]
+            if delta != None:
+                resp[x] = delta
+        return resp
+
+    if type(a) is list and type(b) is list:
+        resp = []
+        for x, y in izip(a, b):
+            delta = diff(x, y)
+            if delta != None:
+                resp += [delta]
+        return resp
+
+    if a == b:
+        return None
+
+    return a
 
 if __name__ == "__main__":
     from glob import glob
@@ -33,7 +53,9 @@ if __name__ == "__main__":
         
         parser.parse(problem)
         output = namesOut
+        #print json.dumps(output)
         outFileName = inpFileName.replace(".hs", "_out.json")
+        
         with open(outFileName, "w") as outFile:
             json.dump(output, outFile, indent = 2)
         
@@ -43,13 +65,14 @@ if __name__ == "__main__":
         
         ao = diff(answer, output)
         oa = diff(output, answer)
-        if ao != {}:
+
+        if ao != None:
             print "answer - output == "
             print json.dumps(ao, indent = 2)
         
-        if oa != {}:
+        if oa != None:
             print "output - answer == "
             print json.dumps(oa, indent = 2)
-        
-        if oa == {} == ao:
+
+        if answer == output:
             print "ok"
