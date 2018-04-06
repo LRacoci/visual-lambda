@@ -1,3 +1,3 @@
 
 all:
-    python src/main.py
+    python src/lexer_parser/main.py

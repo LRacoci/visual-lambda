@@ -2,7 +2,7 @@ image: $CI_REGISTRY/mc911/2018-s1/group-2:latest
 
 stages:
   - build
-  
+
 before_script:
   - docker login -u "$CI_REGISTRY_USER" -p $CI_BUILD_TOKEN $CI_REGISTRY
 
