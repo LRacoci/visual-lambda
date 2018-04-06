@@ -1,18 +1,14 @@
 {
- "main": {
-  "name": " ", 
-  "children": [
-   {
-    "name": " ", 
-    "children": [
-     {
-      "name": "outro"
-     }, 
-     {
-      "name": "0"
-     }
-    ]
-   }
-  ]
- }
+	"functions": {
+		"main": [
+			[
+				"outro",
+				0
+				]
+			]
+	},
+	"args": {
+		"main": [],
+		"outro": ["a"]
+	}
 }
