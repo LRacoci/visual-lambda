@@ -8,4 +8,5 @@ build:
   - docker-kvm
   stage: build
   script:
+    - cd src/lexer_parser/
     - make
