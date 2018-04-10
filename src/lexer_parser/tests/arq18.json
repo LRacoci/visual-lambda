@@ -1,0 +1,62 @@
+{
+  "functions": {
+    "apply": [
+      "y",
+      "y"
+    ],
+    "y_combinator": [
+      "apply",
+      [
+        "f",
+        "apply"
+      ]
+    ],
+    "factorial": [
+      [
+        [
+          "cond",
+          [
+            ">",
+            [
+              "n",
+              0
+            ]
+          ]
+        ],
+        [
+          "f",
+          [
+            [
+              "-",
+              1
+            ],
+            "n"
+          ]
+        ]
+      ],
+      1           
+    ],
+
+    "main": [
+      [
+        "y_combinator",
+        "factorial"
+      ],
+      3
+    ]
+
+  },
+  "args": {
+    "apply": [
+      "y"
+    ],
+    "y_combinator": [
+      "f"
+    ],
+    "factorial": [
+      "f",
+      "n"
+    ],
+    "main": []
+  }
+}

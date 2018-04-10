@@ -86,10 +86,22 @@ def p_expression_uminus(t):
     'expression : MINUS expression %prec UMINUS'
     t[0] = [[t[1], t[2]], 0]
 
+
+def p_expression_application(t):
+    'expression : application '
+    t[0] = t[1]
+
 def p_expression_group(t):
     'expression : LPAREN expression RPAREN'
     t[0] = t[2]
 
+def p_application_expression(t):
+    'application : application LPAREN expression RPAREN'
+    t[0] = [t[1], t[3]]
+
+def p_application_group(t):
+    'application : LPAREN application RPAREN'
+    t[0] = [t[1], t[2]]
 
 def p_condition_group(t):
     'condition : LPAREN condition RPAREN'
@@ -101,6 +113,10 @@ def p_expression_number(t):
 
 def p_expression_name(t):
     'expression : NAME'
+    t[0] = t[1]
+
+def p_application_name(t):
+    'application : NAME'
     t[0] = t[1]
 
 def p_condition_bool(t):
