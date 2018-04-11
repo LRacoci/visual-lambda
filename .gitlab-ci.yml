@@ -6,7 +6,7 @@ stages:
 test:
   tags:
   - docker-kvm
-  stage: build
+  stage: test
   script:
     - cd src/
     - make
