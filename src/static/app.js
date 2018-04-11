@@ -26,7 +26,7 @@ app.controller('myCtrl', function($scope, $http) {
      * Função chamada quando a página é criada de inicialização
      */
     $scope.init = function() {
-        $scope.value = "Texto Inicial";
+        $scope.value = null;
         $scope.code = "";
         $scope.statusText = "";
         $scope.errorText = "";

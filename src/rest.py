@@ -2,7 +2,7 @@ from flask import Flask, render_template, jsonify, request, url_for, Response
 import json
 import os
 import sys
-
+from lexer_parser.parser import *
 # Define a aplicacao
 app = Flask(__name__)
 
@@ -30,11 +30,13 @@ def index():
 @app.route("/translateCode", methods=['POST'])
 def translateCode():
     try:
-        dataDict = json.loads(request.data.decode())
-        print dataDict
-        return Response(json.dumps({'tasks':tasks}), status=200)
+		dataDict = json.loads(request.data.decode())
+		parser.parse(dataDict['code'])
+		print namesOut
+		print dataDict
+		return Response(json.dumps({'tree':namesOut}), status=200)
     except:
-        return Response(str(sys.exc_info()[0]), status=500)
+		return Response(str(sys.exc_info()[0]), status=500)
 
 # Gera um novo token a cada request para prevenir cache de paginas no browser
 @app.context_processor
