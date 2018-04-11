@@ -4,6 +4,9 @@ import ply.yacc as yacc
 # Regras do parser
 
 precedence = (
+    ('left','IFELSE'),
+    ('left','AND','XOR','IOR'),
+    ('left','EQL','GTE','LTE','DIF','LT','GT'),
     ('left','PLUS','MINUS'),
     ('left','TIMES','DIVIDE'),
     ('right','UMINUS'),
@@ -69,7 +72,7 @@ def p_expression_binop(t):
     t[0] = [[t[2], t[1]], t[3]]
 
 def p_expression_ifelse(t):
-    'expression : IF expression THEN expression ELSE expression'
+    'expression : IF expression THEN expression ELSE expression %prec IFELSE'
     t[0] = [[["cond", t[2]], t[4]], t[6]]
 
 def p_expression_minus(t):
