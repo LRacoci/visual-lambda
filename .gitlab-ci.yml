@@ -1,12 +1,14 @@
 image: $CI_REGISTRY_IMAGE
 
 stages:
-  - build
+  - test
 
-build:
+test:
   tags:
   - docker-kvm
-  stage: build
+  stage: test
   script:
     - cd src/lexer_parser/
+    - make
+    - cd ../tree/
     - make

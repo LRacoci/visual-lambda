@@ -1,2 +1,2 @@
-all: 
+all:
 	python test.py

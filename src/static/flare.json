@@ -1,4 +1,0 @@
-{
-  "name": " ",
-  "children": [
-    {"name": "main"}, {"name": " ", "children": [{"name": " ", "children": [{"name": "+"}, {"name": 2}]}, {"name": " ", "children": [{"name": " ", "children": [{"name": "-"}, {"name": " ", "children": [{"name": " ", "children": [{"name": "*"}, {"name": 3}]}, {"name": 4}]}]}, {"name": 4}]}]}]}
