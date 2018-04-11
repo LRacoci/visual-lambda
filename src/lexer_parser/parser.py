@@ -105,6 +105,10 @@ def p_application_expression(t):
     'application : NAME LPAREN expression RPAREN'
     t[0] = [t[1], t[3]]
 
+def p_application_null(t):
+    'application : NAME LPAREN RPAREN'
+    t[0] = [t[1]]
+
 def p_condition_group(t):
     'condition : LPAREN condition RPAREN'
     t[0] = t[2]
