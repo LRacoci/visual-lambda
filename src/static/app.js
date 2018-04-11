@@ -60,7 +60,7 @@ app.controller('myCtrl', function($scope, $http) {
      * Passa o conteúdo do arquivo para o campo de texto
      * @param $fileContent: conteúdo lido do arquivo
      */
-    $scope.readFile = function($fileContent){
+    $scope.showContent = function($fileContent){
         $scope.code = $fileContent;
     };
 

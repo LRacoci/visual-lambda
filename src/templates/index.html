@@ -9,15 +9,11 @@
 
 <div id="wrapper">
 	<div style="display:table; table-layout: fixed" id="table">
-		<div style="display:table-cell" ng-app="myApp" ng-controller="MainCtrl" ng-init="init()" id="menu">
+		<div style="display:table-cell" ng-app="myApp" ng-controller="myCtrl" ng-init="init()" id="menu">
 			 <form>
 				 Digite seu c&oacute;digo abaixo ou mande um arquivo texto:<br />
 				 <input type="file" on-read-file="showContent($fileContent)" />
-				 <div ng-if="content">
-					 <!-- <h2>File content is:</h2>
-					 <pre>{{ content }}</pre> -->
-				 </div>
-				 <textarea rows="40" cols="40">{{ content }}</textarea><br />
+				 <textarea ng-model="code" rows="40" cols="40"></textarea><br />
 		         <input ng-click="translateCode()" type="button" value="Submit" />
 			 </form>
 			 <p ng-bind="value"></p>
