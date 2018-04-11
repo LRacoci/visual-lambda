@@ -1,10 +1,10 @@
 def leaves(tree, k=0):
-    if type(tree) is list:
-        for branch in tree:
-            for leaf, j in leaves(branch, k=k+1):
-                yield leaf, j
-    else:
-        yield tree, k
+	if type(tree) is list:
+		for branch in tree:
+			for leaf, j in leaves(branch, k=k+1):
+				yield leaf, j
+	else:
+		yield tree, k
 
 
 def change(forest):

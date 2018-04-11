@@ -1,12 +1,12 @@
-image: $CI_REGISTRY/mc911/2018-s1/group-2:latest
+image: $CI_REGISTRY_IMAGE
 
 stages:
   - build
-  
-before_script:
-  - docker login -u "$CI_REGISTRY_USER" -p $CI_BUILD_TOKEN $CI_REGISTRY
 
 build:
+  tags:
+  - docker-kvm
   stage: build
   script:
+    - cd src/lexer_parser/
     - make
