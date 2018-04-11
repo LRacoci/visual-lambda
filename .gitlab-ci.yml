@@ -8,5 +8,7 @@ test:
   - docker-kvm
   stage: test
   script:
-    - cd src/
+    - cd src/lexer_parser/
+    - make
+    - cd ../tree/
     - make
