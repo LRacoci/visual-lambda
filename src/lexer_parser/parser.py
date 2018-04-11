@@ -20,12 +20,15 @@ namesOut = {
     'args' : {}
 }
 
-def p_start(t):
-    'start : functionList'
+def reset():
     namesOut['functions'] = dict(names['functions'])
     namesOut['args'] = dict(names['args'])
     names['functions'] = {}
     names['args'] = {}
+
+def p_start(t):
+    'start : functionList'
+    reset()
 
 def p_functionList(t):
     '''functionList : functionList function
@@ -95,13 +98,14 @@ def p_expression_group(t):
     'expression : LPAREN expression RPAREN'
     t[0] = t[2]
 
-def p_application_expression(t):
+def p_application_nested(t):
     'application : application LPAREN expression RPAREN'
     t[0] = [t[1], t[3]]
 
-def p_application_group(t):
-    'application : LPAREN application RPAREN'
-    t[0] = [t[1], t[2]]
+def p_application_expression(t):
+    'application : NAME LPAREN expression RPAREN'
+    t[0] = [t[1], t[3]]
+
 
 def p_condition_group(t):
     'condition : LPAREN condition RPAREN'
@@ -115,15 +119,12 @@ def p_expression_name(t):
     'expression : NAME'
     t[0] = t[1]
 
-def p_application_name(t):
-    'application : NAME'
-    t[0] = t[1]
-
 def p_condition_bool(t):
     'condition : BOOL'
     t[0] = t[1]
 
 def p_error(t):
-    print("Syntax error at '%s'" % t.value)
+    print("Syntax error at %s" % t)
+    reset()
 
 parser = yacc.yacc()

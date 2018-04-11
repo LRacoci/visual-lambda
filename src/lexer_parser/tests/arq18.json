@@ -1,26 +1,15 @@
 {
   "functions": {
-    "apply": [
-      "y",
-      "y"
-    ],
-    "y_combinator": [
-      "apply",
-      [
-        "f",
-        "apply"
-      ]
-    ],
     "factorial": [
       [
         [
           "cond",
           [
-            ">",
-            [
-              "n",
-              0
-            ]
+           [
+              ">", 
+              "n"
+            ], 
+            0
           ]
         ],
         [
@@ -36,27 +25,36 @@
       ],
       1           
     ],
-
+    "apply": [
+      "y",
+      "y"
+    ],
     "main": [
       [
         "y_combinator",
         "factorial"
       ],
       3
-    ]
-
-  },
-  "args": {
-    "apply": [
-      "y"
     ],
     "y_combinator": [
-      "f"
-    ],
+      "apply",
+      [
+        "f",
+        "apply"
+      ]
+    ]
+  },
+  "args": {
     "factorial": [
       "f",
       "n"
     ],
-    "main": []
+    "apply": [
+      "y"
+    ],
+    "main": [],
+    "y_combinator": [
+      "f"
+    ]
   }
 }
