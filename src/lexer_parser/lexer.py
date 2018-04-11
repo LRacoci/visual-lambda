@@ -4,8 +4,8 @@ reserved = {
     'if': 'IF',
     'then': 'THEN',
     'else': 'ELSE',
-    'true': 'TRUE',
-    'false' : 'FALSE',
+    'True': 'TRUE',
+    'False' : 'FALSE',
     'and' : 'AND',
     'xor' : 'XOR',
     'ior' : 'IOR',
@@ -26,8 +26,7 @@ tokens = (
     'LTE',
     'DIF',
     'LT',
-    'GT',
-    'BOOL'
+    'GT'
 )
 
 tokens = list(tokens) + list(reserved.values())
@@ -53,7 +52,6 @@ t_DIF = r'!='
 t_LT = r'<'
 t_GT = r'>'
 t_IF = r'if'
-t_BOOL = r'(true)|(false)'
 
 def t_NATURAL(t):
     r'\d+'
