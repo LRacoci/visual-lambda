@@ -1,3 +1,4 @@
+import json
 def leaves(tree, k=0):
 	if type(tree) is list:
 		for branch in tree:
@@ -30,27 +31,12 @@ def change(forest):
             }
         else:
             return {"name": str(tree)}
+    resp = {}
+
+    for root in forest:
+        resp["name"] =  ' '.join([root] + args[root])
+        resp["children"] = [aux(forest[root])]
     
-    return {
-        root: {
-            "name" : ' '.join([root] + args[root]),
-            "children" : aux(forest[root])
-        } 
-    for root in forest }
+    return resp
     
     
-if __name__ == "__main__":
-    from glob import glob
-    import json
-    for fileAddress in glob('tests/forest*.json'):
-        print fileAddress
-        
-        with open(fileAddress) as jsonInputFile:
-            jsonInput = json.load(jsonInputFile)
-        
-        jsonOutput = change(jsonInput)
-        print "jsonOutput"
-        print json.dumps(jsonOutput, indent = 2)
-        
-        with open(fileAddress.replace("forest","tree"), "w") as outputFile:
-            json.dump(jsonOutput, outputFile, indent=2)

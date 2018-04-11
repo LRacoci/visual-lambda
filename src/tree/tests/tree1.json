@@ -1,8 +1,8 @@
 {
-  "main": {
-    "name": "main", 
-    "children": {
+  "name": "main", 
+  "children": [
+    {
       "name": "0"
     }
-  }
+  ]
 }
