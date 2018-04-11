@@ -3,6 +3,7 @@ import json
 import os
 import sys
 from lexer_parser.parser import *
+from tree.tree import *
 # Define a aplicacao
 app = Flask(__name__)
 
@@ -32,9 +33,8 @@ def translateCode():
     try:
 		dataDict = json.loads(request.data.decode())
 		parser.parse(dataDict['code'])
-		print namesOut
-		print dataDict
-		return Response(json.dumps({'tree':namesOut}), status=200)
+		treeDict = change(namesOut)
+		return Response(json.dumps({'tree':treeDict}), status=200)
     except:
 		return Response(str(sys.exc_info()[0]), status=500)
 
