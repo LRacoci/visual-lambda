@@ -1,18 +1,48 @@
 {
- "main": {
-  "name": " ", 
-  "children": [
-   {
-    "name": " ", 
-    "children": [
-     {
-      "name": "outro"
-     }, 
-     {
-      "name": "0"
-     }
-    ]
-   }
-  ]
- }
+  "main": {
+    "name": "main", 
+    "children": {
+      "name": " ", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": "cond"
+                }, 
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "<"
+                        }, 
+                        {
+                          "name": "0"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "1"
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "2"
+            }
+          ]
+        }, 
+        {
+          "name": "1"
+        }
+      ]
+    }
+  }
 }
