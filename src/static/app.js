@@ -46,7 +46,7 @@ app.controller('myCtrl', function($scope, $http) {
                 code: $scope.code
             },
         }).then(function mySuccess(response) {
-            $scope.value = response.data;
+            $scope.value = response.data.tree;
             $scope.statusText = "";
             $scope.errorText = "";
         }, function myError(response) {
