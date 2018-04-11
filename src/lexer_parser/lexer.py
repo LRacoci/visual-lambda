@@ -4,11 +4,11 @@ reserved = {
     'if': 'IF',
     'then': 'THEN',
     'else': 'ELSE',
-    "true": "TRUE",
-    "false" : "FALSE",
-    "and" : 'AND',
-    "xor" : 'XOR',
-    "ior" : 'IOR',
+    'true': 'TRUE',
+    'false' : 'FALSE',
+    'and' : 'AND',
+    'xor' : 'XOR',
+    'ior' : 'IOR',
 }
 
 tokens = (
@@ -34,7 +34,7 @@ tokens = list(tokens) + list(reserved.values())
 
 def t_NAME(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
-    t.type = reserved.get(t.value, "NAME")    # Check for reserved words
+    t.type = reserved.get(t.value, 'NAME')    # Check for reserved words
     return t
 
 # Tokens
@@ -54,7 +54,6 @@ t_LT = r'<'
 t_GT = r'>'
 t_IF = r'if'
 t_BOOL = r'(true)|(false)'
-
 
 def t_NATURAL(t):
     r'\d+'

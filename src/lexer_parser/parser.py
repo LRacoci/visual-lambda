@@ -59,7 +59,6 @@ def p_expression_binop(t):
                   '''
     t[0] = [[t[2], t[1]], t[3]]
 
-
 def p_condition_binop(t):
     '''condition :  condition AND condition
                   | condition XOR condition
@@ -105,7 +104,6 @@ def p_application_nested(t):
 def p_application_expression(t):
     'application : NAME LPAREN expression RPAREN'
     t[0] = [t[1], t[3]]
-
 
 def p_condition_group(t):
     'condition : LPAREN condition RPAREN'
