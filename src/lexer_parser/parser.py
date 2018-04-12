@@ -5,8 +5,11 @@ import ply.yacc as yacc
 
 precedence = (
     ('left','IFELSE'),
-    ('left','AND','XOR','IOR'),
-    ('left','EQL','GTE','LTE','DIF','LT','GT'),
+    ('left', 'IOR'),
+    ('left', 'XOR'),
+    ('left', 'AND'),
+    ('left', 'EQL', 'DIF'),
+    ('left', 'GT', 'GTE', 'LT', 'LTE'),
     ('left','PLUS','MINUS'),
     ('left','TIMES','DIVIDE'),
     ('right','UMINUS'),
