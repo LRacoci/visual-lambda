@@ -26,7 +26,8 @@ tokens = (
     'LTE',
     'DIF',
     'LT',
-    'GT'
+    'GT',
+    'NOT'
 )
 
 tokens = list(tokens) + list(reserved.values())
@@ -52,6 +53,7 @@ t_DIF = r'!='
 t_LT = r'<'
 t_GT = r'>'
 t_IF = r'if'
+t_NOT = r'!'
 
 def t_NATURAL(t):
     r'\d+'

@@ -12,7 +12,7 @@ precedence = (
     ('left', 'GT', 'GTE', 'LT', 'LTE'),
     ('left','PLUS','MINUS'),
     ('left','TIMES','DIVIDE'),
-    ('right','UMINUS'),
+    ('right','UNARY'),
 )
 
 # Dicionario de nomes
@@ -83,8 +83,12 @@ def p_expression_minus(t):
     t[0] = [[t[2], t[3]], t[1]]
 
 def p_expression_uminus(t):
-    'expression : MINUS expression %prec UMINUS'
+    'expression : MINUS expression %prec UNARY'
     t[0] = [[t[1], t[2]], 0]
+
+def p_expression_not(t):
+    'expression : NOT expression %prec UNARY'
+    t[0] = [['xor', t[2]], 'True']
 
 def p_expression_application(t):
     'expression : application '
