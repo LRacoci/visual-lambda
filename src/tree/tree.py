@@ -1,22 +1,52 @@
 import json
-def leaves(tree, k=0):
-	if type(tree) is list:
-		for branch in tree:
-			for leaf, j in leaves(branch, k=k+1):
-				yield leaf, j
-	else:
-		yield tree, k
+def nodesPy(tree,onlyLeaves=True, k=0):
+    if type(tree) is list:
+        for branch in tree:
+            for leaf, j in nodesPy(branch,onlyLeaves=onlyLeaves, k=k+1):
+                yield leaf, j
+    else:
+        if onlyLeaves:
+            yield tree, k
+    if not onlyLeaves:
+        yield tree, k
+
+def nodesD3(tree,onlyLeaves=True, k=0):
+    if "children" in tree:
+        for child in tree["children"]:
+            for leaf,j in nodesD3(child,onlyLeaves=onlyLeaves, k=k+1):
+                yield leaf, j
+    else: 
+        if onlyLeaves:
+            yield tree, k
+    if not onlyLeaves:
+        yield tree, k
+
+def cicle(srcName, dependence):
+    vision = {v: {} for v in dependence}
+    for v in dependence:
+        for u in dependence[v]:
+            vision[v][u] = vision[v]
+    
+    return "..." in str(vision[srcName])
 
 
 def change(forest):
     args = forest['args']
-    forest = forest['functions']
-    dependence = {}
-    for root in forest:
-        for leaf,_ in leaves(forest[root]):
-            if leaf in forest:
-                dependence[leaf] = root
-    
+    functions = forest['functions']
+    dependence = {
+        funcName : {
+            leaf: funcName
+            for leaf,_ in nodesPy(functions[funcName]) 
+            if leaf in functions
+        }
+        for funcName in functions
+    }
+    """
+    for funcName in functions:
+        for leaf,_ in nodesPy(functions[funcName]):
+            if leaf in functions:
+                dependence[leaf] = funcName
+    """
     print "dependencies"
     print json.dumps(dependence, indent = 2)
     
@@ -29,14 +59,26 @@ def change(forest):
                 "name": " ",
                 "children": children
             }
-        else:
-            return {"name": str(tree)}
-    resp = {}
+       
+        if str(tree) in functions and not cicle(str(tree), dependence):
+            return{
+                "name": ' '.join([str(tree)] + args[str(tree)]),
+                "children": [aux(functions[str(tree)])]
+            }
 
-    for root in forest:
-        resp["name"] =  ' '.join([root] + args[root])
-        resp["children"] = [aux(forest[root])]
+        return {"name": str(tree)}
     
-    return resp
+        
+    return {
+        "name": "main", 
+        "children": [aux(functions["main"])]
+    }
     
+
+"""
+Example:
+f = a g
+g = b h
+h = c f
+"""
     

@@ -1,0 +1,93 @@
+{
+  "name": "main", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "y_combinator"
+            }, 
+            {
+              "name": "factorial f n", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "cond"
+                            }, 
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": ">"
+                                    }, 
+                                    {
+                                      "name": "n"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "0"
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "f"
+                            }, 
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "-"
+                                    }, 
+                                    {
+                                      "name": "1"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "n"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "3"
+        }
+      ]
+    }
+  ]
+}
