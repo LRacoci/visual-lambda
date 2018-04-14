@@ -29,6 +29,7 @@ def cicle(srcName, dependence):
     
     return "..." in str(vision[srcName])
 
+MAX_RECURSSION = 3
 
 def change(forest):
     args = forest['args']
@@ -50,20 +51,21 @@ def change(forest):
     print "dependencies"
     print json.dumps(dependence, indent = 2)
     
-    def aux(tree, k = 0):
+    def aux(tree, k = 0, num_recursions=0):
         if type(tree) is list:
             children = []
             for branch in tree:
-                children += [aux(branch, k=k+1)]
+                children += [aux(branch, k=k+1, num_recursions=num_recursions)]
             return {
                 "name": " ",
                 "children": children
             }
        
-        if str(tree) in functions and not cicle(str(tree), dependence):
+        if str(tree) in functions and num_recursions < MAX_RECURSSION:
+            num_recursions += 1 if cicle(str(tree), dependence) else 0
             return{
                 "name": ' '.join([str(tree)] + args[str(tree)]),
-                "children": [aux(functions[str(tree)])]
+                "children": [aux(functions[str(tree)], k = k+1, num_recursions=num_recursions)]
             }
 
         return {"name": str(tree)}
