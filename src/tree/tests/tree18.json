@@ -8,7 +8,41 @@
           "name": " ", 
           "children": [
             {
-              "name": "y_combinator"
+              "name": "y_combinator f", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "apply y", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "y"
+                            }, 
+                            {
+                              "name": "y"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "f"
+                        }, 
+                        {
+                          "name": "apply"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
             }, 
             {
               "name": "factorial f n", 

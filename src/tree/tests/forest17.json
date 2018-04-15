@@ -28,5 +28,12 @@
     "outra": [
       "x"
     ]
+  },
+  "dependence": {
+    "outro": {
+      "outra": "outro"
+    },
+    "main": [],
+    "outra": []
   }
 }

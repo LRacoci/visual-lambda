@@ -5,7 +5,89 @@
       "name": " ", 
       "children": [
         {
-          "name": "fact"
+          "name": "fact n", 
+          "children": [
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "cond"
+                        }, 
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "isZero a", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "=="
+                                        }, 
+                                        {
+                                          "name": "a"
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "0"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "n"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "1"
+                    }
+                  ]
+                }, 
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "fact"
+                    }, 
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "-"
+                            }, 
+                            {
+                              "name": "1"
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "n"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
         }, 
         {
           "name": "3"
