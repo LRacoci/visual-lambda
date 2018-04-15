@@ -9,5 +9,12 @@
   "args": {
     "a": [],
     "main": []
+  },
+  "dependence": {
+    "a": [],
+    "main": [
+      "a",
+      "f"
+    ]
   }
 }

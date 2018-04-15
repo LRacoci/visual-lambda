@@ -15,22 +15,30 @@ precedence = (
     ('right','UNARY'),
 )
 
+funcCalls = []
+
 # Dicionario de nomes
 names = {
+    'dependence' : {},
     'functions' : {},
     'args' : {}
 }
 
 namesOut = {
+    'dependence' : {},
     'functions' : {},
     'args' : {}
 }
 
+
+
 def reset():
     namesOut['functions'] = dict(names['functions'])
     namesOut['args'] = dict(names['args'])
+    namesOut['dependence'] = dict(names['dependence'])
     names['functions'] = {}
     names['args'] = {}
+    names['dependence'] = {}
 
 def p_start(t):
     'start : functionList'
@@ -42,11 +50,19 @@ def p_functionList(t):
 
 def p_function_assign(t):
     'function : NAME DEFINITION expression'
+    global funcCalls
+    names['dependence'][t[1]] = [funcCall for funcCall in funcCalls]
+        
+    funcCalls = []
     names['functions'][t[1]] = t[3]
     names['args'][t[1]] = []
 
 def p_function_args(t):
     'function : NAME argList DEFINITION expression'
+    global funcCalls
+    names['dependence'][t[1]] = [funcCall for funcCall in funcCalls]
+
+    funcCalls = []
     names['functions'][t[1]] = t[4]
     names['args'][t[1]] = t[2]
 
@@ -104,10 +120,14 @@ def p_application_nested(t):
 
 def p_application_expression(t):
     'application : NAME LPAREN expression RPAREN'
+    global funcCalls
+    funcCalls.append(t[1])
     t[0] = [t[1], t[3]]
 
 def p_application_null(t):
     'application : NAME LPAREN RPAREN'
+    global funcCalls
+    funcCalls.append(t[1])
     t[0] = t[1]
 
 def p_expression_number(t):

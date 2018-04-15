@@ -34,6 +34,8 @@ MAX_RECURSSION = 1
 def change(forest):
     args = forest['args']
     functions = forest['functions']
+    dependence = forest['dependence']
+    """
     dependence = {
         funcName : {
             leaf: funcName
@@ -42,7 +44,6 @@ def change(forest):
         }
         for funcName in functions
     }
-    """
     for funcName in functions:
         for leaf,_ in nodesPy(functions[funcName]):
             if leaf in functions:

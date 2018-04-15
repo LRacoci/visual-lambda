@@ -2,42 +2,48 @@
   "functions": {
     "main": [
       [
-        "f", 
+        "f",
         1
-      ], 
+      ],
       2
-    ], 
+    ],
     "f": [
       [
         [
-          "cond", 
+          "cond",
           [
             [
               [
-                "cond", 
+                "cond",
                 [
                   [
-                    "<", 
+                    "<",
                     "a"
-                  ], 
+                  ],
                   "b"
                 ]
-              ], 
+              ],
               "True"
-            ], 
+            ],
             "False"
           ]
-        ], 
+        ],
         "False"
-      ], 
+      ],
       "True"
     ]
-  }, 
+  },
   "args": {
-    "main": [], 
+    "main": [],
     "f": [
-      "a", 
+      "a",
       "b"
     ]
+  },
+  "dependence": {
+    "main": [
+      "f"
+    ],
+    "f": []
   }
 }

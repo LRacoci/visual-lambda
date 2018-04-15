@@ -5,10 +5,10 @@
         [
           "cond",
           [
-           [
-              ">", 
+            [
+              ">",
               "n"
-            ], 
+            ],
             0
           ]
         ],
@@ -23,7 +23,7 @@
           ]
         ]
       ],
-      1           
+      1
     ],
     "apply": [
       "y",
@@ -55,6 +55,21 @@
     "main": [],
     "y_combinator": [
       "f"
+    ]
+  },
+  "dependence": {
+    "factorial": [
+      "f"
+    ],
+    "apply": [
+      "y"
+    ],
+    "main": [
+      "y_combinator"
+    ],
+    "y_combinator": [
+      "f",
+      "apply"
     ]
   }
 }

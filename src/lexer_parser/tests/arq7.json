@@ -19,5 +19,8 @@
   },
   "args": {
     "main": []
+  },
+  "dependence": {
+    "main": []
   }
 }

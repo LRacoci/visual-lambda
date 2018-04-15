@@ -2,45 +2,55 @@
   "functions": {
     "isZero": [
       [
-        "==", 
+        "==",
         "a"
-      ], 
+      ],
       0
-    ], 
+    ],
     "main": [
-      "fact", 
+      "fact",
       3
-    ], 
+    ],
     "fact": [
       [
         [
-          "cond", 
+          "cond",
           [
-            "isZero", 
+            "isZero",
             "n"
           ]
-        ], 
+        ],
         1
-      ], 
+      ],
       [
-        "fact", 
+        "fact",
         [
           [
-            "-", 
+            "-",
             1
-          ], 
+          ],
           "n"
         ]
       ]
     ]
-  }, 
+  },
   "args": {
     "isZero": [
       "a"
-    ], 
-    "main": [], 
+    ],
+    "main": [],
     "fact": [
       "n"
+    ]
+  },
+  "dependence": {
+    "isZero": [],
+    "main": [
+      "fact"
+    ],
+    "fact": [
+      "isZero",
+      "fact"
     ]
   }
 }
