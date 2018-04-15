@@ -67,6 +67,10 @@ def t_NATURAL(t):
 # Caracteres para ignorar
 t_ignore = " \t"
 
+def t_comment(t):
+    r'--.*'
+    t.lexer.lineno += 1
+
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
