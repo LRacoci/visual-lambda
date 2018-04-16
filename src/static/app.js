@@ -90,7 +90,8 @@ app.service('collapse', function() {
 
       // Add labels for the nodes
       nodeEnter.append('text')
-          .attr("dy", ".35em")
+          .attr("style","font-size:18px;font-weight:bold;")
+          .attr("dy", "0.35em")
           .attr("x", function(d) {
               return d.children || d._children ? -13 : 13;
           })
