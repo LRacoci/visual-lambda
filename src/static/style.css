@@ -25,7 +25,7 @@
   width: 1160px;
   height: 650px;
   background-color: white;
-  padding: 0;
+  padding: 10px;
 }
 #menu{
   margin: 0 auto;
@@ -45,13 +45,26 @@
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
+  background-color: #F5FBEF;
 }
 body{
-  background-color: #878f99;
+  background-color: #748B75;
+
 }
 form{
   text-align: center;
+  color: #503D42;
 }
 h1{
   margin: 0;
+  color: #84C318;
+  text-shadow: 2px 0 0 #503D42, -2px 0 0 #503D42, 0 2px 0 #503D42, 0 -2px 0 #503D42, 1px 1px #503D42, -1px -1px 0 #503D42, 1px -1px 0 #503D42, -1px 1px 0 #503D42;
 }
+
+/*
+#F5FBEF
+#92AD94
+#748B75
+#503D42
+#84C318
+*/
