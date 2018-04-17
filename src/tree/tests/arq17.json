@@ -2,38 +2,38 @@
   "functions": {
     "outro": [
       [
-        "+",
+        "+", 
         "a"
-      ],
+      ], 
       [
-        "outra",
+        "outra", 
         "b"
       ]
-    ],
-    "main": 0,
+    ], 
+    "main": 0, 
     "outra": [
       [
-        "/",
+        "/", 
         "x"
-      ],
+      ], 
       3
     ]
-  },
+  }, 
   "args": {
     "outro": [
-      "a",
+      "a", 
       "b"
-    ],
-    "main": [],
+    ], 
+    "main": [], 
     "outra": [
       "x"
     ]
-  },
+  }, 
   "dependence": {
     "outro": [
       "outra"
-    ],
-    "main": [],
+    ], 
+    "main": [], 
     "outra": []
   }
 }
