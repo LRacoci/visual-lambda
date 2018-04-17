@@ -17,6 +17,7 @@
 #wrapper{
   min-height: 100%;
   position: relative;
+  height: 730px;
 }
 #table {
   /*border-radius: 15px 15px 0px 0px;*/
@@ -24,10 +25,33 @@
   width: 1160px;
   height: 650px;
   background-color: white;
+  padding: 0;
 }
 #menu{
+  margin: 0 auto;
   width: 360px;
+  height: 730px;
+  padding: 0;
+  vertical-align: top;
+}
+#not-menu{
+  height: 730px;
+  padding: 0;
+  vertical-align: top;
+}
+
+#tree{
+  margin: auto;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
 }
 body{
   background-color: #878f99;
+}
+form{
+  text-align: center;
+}
+h1{
+  margin: 0;
 }
