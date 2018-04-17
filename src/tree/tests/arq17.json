@@ -1,0 +1,39 @@
+{
+  "functions": {
+    "outro": [
+      [
+        "+",
+        "a"
+      ],
+      [
+        "outra",
+        "b"
+      ]
+    ],
+    "main": 0,
+    "outra": [
+      [
+        "/",
+        "x"
+      ],
+      3
+    ]
+  },
+  "args": {
+    "outro": [
+      "a",
+      "b"
+    ],
+    "main": [],
+    "outra": [
+      "x"
+    ]
+  },
+  "dependence": {
+    "outro": [
+      "outra"
+    ],
+    "main": [],
+    "outra": []
+  }
+}
