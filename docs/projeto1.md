@@ -60,13 +60,31 @@ São feitas algumas checagens de erros na linguagem como por exemplo:
 
 ## Representação em Árvore
 
-Foi construída uma representação intermediária em formato de árvore baseada no cálculo lambda. Cada nó não folha da árvore representa uma aplicação do filho superior tendo o filho inferior como argumento. Exceto quando se está definindo uma função, nesse caso, o nó contém os argumentos da função na ordem em que serão "consumidos" quando a função for aplicada. Assim, é como se todas as funções recebessem um único argumento e retornassem ou uma função, ou um valor. Um exemplo de árvore está abaixo:
+Foi construída uma representação intermediária em formato de árvore baseada no cálculo lambda. Cada nó não folha da árvore representa uma aplicação do filho superior tendo o filho inferior como argumento. Exceto quando se está definindo uma função, nesse caso, o nó contém os argumentos da função na ordem em que serão "consumidos" quando a função for aplicada. Assim, é como se todas as funções recebessem um único argumento e retornassem ou uma função, ou um valor. Um exemplo de árvore e o código gerado está abaixo:
 
 ![](arvore.png)
 
-Na árvore, são mostradas as chamadas de funções do programa, exceto no caso de recursões, em que é mostrada a árvore da recursão apenas uma vez. Nas próximas etapas, na parte de execução do código, a recursão será expandida várias vezes para mostrar efetivamente os valores das variáveis na execução do programa.
+```
+a = 3
+main = f(a())
+f n = if n == 3 then True else False
+```
+
+Na árvore, são mostradas as chamadas de funções do programa, exceto no caso de recursões, em que é mostrada a árvore da recursão apenas uma vez. O caso do if-then-else foi traduzido em uma função *cond* que recebe como primeiro argumento a condição, o segundo argumento é a parte *True* e o último é a parte *False*
 
 Para chegar nesta representação, primeiramente é utilizado um parser para construir a árvore de execução de cada função. Além da árvore de execução de cada função, ele retorna um mapa de dependências entre funções, e dicionários de nomes (argumentos) das funções. Depois, outro módulo cria uma árvore unificada de funções, inicializando pela função *main*. Não é possível fazer tudo em um único passo, pois no parser quando estamos em uma chamada de função, pode ser que a árvore da função chamada ainda não seja conhecida, pois ela está declarada depois, e o parser ainda não teria montado a árvore da função chamada.
+
+Um ponto interessante é a checagem de recursão entre as funções, em que é construído um grafo de dependências, para poder detectar ciclos, igual o mostrado abaixo:
+
+```
+main = f(n)
+
+f n = g(n)
+
+g n = f(n)
+```
+
+Caso seja detectada uma recursão, neste primeiro momento do projeto as funções são expandidas apenas uma única vez. Nas próximas etapas elas serão expandidas mais vezes levando em consideração os valores das variáveis.
 
 ## Cliente Web
 
@@ -74,5 +92,5 @@ O cliente web e o servidor se comunicam através de uma REST implementada com o 
 
 ## Docker
 
-Foi criada uma imagem em uma branch separada para realizar testes no programa. Foram feitos testes do lexer e do parser, que retornavam árvores para cada função, dicionário de nomes e dependências de cada função, comparando a resposta com um JSON. Também foram feitos testes na parte de conversão da saída do parser para a árvore que seria mostrada na tela, também comparando JSONs. Por fim, foram feitos testes unitários no AngularJS com o auxílio do Karma.
+Foi criada uma imagem em uma branch separada para realizar testes no programa. Foram feitos testes do lexer e do parser, que retornavam árvores para cada função, dicionário de nomes e dependências de cada função, comparando a resposta com um JSON. Também foram feitos testes na parte de conversão da saída do parser para a árvore que seria mostrada na tela, também comparando JSONs. Por fim, foram feitos testes unitários no Flask para verificar o JSON retornado que seria mostrado como a árvore.
 
