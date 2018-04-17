@@ -12,3 +12,5 @@ test:
     - make
     - cd ../tree/
     - make
+    - cd ../
+    - make
