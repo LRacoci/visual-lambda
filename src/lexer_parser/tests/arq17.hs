@@ -1,4 +1,4 @@
-main = 0
+main = outro (1)(2)
 
 outro a b = a + outra (b)
 

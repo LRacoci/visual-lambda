@@ -2,7 +2,73 @@
   "name": "main", 
   "children": [
     {
-      "name": "0"
+      "name": " ", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "outro a b", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "+"
+                        }, 
+                        {
+                          "name": "a"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "outra x", 
+                          "children": [
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "/"
+                                    }, 
+                                    {
+                                      "name": "x"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "3"
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "b"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "1"
+            }
+          ]
+        }, 
+        {
+          "name": "2"
+        }
+      ]
     }
   ]
 }

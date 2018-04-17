@@ -10,7 +10,13 @@
         "b"
       ]
     ], 
-    "main": 0, 
+    "main": [
+      [
+        "outro", 
+        1
+      ], 
+      2
+    ], 
     "outra": [
       [
         "/", 
@@ -33,7 +39,9 @@
     "outro": [
       "outra"
     ], 
-    "main": [], 
+    "main": [
+      "outro"
+    ], 
     "outra": []
   }
 }
