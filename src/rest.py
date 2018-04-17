@@ -7,21 +7,6 @@ from tree.tree import *
 # Define a aplicacao
 app = Flask(__name__)
 
-tasks = [
-    {
-        'id': 1,
-        'title': u'Buy groceries',
-        'description': u'Milk, Cheese, Pizza, Fruit, Tylenol',
-        'done': False
-    },
-    {
-        'id': 2,
-        'title': u'Learn Python',
-        'description': u'Need to find a good Python tutorial on the web',
-        'done': False
-    }
-]
-
 # Ponto de entrada para a pagina web, carregando o template padrao
 @app.route("/")
 def index():
@@ -35,8 +20,8 @@ def translateCode():
 		parser.parse(dataDict['code'])
 		treeDict = change(namesOut)
 		return Response(json.dumps({'tree':treeDict}), status=200)
-    except:
-		return Response(str(sys.exc_info()[0]), status=500)
+    except Exception as err:
+		return Response(str(err.args[0]), status=500)
 
 # Gera um novo token a cada request para prevenir cache de paginas no browser
 @app.context_processor
