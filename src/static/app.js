@@ -18,8 +18,11 @@ app.service('collapse', function() {
   });
   fileInput.addEventListener( "change", function( event ) {
       var filename = (this.value).replace(/^.*[\\\/]/, '')
+      if (filename != "") {
+
       console.log(filename);
       the_return.innerHTML = filename;
+    }
   });
 
     var treeData;

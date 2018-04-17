@@ -66,14 +66,26 @@ h1{
   width: 1160px;
 }
 
+.submit-button{
+  border-top: 2px solid #a3ceda;
+  border-left: 2px solid #a3ceda;
+  border-right: 2px solid #4f6267;
+  border-bottom: 2px solid #4f6267;
+  padding: 5px 20px !important;
+  font-size: 14px !important;
+  background-color: #39D2B4;
+  font-weight: bold;
+  color: #fff;
+}
 
 .input-file-container {
   position: relative;
-  width: 225px;
+  width: 125px;
+  margin: 5px auto;
 }
 .js .input-file-trigger {
   display: block;
-  padding: 14px 45px;
+  padding: 5px 10px;
   background: #39D2B4;
   color: #fff;
   font-size: 1em;
@@ -83,9 +95,9 @@ h1{
 .js .input-file {
   position: absolute;
   top: 0; left: 0;
-  width: 225px;
+  width: 125px;
   opacity: 0;
-  padding: 14px 0;
+  padding: 5px 0;
   cursor: pointer;
 }
 .js .input-file:hover + .input-file-trigger,
