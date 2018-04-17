@@ -1,4 +1,6 @@
 from parser import *
+import sys
+import os
 
 def printTree(tree):
     def printTreeAux(n, tree):
@@ -50,29 +52,49 @@ if __name__ == "__main__":
 
         with open(inpFileName) as inpFile:
             problem = inpFile.read()
-        
-        parser.parse(problem)
-        output = namesOut
-        #print json.dumps(output)
-        outFileName = inpFileName.replace(".hs", "_out.json")
-        
-        with open(outFileName, "w") as outFile:
-            json.dump(output, outFile, indent = 2)
-        
-        answer = inpFileName.replace(".hs", ".json")
-        with open(answer) as a:
-            answer = json.load(a)
-        
-        ao = diff(answer, output)
-        oa = diff(output, answer)
+        try:
+            parser.parse(problem)
+        except Exception as err:
 
-        if ao != None:
-            print "answer - output == "
-            print json.dumps(ao, indent = 2)
-        
-        if oa != None:
-            print "output - answer == "
-            print json.dumps(oa, indent = 2)
+            output = err.args[0]
 
-        if answer == output:
-            print "ok"
+            outFileName = inpFileName.replace(".hs", "_out.err")
+            with open(outFileName, "w") as outFile:
+                outFile.write(output)
+            
+            answer = inpFileName.replace(".hs", ".err")
+            with open(answer) as a:
+                answer = a.read()
+            
+            if answer == output:
+                print "ok"
+            else:
+                exc_type, exc_obj, exc_tb = sys.exc_info()
+                fname = os.path.split(exc_tb.tb_frame.f_code.co_filename)[1]
+                print(exc_type, fname, exc_tb.tb_lineno)
+
+        else:
+            output = namesOut
+            #print json.dumps(output)
+            outFileName = inpFileName.replace(".hs", "_out.json")
+        
+            with open(outFileName, "w") as outFile:
+                json.dump(output, outFile, indent = 2)
+            
+            answer = inpFileName.replace(".hs", ".json")
+            with open(answer) as a:
+                answer = json.load(a)
+            
+            ao = diff(answer, output)
+            oa = diff(output, answer)
+
+            if ao != None:
+                print "answer - output == "
+                print json.dumps(ao, indent = 2)
+            
+            if oa != None:
+                print "output - answer == "
+                print json.dumps(oa, indent = 2)
+
+            if answer == output:
+                print "ok"

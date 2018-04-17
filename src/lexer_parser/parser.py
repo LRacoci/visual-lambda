@@ -15,14 +15,15 @@ precedence = (
     ('right','UNARY'),
 )
 
-funcCalls = []
+# Auxiliar variables
+_names = {}
+_names_aux = set()
 
-# Dicionario de nomes
-names = {
-    'dependence' : {},
-    'functions' : {},
-    'args' : {}
-}
+_dependence_aux = set()
+
+_functions = {}
+_args = {}
+_dependence = {}
 
 namesOut = {
     'dependence' : {},
@@ -33,12 +34,43 @@ namesOut = {
 
 
 def reset():
-    namesOut['functions'] = dict(names['functions'])
-    namesOut['args'] = dict(names['args'])
-    namesOut['dependence'] = dict(names['dependence'])
-    names['functions'] = {}
-    names['args'] = {}
-    names['dependence'] = {}
+    global _functions
+    global _args
+    global _dependence
+    
+    namesOut['functions'] = dict(_functions)
+    namesOut['args'] = dict(_args)
+    namesOut['dependence'] = dict(_dependence)
+    
+    _functions = {}
+    _args = {}
+    _dependence = {}
+
+    # Check if 'main' is defined
+    if 'main' not in namesOut['functions']:
+        raise Exception("Error: main is not defined")
+
+    # Check if 'main' has no arguments
+    if len(namesOut['args']['main']) != 0:
+        raise Exception("Error: main is defined with arguments")
+    
+    set_of_functions = {func for func in namesOut['functions']}
+
+    # Check if every function called is defined or an argument of the current function
+    for func in namesOut['functions']:
+        set_of_args = {arg for arg in namesOut['args'][func]}
+        aux = (set(namesOut['dependence'][func]) - set_of_args) - set_of_functions
+        if len(aux) > 0:
+            str_aux = ", ".join(list(aux))
+            raise Exception("Error: {} called inside {} is not defined".format(aux, func))
+    
+    # Check if every name is a function name or an argument in the current function
+    for func in namesOut['functions']:
+        set_of_args = {arg for arg in namesOut['args'][func]}
+        aux = (_names[func] - set_of_args) - set_of_functions
+        if len(aux) > 0:
+            str_aux = ", ".join(list(aux))
+            raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
 
 def p_start(t):
     'start : functionList'
@@ -50,21 +82,38 @@ def p_functionList(t):
 
 def p_function_assign(t):
     'function : NAME DEFINITION expression'
-    global funcCalls
-    names['dependence'][t[1]] = [funcCall for funcCall in funcCalls]
+    global _names
+    global _names_aux
+    _names[t[1]] = _names_aux
+
+    _names_aux = set()
+
+    global _dependence
+    global _dependence_aux
+    _dependence[t[1]] =  list(_dependence_aux)
         
-    funcCalls = []
-    names['functions'][t[1]] = t[3]
-    names['args'][t[1]] = []
+    _dependence_aux = set()
+    global _functions
+    _functions[t[1]] = t[3]
+    _args[t[1]] = []
 
 def p_function_args(t):
     'function : NAME argList DEFINITION expression'
-    global funcCalls
-    names['dependence'][t[1]] = [funcCall for funcCall in funcCalls]
+    global _names
+    global _names_aux
+    _names[t[1]] = _names_aux
 
-    funcCalls = []
-    names['functions'][t[1]] = t[4]
-    names['args'][t[1]] = t[2]
+    _names_aux = set()
+    
+    global _dependence
+    global _dependence_aux
+    _dependence[t[1]] = list(_dependence_aux)
+
+    _dependence_aux = set()
+    
+    global _functions
+    _functions[t[1]] = t[4]
+    _args[t[1]] = t[2]
 
 def p_args_list(t):
     'argList : argList NAME'
@@ -120,14 +169,19 @@ def p_application_nested(t):
 
 def p_application_expression(t):
     'application : NAME LPAREN expression RPAREN'
-    global funcCalls
-    funcCalls.append(t[1])
+    global _names_aux 
+    _names_aux |= {t[1]} 
+    global _dependence_aux
+    _dependence_aux |= {t[1]}
     t[0] = [t[1], t[3]]
 
 def p_application_null(t):
     'application : NAME LPAREN RPAREN'
-    global funcCalls
-    funcCalls.append(t[1])
+    global _names_aux 
+    _names_aux |= {t[1]} 
+
+    global _dependence_aux
+    _dependence_aux |= {t[1]}
     t[0] = t[1]
 
 def p_expression_number(t):
@@ -136,6 +190,9 @@ def p_expression_number(t):
 
 def p_expression_name(t):
     'expression : NAME'
+    global _names_aux 
+    _names_aux |= {t[1]} 
+
     t[0] = t[1]
 
 def p_expression_bool(t):
@@ -144,7 +201,7 @@ def p_expression_bool(t):
     t[0] = t[1]
 
 def p_error(t):
-    print("Syntax error at %s" % t)
     reset()
+    raise Exception("Syntax error at %s" % t)
 
 parser = yacc.yacc()

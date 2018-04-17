@@ -60,8 +60,7 @@ def t_NATURAL(t):
     try:
         t.value = int(t.value)
     except ValueError:
-        print("Natural value too large %d", t.value)
-        t.value = 0
+        raise Exception("Natural value too large %d", t.value)
     return t
 
 # Caracteres para ignorar
@@ -76,8 +75,7 @@ def t_newline(t):
     t.lexer.lineno += t.value.count("\n")
     
 def t_error(t):
-    print("Illegal character '%s'" % t.value[0])
-    t.lexer.skip(1)
+    raise Exception("Illegal character '%s'" % t.value[0])
     
 # Constroi lexer
 lexer = lex.lex()
