@@ -1,6 +1,27 @@
 var app = angular.module('myApp', []);
 
 app.service('collapse', function() {
+  document.querySelector("html").classList.add('js');
+
+  var fileInput  = document.querySelector( ".input-file" ),
+      button     = document.querySelector( ".input-file-trigger" ),
+      the_return = document.querySelector(".input-file-trigger");
+
+  button.addEventListener( "keydown", function( event ) {
+      if ( event.keyCode == 13 || event.keyCode == 32 ) {
+          fileInput.focus();
+      }
+  });
+  button.addEventListener( "click", function( event ) {
+     fileInput.focus();
+     return false;
+  });
+  fileInput.addEventListener( "change", function( event ) {
+      var filename = (this.value).replace(/^.*[\\\/]/, '')
+      console.log(filename);
+      the_return.innerHTML = filename;
+  });
+
     var treeData;
 
     this.drawTree = function(tree) {
@@ -41,7 +62,7 @@ app.service('collapse', function() {
       root.y0 = 0;
 
       // Collapse after the second level
-      root.children.forEach(collapse);
+      // root.children.forEach(collapse);
 
       update(root);
     }

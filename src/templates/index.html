@@ -12,9 +12,12 @@
 		<div style="display:table-cell;" ng-init="init()" id="menu">
 			 <form>
 				 Digite seu c&oacute;digo abaixo ou mande um arquivo texto:<br />
-				 <input type="file" on-read-file="showContent($fileContent)" />
+				 <div class="input-file-container">
+					 <input class="input-file" id="my-file" type="file" on-read-file="showContent($fileContent)"/>
+					 <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
+				 </div>
 				 <textarea ng-model="code" rows="40" cols="40"></textarea><br />
-		         <input ng-click="translateCode()" type="button" value="Submit" />
+		         <input ng-click="translateCode()" type="button" value="&#9881;Submit" class="submit-button" />
 			 </form>
 
 		</div>
