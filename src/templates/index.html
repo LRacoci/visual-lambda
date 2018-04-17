@@ -16,16 +16,18 @@
 				 <textarea ng-model="code" rows="40" cols="40"></textarea><br />
 		         <input ng-click="translateCode()" type="button" value="Submit" />
 			 </form>
-			 <p ng-bind="value"></p>
-	         <p ng-bind="statusText"></p>
-	         <p ng-bind="errorText"></p>
-			
+
 		</div>
 		<div id="not-menu" style="display:table-cell; background-color:white">
 			<div style="display:table-row;">
 	          <h1>&lambda;<span class="striped"> LAMB</span><span class="h1graph">graph</span> </h1>
 	        </div>
 			<div id="tree" style="display:table-row;"></div>
+		</div>
+		<div id="footer" style="display:table-row;">
+					<!-- <p ng-bind="value"></p> -->
+					<p ng-bind="statusText"></p>
+					<p ng-bind="errorText"></p>
 		</div>
 	</div>
 </div>

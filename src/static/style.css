@@ -17,7 +17,6 @@
 #wrapper{
   min-height: 100%;
   position: relative;
-  height: 730px;
 }
 #table {
   /*border-radius: 15px 15px 0px 0px;*/
@@ -30,12 +29,12 @@
 #menu{
   margin: 0 auto;
   width: 360px;
-  height: 730px;
+  height: 700px;
   padding: 0;
   vertical-align: top;
 }
 #not-menu{
-  height: 730px;
+  height: 700px;
   padding: 0;
   vertical-align: top;
 }
@@ -59,6 +58,10 @@ h1{
   margin: 0;
   color: #84C318;
   text-shadow: 2px 0 0 #503D42, -2px 0 0 #503D42, 0 2px 0 #503D42, 0 -2px 0 #503D42, 1px 1px #503D42, -1px -1px 0 #503D42, 1px -1px 0 #503D42, -1px 1px 0 #503D42;
+}
+
+.ng-binding{
+  width: 1160px;
 }
 
 /*
