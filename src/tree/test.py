@@ -9,8 +9,20 @@ if __name__ == "__main__":
             jsonInput = json.load(jsonInputFile)
         
         jsonOutput = change(jsonInput)
-        print "jsonOutput"
-        print json.dumps(jsonOutput, indent = 2)
+        #print "jsonOutput"
+        #print json.dumps(jsonOutput, indent = 2)
         
-        with open(fileAddress.replace("forest","tree"), "w") as outputFile:
+        answerAddress = fileAddress.replace("forest","tree")
+        with open(answerAddress) as answerFile:
+            jsonAnswer = json.load(answerFile)
+
+        with open(answerAddress.replace(".json","_out.json"), "w") as outputFile:
             json.dump(jsonOutput, outputFile, indent=2)
+
+        if jsonOutput == jsonAnswer:
+            print "ok"
+        else:
+            print "answer =="
+            print json.dumps(jsonAnswer, indent = 2)
+            print "output =="
+            print json.dumps(jsonOutput, indent = 2)

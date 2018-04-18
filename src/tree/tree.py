@@ -49,8 +49,8 @@ def change(forest):
             if leaf in functions:
                 dependence[leaf] = funcName
     """
-    print "dependencies"
-    print json.dumps(dependence, indent = 2)
+    #print "dependencies"
+    #print json.dumps(dependence, indent = 2)
     
     def aux(tree, k = 0, num_recursions={funcName : 0 for funcName in functions}):
         if type(tree) is list:
