@@ -52,6 +52,8 @@ A linguagem aceita expressões aritméticas (+,-,*,/), comparações (==, <=, >=
 compare a b = if a > b then a else b
 ```
 
+A linguagem também aceita comentários de linha. Tudo após o ```--``` é ignorado na linha.
+
 São feitas algumas checagens de erros na linguagem como por exemplo:
 
 - Checar nas funções se não existem variáveis que não foram inicializadas.
@@ -85,6 +87,8 @@ g n = f(n)
 ```
 
 Caso seja detectada uma recursão, neste primeiro momento do projeto as funções são expandidas apenas uma única vez. Nas próximas etapas elas serão expandidas mais vezes levando em consideração os valores das variáveis.
+
+Também na árvore, para que os operadores unários funcionassem como uma função que recebe um argumento e retorna uma função, foram feitas algumas adaptações. O ```-N```, por exemplo, foi traduzido como ```0 - N```, e o ```!condition``` foi traduzido como ```condition xor True```.
 
 ## Cliente Web
 
