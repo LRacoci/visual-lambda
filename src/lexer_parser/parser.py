@@ -1,7 +1,7 @@
 from lexer import *
 import ply.yacc as yacc
 
-# Regras do parser
+# Parser precende
 
 precedence = (
     ('left','IFELSE'),
@@ -31,8 +31,7 @@ namesOut = {
     'args' : {}
 }
 
-
-
+# Reset variables
 def reset():
     global _functions
     global _args
@@ -71,6 +70,8 @@ def reset():
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
             raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
+
+# Parser rules
 
 def p_start(t):
     'start : functionList'

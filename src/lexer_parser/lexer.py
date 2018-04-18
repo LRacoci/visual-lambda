@@ -30,14 +30,14 @@ tokens = (
     'NOT'
 )
 
+# Tokens
+
 tokens = list(tokens) + list(reserved.values())
 
 def t_NAME(t):
     r'[a-zA-Z_][a-zA-Z_0-9]*'
     t.type = reserved.get(t.value, 'NAME')    # Check for reserved words
     return t
-
-# Tokens
 
 t_PLUS = r'\+'
 t_MINUS = r'-'
@@ -63,9 +63,10 @@ def t_NATURAL(t):
         raise Exception("Natural value too large %d", t.value)
     return t
 
-# Caracteres para ignorar
+# Characters to ignore
 t_ignore = " \t"
 
+# Comments
 def t_comment(t):
     r'--.*'
     t.lexer.lineno += 1

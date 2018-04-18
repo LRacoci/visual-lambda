@@ -17,9 +17,9 @@
           [
             [
               "-",
-              1
+              "n"
             ],
-            "n"
+            1
           ]
         ]
       ],
@@ -68,8 +68,8 @@
       "y_combinator"
     ],
     "y_combinator": [
-      "f",
-      "apply"
+      "apply",
+      "f"
     ]
   }
 }

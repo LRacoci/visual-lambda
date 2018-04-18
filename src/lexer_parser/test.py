@@ -2,6 +2,7 @@ from parser import *
 import sys
 import os
 
+# Debug function to print tree
 def printTree(tree):
     def printTreeAux(n, tree):
         resp = ""
@@ -13,7 +14,7 @@ def printTree(tree):
         return resp
     return printTreeAux(-1, tree)
 
-
+# Check diff between a and b
 from itertools import *
 def diff(a,b):
     if a == b:
@@ -47,6 +48,7 @@ if __name__ == "__main__":
     from glob import glob
     import json
     
+    # Compare the answer and the output to test
     for inpFileName in glob('tests/arq*.hs'):
         print inpFileName
 

@@ -1,4 +1,6 @@
 import json
+
+# Function used to debug and search the tree
 def nodesPy(tree,onlyLeaves=True, k=0):
     if type(tree) is list:
         for branch in tree:
@@ -10,6 +12,7 @@ def nodesPy(tree,onlyLeaves=True, k=0):
     if not onlyLeaves:
         yield tree, k
 
+# Function used to debug and search the D3 tree
 def nodesD3(tree,onlyLeaves=True, k=0):
     if "children" in tree:
         for child in tree["children"]:
@@ -21,6 +24,7 @@ def nodesD3(tree,onlyLeaves=True, k=0):
     if not onlyLeaves:
         yield tree, k
 
+# Check if the function with name srcName is in a recursive cicle
 def cicle(srcName, dependence):
     vision = {v: {} for v in dependence}
     for v in dependence:
@@ -31,6 +35,7 @@ def cicle(srcName, dependence):
 
 MAX_RECURSSION = 1
 
+# Convert the python forest format to the D3 tree expected by the front end
 def change(forest):
     args = forest['args']
     functions = forest['functions']
@@ -52,6 +57,7 @@ def change(forest):
     #print "dependencies"
     #print json.dumps(dependence, indent = 2)
     
+    # Recursive function that goes down the tree beginning with main
     def aux(tree, k = 0, num_recursions={funcName : 0 for funcName in functions}):
         if type(tree) is list:
             children = []

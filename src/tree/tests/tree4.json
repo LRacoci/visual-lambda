@@ -25,28 +25,28 @@
                   "name": "-"
                 }, 
                 {
-                  "name": "4"
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "*"
+                        }, 
+                        {
+                          "name": "3"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "4"
+                    }
+                  ]
                 }
               ]
             }, 
             {
-              "name": " ", 
-              "children": [
-                {
-                  "name": " ", 
-                  "children": [
-                    {
-                      "name": "*"
-                    }, 
-                    {
-                      "name": "3"
-                    }
-                  ]
-                }, 
-                {
-                  "name": "4"
-                }
-              ]
+              "name": "4"
             }
           ]
         }

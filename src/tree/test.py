@@ -2,6 +2,8 @@ from tree import *
 if __name__ == "__main__":
     from glob import glob
     import json
+
+    # Check answer and output to test
     for fileAddress in glob('tests/forest*.json'):
         print fileAddress
         

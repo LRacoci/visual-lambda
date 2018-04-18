@@ -1,0 +1,17 @@
+{
+  "functions": {
+    "main": [
+      [
+        "+",
+        0
+      ],
+      1
+    ]
+  },
+  "args": {
+    "main": []
+  },
+  "dependence": {
+    "main": []
+  }
+}

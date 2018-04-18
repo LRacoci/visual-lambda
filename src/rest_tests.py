@@ -2,7 +2,7 @@ import json
 import rest
 import unittest
 
-# Classe que faz testes unitarios de comunicao entre o cliente e o servidor
+# Class to do unit tests of communication between client and server
 class RestTestCase(unittest.TestCase):
 
     @classmethod
@@ -13,27 +13,27 @@ class RestTestCase(unittest.TestCase):
     def tearDownClass(cls):
         pass
 
-    # Metodo chamado antes de cada teste
+    # Method called before each test
     def setUp(self):
         self.app = rest.app.test_client()
         self.app.testing = True
 
-    # Metodo chamado apos cada teste
+    # Method called after each test
     def tearDown(self):
         pass
 
-    # Testa o status da chamada para pegar o index
+    # Test the status of get index
     def test_home_status_code(self):
         result = self.app.get('/')
         self.assertEqual(result.status_code, 200)
 
-    # Testa o tipo do conteudo do index
+    # Test the content of get index
     def test_content_type(self):
         result = self.app.get('/')
         self.assertIn('text/html', result.content_type)
 
-    # Testa as chamadas para traduzir o codigo em arvore,
-    # retornando a arvore (JSON) que seria mostrado na tela
+    # Test the post to translate the code into a tree
+    # returnin the tree (JSON) which would be drawed
     def test_translate_code(self):
         from glob import glob
         for fileAddress in glob('./lexer_parser/tests/arq*.hs'):

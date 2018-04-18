@@ -8,56 +8,45 @@
           "name": " ", 
           "children": [
             {
-              "name": "-"
-            }, 
-            {
               "name": " ", 
               "children": [
+                {
+                  "name": "cond"
+                }, 
                 {
                   "name": " ", 
                   "children": [
                     {
-                      "name": "*"
-                    }, 
-                    {
                       "name": " ", 
                       "children": [
+                        {
+                          "name": "xor"
+                        }, 
                         {
                           "name": " ", 
                           "children": [
                             {
-                              "name": "/"
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": ">"
+                                }, 
+                                {
+                                  "name": "1"
+                                }
+                              ]
                             }, 
                             {
-                              "name": "6"
+                              "name": "2"
                             }
                           ]
-                        }, 
-                        {
-                          "name": "2"
                         }
                       ]
+                    }, 
+                    {
+                      "name": "True"
                     }
                   ]
-                }, 
-                {
-                  "name": "4"
-                }
-              ]
-            }
-          ]
-        }, 
-        {
-          "name": " ", 
-          "children": [
-            {
-              "name": " ", 
-              "children": [
-                {
-                  "name": "*"
-                }, 
-                {
-                  "name": "8"
                 }
               ]
             }, 
@@ -65,6 +54,9 @@
               "name": "1"
             }
           ]
+        }, 
+        {
+          "name": "2"
         }
       ]
     }
