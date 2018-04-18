@@ -127,6 +127,7 @@ def p_expression_binop(t):
     '''expression : expression PLUS expression
                   | expression TIMES expression
                   | expression DIVIDE expression
+                  | expression MINUS expression
                   | expression AND expression
                   | expression XOR expression
                   | expression IOR expression
@@ -142,10 +143,6 @@ def p_expression_binop(t):
 def p_expression_ifelse(t):
     'expression : IF expression THEN expression ELSE expression %prec IFELSE'
     t[0] = [[["cond", t[2]], t[4]], t[6]]
-
-def p_expression_minus(t):
-    'expression : expression MINUS expression'
-    t[0] = [[t[2], t[3]], t[1]]
 
 def p_expression_uminus(t):
     'expression : MINUS expression %prec UNARY'
