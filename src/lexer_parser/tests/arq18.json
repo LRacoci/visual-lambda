@@ -58,18 +58,18 @@
     ]
   },
   "dependence": {
-    "factorial": [
-      "f"
-    ],
-    "apply": [
-      "y"
-    ],
-    "main": [
-      "y_combinator"
-    ],
-    "y_combinator": [
-      "apply",
-      "f"
-    ]
+    "factorial": {
+      "f": 1
+    },
+    "apply": {
+      "y": 1
+    },
+    "main": {
+      "y_combinator": 1
+    },
+    "y_combinator": {
+      "apply": 1,
+      "f": 1
+    }
   }
 }

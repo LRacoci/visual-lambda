@@ -2,46 +2,46 @@
   "functions": {
     "outro": [
       [
-        "+", 
+        "+",
         "a"
-      ], 
+      ],
       [
-        "outra", 
+        "outra",
         "b"
       ]
-    ], 
+    ],
     "main": [
       [
-        "outro", 
+        "outro",
         1
-      ], 
+      ],
       2
-    ], 
+    ],
     "outra": [
       [
-        "/", 
+        "/",
         "x"
-      ], 
+      ],
       3
     ]
-  }, 
+  },
   "args": {
     "outro": [
-      "a", 
+      "a",
       "b"
-    ], 
-    "main": [], 
+    ],
+    "main": [],
     "outra": [
       "x"
     ]
-  }, 
+  },
   "dependence": {
-    "outro": [
-      "outra"
-    ], 
-    "main": [
-      "outro"
-    ], 
-    "outra": []
+    "outro": {
+      "outra": 1
+    },
+    "main": {
+      "outro": 1
+    },
+    "outra": {}
   }
 }

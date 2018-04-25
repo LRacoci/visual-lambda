@@ -44,13 +44,13 @@
     ]
   },
   "dependence": {
-    "isZero": [],
-    "main": [
-      "fact"
-    ],
-    "fact": [
-      "isZero",
-      "fact"
-    ]
+    "isZero": {},
+    "main": {
+      "fact": 1
+    },
+    "fact": {
+      "isZero": 1,
+      "fact": 1
+    }
   }
 }

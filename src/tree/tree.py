@@ -31,6 +31,9 @@ def cicle(srcName, dependence):
         for u in dependence[v]:
             vision[v][u] = vision[v]
     
+    print "dependence == ", dependence
+    print "vision == ", vision
+    
     return "..." in str(vision[srcName])
 
 MAX_RECURSSION = 1
@@ -40,45 +43,45 @@ def change(forest):
     args = forest['args']
     functions = forest['functions']
     dependence = forest['dependence']
-    """
-    dependence = {
-        funcName : {
-            leaf: funcName
-            for leaf,_ in nodesPy(functions[funcName]) 
-            if leaf in functions
-        }
-        for funcName in functions
-    }
-    for funcName in functions:
-        for leaf,_ in nodesPy(functions[funcName]):
-            if leaf in functions:
-                dependence[leaf] = funcName
-    """
+
     #print "dependencies"
     #print json.dumps(dependence, indent = 2)
     
     # Recursive function that goes down the tree beginning with main
-    def aux(tree, k = 0, num_recursions={funcName : 0 for funcName in functions}):
-        if type(tree) is list:
+    def aux(name, k = 0, num_recursions={funcName : 0 for funcName in functions}, branch = None):
+        if name not in functions:
+            return None
+        
+        if branch == None:
+            branch = functions[name]
+        
+        if type(branch) is list:
             children = []
-            for branch in tree:
-                children += [aux(branch, k=k+1, num_recursions=num_recursions)]
+            for branch in branch:
+                children += [aux(name, k=k+1, num_recursions=num_recursions, branch=branch)]
             return {
                 "name": " ",
                 "children": children
             }
-       
-        if str(tree) in functions and num_recursions[str(tree)] < MAX_RECURSSION:
-            num_recursions[str(tree)] += 1 if cicle(str(tree), dependence) else 0
-            return{
-                "name": ' '.join([str(tree)] + args[str(tree)]),
-                "children": [aux(functions[str(tree)], k = k+1, num_recursions=num_recursions)]
+        
+        leaf = str(branch)
+        if name in dependence and leaf in dependence[name] and num_recursions[leaf] < MAX_RECURSSION * dependence[name][leaf]:
+            num_recursions[leaf] += 1 if cicle(leaf, dependence) else 0
+            return {
+                "name": ' '.join([leaf] + args[leaf]),
+                "children": [aux(leaf, k = k+1, num_recursions=num_recursions)]
+            }
+        
+        if leaf in functions:
+            return {
+                "name": ' '.join([leaf] + args[leaf]),
+                "children": [aux(leaf, k = k+1, num_recursions=num_recursions)]
             }
 
-        return {"name": str(tree)}
+        return {"name": leaf}
     
         
     return {
         "name": "main", 
-        "children": [aux(functions["main"])]
+        "children": [aux("main")]
     }

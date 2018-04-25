@@ -19,7 +19,7 @@ precedence = (
 _names = {}
 _names_aux = set()
 
-_dependence_aux = set()
+_dependence_aux = {}
 
 _functions = {}
 _args = {}
@@ -91,9 +91,9 @@ def p_function_assign(t):
 
     global _dependence
     global _dependence_aux
-    _dependence[t[1]] =  list(_dependence_aux)
+    _dependence[t[1]] =  _dependence_aux
         
-    _dependence_aux = set()
+    _dependence_aux = {}
     global _functions
     _functions[t[1]] = t[3]
     _args[t[1]] = []
@@ -108,9 +108,9 @@ def p_function_args(t):
     
     global _dependence
     global _dependence_aux
-    _dependence[t[1]] = list(_dependence_aux)
+    _dependence[t[1]] = _dependence_aux
 
-    _dependence_aux = set()
+    _dependence_aux = {}
     
     global _functions
     _functions[t[1]] = t[4]
@@ -169,8 +169,13 @@ def p_application_expression(t):
     'application : NAME LPAREN expression RPAREN'
     global _names_aux 
     _names_aux |= {t[1]} 
+    
     global _dependence_aux
-    _dependence_aux |= {t[1]}
+    if t[1] in _dependence_aux:
+        _dependence_aux[t[1]] = _dependence_aux[t[1]] + 1
+    else:
+        _dependence_aux[t[1]] = 1
+    
     t[0] = [t[1], t[3]]
 
 def p_application_null(t):
@@ -179,7 +184,11 @@ def p_application_null(t):
     _names_aux |= {t[1]} 
 
     global _dependence_aux
-    _dependence_aux |= {t[1]}
+    if t[1] in _dependence_aux:
+        _dependence_aux[t[1]] = _dependence_aux[t[1]] + 1
+    else:
+        _dependence_aux[t[1]] = 1
+    
     t[0] = t[1]
 
 def p_expression_number(t):

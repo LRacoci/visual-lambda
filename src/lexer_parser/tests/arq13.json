@@ -27,8 +27,8 @@
     ]
   },
   "dependence": {
-    "outro": [],
-    "main": [],
-    "outra": []
+    "outro": {},
+    "main": {},
+    "outra": {}
   }
 }
