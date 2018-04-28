@@ -139,19 +139,81 @@ def p_expression_binop(t):
                   | expression LT expression
                   | expression GT expression
                   '''
-    t[0] = [[t[2], t[1]], t[3]]
+    #t[0] = [[t[2], t[1]], t[3]]
+    t[0] = {
+        "name" : " ",
+        "child" : [
+            {
+                "name" : " ",
+                "child" : [
+                    {"name" : t[2]},
+                    t[1]
+                ]
+            },
+            t[3]
+        ]
+    }
 
 def p_expression_ifelse(t):
     'expression : IF expression THEN expression ELSE expression %prec IFELSE'
-    t[0] = [[["cond", t[2]], t[4]], t[6]]
+    #t[0] = [[["cond", t[2]], t[4]], t[6]]
+    t[0] = {
+        "name" : " ",
+        "child" : [
+            {
+                "name" : " ",
+                "child" : [
+                    {
+                        "name" : " ",
+                        "child" : [
+                            {"name" : "cond"},
+                            t[2]
+                        ]
+                    },
+                    t[4]
+                ]
+            },
+            t[6]
+        ]
+    }
 
 def p_expression_uminus(t):
     'expression : MINUS expression %prec UNARY'
-    t[0] = [[t[1], t[2]], 0]
+    #t[0] = [[t[1], t[2]], 0]
+    t[0] = {
+        "name" : " ",
+        "child" : [
+            {
+                "name" : " ",
+                "child" : [
+                    t[1],
+                    t[2]
+                ]
+            },
+            {
+                "name" : 0
+            }
+        ]
+    }
 
 def p_expression_not(t):
     'expression : NOT expression %prec UNARY'
-    t[0] = [['xor', t[2]], 'True']
+    #t[0] = [['xor', t[2]], 'True']
+    t[0] = {
+        "name" : " ",
+        "child" : [
+            {
+                "name" : " ",
+                "child" : [
+                    {"name" : "xor"},
+                    t[2]
+                ]
+            },
+            {
+                "name" : "True"
+            }
+        ]
+    }
 
 def p_expression_application(t):
     'expression : application '
@@ -163,7 +225,11 @@ def p_expression_group(t):
 
 def p_application_nested(t):
     'application : application LPAREN expression RPAREN'
-    t[0] = [t[1], t[3]]
+    #t[0] = [t[1], t[3]]
+    t[0] = {
+        "name" : " ",
+        "child" : [ t[1], t[3] ]
+    }
 
 def p_application_expression(t):
     'application : NAME LPAREN expression RPAREN'
@@ -171,7 +237,11 @@ def p_application_expression(t):
     _names_aux |= {t[1]} 
     global _dependence_aux
     _dependence_aux |= {t[1]}
-    t[0] = [t[1], t[3]]
+    #t[0] = [t[1], t[3]]
+    t[0] = {
+        "name" : " ",
+        "child" : [ t[1], t[3] ]
+    }
 
 def p_application_null(t):
     'application : NAME LPAREN RPAREN'
@@ -180,23 +250,33 @@ def p_application_null(t):
 
     global _dependence_aux
     _dependence_aux |= {t[1]}
-    t[0] = t[1]
+    #t[0] = t[1]
+    t[0] = {"name" : t[1]}
 
 def p_expression_number(t):
     'expression : NATURAL'
-    t[0] = t[1]
+    #t[0] = t[1]
+    t[0] = {
+        "name" : int(t[1])
+    }
 
 def p_expression_name(t):
     'expression : NAME'
     global _names_aux 
     _names_aux |= {t[1]} 
 
-    t[0] = t[1]
+    #t[0] = t[1]
+    t[0] = {
+        "name" : t[1]
+    }
 
 def p_expression_bool(t):
     '''expression : TRUE
                   | FALSE'''
-    t[0] = t[1]
+    #t[0] = t[1]
+    t[0] = {
+        "name" : t[1]
+    }
 
 def p_error(t):
     reset()

@@ -40,42 +40,23 @@ def change(forest):
     args = forest['args']
     functions = forest['functions']
     dependence = forest['dependence']
-    """
-    dependence = {
-        funcName : {
-            leaf: funcName
-            for leaf,_ in nodesPy(functions[funcName]) 
-            if leaf in functions
-        }
-        for funcName in functions
-    }
-    for funcName in functions:
-        for leaf,_ in nodesPy(functions[funcName]):
-            if leaf in functions:
-                dependence[leaf] = funcName
-    """
-    #print "dependencies"
-    #print json.dumps(dependence, indent = 2)
     
     # Recursive function that goes down the tree beginning with main
     def aux(tree, k = 0, num_recursions={funcName : 0 for funcName in functions}):
-        if type(tree) is list:
-            children = []
-            for branch in tree:
-                children += [aux(branch, k=k+1, num_recursions=num_recursions)]
+        if "children" in tree:
             return {
-                "name": " ",
-                "children": children
+                "name": tree[name],
+                "children": [aux(branch, k=k+1, num_recursions=num_recursions) for branch in tree["children"]]
             }
-       
-        if str(tree) in functions and num_recursions[str(tree)] < MAX_RECURSSION:
-            num_recursions[str(tree)] += 1 if cicle(str(tree), dependence) else 0
+        leaf = tree["name"]
+        if leaf in functions and num_recursions[leaf] < MAX_RECURSSION:
+            num_recursions[leaf] += 1 if cicle(leaf, dependence) else 0
             return{
-                "name": ' '.join([str(tree)] + args[str(tree)]),
-                "children": [aux(functions[str(tree)], k = k+1, num_recursions=num_recursions)]
+                "name": ' '.join([leaf] + args[leaf]),
+                "children": [aux(functions[leaf], k = k+1, num_recursions=num_recursions)]
             }
 
-        return {"name": str(tree)}
+        return {"name": leaf}
     
         
     return {
