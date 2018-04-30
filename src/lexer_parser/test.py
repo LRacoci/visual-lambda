@@ -1,5 +1,4 @@
 from parser import *
-from ast import *
 import sys
 import os
 
@@ -50,7 +49,7 @@ if __name__ == "__main__":
     import json
     
     # Compare the answer and the output to test
-    for inpFileName in glob('tests/arq*.hs'):
+    for inpFileName in glob('tests/arq2.hs'):
         print inpFileName
 
         with open(inpFileName) as inpFile:
@@ -77,7 +76,7 @@ if __name__ == "__main__":
                 print(exc_type, fname, exc_tb.tb_lineno)
 
         else:
-            output = namesOut
+            output = execOut['tree']
             #print json.dumps(output)
             outFileName = inpFileName.replace(".hs", "_out.json")
         

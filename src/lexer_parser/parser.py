@@ -1,6 +1,7 @@
 from lexer import *
 import ply.yacc as yacc
 import ast
+from collections import deque
 
 # Parser precende
 
@@ -15,31 +16,129 @@ precedence = (
     ('left','TIMES','DIVIDE'),
     ('right','UNARY'),
 )
+
+# Auxiliar variables
+_names = {}
+_names_aux = set()
+
+_dependence_aux = set()
+
+_functions = {}
+_args = {}
+_dependence = {}
+
+_functions_queue = deque(['main'])
+
+_exec_tree = {}
+
+namesOut = {
+    'dependence' : {},
+    'functions' : {},
+    'args' : {}
+}
+
+execOut = {
+    'tree' : {}
+}
+
+# Reset variables
+def reset():
+    global _functions
+    global _args
+    global _dependence
+    global _exec_tree
+    
+    namesOut['functions'] = dict(_functions)
+    namesOut['args'] = dict(_args)
+    namesOut['dependence'] = dict(_dependence)
+    execOut['tree'] = dict(_exec_tree)
+
+    _functions = {}
+    _args = {}
+    _dependence = {}
+    _exec_tree = {}
+
+    # Check if 'main' is defined
+    if 'main' not in namesOut['functions']:
+        raise Exception("Error: main is not defined")
+
+    # Check if 'main' has no arguments
+    if len(namesOut['args']['main']) != 0:
+        raise Exception("Error: main is defined with arguments")
+    
+    set_of_functions = {func for func in namesOut['functions']}
+
+    # Check if every function called is defined or an argument of the current function
+    for func in namesOut['functions']:
+        set_of_args = {arg for arg in namesOut['args'][func]}
+        aux = (set(namesOut['dependence'][func]) - set_of_args) - set_of_functions
+        if len(aux) > 0:
+            str_aux = ", ".join(list(aux))
+            raise Exception("Error: {} called inside {} is not defined".format(aux, func))
+    
+    # Check if every name is a function name or an argument in the current function
+    for func in namesOut['functions']:
+        set_of_args = {arg for arg in namesOut['args'][func]}
+        aux = (_names[func] - set_of_args) - set_of_functions
+        if len(aux) > 0:
+            str_aux = ", ".join(list(aux))
+            raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
+
 # Parser rules
 def p_start(t):
     '''start : functionList'''
-    t[0] = ast.start(t)
+    reset()
 
 def p_functionList(t):
     '''functionList : functionList function
         | function '''
-    t[0] = ast.functionList(t)
 
 def p_function_assign(t):
     '''function : NAME DEFINITION expression'''
-    t[0] = ast.function_assign(t)
+    global _names
+    global _names_aux
+    _names[t[1]] = _names_aux
+
+    _names_aux = set()
+
+    global _dependence
+    global _dependence_aux
+    _dependence[t[1]] =  list(_dependence_aux)
+        
+    _dependence_aux = set()
+    global _functions
+    _functions[t[1]] = t[3]
+    _args[t[1]] = []
+
+    global _exec_tree
+    if t[1] == 'main':
+        _exec_tree = ast.execute(_functions[t[1]])
 
 def p_function_args(t):
     '''function : NAME argList DEFINITION expression'''
-    t[0] = ast.function_args(t)
+    global _names
+    global _names_aux
+    _names[t[1]] = _names_aux
+
+    _names_aux = set()
+    
+    global _dependence
+    global _dependence_aux
+    _dependence[t[1]] = list(_dependence_aux)
+
+    _dependence_aux = set()
+    
+    global _functions
+    _functions[t[1]] = t[4]
+    _args[t[1]] = t[2]
 
 def p_args_list(t):
     '''argList : argList NAME'''
-    t[0] = ast.args_list(t)
+    t[0] = t[1] + [t[2]]
 
 def p_args(t):
     '''argList : NAME'''
-    t[0] = ast.args(t)
+    t[0] = [t[1]]
 
 def p_expression_binop(t):
     '''expression : expression PLUS expression
@@ -55,55 +154,66 @@ def p_expression_binop(t):
         | expression DIF expression
         | expression LT expression
         | expression GT expression'''
-    t[0] = ast.expression_binop(t)
+    t[0] = ast.binop(t[1], t[2], t[3])
 
 def p_expression_ifelse(t):
     '''expression : IF expression THEN expression ELSE expression %prec IFELSE'''
-    t[0] = ast.expression_ifelse(t)
+    t[0] = ast.ifelse(t[2], t[4], t[6])
 
 def p_expression_uminus(t):
     '''expression : MINUS expression %prec UNARY'''
-    t[0] = ast.expression_uminus(t)
+    t[0] = ast.binop(ast.constant(0, "int"), t[1], t[2])
 
 def p_expression_not(t):
     '''expression : NOT expression %prec UNARY'''
-    t[0] = ast.expression_not(t)
+    t[0] = ast.binop(ast.constant("True", "bool"), "xor", t[2])
 
 def p_expression_application(t):
-    '''expression : application '''
-    t[0] = ast.expression_application(t)
+    '''expression : application'''
+    t[0] = t[1]
 
 def p_expression_group(t):
     '''expression : LPAREN expression RPAREN'''
-    t[0] = ast.expression_group(t)
+    t[0] = t[2]
 
 def p_application_nested(t):
     '''application : application LPAREN expression RPAREN'''
-    t[0] = ast.application_nested(t)
+    t[0] = ast.application(t[1], t[3])
 
 def p_application_expression(t):
     '''application : NAME LPAREN expression RPAREN'''
-    t[0] = ast.application_expression(t)
+    global _names_aux 
+    _names_aux |= {t[1]} 
+    global _dependence_aux
+    _dependence_aux |= {t[1]}
+    t[0] = ast.application(t[1], t[3])
 
 def p_application_null(t):
     '''application : NAME LPAREN RPAREN'''
-    t[0] = ast.application_null(t)
+    global _names_aux 
+    _names_aux |= {t[1]} 
+    global _dependence_aux
+    _dependence_aux |= {t[1]}
+    t[0] = ast.application(t[1], "")
 
 def p_expression_number(t):
     '''expression : NATURAL'''
-    t[0] = ast.expression_number(t)
+    t[0] = ast.constant(t[1], "int")
 
 def p_expression_name(t):
     '''expression : NAME'''
-    t[0] = ast.expression_name(t)
+    global _names_aux 
+    _names_aux |= {t[1]}
+    t[0] = ast.id(t[1])
 
 def p_expression_bool(t):
     '''expression : TRUE
         | FALSE'''
-    t[0] = ast.expression_bool(t)
+    t[0] = ast.constant(t[1], "bool")
 
 def p_error(t):
     ''''''
-    t[0] = ast.error(t)
+    reset()
+    raise Exception("Syntax error at %s" % t)
 
 parser = yacc.yacc()

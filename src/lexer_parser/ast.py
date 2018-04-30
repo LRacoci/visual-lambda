@@ -1,308 +1,213 @@
+from abc import ABCMeta, abstractmethod
 
-# Auxiliar variables
-_names = {}
-_names_aux = set()
-
-_dependence_aux = set()
-
-_functions = {}
-_args = {}
-_dependence = {}
-
-namesOut = {
-    'dependence' : {},
-    'functions' : {},
-    'args' : {}
-}
-
-# Reset variables
-def _reset():
-    global _functions
-    global _args
-    global _dependence
-    
-    namesOut['functions'] = dict(_functions)
-    namesOut['args'] = dict(_args)
-    namesOut['dependence'] = dict(_dependence)
-    
-    _functions = {}
-    _args = {}
-    _dependence = {}
-
-    # Check if 'main' is defined
-    if 'main' not in namesOut['functions']:
-        raise Exception("Error: main is not defined")
-
-    # Check if 'main' has no arguments
-    if len(namesOut['args']['main']) != 0:
-        raise Exception("Error: main is defined with arguments")
-    
-    set_of_functions = {func for func in namesOut['functions']}
-
-    # Check if every function called is defined or an argument of the current function
-    for func in namesOut['functions']:
-        set_of_args = {arg for arg in namesOut['args'][func]}
-        aux = (set(namesOut['dependence'][func]) - set_of_args) - set_of_functions
-        if len(aux) > 0:
-            str_aux = ", ".join(list(aux))
-            raise Exception("Error: {} called inside {} is not defined".format(aux, func))
-    
-    # Check if every name is a function name or an argument in the current function
-    for func in namesOut['functions']:
-        set_of_args = {arg for arg in namesOut['args'][func]}
-        aux = (_names[func] - set_of_args) - set_of_functions
-        if len(aux) > 0:
-            str_aux = ", ".join(list(aux))
-            raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
+NOT_IMPLEMENTED = "You should implement this."
 
 # Parser rules
 class Node():
-    pass
+    __metaclass__ = ABCMeta
+    @abstractmethod
+    def accept(self, visitor):
+        raise NotImplementedError(NOT_IMPLEMENTED)
 
-class start(Node):
-    def __init__(self,t):
-        self.t = t
-        'start : functionList'
-        _reset()
+class binop(Node):
+    def __init__(self, left, op, right):
+        self.left = left
+        self.op = op
+        self.right = right
 
-class functionList(Node):
-    def __init__(self,t):
-        self.t = t
-        '''functionList : functionList function
-                        | function '''
+    def accept(self, visitor):
+        return visitor.visit_binop(self)
 
-class function_assign(Node):
-    def __init__(self,t):
-        self.t = t
-        'function : NAME DEFINITION expression'
-        global _names
-        global _names_aux
-        _names[t[1]] = _names_aux
+class ifelse(Node):
+    def __init__(self, cond, ifthen, ifelse):
+        self.cond = cond
+        self.ifthen = ifthen
+        self.ifelse = ifelse
 
-        _names_aux = set()
+    def accept(self, visitor):
+        return visitor.visit_ifelse(self)
 
-        global _dependence
-        global _dependence_aux
-        _dependence[t[1]] =  list(_dependence_aux)
-            
-        _dependence_aux = set()
-        global _functions
-        _functions[t[1]] = t[3].t[0]
-        _args[t[1]] = []
+class constant(Node):
+    def __init__(self, value, type):
+        self.value = value
+        self.type = type
 
-class function_args(Node):
-    def __init__(self,t):
-        self.t = t
-        'function : NAME argList DEFINITION expression'
-        global _names
-        global _names_aux
-        _names[t[1]] = _names_aux
+    def accept(self, visitor):
+        return visitor.visit_constant(self)
 
-        _names_aux = set()
+class id(Node):
+    def __init__(self, name):
+        self.name = name
+
+    def accept(self, visitor):
+        return visitor.visit_id(self)
+
+class application(Node):
+    def __init__(self, func, arg):
+        self.func = func
+        self.arg = arg
+
+    def accept(self, visitor):
+        return visitor.visit_application(self)
+
+class NodeVisitor:
+    __metaclass__ = ABCMeta
+
+    @abstractmethod
+    def visit_binop(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_ifelse(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_constant(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_id(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_application(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+class NodeDoVisitor(NodeVisitor):
+
+    def visit_binop(self, node):
+        left = node.left.accept(NodeDoVisitor())
+        right = node.right.accept(NodeDoVisitor())
         
-        global _dependence
-        global _dependence_aux
-        _dependence[t[1]] = list(_dependence_aux)
+        if node.op == '+':
+            value = left['value'] + right['value']
+        if node.op == '-':
+            value = left['value'] - right['value']
+        if node.op == '*':
+            value = left['value'] * right['value']
+        if node.op == '/':
+            value = left['value'] / right['value']
+        if node.op == 'and':
+            value = left['value'] and right['value']
+        if node.op == 'xor':
+            value = (left['value'] and not right['value']) or (not left['value'] and right['value'])
+        if node.op == 'ior':
+            value = left['value'] or right['value']
+        if node.op == '==':
+            value = left['value'] == right['value']
+        if node.op == '!=':
+            value = left['value'] != right['value']
+        if node.op == '>=':
+            value = left['value'] >= right['value']
+        if node.op == '<=':
+            value = left['value'] <= right['value']
+        if node.op == '>':
+            value = left['value'] > right['value']
+        if node.op == '<':
+            value = left['value'] < right['value']
 
-        _dependence_aux = set()
-        
-        global _functions
-        _functions[t[1]] = t[4].t[0]
-        _args[t[1]] = t[2].t[0]
-
-class args_list(Node):
-    def __init__(self,t):
-        self.t = t
-        'argList : argList NAME'
-        t[0] = t[1].t[0] + [t[2]]
-
-class args(Node):
-    def __init__(self,t):
-        self.t = t
-        'argList : NAME'
-        t[0] = [t[1]]
-
-class expression_binop(Node):
-    def __init__(self,t):
-        self.t = t
-        '''expression : expression PLUS expression
-                    | expression TIMES expression
-                    | expression DIVIDE expression
-                    | expression MINUS expression
-                    | expression AND expression
-                    | expression XOR expression
-                    | expression IOR expression
-                    | expression EQL expression
-                    | expression GTE expression
-                    | expression LTE expression
-                    | expression DIF expression
-                    | expression LT expression
-                    | expression GT expression
-                    '''
-        #t[0] = [[t[2].t[0], t[1].t[0]], t[3].t[0]]
-        t[0] = {
-            "name" : " ",
-            "child" : [
-                {
-                    "name" : " ",
-                    "child" : [
-                        {"name" : t[2]},
-                        t[1].t[0]
-                    ]
-                },
-                t[3].t[0]
-            ]
+        return {
+            "value" : value,
+            "json" : {
+                "name" : value,
+                "children" : [
+                    {
+                        "name" : " ",
+                        "children" : [
+                            {"name" : node.op},
+                            left['json']
+                        ]
+                    },
+                    right['json']
+                ]
+            }
         }
 
-class expression_ifelse(Node):
-    def __init__(self,t):
-        self.t = t
-        'expression : IF expression THEN expression ELSE expression %prec IFELSE'
-        #t[0] = [[["cond", t[2].t[0]], t[4].t[0]], t[6].t[0]]
-        t[0] = {
-            "name" : " ",
-            "child" : [
-                {
-                    "name" : " ",
-                    "child" : [
-                        {
-                            "name" : " ",
-                            "child" : [
-                                {"name" : "cond"},
-                                t[2].t[0]
-                            ]
-                        },
-                        t[4].t[0]
-                    ]
-                },
-                t[6].t[0]
-            ]
+    def visit_ifelse(self, node):
+        cond = node.cond.accept(NodeDoVisitor())
+
+        if cond['value'] == True:
+            ifthen = node.ifthen.accept(NodeDoVisitor())
+            ifelse = { "json" : { "name" : "else not executed" } }
+            value = ifthen['value']
+        else:
+            ifthen = { "json" : { "name" : "then not executed" } }
+            ifelse = node.ifelse.accept(NodeDoVisitor())
+            value = ifelse['value']
+
+        return {
+            "value" : value,
+            "json" : {
+                "name" : value,
+                "children" : [
+                    {
+                        "name" : " ",
+                        "children" : [
+                            {
+                                "name" : " ",
+                                "children" : [
+                                    {"name" : "cond"},
+                                    cond['json']
+                                ]
+                            },
+                            ifthen['json']
+                        ]
+                    },
+                    ifelse['json']
+                ]
+            }
         }
 
-class expression_uminus(Node):
-    def __init__(self,t):
-        self.t = t
-        'expression : MINUS expression %prec UNARY'
-        #t[0] = [[t[1].t[0], t[2].t[0]], 0]
-        t[0] = {
-            "name" : " ",
-            "child" : [
-                {
-                    "name" : " ",
-                    "child" : [
-                        t[1],
-                        t[2].t[0]
-                    ]
-                },
-                {
-                    "name" : 0
-                }
-            ]
+    def visit_constant(self, node):
+        if node.type == "int":
+            value = int(node.value)
+        elif node.type == "bool":
+            value = True if node.value == "True" else False
+        return {
+            "value" : value,
+            "json" : {
+                "name" : value
+            }
         }
 
-class expression_not(Node):
-    def __init__(self,t):
-        self.t = t
-        'expression : NOT expression %prec UNARY'
-        #t[0] = [['xor', t[2].t[0]], 'True']
-        t[0] = {
-            "name" : " ",
-            "child" : [
-                {
-                    "name" : " ",
-                    "child" : [
-                        {"name" : "xor"},
-                        t[2].t[0]
-                    ]
-                },
-                {
-                    "name" : "True"
-                }
-            ]
-        }
+    def visit_id(self, node):
+        pass
 
-class expression_application(Node):
-    def __init__(self,t):
-        self.t = t
-        'expression : application '
-        t[0] = t[1].t[0]
+    def visit_application(self, node):
+        pass
 
-class expression_group(Node):
-    def __init__(self,t):
-        self.t = t
-        'expression : LPAREN expression RPAREN'
-        t[0] = t[2].t[0]
+def execute(node):
+    exec_tree = node.accept(NodeDoVisitor())
+    return {
+        "name": "main = " + str(exec_tree['value']),
+        "children": [
+            exec_tree['json']
+        ]
+    }
 
 class application_nested(Node):
     def __init__(self,t):
-        self.t = t
         'application : application LPAREN expression RPAREN'
-        #t[0] = [t[1].t[0], t[3].t[0]]
-        t[0] = {
+        self.json = {
             "name" : " ",
-            "child" : [ t[1].t[0], t[3].t[0] ]
+            "children" : [ t[1], t[3] ]
         }
 
 class application_expression(Node):
     def __init__(self,t):
-        self.t = t
         'application : NAME LPAREN expression RPAREN'
-        global _names_aux 
-        _names_aux |= {t[1]} 
-        global _dependence_aux
-        _dependence_aux |= {t[1]}
-        #t[0] = [t[1], t[3].t[0]]
-        t[0] = {
+        self.json = {
             "name" : " ",
-            "child" : [ t[1], t[3].t[0] ]
+            "children" : [ t[1], t[3] ]
         }
 
 class application_null(Node):
     def __init__(self,t):
-        self.t = t
         'application : NAME LPAREN RPAREN'
-        global _names_aux 
-        _names_aux |= {t[1]} 
-
-        global _dependence_aux
-        _dependence_aux |= {t[1]}
-        #t[0] = t[1]
-        t[0] = {"name" : t[1]}
-
-class expression_number(Node):
-    def __init__(self,t):
-        self.t = t
-        'expression : NATURAL'
-        #t[0] = t[1]
-        t[0] = {
-            "name" : int(t[1])
-        }
+        self.json = {"name" : t[1]}
 
 class expression_name(Node):
     def __init__(self,t):
-        self.t = t
-        'expression : NAME'
-        global _names_aux 
-        _names_aux |= {t[1]} 
-
-        #t[0] = t[1].t[0]
-        t[0] = {
-            "name" : t[1].t[0]
-        }
-
-class expression_bool(Node):
-    def __init__(self,t):
-        self.t = t
-        '''expression : TRUE
-                    | FALSE'''
-        #t[0] = t[1].t[0]
-        t[0] = {
+        self.json = {
             "name" : t[1]
         }
-
-class error(Node):
-    def __init__(self,t):
-        self.t = t
-        _reset()
-        raise Exception("Syntax error at %s" % t)
-

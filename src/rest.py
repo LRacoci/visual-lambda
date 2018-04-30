@@ -1,9 +1,8 @@
 from flask import Flask, render_template, jsonify, request, url_for, Response
 import json
 import os
-import sys
+import traceback
 from lexer_parser.parser import *
-from tree.tree import *
 # Define a aplicacao
 app = Flask(__name__)
 
@@ -16,12 +15,12 @@ def index():
 @app.route("/translateCode", methods=['POST'])
 def translateCode():
     try:
-		dataDict = json.loads(request.data.decode())
-		parser.parse(dataDict['code'])
-		treeDict = change(namesOut)
-		return Response(json.dumps({'tree':treeDict}), status=200)
+        dataDict = json.loads(request.data.decode())
+        parser.parse(dataDict['code'])
+        return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
     except Exception as err:
-		return Response(str(err.args[0]), status=500)
+        print traceback.print_exc()
+        return Response(str(err.args[0]), status=500)
 
 # Gera um novo token a cada request para prevenir cache de paginas no browser
 @app.context_processor
