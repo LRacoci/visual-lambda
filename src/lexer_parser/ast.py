@@ -1,4 +1,5 @@
 from abc import ABCMeta, abstractmethod
+import parser
 
 NOT_IMPLEMENTED = "You should implement this."
 
@@ -174,7 +175,17 @@ class NodeDoVisitor(NodeVisitor):
         pass
 
     def visit_application(self, node):
-        pass
+        if node.arg == "":
+            exec_tree = parser._functions[node.func].accept(NodeDoVisitor())
+            return {
+                "value" : exec_tree['value'],
+                "json": {
+                    "name": node.func + " = " + str(exec_tree['value']),
+                    "children": [
+                        exec_tree['json']
+                    ]
+                }
+            }
 
 def execute(node):
     exec_tree = node.accept(NodeDoVisitor())
