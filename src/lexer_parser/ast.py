@@ -44,8 +44,8 @@ class identifier(Node):
         return visitor.visit_identifier(self)
 
 class application(Node):
-    def __init__(self, funcName, arg):
-        self.funcName = funcName
+    def __init__(self, func, arg):
+        self.func = func
         self.arg = arg
 
     def accept(self, visitor):
@@ -188,18 +188,32 @@ class NodeDoVisitor(NodeVisitor):
 
 
     def visit_application(self, node):
-        if node.arg != None:
-            arg = node.arg.accept(NodeDoVisitor())['value']
-            print node.funcName + ": " + str(arg)
-            global symbolTable
-            symbolTable = {}
-            symbolTable[parser._args[node.funcName][-1]] = arg
+        args = []
+        while type (node) is application:
+            if node.arg != None:
+                arg = node.arg.accept(NodeDoVisitor())['value']
+            else:
+                arg = None
+            args += [arg]
+            node = node.func
 
-        exec_tree = parser._functions[node.funcName].accept(NodeDoVisitor())
+        print node + ": " + ','.join([str(arg) for arg in args])
+        global symbolTable
+        symbolTable = {}
+        
+        if len(args) > len(parser._args[node]):
+            raise Exception(node + " is called with more arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
+        if len(args) < len(parser._args[node]):
+            raise Exception(node + " is called with less arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
+        
+        while len(symbolTable) < len(args):
+            symbolTable[parser._args[node][len(symbolTable)]] = args[len(symbolTable)]
+        print node + " symbolTable == " + str(symbolTable)
+        exec_tree = parser._functions[node].accept(NodeDoVisitor())
         return {
             "value" : exec_tree['value'],
             "json": {
-                "name": node.funcName + " = " + str(exec_tree['value']),
+                "name": node + " = " + str(exec_tree['value']),
                 "children": [
                     exec_tree['json']
                 ]
