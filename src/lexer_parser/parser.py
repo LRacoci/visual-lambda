@@ -194,7 +194,7 @@ def p_application_null(t):
     _names_aux |= {t[1]} 
     global _dependence_aux
     _dependence_aux |= {t[1]}
-    t[0] = ast.application(t[1], "")
+    t[0] = ast.application(t[1], None)
 
 def p_expression_number(t):
     '''expression : NATURAL'''
@@ -204,7 +204,7 @@ def p_expression_name(t):
     '''expression : NAME'''
     global _names_aux 
     _names_aux |= {t[1]}
-    t[0] = ast.id(t[1])
+    t[0] = ast.identifier(t[1])
 
 def p_expression_bool(t):
     '''expression : TRUE

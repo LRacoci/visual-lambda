@@ -36,16 +36,16 @@ class constant(Node):
     def accept(self, visitor):
         return visitor.visit_constant(self)
 
-class id(Node):
+class identifier(Node):
     def __init__(self, name):
         self.name = name
 
     def accept(self, visitor):
-        return visitor.visit_id(self)
+        return visitor.visit_identifier(self)
 
 class application(Node):
-    def __init__(self, func, arg):
-        self.func = func
+    def __init__(self, funcName, arg):
+        self.funcName = funcName
         self.arg = arg
 
     def accept(self, visitor):
@@ -67,12 +67,14 @@ class NodeVisitor:
         raise NotImplementedError(NOT_IMPLEMENTED)
 
     @abstractmethod
-    def visit_id(self, node):
+    def visit_identifier(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
     @abstractmethod
     def visit_application(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
+
+symbolTable = {}
 
 class NodeDoVisitor(NodeVisitor):
 
@@ -167,25 +169,42 @@ class NodeDoVisitor(NodeVisitor):
         return {
             "value" : value,
             "json" : {
-                "name" : value
+                "name" : str(value)
             }
         }
 
-    def visit_id(self, node):
-        pass
-
-    def visit_application(self, node):
-        if node.arg == "":
-            exec_tree = parser._functions[node.func].accept(NodeDoVisitor())
+    def visit_identifier(self, node):
+        print "Visiting identifier"
+        if node.name in symbolTable:
+            value = symbolTable[node.name]
             return {
-                "value" : exec_tree['value'],
-                "json": {
-                    "name": node.func + " = " + str(exec_tree['value']),
-                    "children": [
-                        exec_tree['json']
-                    ]
+                "value" : value,
+                "json" : {
+                    "name" : str(value)
                 }
             }
+        else:
+            raise Exception(node.name + " is not defined")
+
+
+    def visit_application(self, node):
+        if node.arg != None:
+            arg = node.arg.accept(NodeDoVisitor())['value']
+            print node.funcName + ": " + str(arg)
+            global symbolTable
+            symbolTable = {}
+            symbolTable[parser._args[node.funcName][-1]] = arg
+
+        exec_tree = parser._functions[node.funcName].accept(NodeDoVisitor())
+        return {
+            "value" : exec_tree['value'],
+            "json": {
+                "name": node.funcName + " = " + str(exec_tree['value']),
+                "children": [
+                    exec_tree['json']
+                ]
+            }
+        }
 
 def execute(node):
     exec_tree = node.accept(NodeDoVisitor())
@@ -195,30 +214,3 @@ def execute(node):
             exec_tree['json']
         ]
     }
-
-class application_nested(Node):
-    def __init__(self,t):
-        'application : application LPAREN expression RPAREN'
-        self.json = {
-            "name" : " ",
-            "children" : [ t[1], t[3] ]
-        }
-
-class application_expression(Node):
-    def __init__(self,t):
-        'application : NAME LPAREN expression RPAREN'
-        self.json = {
-            "name" : " ",
-            "children" : [ t[1], t[3] ]
-        }
-
-class application_null(Node):
-    def __init__(self,t):
-        'application : NAME LPAREN RPAREN'
-        self.json = {"name" : t[1]}
-
-class expression_name(Node):
-    def __init__(self,t):
-        self.json = {
-            "name" : t[1]
-        }
