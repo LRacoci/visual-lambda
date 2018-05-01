@@ -51,12 +51,6 @@ def reset():
     namesOut['functions'] = dict(_functions)
     namesOut['args'] = dict(_args)
     namesOut['dependence'] = dict(_dependence)
-    execOut['tree'] = dict(_exec_tree)
-
-    _functions = {}
-    _args = {}
-    _dependence = {}
-    _exec_tree = {}
 
     # Check if 'main' is defined
     if 'main' not in namesOut['functions']:
@@ -84,6 +78,14 @@ def reset():
             str_aux = ", ".join(list(aux))
             raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
 
+    _exec_tree = ast.execute(_functions['main'])
+    execOut['tree'] = dict(_exec_tree)
+
+    _functions = {}
+    _args = {}
+    _dependence = {}
+    _exec_tree = {}
+
 # Parser rules
 def p_start(t):
     '''start : functionList'''
@@ -109,10 +111,6 @@ def p_function_assign(t):
     global _functions
     _functions[t[1]] = t[3]
     _args[t[1]] = []
-
-    global _exec_tree
-    if t[1] == 'main':
-        _exec_tree = ast.execute(_functions[t[1]])
 
 def p_function_args(t):
     '''function : NAME argList DEFINITION expression'''

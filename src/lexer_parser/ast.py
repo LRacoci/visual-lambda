@@ -1,5 +1,6 @@
 from abc import ABCMeta, abstractmethod
 import parser
+import symboltable
 
 NOT_IMPLEMENTED = "You should implement this."
 
@@ -73,8 +74,6 @@ class NodeVisitor:
     @abstractmethod
     def visit_application(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
-
-symbolTable = {}
 
 class NodeDoVisitor(NodeVisitor):
 
@@ -169,18 +168,18 @@ class NodeDoVisitor(NodeVisitor):
         return {
             "value" : value,
             "json" : {
-                "name" : str(value)
+                "name" : node.type + " = " + str(value)
             }
         }
 
     def visit_identifier(self, node):
         print "Visiting identifier"
-        if node.name in symbolTable:
-            value = symbolTable[node.name]
+        if node.name in symboltable.funcTable:
+            value = symboltable.funcTable[node.name]
             return {
                 "value" : value,
                 "json" : {
-                    "name" : str(value)
+                    "name" : node.name + " = " + str(value)
                 }
             }
         else:
@@ -188,36 +187,59 @@ class NodeDoVisitor(NodeVisitor):
 
 
     def visit_application(self, node):
+
         args = []
-        while type (node) is application:
+        trees = []
+        while type(node) is application:
             if node.arg != None:
-                arg = node.arg.accept(NodeDoVisitor())['value']
+                exec_tree = node.arg.accept(NodeDoVisitor())
+                arg = exec_tree['value']
+                tree = exec_tree['json']
             else:
                 arg = None
-            args += [arg]
+            args = [arg] + args
+            trees = [tree] + trees
             node = node.func
-
+        
         print node + ": " + ','.join([str(arg) for arg in args])
-        global symbolTable
-        symbolTable = {}
         
         if len(args) > len(parser._args[node]):
             raise Exception(node + " is called with more arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
         if len(args) < len(parser._args[node]):
             raise Exception(node + " is called with less arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
         
-        while len(symbolTable) < len(args):
-            symbolTable[parser._args[node][len(symbolTable)]] = args[len(symbolTable)]
-        print node + " symbolTable == " + str(symbolTable)
+        symboltable.getTable(node)
+
+        while len(symboltable.funcTable) < len(args):
+            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = args[len(symboltable.funcTable)]
+        print node + " symbolTable == " + str(symboltable.symbolTable)
         exec_tree = parser._functions[node].accept(NodeDoVisitor())
-        return {
-            "value" : exec_tree['value'],
-            "json": {
-                "name": node + " = " + str(exec_tree['value']),
+
+        symboltable.deleteTable(node)
+
+        args_string = ""
+        for arg in parser._args[node]:
+            args_string += " " + arg
+
+        args_tree = {
+            "name": node + args_string + " = " + str(exec_tree['value']),
+            "children": [
+                exec_tree['json']
+            ]
+        }
+
+        for tree in trees:
+            args_tree = {
+                "name": " ",
                 "children": [
-                    exec_tree['json']
+                    args_tree,
+                    tree
                 ]
             }
+
+        return {
+            "value": exec_tree['value'],
+            "json": args_tree
         }
 
 def execute(node):
