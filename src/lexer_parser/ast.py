@@ -110,6 +110,7 @@ class NodeDoVisitor(NodeVisitor):
             value = left['value'] < right['value']
 
         return {
+            "type" : type(value).__name__,
             "value" : value,
             "json" : {
                 "name" : value,
@@ -139,6 +140,7 @@ class NodeDoVisitor(NodeVisitor):
             value = ifelse['value']
 
         return {
+            "type" : type(value).__name__,
             "value" : value,
             "json" : {
                 "name" : value,
@@ -264,6 +266,7 @@ class NodeDoVisitor(NodeVisitor):
             }
 
         return {
+            "type" : type(exec_tree['value']).__name__,
             "value": exec_tree['value'],
             "json": args_tree
         }
