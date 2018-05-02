@@ -1,6 +1,7 @@
 from abc import ABCMeta, abstractmethod
 import parser
 import symboltable
+import json
 
 NOT_IMPLEMENTED = "You should implement this."
 
@@ -166,6 +167,7 @@ class NodeDoVisitor(NodeVisitor):
         elif node.type == "bool":
             value = True if node.value == "True" else False
         return {
+            "type" : node.type,
             "value" : value,
             "json" : {
                 "name" : node.type + " = " + str(value)
@@ -175,11 +177,20 @@ class NodeDoVisitor(NodeVisitor):
     def visit_identifier(self, node):
         print "Visiting identifier"
         if node.name in symboltable.funcTable:
-            value = symboltable.funcTable[node.name]
+            entry = symboltable.funcTable[node.name]
             return {
-                "value" : value,
+                "type" : entry['type'],
+                "value" : entry['value'],
                 "json" : {
-                    "name" : node.name + " = " + str(value)
+                    "name" : node.name + " = " + str(entry['value'])
+                }
+            }
+        elif node.name in parser._functions:
+            return {
+                "type" : "function",
+                "value" : node.name,
+                "json" : {
+                    "name" : node.name + " = function"
                 }
             }
         else:
@@ -190,19 +201,32 @@ class NodeDoVisitor(NodeVisitor):
 
         args = []
         trees = []
+        types = []
         while type(node) is application:
             if node.arg != None:
                 exec_tree = node.arg.accept(NodeDoVisitor())
                 arg = exec_tree['value']
                 tree = exec_tree['json']
+                tp = exec_tree['type']
             else:
                 arg = None
             args = [arg] + args
             trees = [tree] + trees
+            types = [tp] + types
             node = node.func
         
         print node + ": " + ','.join([str(arg) for arg in args])
         
+        if node in symboltable.funcTable:
+            if symboltable.funcTable[node]['type'] == "function":
+                funcName = node
+                node = symboltable.funcTable[node]['value']
+                funcName = "(" + funcName + " = " + node + ")"
+            else:
+                raise Exception(node + " is not a function")
+        else:
+            funcName = node
+
         if len(args) > len(parser._args[node]):
             raise Exception(node + " is called with more arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
         if len(args) < len(parser._args[node]):
@@ -211,8 +235,10 @@ class NodeDoVisitor(NodeVisitor):
         symboltable.getTable(node)
 
         while len(symboltable.funcTable) < len(args):
-            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = args[len(symboltable.funcTable)]
-        print node + " symbolTable == " + str(symboltable.symbolTable)
+            value = args[len(symboltable.funcTable)]
+            tp = types[len(symboltable.funcTable)]
+            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = {'value' : value, 'type' : tp}
+        print node + " symbolTable == " + json.dumps(symboltable.symbolTable, indent=2)
         exec_tree = parser._functions[node].accept(NodeDoVisitor())
 
         symboltable.deleteTable(node)
@@ -222,7 +248,7 @@ class NodeDoVisitor(NodeVisitor):
             args_string += " " + arg
 
         args_tree = {
-            "name": node + args_string + " = " + str(exec_tree['value']),
+            "name": funcName + args_string + " = " + str(exec_tree['value']),
             "children": [
                 exec_tree['json']
             ]

@@ -1,7 +1,7 @@
 
 symbolTable = {}
 scopeStack = []
-funcTable = None
+funcTable = {}
 
 def getTable(node):
     global symbolTable

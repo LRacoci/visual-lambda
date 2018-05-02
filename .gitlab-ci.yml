@@ -5,7 +5,7 @@ stages:
 
 test:
   tags:
-  - docker-kvm
+  - docker
   stage: test
   script:
     - cd src/lexer_parser/
