@@ -214,11 +214,9 @@ class NodeDoVisitor(NodeVisitor):
                 arg = exec_tree['value']
                 tree = exec_tree['json']
                 tp = exec_tree['type']
-            else:
-                arg = None
-            args = [arg] + args
-            trees = [tree] + trees
-            types = [tp] + types
+                args = [arg] + args
+                trees = [tree] + trees
+                types = [tp] + types
             node = node.func
 
         print node + ": " + ','.join([str(arg) for arg in args])
@@ -244,6 +242,13 @@ class NodeDoVisitor(NodeVisitor):
             value = args[len(symboltable.funcTable)]
             tp = types[len(symboltable.funcTable)]
             symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = {'value' : value, 'type' : tp}
+        
+        variables = []
+        for entry in parser._whereDict[node]:
+            result = entry['expression'].accept(NodeDoVisitor())
+            symboltable.funcTable[entry['var']] = {'value' : result['value'], 'type' : result['type']}
+            variables += [(entry['var'], result)]
+
         print node + " symbolTable == " + json.dumps(symboltable.symbolTable, indent=2)
         exec_tree = parser._functions[node].accept(NodeDoVisitor())
 
@@ -269,6 +274,15 @@ class NodeDoVisitor(NodeVisitor):
                 ]
             }
 
+        for v in variables:
+            args_tree = {
+                    "name": "where " + v[0] + " = " + str(v[1]['value']),
+                    "children": [
+                        args_tree,
+                        v[1]['json']
+                    ]
+                }
+
         return {
             "type" : type(exec_tree['value']).__name__,
             "value": exec_tree['value'],
@@ -276,10 +290,41 @@ class NodeDoVisitor(NodeVisitor):
         }
 
 def execute(node):
+
+    symboltable.getTable('main')
+
+    variables = []
+    for entry in parser._whereDict['main']:
+        result = entry['expression'].accept(NodeDoVisitor())
+        symboltable.funcTable[entry['var']] = {'value' : result['value'], 'type' : result['type']}
+        variables += [(entry['var'], result)]
+    
     exec_tree = node.accept(NodeDoVisitor())
-    return {
+    symboltable.deleteTable('main')
+
+    args_tree = {
         "name": "main = " + str(exec_tree['value']),
         "children": [
             exec_tree['json']
         ]
     }
+
+    if len(variables) > 0:
+        for v in variables:
+            args_tree = {
+                    "name": "where " + v[0] + " = " + str(v[1]['value']),
+                    "children": [
+                        args_tree,
+                        v[1]['json']
+                    ]
+                }
+        out = {
+            "name": "main = " + str(exec_tree['value']),
+            "children": [
+                args_tree
+            ]
+        }
+    else:
+        out = args_tree
+
+    return out
