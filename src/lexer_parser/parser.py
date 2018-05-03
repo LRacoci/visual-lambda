@@ -2,6 +2,7 @@ from lexer import *
 import ply.yacc as yacc
 import ast
 from collections import deque
+import json
 
 # Parser precende
 
@@ -24,6 +25,7 @@ _names_aux = set()
 _dependence_aux = set()
 
 _functions = {}
+_whereDict = {}
 _args = {}
 _dependence = {}
 
@@ -47,7 +49,8 @@ def reset():
     global _args
     global _dependence
     global _exec_tree
-
+    global _whereDict
+    
     namesOut['functions'] = dict(_functions)
     namesOut['args'] = dict(_args)
     namesOut['dependence'] = dict(_dependence)
@@ -73,7 +76,9 @@ def reset():
     # Check if every name is a function name or an argument in the current function
     for func in namesOut['functions']:
         set_of_args = {arg for arg in namesOut['args'][func]}
-        aux = (_names[func] - set_of_args) - set_of_functions
+        set_of_wheres = {where["var"] for where in _whereDict[func]}
+        print set_of_wheres
+        aux = (_names[func] - set_of_args) - set_of_functions - set_of_wheres
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
             raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
@@ -82,9 +87,12 @@ def reset():
     execOut['tree'] = dict(_exec_tree)
 
     _functions = {}
+    _whereDict = {}
+    print _whereDict
     _args = {}
     _dependence = {}
     _exec_tree = {}
+    _whereDict = {}
 
 # Parser rules
 def p_start(t):
@@ -96,7 +104,7 @@ def p_functionList(t):
         | function '''
 
 def p_function_assign(t):
-    '''function : NAME DEFINITION expression'''
+    '''function : NAME DEFINITION expression where_expression'''
     global _names
     global _names_aux
     _names[t[1]] = _names_aux
@@ -111,9 +119,11 @@ def p_function_assign(t):
     global _functions
     _functions[t[1]] = t[3]
     _args[t[1]] = []
+    global _whereDict
+    _whereDict[t[1]] = t[4]
 
 def p_function_args(t):
-    '''function : NAME argList DEFINITION expression'''
+    '''function : NAME argList DEFINITION expression where_expression'''
     global _names
     global _names_aux
     _names[t[1]] = _names_aux
@@ -129,6 +139,8 @@ def p_function_args(t):
     global _functions
     _functions[t[1]] = t[4]
     _args[t[1]] = t[2]
+    global _whereDict
+    _whereDict[t[1]] = t[5]
 
 def p_args_list(t):
     '''argList : argList NAME'''
@@ -137,6 +149,15 @@ def p_args_list(t):
 def p_args(t):
     '''argList : NAME'''
     t[0] = [t[1]]
+
+def p_where_expression(t):
+    '''where_expression : WHERE NAME DEFINITION expression where_expression
+                        | '''
+    if len(t) > 1:
+        t[0] = [{"var": t[2], "expression": t[4]}] + t[5]
+    else:
+        t[0] = []
+
 
 def p_expression_binop(t):
     '''expression : expression PLUS expression

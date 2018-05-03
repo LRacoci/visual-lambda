@@ -1,14 +1,15 @@
 import ply.lex as lex
 
 reserved = {
-    'if': 'IF',
-    'then': 'THEN',
-    'else': 'ELSE',
-    'True': 'TRUE',
+    'if'    : 'IF',
+    'then'  : 'THEN',
+    'else'  : 'ELSE',
+    'True'  : 'TRUE',
     'False' : 'FALSE',
-    'and' : 'AND',
-    'xor' : 'XOR',
-    'ior' : 'IOR',
+    'and'   : 'AND',
+    'xor'   : 'XOR',
+    'ior'   : 'IOR',
+    'where' : 'WHERE'
 }
 
 tokens = (
