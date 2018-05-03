@@ -30,7 +30,8 @@ tokens = (
     'GT',
     'NOT',
 	'FLOAT',
-	'STRING'
+	'STRING1',
+	'STRING2'
 )
 
 # Tokens
@@ -74,7 +75,29 @@ def t_NATURAL(t):
 # Characters to ignore
 t_ignore = " \t"
 
-def t_STRING(t):
+def t_STRING1(t):
+    r'\'([^\\"]|(\\.))*\''
+    escaped = 0
+    str = t.value[1:-1]
+    new_str = ""
+    for i in range(0, len(str)):
+        c = str[i]
+        if escaped:
+            if c == "n":
+                c = "\n"
+            elif c == "t":
+                c = "\t"
+            new_str += c
+            escaped = 0
+        else:
+            if c == "\\":
+                escaped = 1
+            else:
+                new_str += c
+    t.value = new_str
+    return t
+
+def t_STRING2(t):
     r'\"([^\\"]|(\\.))*\"'
     escaped = 0
     str = t.value[1:-1]

@@ -50,7 +50,7 @@ def reset():
     global _dependence
     global _exec_tree
     global _whereDict
-    
+
     namesOut['functions'] = dict(_functions)
     namesOut['args'] = dict(_args)
     namesOut['dependence'] = dict(_dependence)
@@ -223,8 +223,12 @@ def p_expression_number(t):
     '''expression : NATURAL'''
     t[0] = ast.constant(t[1], "int")
 
-def p_expression_string(t):
-    '''expression : STRING'''
+def p_expression_string1(t):
+    '''expression : STRING1'''
+    t[0] = ast.constant(t[1], "str")
+
+def p_expression_string2(t):
+    '''expression : STRING2'''
     t[0] = ast.constant(t[1], "str")
 
 def p_expression_name(t):
