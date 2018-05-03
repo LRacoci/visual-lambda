@@ -81,7 +81,7 @@ class NodeDoVisitor(NodeVisitor):
     def visit_binop(self, node):
         left = node.left.accept(NodeDoVisitor())
         right = node.right.accept(NodeDoVisitor())
-        
+
         if node.op == '+':
             value = left['value'] + right['value']
         if node.op == '-':
@@ -164,17 +164,21 @@ class NodeDoVisitor(NodeVisitor):
         }
 
     def visit_constant(self, node):
-        if node.type == "int":
-            value = int(node.value)
-        elif node.type == "bool":
-            value = True if node.value == "True" else False
-        return {
-            "type" : node.type,
-            "value" : value,
-            "json" : {
-                "name" : node.type + " = " + str(value)
-            }
-        }
+		if node.type == "int":
+			value = int(node.value)
+		elif node.type == "float":
+			value = float(node.value)
+		elif node.type == "str":
+			value = str(node.value)
+		elif node.type == "bool":
+			value = True if node.value == "True" else False
+		return {
+        	"type" : node.type,
+        	"value" : value,
+        	"json" : {
+            	"name" : node.type + " = " + str(value)
+        	}
+		}
 
     def visit_identifier(self, node):
         print "Visiting identifier"
@@ -216,9 +220,9 @@ class NodeDoVisitor(NodeVisitor):
             trees = [tree] + trees
             types = [tp] + types
             node = node.func
-        
+
         print node + ": " + ','.join([str(arg) for arg in args])
-        
+
         if node in symboltable.funcTable:
             if symboltable.funcTable[node]['type'] == "function":
                 funcName = node
@@ -233,7 +237,7 @@ class NodeDoVisitor(NodeVisitor):
             raise Exception(node + " is called with more arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
         if len(args) < len(parser._args[node]):
             raise Exception(node + " is called with less arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
-        
+
         symboltable.getTable(node)
 
         while len(symboltable.funcTable) < len(args):

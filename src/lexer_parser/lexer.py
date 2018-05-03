@@ -27,7 +27,9 @@ tokens = (
     'DIF',
     'LT',
     'GT',
-    'NOT'
+    'NOT',
+	'FLOAT',
+	'STRING'
 )
 
 # Tokens
@@ -55,6 +57,11 @@ t_GT = r'>'
 t_IF = r'if'
 t_NOT = r'!'
 
+def t_FLOAT(t):
+    r'-?\d+\.\d*(e-?\d+)?'
+    t.value = float(t.value)
+    return t
+
 def t_NATURAL(t):
     r'\d+'
     try:
@@ -66,6 +73,28 @@ def t_NATURAL(t):
 # Characters to ignore
 t_ignore = " \t"
 
+def t_STRING(t):
+    r'\"([^\\"]|(\\.))*\"'
+    escaped = 0
+    str = t.value[1:-1]
+    new_str = ""
+    for i in range(0, len(str)):
+        c = str[i]
+        if escaped:
+            if c == "n":
+                c = "\n"
+            elif c == "t":
+                c = "\t"
+            new_str += c
+            escaped = 0
+        else:
+            if c == "\\":
+                escaped = 1
+            else:
+                new_str += c
+    t.value = new_str
+    return t
+
 # Comments
 def t_comment(t):
     r'--.*'
@@ -74,9 +103,9 @@ def t_comment(t):
 def t_newline(t):
     r'\n+'
     t.lexer.lineno += t.value.count("\n")
-    
+
 def t_error(t):
     raise Exception("Illegal character '%s'" % t.value[0])
-    
+
 # Constroi lexer
 lexer = lex.lex()

@@ -47,7 +47,7 @@ def reset():
     global _args
     global _dependence
     global _exec_tree
-    
+
     namesOut['functions'] = dict(_functions)
     namesOut['args'] = dict(_args)
     namesOut['dependence'] = dict(_dependence)
@@ -59,7 +59,7 @@ def reset():
     # Check if 'main' has no arguments
     if len(namesOut['args']['main']) != 0:
         raise Exception("Error: main is defined with arguments")
-    
+
     set_of_functions = {func for func in namesOut['functions']}
 
     # Check if every function called is defined or an argument of the current function
@@ -69,7 +69,7 @@ def reset():
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
             raise Exception("Error: {} called inside {} is not defined".format(aux, func))
-    
+
     # Check if every name is a function name or an argument in the current function
     for func in namesOut['functions']:
         set_of_args = {arg for arg in namesOut['args'][func]}
@@ -106,7 +106,7 @@ def p_function_assign(t):
     global _dependence
     global _dependence_aux
     _dependence[t[1]] =  list(_dependence_aux)
-        
+
     _dependence_aux = set()
     global _functions
     _functions[t[1]] = t[3]
@@ -119,13 +119,13 @@ def p_function_args(t):
     _names[t[1]] = _names_aux
 
     _names_aux = set()
-    
+
     global _dependence
     global _dependence_aux
     _dependence[t[1]] = list(_dependence_aux)
 
     _dependence_aux = set()
-    
+
     global _functions
     _functions[t[1]] = t[4]
     _args[t[1]] = t[2]
@@ -180,27 +180,35 @@ def p_application_nested(t):
 
 def p_application_expression(t):
     '''application : NAME LPAREN expression RPAREN'''
-    global _names_aux 
-    _names_aux |= {t[1]} 
+    global _names_aux
+    _names_aux |= {t[1]}
     global _dependence_aux
     _dependence_aux |= {t[1]}
     t[0] = ast.application(t[1], t[3])
 
 def p_application_null(t):
     '''application : NAME LPAREN RPAREN'''
-    global _names_aux 
-    _names_aux |= {t[1]} 
+    global _names_aux
+    _names_aux |= {t[1]}
     global _dependence_aux
     _dependence_aux |= {t[1]}
     t[0] = ast.application(t[1], None)
+
+def p_expression_real_number(t):
+    '''expression : FLOAT'''
+    t[0] = ast.constant(t[1], "float")
 
 def p_expression_number(t):
     '''expression : NATURAL'''
     t[0] = ast.constant(t[1], "int")
 
+def p_expression_string(t):
+    '''expression : STRING'''
+    t[0] = ast.constant(t[1], "str")
+
 def p_expression_name(t):
     '''expression : NAME'''
-    global _names_aux 
+    global _names_aux
     _names_aux |= {t[1]}
     t[0] = ast.identifier(t[1])
 
