@@ -82,13 +82,24 @@ class NodeDoVisitor(NodeVisitor):
         left = node.left.accept(NodeDoVisitor())
         right = node.right.accept(NodeDoVisitor())
 
+        arithmetic_op = {"float", "int"}
+        lr_types_union = {left['type'], right['type']}
+
         if node.op == '+':
+            if lr_types_union.issubset(arithmetic_op) == False:
+                raise Exception("Error: invalid operation {} between {} and {}".format(node.op, left['value'], right['value']))
             value = left['value'] + right['value']
         if node.op == '-':
+            if lr_types_union.issubset(arithmetic_op) == False:
+                raise Exception("Error: invalid operation {} between {} and {}".format(node.op, left['value'], right['value']))
             value = left['value'] - right['value']
         if node.op == '*':
+            if lr_types_union.issubset(arithmetic_op) == False:
+                raise Exception("Error: invalid operation {} between {} and {}".format(node.op, left['value'], right['value']))
             value = left['value'] * right['value']
         if node.op == '/':
+            if lr_types_union.issubset(arithmetic_op) == False:
+                raise Exception("Error: invalid operation {} between {} and {}".format(node.op, left['value'], right['value']))
             value = left['value'] / right['value']
         if node.op == 'and':
             value = left['value'] and right['value']
@@ -242,7 +253,7 @@ class NodeDoVisitor(NodeVisitor):
             value = args[len(symboltable.funcTable)]
             tp = types[len(symboltable.funcTable)]
             symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = {'value' : value, 'type' : tp}
-        
+
         variables = []
         for entry in parser._whereDict[node]:
             result = entry['expression'].accept(NodeDoVisitor())
@@ -298,7 +309,7 @@ def execute(node):
         result = entry['expression'].accept(NodeDoVisitor())
         symboltable.funcTable[entry['var']] = {'value' : result['value'], 'type' : result['type']}
         variables += [(entry['var'], result)]
-    
+
     exec_tree = node.accept(NodeDoVisitor())
     symboltable.deleteTable('main')
 
