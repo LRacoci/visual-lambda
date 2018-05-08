@@ -82,7 +82,7 @@ class NodeDoVisitor(NodeVisitor):
         left = node.left.accept(NodeDoVisitor())
         right = node.right.accept(NodeDoVisitor())
 
-        arithmetic_op = {"float", "int"}
+        arithmetic_op = {"float", "int", "bool"}
         lr_types_union = {left['type'], right['type']}
 
         if node.op == '+':
@@ -100,18 +100,14 @@ class NodeDoVisitor(NodeVisitor):
         if node.op == '/':
             if lr_types_union.issubset(arithmetic_op) == False:
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
+            if right['value'] == 0:
+                raise Exception("Error: division by zero between \'{}:{}\' and \'{}:{}\'".format(left['value'], left['type'], right['value'], right['type']))
             value = left['value'] / right['value']
         if node.op == 'and':
-            if lr_types_union.issubset({"bool"}) == False:
-                raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
             value = left['value'] and right['value']
         if node.op == 'xor':
-            if lr_types_union.issubset({"bool"}) == False:
-                raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
             value = (left['value'] and not right['value']) or (not left['value'] and right['value'])
         if node.op == 'ior':
-            if lr_types_union.issubset({"bool"}) == False:
-                raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
             value = left['value'] or right['value']
         if node.op == '==':
             value = left['value'] == right['value']
