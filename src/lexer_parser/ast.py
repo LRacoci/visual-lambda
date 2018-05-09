@@ -35,6 +35,7 @@ class constant(Node):
         self.value = value
         self.type = type
 
+
     def accept(self, visitor):
         return visitor.visit_constant(self)
 
@@ -177,21 +178,24 @@ class NodeDoVisitor(NodeVisitor):
         }
 
     def visit_constant(self, node):
-		if node.type == "int":
-			value = int(node.value)
-		elif node.type == "float":
-			value = float(node.value)
-		elif node.type == "str":
-			value = str(node.value)
-		elif node.type == "bool":
-			value = True if node.value == "True" else False
-		return {
-        	"type" : node.type,
-        	"value" : value,
-        	"json" : {
-            	"name" : node.type + " = " + str(value)
-        	}
-		}
+        if node.type == "int":
+            value = int(node.value)
+        elif node.type == "float":
+            value = float(node.value)
+        elif node.type == "str":
+            value = str(node.value)
+        elif node.type == "bool":
+            value = True if node.value == "True" else False
+        elif node.type == "json":
+            value = dict(node.value)
+        print value
+        return {
+            "type" : node.type,
+            "value" : value,
+            "json" : {
+                "name" : node.type + " = " + str(value)
+            }
+        }
 
     def visit_identifier(self, node):
         print "Visiting identifier"

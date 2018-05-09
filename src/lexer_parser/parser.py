@@ -242,6 +242,22 @@ def p_expression_bool(t):
         | FALSE'''
     t[0] = ast.constant(t[1], "bool")
 
+def p_expression_json(t):
+    '''expression : LBRACKET json RBRACKET'''
+    t[0] = ast.constant(t[2], "json")
+
+def p_json_nested(t):
+    '''json : NAME COLON expression COMMA json'''
+    print t[1], t[3]
+
+def p_json(t):
+    '''json : NAME COLON expression'''
+    print t[1], t[3]
+
+def p_expression_json_null(t):
+    '''expression : LBRACKET RBRACKET'''
+    t[0] = ast.constant({}, "json")
+
 def p_error(t):
     ''''''
     reset()
