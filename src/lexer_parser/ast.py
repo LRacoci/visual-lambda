@@ -88,20 +88,25 @@ class NodeDoVisitor(NodeVisitor):
 
         if node.op == '+':
             if lr_types_union.issubset(arithmetic_op) == False and lr_types_union != {"str"}:
+				parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
             value = left['value'] + right['value']
         if node.op == '-':
             if lr_types_union.issubset(arithmetic_op) == False:
+				parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
             value = left['value'] - right['value']
         if node.op == '*':
             if lr_types_union.issubset(arithmetic_op) == False:
+				parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
             value = left['value'] * right['value']
         if node.op == '/':
             if lr_types_union.issubset(arithmetic_op) == False:
+				parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
             if right['value'] == 0:
+				parser.clean()
                 raise Exception("Error: division by zero between \'{}:{}\' and \'{}:{}\'".format(left['value'], left['type'], right['value'], right['type']))
             value = left['value'] / right['value']
         if node.op == 'and':
@@ -217,6 +222,7 @@ class NodeDoVisitor(NodeVisitor):
                 }
             }
         else:
+			parser.clean()
             raise Exception(node.name + " is not defined")
 
 
@@ -244,13 +250,16 @@ class NodeDoVisitor(NodeVisitor):
                 node = symboltable.funcTable[node]['value']
                 funcName = "(" + funcName + " = " + node + ")"
             else:
+				parser.clean()
                 raise Exception(node + " is not a function")
         else:
             funcName = node
 
         if len(args) > len(parser._args[node]):
+			parser.clean()
             raise Exception(node + " is called with more arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
         if len(args) < len(parser._args[node]):
+			parser.clean()
             raise Exception(node + " is called with less arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
 
         symboltable.getTable(node)

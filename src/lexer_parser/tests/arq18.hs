@@ -1,7 +1,2 @@
-
-apply y = y(y)
-y_combinator f = apply(f(apply))
-
-factorial f n = if n > 0 then f(n-1) else 1
-
-main = y_combinator (factorial) (3)
+main = f(2.5)
+f a = if a < b then 1 else 0 where b = "MC911"
