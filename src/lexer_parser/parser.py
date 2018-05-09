@@ -57,10 +57,12 @@ def reset():
 
     # Check if 'main' is defined
     if 'main' not in namesOut['functions']:
+        clean()
         raise Exception("Error: main is not defined")
 
     # Check if 'main' has no arguments
     if len(namesOut['args']['main']) != 0:
+        clean()
         raise Exception("Error: main is defined with arguments")
 
     set_of_functions = {func for func in namesOut['functions']}
@@ -71,6 +73,7 @@ def reset():
         aux = (set(namesOut['dependence'][func]) - set_of_args) - set_of_functions
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
+            clean()
             raise Exception("Error: {} called inside {} is not defined".format(aux, func))
 
     # Check if every name is a function name or an argument in the current function
@@ -81,11 +84,14 @@ def reset():
         aux = (_names[func] - set_of_args) - set_of_functions - set_of_wheres
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
+            clean()
             raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
 
     _exec_tree = ast.execute(_functions['main'])
     execOut['tree'] = dict(_exec_tree)
+    clean()
 
+def clean():
     _functions = {}
     _whereDict = {}
     print _whereDict

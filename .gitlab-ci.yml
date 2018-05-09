@@ -10,7 +10,5 @@ test:
   script:
     - cd src/lexer_parser/
     - make
-    - cd ../tree/
-    - make
     - cd ../
     - make
