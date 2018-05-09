@@ -9,7 +9,9 @@ reserved = {
     'and'   : 'AND',
     'xor'   : 'XOR',
     'ior'   : 'IOR',
-    'where' : 'WHERE'
+    'where' : 'WHERE',
+    'struct' : 'STRUCT'
+
 }
 
 tokens = (
