@@ -17,7 +17,49 @@
 					 <label tabindex="0" for="my-file" class="input-file-trigger">Select a file...</label>
 				 </div>
 				 <textarea ng-model="code" rows="40" cols="40"></textarea><br />
-		         <input ng-click="translateCode()" type="button" value="&#9881; Compile" class="submit-button" />
+				 <div style="display:table-row;">
+						 <div style="display:table-cell" class="toggle">
+				         <input ng-click="translateCode()" type="button" value="&#9881; Compile" class="submit-button" />
+					   </div>
+						 <div style="display:table-cell">
+								 <div style="display:table-row;">
+										 <div style="display:table-cell" class="toggle">
+												 <!-- Rounded switch -->
+												 <label class="switch">
+												     <input type="checkbox" id="checkCstFolding">
+												     <span class="slider round"></span>
+												 </label>
+									   </div>
+										 <div style="display:table-cell" class="checkDescription">
+						            Constant Folding
+						         </div>
+							   </div>
+								 <div style="display:table-row;">
+										 <div style="display:table-cell" class="toggle">
+												 <!-- Rounded switch -->
+												 <label class="switch">
+												     <input type="checkbox" id="checkCstPropagation">
+												     <span class="slider round"></span>
+												 </label>
+									   </div>
+										 <div style="display:table-cell" class="checkDescription">
+						            Constant Propagation
+						         </div>
+							   </div>
+								 <div style="display:table-row;">
+										 <div style="display:table-cell" class="toggle">
+												 <!-- Rounded switch -->
+												 <label class="switch">
+												     <input type="checkbox" id="checkRedEta">
+												     <span class="slider round"></span>
+												 </label>
+									   </div>
+										 <div style="display:table-cell" class="checkDescription">
+						            Redução Eta
+						         </div>
+							   </div>
+					   </div>
+			   </div>
 			 </form>
 
 		</div>
