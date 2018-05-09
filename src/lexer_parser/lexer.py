@@ -33,7 +33,13 @@ tokens = (
     'NOT',
 	'FLOAT',
 	'STRING1',
-	'STRING2'
+	'STRING2',
+    'INTNAME',
+    'FLOATNAME',  
+    'BOOLNAME',
+    'STRINGNAME'
+
+
 )
 
 # Tokens
@@ -60,6 +66,10 @@ t_LT = r'<'
 t_GT = r'>'
 t_IF = r'if'
 t_NOT = r'!'
+t_INTNAME = r'int'
+t_FLOATNAME = r'float'
+t_BOOLNAME = r'bool'
+t_STRINGNAME = r'string'
 
 def t_FLOAT(t):
     r'-?\d+\.\d*(e-?\d+)?'
