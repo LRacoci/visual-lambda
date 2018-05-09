@@ -36,7 +36,7 @@ app.service('collapse', function() {
     // Set the dimensions and margins of the diagram
     var margin = {top: 20, right: 90, bottom: 30, left: 90},
         width = 790 - margin.left - margin.right,
-        height = 500 - margin.top - margin.bottom;
+        height = 600 - margin.top - margin.bottom;
 
     // append the svg object to the body of the page
     // appends a 'group' element to 'svg'
@@ -50,6 +50,13 @@ app.service('collapse', function() {
       .append("g")
         .attr("transform", "translate("
               + margin.left + "," + margin.top + ")");
+
+    // //checkbox activate Constant Propagation
+    // d3.select("#checkCstFolding").on("change",activateCF);
+    // //checkbox activate Constant Propagation
+    // d3.select("#checkCstPropagation").on("change",activateCP);
+    //checkbox activate Constant Propagation
+    d3.select("#checkRedEta").on("change",activateRE);
 
     var i = 0,
         duration = 750,
@@ -217,6 +224,28 @@ app.service('collapse', function() {
             d._children = null;
           }
         update(d);
+      }
+    }
+
+    // function activateCF(){
+    //   if(d3.select("#checkCstFolding").property("checked")){
+    //     console.log("habilitou CF");
+    //   }else{
+    //     console.log("desabilitou CF");
+    //   }
+    // }
+    // function activateCP(){
+    //   if(d3.select("#checkCstPropagation").property("checked")){
+    //     console.log("habilitou CP");
+    //   }else{
+    //     console.log("desabilitou CP");
+    //   }
+    // }
+    function activateRE(){
+      if(d3.select("#checkRedEta").property("checked")){
+        console.log("habilitou RE");
+      }else{
+        console.log("desabilitou RE");
       }
     }
 });
