@@ -200,20 +200,25 @@ class NodeDoVisitor(NodeVisitor):
     def visit_constant(self, node):
         if node.type == "int":
             value = int(node.value)
+            show = str(value)
         elif node.type == "float":
             value = float(node.value)
+            show = str(value)
         elif node.type == "str":
             value = str(node.value)
+            show = str(value)
         elif node.type == "bool":
             value = True if node.value == "True" else False
+            show = str(value)
         elif node.type == "json":
             value = dict(node.value)
+            show = json.dumps(value, indent = 2)
         print value
         return {
             "type" : node.type,
             "value" : value,
             "json" : {
-                "name" : node.type + " = " + str(value)
+                "name" : "({}) {}".format(node.type, show)
             }
         }
 

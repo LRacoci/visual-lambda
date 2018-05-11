@@ -239,34 +239,45 @@ def p_constant_bool(t):
         | FALSE'''
     t[0] = ast.constant(t[1], "bool")
 
+def p_constant_constJson(t):
+    '''constant : constJson'''
+    t[0] = ast.constant(t[1], "json")
+
+def p_constJson_null(t):
+    '''constJson : LBRACKET RBRACKET'''
+    t[0] = {}
+
+def p_constJson_kvList(t):
+    '''constJson : LBRACKET kvList RBRACKET'''
+    t[0] = {k:v for k,v in t[2]}
+
+def p_kvList_nested(t):
+    '''kvList : kvTerm COMMA kvList'''
+    t[0] = [t[1]] + t[3]
+
+def p_kvList_kvTerm(t):
+    '''kvList : kvTerm'''
+    t[0] = [t[1]]
+
+def p_kvTerm(t):
+    '''kvTerm : constant COLON constant'''
+    key = t[1].value
+    if t[1].type == "json":
+        key = str(key)
+
+    t[0] = key, t[3].value
+
 def p_expression_constant(t):
     '''expression : constant'''
     t[0] = t[1]
-
-def p_constant_json_null(t):
-    '''constant : LBRACKET RBRACKET'''
-    t[0] = ast.constant({}, "json")
-
-def p_constant_json(t):
-    '''constant : LBRACKET json RBRACKET'''
-    t[0] = ast.constant(t[2], "json")
-
-def p_json_nested(t):
-    '''json : constant COLON constant COMMA json'''
-    t[0] = dict(t[5])
-    t[0][t[1].value] = t[2].value
-
-def p_json(t):
-    '''json : constant COLON constant'''
-    t[0] = {
-        t[1].value : t[3].value
-    }
 
 def p_expression_name(t):
     '''expression : NAME'''
     global _names_aux
     _names_aux |= {t[1]}
     t[0] = ast.identifier(t[1])
+
+
 
 def p_error(t):
     ''''''
