@@ -9,7 +9,7 @@ NOT_IMPLEMENTED = "You should implement this."
 class Node():
     __metaclass__ = ABCMeta
     @abstractmethod
-    def accept(self, visitor):
+    def visit(self, visitor):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
 class binop(Node):
@@ -18,17 +18,25 @@ class binop(Node):
         self.op = op
         self.right = right
 
-    def accept(self, visitor):
+    def visit(self, visitor):
         return visitor.visit_binop(self)
 
-class ifelse(Node):
+class conditional(Node):
     def __init__(self, cond, ifthen, ifelse):
         self.cond = cond
         self.ifthen = ifthen
         self.ifelse = ifelse
 
-    def accept(self, visitor):
-        return visitor.visit_ifelse(self)
+    def visit(self, visitor):
+        return visitor.visit_conditional(self)
+
+class structure(Node):
+    def __init__(self, kvPairs):
+        self.kvPairs = kvPairs
+
+    def visit(self, visitor):
+        return visitor.visit_structure(self)
+
 
 class constant(Node):
     def __init__(self, value, type):
@@ -36,14 +44,14 @@ class constant(Node):
         self.type = type
 
 
-    def accept(self, visitor):
+    def visit(self, visitor):
         return visitor.visit_constant(self)
 
 class identifier(Node):
     def __init__(self, name):
         self.name = name
 
-    def accept(self, visitor):
+    def visit(self, visitor):
         return visitor.visit_identifier(self)
 
 class application(Node):
@@ -51,7 +59,7 @@ class application(Node):
         self.func = func
         self.arg = arg
 
-    def accept(self, visitor):
+    def visit(self, visitor):
         return visitor.visit_application(self)
 
 class NodeVisitor:
@@ -62,7 +70,11 @@ class NodeVisitor:
         raise NotImplementedError(NOT_IMPLEMENTED)
 
     @abstractmethod
-    def visit_ifelse(self, node):
+    def visit_conditional(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_structure(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
     @abstractmethod
@@ -77,11 +89,11 @@ class NodeVisitor:
     def visit_application(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
-class NodeDoVisitor(NodeVisitor):
+class BuildD3Json(NodeVisitor):
 
     def visit_binop(self, node):
-        left = node.left.accept(NodeDoVisitor())
-        right = node.right.accept(NodeDoVisitor())
+        left = node.left.visit(BuildD3Json())
+        right = node.right.visit(BuildD3Json())
 
         arithmetic_op = {"float", "int", "bool"}
         lr_types_union = {left['type'], right['type']}
@@ -161,16 +173,16 @@ class NodeDoVisitor(NodeVisitor):
             }
         }
 
-    def visit_ifelse(self, node):
-        cond = node.cond.accept(NodeDoVisitor())
+    def visit_conditional(self, node):
+        cond = node.cond.visit(BuildD3Json())
 
         if cond['value'] == True:
-            ifthen = node.ifthen.accept(NodeDoVisitor())
+            ifthen = node.ifthen.visit(BuildD3Json())
             ifelse = { "json" : { "name" : "else not executed" } }
             value = ifthen['value']
         else:
             ifthen = { "json" : { "name" : "then not executed" } }
-            ifelse = node.ifelse.accept(NodeDoVisitor())
+            ifelse = node.ifelse.visit(BuildD3Json())
             value = ifelse['value']
 
         return {
@@ -196,6 +208,32 @@ class NodeDoVisitor(NodeVisitor):
                 ]
             }
         }
+    def visit_structure(self, node):
+        children = []
+        value = {}
+        for constKey, expression in node.kvPairs:
+            expression = expression.visit(BuildD3Json())
+            constant = constKey.visit(BuildD3Json())
+            child = {
+                "name" : "",
+                "children" : [
+                    constant['json'],
+                    expression['json']
+                ]
+            }
+            children += [child]
+            value[constant['value']] = expression['value']
+
+        value = str(value)
+
+        return {
+            "type" : "structure",
+            "value" : value,
+            "json" : {
+                "name" : "(structure)",
+                "children" : children
+            }
+        }
 
     def visit_constant(self, node):
         if node.type == "int":
@@ -206,13 +244,10 @@ class NodeDoVisitor(NodeVisitor):
             show = str(value)
         elif node.type == "str":
             value = str(node.value)
-            show = str(value)
+            show = '"{}"'.format(str(value))
         elif node.type == "bool":
             value = True if node.value == "True" else False
             show = str(value)
-        elif node.type == "json":
-            value = dict(node.value)
-            show = json.dumps(value, indent = 2)
         print value
         return {
             "type" : node.type,
@@ -253,7 +288,7 @@ class NodeDoVisitor(NodeVisitor):
         types = []
         while type(node) is application:
             if node.arg != None:
-                exec_tree = node.arg.accept(NodeDoVisitor())
+                exec_tree = node.arg.visit(BuildD3Json())
                 arg = exec_tree['value']
                 tree = exec_tree['json']
                 tp = exec_tree['type']
@@ -291,12 +326,12 @@ class NodeDoVisitor(NodeVisitor):
 
         variables = []
         for entry in parser._whereDict[node]:
-            result = entry['expression'].accept(NodeDoVisitor())
+            result = entry['expression'].visit(BuildD3Json())
             symboltable.funcTable[entry['var']] = {'value' : result['value'], 'type' : result['type']}
             variables += [(entry['var'], result)]
 
         print node + " symbolTable == " + json.dumps(symboltable.symbolTable, indent=2)
-        exec_tree = parser._functions[node].accept(NodeDoVisitor())
+        exec_tree = parser._functions[node].visit(BuildD3Json())
 
         symboltable.deleteTable(node)
 
@@ -341,11 +376,11 @@ def execute(node):
 
     variables = []
     for entry in parser._whereDict['main']:
-        result = entry['expression'].accept(NodeDoVisitor())
+        result = entry['expression'].visit(BuildD3Json())
         symboltable.funcTable[entry['var']] = {'value' : result['value'], 'type' : result['type']}
         variables += [(entry['var'], result)]
 
-    exec_tree = node.accept(NodeDoVisitor())
+    exec_tree = node.visit(BuildD3Json())
     symboltable.deleteTable('main')
 
     args_tree = {

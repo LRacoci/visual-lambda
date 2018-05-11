@@ -183,7 +183,7 @@ def p_expression_binop(t):
 
 def p_expression_ifelse(t):
     '''expression : IF expression THEN expression ELSE expression %prec IFELSE'''
-    t[0] = ast.ifelse(t[2], t[4], t[6])
+    t[0] = ast.conditional(t[2], t[4], t[6])
 
 def p_expression_uminus(t):
     '''expression : MINUS expression %prec UNARY'''
@@ -239,17 +239,18 @@ def p_constant_bool(t):
         | FALSE'''
     t[0] = ast.constant(t[1], "bool")
 
-def p_constant_constJson(t):
-    '''constant : constJson'''
-    t[0] = ast.constant(t[1], "json")
+def p_expression_constant(t):
+    '''expression : constant
+        | structure'''
+    t[0] = t[1]
 
-def p_constJson_null(t):
-    '''constJson : LBRACKET RBRACKET'''
-    t[0] = {}
+def p_structure_null(t):
+    '''structure : LBRACKET RBRACKET'''
+    t[0] = ast.structure([])
 
-def p_constJson_kvList(t):
-    '''constJson : LBRACKET kvList RBRACKET'''
-    t[0] = {k:v for k,v in t[2]}
+def p_structure_kvList(t):
+    '''structure : LBRACKET kvList RBRACKET'''
+    t[0] = ast.structure(t[2])
 
 def p_kvList_nested(t):
     '''kvList : kvTerm COMMA kvList'''
@@ -260,16 +261,9 @@ def p_kvList_kvTerm(t):
     t[0] = [t[1]]
 
 def p_kvTerm(t):
-    '''kvTerm : constant COLON constant'''
-    key = t[1].value
-    if t[1].type == "json":
-        key = str(key)
+    '''kvTerm : constant COLON expression'''
+    t[0] = t[1], t[3]
 
-    t[0] = key, t[3].value
-
-def p_expression_constant(t):
-    '''expression : constant'''
-    t[0] = t[1]
 
 def p_expression_name(t):
     '''expression : NAME'''
