@@ -3,6 +3,7 @@ import json
 import os
 import traceback
 from lexer_parser.parser import *
+
 # Define a aplicacao
 app = Flask(__name__)
 

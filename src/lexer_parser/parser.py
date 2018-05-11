@@ -221,48 +221,52 @@ def p_application_null(t):
     _dependence_aux |= {t[1]}
     t[0] = ast.application(t[1], None)
 
-def p_expression_real_number(t):
-    '''expression : FLOAT'''
+def p_constant_real_number(t):
+    '''constant : FLOAT'''
     t[0] = ast.constant(t[1], "float")
 
-def p_expression_number(t):
-    '''expression : NATURAL'''
+def p_constant_number(t):
+    '''constant : NATURAL'''
     t[0] = ast.constant(t[1], "int")
 
-def p_expression_string1(t):
-    '''expression : STRING1'''
+def p_constant_string(t):
+    '''constant : STRING1
+        | STRING2'''
     t[0] = ast.constant(t[1], "str")
 
-def p_expression_string2(t):
-    '''expression : STRING2'''
-    t[0] = ast.constant(t[1], "str")
+def p_constant_bool(t):
+    '''constant : TRUE
+        | FALSE'''
+    t[0] = ast.constant(t[1], "bool")
+
+def p_expression_constant(t):
+    '''expression : constant'''
+    t[0] = t[1]
+
+def p_constant_json_null(t):
+    '''constant : LBRACKET RBRACKET'''
+    t[0] = ast.constant({}, "json")
+
+def p_constant_json(t):
+    '''constant : LBRACKET json RBRACKET'''
+    t[0] = ast.constant(t[2], "json")
+
+def p_json_nested(t):
+    '''json : constant COLON constant COMMA json'''
+    t[0] = dict(t[5])
+    t[0][t[1].value] = t[2].value
+
+def p_json(t):
+    '''json : constant COLON constant'''
+    t[0] = {
+        t[1].value : t[3].value
+    }
 
 def p_expression_name(t):
     '''expression : NAME'''
     global _names_aux
     _names_aux |= {t[1]}
     t[0] = ast.identifier(t[1])
-
-def p_expression_bool(t):
-    '''expression : TRUE
-        | FALSE'''
-    t[0] = ast.constant(t[1], "bool")
-
-def p_expression_json(t):
-    '''expression : LBRACKET json RBRACKET'''
-    t[0] = ast.constant(t[2], "json")
-
-def p_json_nested(t):
-    '''json : NAME COLON expression COMMA json'''
-    print t[1], t[3]
-
-def p_json(t):
-    '''json : NAME COLON expression'''
-    print t[1], t[3]
-
-def p_expression_json_null(t):
-    '''expression : LBRACKET RBRACKET'''
-    t[0] = ast.constant({}, "json")
 
 def p_error(t):
     ''''''
