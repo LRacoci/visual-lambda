@@ -16,7 +16,7 @@ precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('right', 'UNARY'),
-    ('left', 'DOT')
+    ('left', 'LBRACKET2')
 )
 
 # Auxiliar variables
@@ -165,7 +165,6 @@ def p_where_expression(t):
     else:
         t[0] = []
 
-
 def p_expression_binop(t):
     '''expression : expression PLUS expression
         | expression TIMES expression
@@ -246,11 +245,11 @@ def p_expression_constant(t):
     t[0] = t[1]
 
 def p_structure_null(t):
-    '''structure : LBRACKET RBRACKET'''
+    '''structure : LBRACKET1 RBRACKET1'''
     t[0] = ast.structure([])
 
 def p_structure_kvList(t):
-    '''structure : LBRACKET kvList RBRACKET'''
+    '''structure : LBRACKET1 kvList RBRACKET1'''
     t[0] = ast.structure(t[2])
 
 def p_kvList_nested(t):
@@ -266,18 +265,14 @@ def p_kvTerm(t):
     t[0] = t[1], t[3]
 
 def p_expression_structure_call(t):
-    '''expression : expression DOT expression'''
+    '''expression : expression LBRACKET2 expression RBRACKET2'''
     t[0] = ast.structureCall(t[1], t[3])
-
-
 
 def p_expression_name(t):
     '''expression : NAME'''
     global _names_aux
     _names_aux |= {t[1]}
     t[0] = ast.identifier(t[1])
-
-
 
 def p_error(t):
     ''''''

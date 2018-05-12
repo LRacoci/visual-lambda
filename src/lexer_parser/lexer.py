@@ -34,11 +34,12 @@ tokens = (
     'FLOAT',
     'STRING1',
     'STRING2',
-    'LBRACKET',
-    'RBRACKET',
+    'LBRACKET1',
+    'RBRACKET1',
     'COLON',
     'COMMA',
-    'DOT'
+    'LBRACKET2',
+    'RBRACKET2'
 )
 
 # Tokens
@@ -65,11 +66,12 @@ t_LT = r'<'
 t_GT = r'>'
 t_IF = r'if'
 t_NOT = r'!'
-t_LBRACKET = r'{'
-t_RBRACKET = r'}'
+t_LBRACKET1 = r'{'
+t_RBRACKET1 = r'}'
 t_COLON = r':'
 t_COMMA = r','
-t_DOT = r'\.'
+t_LBRACKET2 = r'\['
+t_RBRACKET2 = r'\]'
 
 def t_FLOAT(t):
     r'-?\d+\.\d*(e-?\d+)?'
