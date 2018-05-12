@@ -264,6 +264,11 @@ def p_kvTerm(t):
     '''kvTerm : constant COLON expression'''
     t[0] = t[1], t[3]
 
+def p_expression_structure_call(t):
+    '''expression : expression DOT expression'''
+    t[0] = ast.structureCall(t[1], t[3])
+
+
 
 def p_expression_name(t):
     '''expression : NAME'''

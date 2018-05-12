@@ -37,6 +37,14 @@ class structure(Node):
     def visit(self, visitor):
         return visitor.visit_structure(self)
 
+class structureCall(Node):
+    def __init__(self, structure, expression):
+        self.structure = structure
+        self.expression = expression
+
+    def visit(self, visitor):
+        return visitor.visit_structureCall(self)
+
 
 class constant(Node):
     def __init__(self, value, type):
@@ -75,6 +83,10 @@ class NodeVisitor:
 
     @abstractmethod
     def visit_structure(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_structureCall(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
     @abstractmethod
@@ -208,30 +220,61 @@ class BuildD3Json(NodeVisitor):
                 ]
             }
         }
+
     def visit_structure(self, node):
+        exprFromKey = {}
         children = []
         value = {}
-        for constKey, expression in node.kvPairs:
-            expression = expression.visit(BuildD3Json())
+        for constKey, exprValue in node.kvPairs:
+            expression = exprValue.visit(BuildD3Json())
             constant = constKey.visit(BuildD3Json())
+            keyJson = dict(constant['json'])
+            keyJson['name'] = "key : " + keyJson['name']
+            valJson = dict(expression['json'])
+            valJson['name'] = "value : " + valJson['name']
             child = {
-                "name" : "",
+                "name" : "{} : {}".format(constant['json']['name'], expression['json']['name']),
                 "children" : [
-                    constant['json'],
-                    expression['json']
+                    keyJson,
+                    valJson
                 ]
             }
             children += [child]
             value[constant['value']] = expression['value']
-
-        value = str(value)
+            exprFromKey[constant['value']] = expression
 
         return {
             "type" : "structure",
-            "value" : value,
+            "value" : exprFromKey,
+            #"exprFromKey" : exprFromKey,
             "json" : {
                 "name" : "(structure)",
                 "children" : children
+            }
+        }
+
+    def visit_structureCall(self, node):
+        structure = node.structure.visit(BuildD3Json())
+        expression = node.expression.visit(BuildD3Json())
+
+        key = expression['value']
+        if key in structure["value"]:
+            val = structure["value"][key]
+        else:
+            val = {
+                'type' : "ERROR",
+                'value' : "{} not in {}".format(key, structure["value"])
+            }
+
+        return {
+            "type" : val['type'],
+            "value" : val['value'],
+            "json" : {
+                "name" : "({}) {}".format(val['type'], val['value']),
+                "children" : [
+                    structure['json'],
+                    expression['json']
+                ]
             }
         }
 
@@ -261,11 +304,15 @@ class BuildD3Json(NodeVisitor):
         print "Visiting identifier"
         if node.name in symboltable.funcTable:
             entry = symboltable.funcTable[node.name]
+            print json.dumps(entry, indent=2)
             return {
                 "type" : entry['type'],
                 "value" : entry['value'],
                 "json" : {
-                    "name" : node.name + " = " + str(entry['value'])
+                    "name" : node.name,# + " = " + str(entry['value']),
+                    "children" : [
+                        entry['json']
+                    ]
                 }
             }
         elif node.name in parser._functions:
@@ -280,9 +327,7 @@ class BuildD3Json(NodeVisitor):
             parser.clean()
             raise Exception(node.name + " is not defined")
 
-
     def visit_application(self, node):
-
         args = []
         trees = []
         types = []
@@ -322,12 +367,14 @@ class BuildD3Json(NodeVisitor):
         while len(symboltable.funcTable) < len(args):
             value = args[len(symboltable.funcTable)]
             tp = types[len(symboltable.funcTable)]
-            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = {'value' : value, 'type' : tp}
+            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = {
+                'value' : value, 'type' : tp
+                }
 
         variables = []
         for entry in parser._whereDict[node]:
             result = entry['expression'].visit(BuildD3Json())
-            symboltable.funcTable[entry['var']] = {'value' : result['value'], 'type' : result['type']}
+            symboltable.funcTable[entry['var']] = result
             variables += [(entry['var'], result)]
 
         print node + " symbolTable == " + json.dumps(symboltable.symbolTable, indent=2)
@@ -340,7 +387,7 @@ class BuildD3Json(NodeVisitor):
             args_string += " " + arg
 
         args_tree = {
-            "name": funcName + args_string + " = " + str(exec_tree['value']),
+            "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
             "children": [
                 exec_tree['json']
             ]
@@ -357,10 +404,15 @@ class BuildD3Json(NodeVisitor):
 
         for v in variables:
             args_tree = {
-                    "name": "where " + v[0] + " = " + str(v[1]['value']),
+                    "name": "",
                     "children": [
                         args_tree,
-                        v[1]['json']
+                        {
+                            "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                            "children": [
+                                v[1]['json']
+                            ]
+                        }
                     ]
                 }
 
@@ -377,7 +429,7 @@ def execute(node):
     variables = []
     for entry in parser._whereDict['main']:
         result = entry['expression'].visit(BuildD3Json())
-        symboltable.funcTable[entry['var']] = {'value' : result['value'], 'type' : result['type']}
+        symboltable.funcTable[entry['var']] = result
         variables += [(entry['var'], result)]
 
     exec_tree = node.visit(BuildD3Json())
@@ -393,10 +445,15 @@ def execute(node):
     if len(variables) > 0:
         for v in variables:
             args_tree = {
-                    "name": "where " + v[0] + " = " + str(v[1]['value']),
+                    "name": "",
                     "children": [
                         args_tree,
-                        v[1]['json']
+                        {
+                            "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                            "children": [
+                                v[1]['json']
+                            ]
+                        }
                     ]
                 }
         out = {
