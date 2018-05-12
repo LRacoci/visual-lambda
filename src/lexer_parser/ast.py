@@ -188,7 +188,7 @@ class BuildD3Json(NodeVisitor):
     def visit_conditional(self, node):
         cond = node.cond.visit(BuildD3Json())
 
-        if cond['value'] == True:
+        if cond['value']:
             ifthen = node.ifthen.visit(BuildD3Json())
             ifelse = { "json" : { "name" : "else not executed" } }
             value = ifthen['value']
@@ -263,7 +263,7 @@ class BuildD3Json(NodeVisitor):
         else:
             val = {
                 'type' : "ERROR",
-                'value' : "{} not in {}".format(key, structure["value"])
+                'value' : None
             }
 
         return {
