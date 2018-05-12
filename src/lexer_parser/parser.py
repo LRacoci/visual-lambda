@@ -7,15 +7,16 @@ import json
 # Parser precende
 
 precedence = (
-    ('left','IFELSE'),
+    ('left', 'IFELSE'),
     ('left', 'IOR'),
     ('left', 'XOR'),
     ('left', 'AND'),
     ('left', 'EQL', 'DIF'),
     ('left', 'GT', 'GTE', 'LT', 'LTE'),
-    ('left','PLUS','MINUS'),
-    ('left','TIMES','DIVIDE'),
-    ('right','UNARY'),
+    ('left', 'PLUS', 'MINUS'),
+    ('left', 'TIMES', 'DIVIDE'),
+    ('right', 'UNARY'),
+    ('left', 'DOT')
 )
 
 # Auxiliar variables
