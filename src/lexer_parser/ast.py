@@ -248,14 +248,13 @@ class BuildD3Json(NodeVisitor):
                 ]
             }
             children += [child]
-            try:
-                value[keyExpr['value']] = valExpr['value']
-            except:
-                value[str(keyExpr['value'])] = valExpr['value']
-            try:
-                exprFromKey[keyExpr['value']] = valExpr
-            except:
-                exprFromKey[str(keyExpr['value'])] = valExpr
+            key = keyExpr['value']
+            if not hashable(key):
+                key = str(key)
+                print "New building key is {}".format(key)
+
+            value[key] = valExpr['value']
+            exprFromKey[key] = valExpr
 
         return {
             "type" : "structure",
@@ -274,29 +273,27 @@ class BuildD3Json(NodeVisitor):
         if structure["type"] != "structure":
             raise Exception("{} is not a structure".format(structure["value"]))
 
-        key = expression['exprFromKey']
+        key = expression['value']
         if not hashable(key):
             key = str(key)
-
-        if key in structure["value"]:
-            val = structure["value"][key]
+            print "New key calling is {}".format(key)
+        print "structure : {}".format(json.dumps(structure, indent = 2))
+        if key in structure["exprFromKey"]:
+            val = structure["exprFromKey"][key]
         else:
             val = {
                 'type' : "ERROR",
                 'value' : None
             }
-
-        return {
-            "type" : val['type'],
-            "value" : val['value'],
-            "json" : {
-                "name" : "({}) {}".format(val['type'], val['value']),
-                "children" : [
-                    structure['json'],
-                    expression['json']
-                ]
-            }
+        ret = dict(val)
+        ret["json"] = {
+            "name" : "({}) {}".format(val['type'], val['value']),
+            "children" : [
+                structure['json'],
+                expression['json']
+            ]
         }
+        return ret
 
     def visit_constant(self, node):
         if node.type == "int":
@@ -329,16 +326,16 @@ class BuildD3Json(NodeVisitor):
         if node.name in symboltable.funcTable:
             entry = symboltable.funcTable[node.name]
             print json.dumps(entry, indent=2)
-            return {
-                "type" : entry['type'],
-                "value" : entry['value'],
-                "json" : {
+            ret = dict(entry)
+            if 'json' in entry:
+                ret['json'] = {
                     "name" : node.name,# + " = " + str(entry['value']),
                     "children" : [
                         entry['json']
                     ]
                 }
-            }
+            return ret
+
         elif node.name in parser._functions:
             return {
                 "type" : "function",
