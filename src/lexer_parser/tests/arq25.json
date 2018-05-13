@@ -1,0 +1,23 @@
+{
+  "name": "main = {'{}': {}}", 
+  "children": [
+    {
+      "name": "(structure)", 
+      "children": [
+        {
+          "name": "(structure) {} : (structure) {}", 
+          "children": [
+            {
+              "name": "key : (structure) {}", 
+              "children": []
+            }, 
+            {
+              "name": "value : (structure) {}", 
+              "children": []
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

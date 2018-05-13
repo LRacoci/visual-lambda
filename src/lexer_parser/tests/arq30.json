@@ -1,0 +1,544 @@
+{
+  "name": "main = 42", 
+  "children": [
+    {
+      "name": "", 
+      "children": [
+        {
+          "name": "", 
+          "children": [
+            {
+              "name": "", 
+              "children": [
+                {
+                  "name": "main = 42", 
+                  "children": [
+                    {
+                      "name": "(int) 42", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "f x = ", 
+                              "children": [
+                                {
+                                  "name": "(structure)", 
+                                  "children": [
+                                    {
+                                      "name": "(str) acbc : (int) 28", 
+                                      "children": [
+                                        {
+                                          "name": "key : (str) acbc", 
+                                          "children": [
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "+"
+                                                }, 
+                                                {
+                                                  "name": "(str) \"ac\""
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(str) \"bc\""
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": "value : (int) 28", 
+                                          "children": [
+                                            {
+                                              "name": "a x = ", 
+                                              "children": [
+                                                {
+                                                  "name": 28, 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "*"
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 2"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "x = 14"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "x = 14"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "(str) baca : (int) 42", 
+                                      "children": [
+                                        {
+                                          "name": "key : (str) baca", 
+                                          "children": [
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "+"
+                                                }, 
+                                                {
+                                                  "name": "(str) \"ba\""
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(str) \"ca\""
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": "value : (int) 42", 
+                                          "children": [
+                                            {
+                                              "name": "b x = ", 
+                                              "children": [
+                                                {
+                                                  "name": 42, 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "*"
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 3"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "x = 14"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "x = 14"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "(str) cbab : (int) 70", 
+                                      "children": [
+                                        {
+                                          "name": "key : (str) cbab", 
+                                          "children": [
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "+"
+                                                }, 
+                                                {
+                                                  "name": "(str) \"cb\""
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(str) \"ab\""
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": "value : (int) 70", 
+                                          "children": [
+                                            {
+                                              "name": "c x = ", 
+                                              "children": [
+                                                {
+                                                  "name": 70, 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "*"
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 5"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "x = 14"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "x = 14"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "(int) 14", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "f x = ", 
+                                      "children": [
+                                        {
+                                          "name": "(structure)", 
+                                          "children": [
+                                            {
+                                              "name": "(str) acbc : (int) 14", 
+                                              "children": [
+                                                {
+                                                  "name": "key : (str) acbc", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "+"
+                                                        }, 
+                                                        {
+                                                          "name": "(str) \"ac\""
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(str) \"bc\""
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "value : (int) 14", 
+                                                  "children": [
+                                                    {
+                                                      "name": "a x = ", 
+                                                      "children": [
+                                                        {
+                                                          "name": 14, 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "*"
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 2"
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "x = 7"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "x = 7"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(str) baca : (int) 21", 
+                                              "children": [
+                                                {
+                                                  "name": "key : (str) baca", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "+"
+                                                        }, 
+                                                        {
+                                                          "name": "(str) \"ba\""
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(str) \"ca\""
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "value : (int) 21", 
+                                                  "children": [
+                                                    {
+                                                      "name": "b x = ", 
+                                                      "children": [
+                                                        {
+                                                          "name": 21, 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "*"
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 3"
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "x = 7"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "x = 7"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(str) cbab : (int) 35", 
+                                              "children": [
+                                                {
+                                                  "name": "key : (str) cbab", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "+"
+                                                        }, 
+                                                        {
+                                                          "name": "(str) \"cb\""
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(str) \"ab\""
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "value : (int) 35", 
+                                                  "children": [
+                                                    {
+                                                      "name": "c x = ", 
+                                                      "children": [
+                                                        {
+                                                          "name": 35, 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "*"
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 5"
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "x = 7"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "x = 7"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "(int) 7"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "(str) \"acbc\""
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "baca", 
+                          "children": [
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": "+"
+                                }, 
+                                {
+                                  "name": "x", 
+                                  "children": [
+                                    {
+                                      "name": "ba", 
+                                      "children": [
+                                        {
+                                          "name": " ", 
+                                          "children": [
+                                            {
+                                              "name": "+"
+                                            }, 
+                                            {
+                                              "name": "(str) \"b\""
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": "z", 
+                                          "children": [
+                                            {
+                                              "name": "(str) \"a\""
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "y", 
+                              "children": [
+                                {
+                                  "name": "ca", 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "+"
+                                        }, 
+                                        {
+                                          "name": "(str) \"c\""
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "z", 
+                                      "children": [
+                                        {
+                                          "name": "(str) \"a\""
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "where z = ", 
+                  "children": [
+                    {
+                      "name": "(str) \"a\""
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "where x = ", 
+              "children": [
+                {
+                  "name": "ba", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "+"
+                        }, 
+                        {
+                          "name": "(str) \"b\""
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "z", 
+                      "children": [
+                        {
+                          "name": "(str) \"a\""
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "where y = ", 
+          "children": [
+            {
+              "name": "ca", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "+"
+                    }, 
+                    {
+                      "name": "(str) \"c\""
+                    }
+                  ]
+                }, 
+                {
+                  "name": "z", 
+                  "children": [
+                    {
+                      "name": "(str) \"a\""
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

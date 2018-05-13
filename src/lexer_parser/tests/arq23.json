@@ -1,8 +1,8 @@
 {
-  "name": "main = 10", 
+  "name": "main = 17.58967", 
   "children": [
     {
-      "name": 10, 
+      "name": 17.589669999999998, 
       "children": [
         {
           "name": " ", 
@@ -11,21 +11,21 @@
               "name": "+"
             }, 
             {
-              "name": "(int) 2"
-            }
-          ]
-        }, 
-        {
-          "name": 8, 
-          "children": [
-            {
-              "name": " ", 
+              "name": 8.58967, 
               "children": [
                 {
-                  "name": "-"
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "+"
+                    }, 
+                    {
+                      "name": "(float) 1.58967"
+                    }
+                  ]
                 }, 
                 {
-                  "name": 12, 
+                  "name": 7.0, 
                   "children": [
                     {
                       "name": " ", 
@@ -34,21 +34,21 @@
                           "name": "*"
                         }, 
                         {
-                          "name": "(int) 3"
+                          "name": "(float) 3.5"
                         }
                       ]
                     }, 
                     {
-                      "name": "(int) 4"
+                      "name": "(int) 2"
                     }
                   ]
                 }
               ]
-            }, 
-            {
-              "name": "(int) 4"
             }
           ]
+        }, 
+        {
+          "name": "(int) 9"
         }
       ]
     }

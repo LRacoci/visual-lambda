@@ -1,0 +1,73 @@
+{
+  "name": "main = {'{1: 1}': {2: 2}}", 
+  "children": [
+    {
+      "name": "(structure)", 
+      "children": [
+        {
+          "name": "(structure) {1: 1} : (structure) {2: 2}", 
+          "children": [
+            {
+              "name": "key : (structure) {1: 1}", 
+              "children": [
+                {
+                  "name": "f x = ", 
+                  "children": [
+                    {
+                      "name": "(structure)", 
+                      "children": [
+                        {
+                          "name": "(int) 1 : (int) 1", 
+                          "children": [
+                            {
+                              "name": "key : (int) 1"
+                            }, 
+                            {
+                              "name": "value : (int) 1"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(int) 1"
+                }
+              ]
+            }, 
+            {
+              "name": "value : (structure) {2: 2}", 
+              "children": [
+                {
+                  "name": "f x = ", 
+                  "children": [
+                    {
+                      "name": "(structure)", 
+                      "children": [
+                        {
+                          "name": "(int) 2 : (int) 2", 
+                          "children": [
+                            {
+                              "name": "key : (int) 2"
+                            }, 
+                            {
+                              "name": "value : (int) 2"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(int) 2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

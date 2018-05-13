@@ -1,26 +1,48 @@
 {
-  "functions": {
-    "main": [
-      [
-        [
-          "cond",
-          [
-            [
-              "<",
-              0
-            ],
-            1
+  "name": "main = 2", 
+  "children": [
+    {
+      "name": 2, 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": "cond"
+                }, 
+                {
+                  "name": true, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "<"
+                        }, 
+                        {
+                          "name": "(int) 0"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "(int) 1"
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "(int) 2"
+            }
           ]
-        ],
-        2
-      ],
-      1
-    ]
-  },
-  "args": {
-    "main": []
-  },
-  "dependence": {
-    "main": []
-  }
+        }, 
+        {
+          "name": "else not executed"
+        }
+      ]
+    }
+  ]
 }

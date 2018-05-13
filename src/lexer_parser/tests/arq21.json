@@ -1,49 +1,93 @@
 {
-  "functions": {
-    "main": [
-      [
-        "f",
-        1
-      ],
-      2
-    ],
-    "f": [
-      [
-        [
-          "cond",
-          [
-            [
-              [
-                "cond",
-                [
-                  [
-                    "<",
-                    "a"
-                  ],
-                  "b"
-                ]
-              ],
-              "True"
-            ],
-            "False"
+  "name": "main = False", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "f a b = ", 
+              "children": [
+                {
+                  "name": false, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "cond"
+                            }, 
+                            {
+                              "name": true, 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "cond"
+                                        }, 
+                                        {
+                                          "name": true, 
+                                          "children": [
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "<"
+                                                }, 
+                                                {
+                                                  "name": "a = 1"
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "b = 2"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "(bool) True"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "else not executed"
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "(bool) False"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "else not executed"
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "(int) 1"
+            }
           ]
-        ],
-        "False"
-      ],
-      "True"
-    ]
-  },
-  "args": {
-    "main": [],
-    "f": [
-      "a",
-      "b"
-    ]
-  },
-  "dependence": {
-    "main": [
-      "f"
-    ],
-    "f": []
-  }
+        }, 
+        {
+          "name": "(int) 2"
+        }
+      ]
+    }
+  ]
 }

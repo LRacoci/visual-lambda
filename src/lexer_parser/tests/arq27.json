@@ -1,0 +1,366 @@
+{
+  "name": "main = 42", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": "id x = ", 
+          "children": [
+            {
+              "name": "(int) 42", 
+              "children": [
+                {
+                  "name": "", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "memo f x = ", 
+                              "children": [
+                                {
+                                  "name": "(structure) {28: 42}", 
+                                  "children": [
+                                    {
+                                      "name": "m", 
+                                      "children": [
+                                        {
+                                          "name": "(structure)", 
+                                          "children": [
+                                            {
+                                              "name": "(int) 42 : (structure) {28: 42}", 
+                                              "children": [
+                                                {
+                                                  "name": "key : (int) 42"
+                                                }, 
+                                                {
+                                                  "name": "value : (structure) {28: 42}", 
+                                                  "children": [
+                                                    {
+                                                      "name": "(f = f) x = ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "(structure)", 
+                                                          "children": [
+                                                            {
+                                                              "name": "(int) 28 : (int) 42", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "key : (int) 28", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "g x = ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": 28, 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": " ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "/"
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "x = 84"
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(int) 3"
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": 84, 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "*"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "x = 42"
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(int) 2"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "value : (int) 42", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "g x = ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": 42, 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": " ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "/"
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "x = 126"
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(int) 3"
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": 126, 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "*"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "x = 42"
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(int) 3"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "x = 42"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "x = 42"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "f = function"
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "x = 42"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "where m = ", 
+                      "children": [
+                        {
+                          "name": "(structure)", 
+                          "children": [
+                            {
+                              "name": "(int) 42 : (structure) {28: 42}", 
+                              "children": [
+                                {
+                                  "name": "key : (int) 42"
+                                }, 
+                                {
+                                  "name": "value : (structure) {28: 42}", 
+                                  "children": [
+                                    {
+                                      "name": "(f = f) x = ", 
+                                      "children": [
+                                        {
+                                          "name": "(structure)", 
+                                          "children": [
+                                            {
+                                              "name": "(int) 28 : (int) 42", 
+                                              "children": [
+                                                {
+                                                  "name": "key : (int) 28", 
+                                                  "children": [
+                                                    {
+                                                      "name": "g x = ", 
+                                                      "children": [
+                                                        {
+                                                          "name": 28, 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "/"
+                                                                }, 
+                                                                {
+                                                                  "name": "x = 84"
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "(int) 3"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": 84, 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "*"
+                                                            }, 
+                                                            {
+                                                              "name": "x = 42"
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 2"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "value : (int) 42", 
+                                                  "children": [
+                                                    {
+                                                      "name": "g x = ", 
+                                                      "children": [
+                                                        {
+                                                          "name": 42, 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "/"
+                                                                }, 
+                                                                {
+                                                                  "name": "x = 126"
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "(int) 3"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": 126, 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "*"
+                                                            }, 
+                                                            {
+                                                              "name": "x = 42"
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 3"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "x = 42"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": 28, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "/"
+                        }, 
+                        {
+                          "name": 84, 
+                          "children": [
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": "*"
+                                }, 
+                                {
+                                  "name": "x = 42"
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "(int) 2"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "(int) 3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "(int) 42"
+        }
+      ]
+    }
+  ]
+}

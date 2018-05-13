@@ -1,32 +1,64 @@
 {
-  "functions": {
-    "main": [
-      [
-        [
-          "cond", 
-          [
-            [
-              "xor", 
-              [
-                [
-                  ">", 
-                  1
-                ], 
-                2
+  "name": "main = 1", 
+  "children": [
+    {
+      "name": 1, 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": "cond"
+                }, 
+                {
+                  "name": true, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "xor"
+                        }, 
+                        {
+                          "name": "(bool) True"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": false, 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": ">"
+                            }, 
+                            {
+                              "name": "(int) 1"
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "(int) 2"
+                        }
+                      ]
+                    }
+                  ]
+                }
               ]
-            ], 
-            "True"
+            }, 
+            {
+              "name": "(int) 1"
+            }
           ]
-        ], 
-        1
-      ], 
-      2
-    ]
-  }, 
-  "args": {
-    "main": []
-  }, 
-  "dependence": {
-    "main": []
-  }
+        }, 
+        {
+          "name": "else not executed"
+        }
+      ]
+    }
+  ]
 }

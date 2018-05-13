@@ -1,56 +1,368 @@
 {
-  "functions": {
-    "isZero": [
-      [
-        "==",
-        "a"
-      ],
-      0
-    ],
-    "main": [
-      "fact",
-      3
-    ],
-    "fact": [
-      [
-        [
-          "cond",
-          [
-            "isZero",
-            "n"
+  "name": "main = 6", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": "fact n = ", 
+          "children": [
+            {
+              "name": 6, 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "cond"
+                        }, 
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "isZero a = ", 
+                              "children": [
+                                {
+                                  "name": false, 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "=="
+                                        }, 
+                                        {
+                                          "name": "a = 3"
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "(int) 0"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "n = 3"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "then not executed"
+                    }
+                  ]
+                }, 
+                {
+                  "name": 6, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "*"
+                        }, 
+                        {
+                          "name": "n = 3"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "fact n = ", 
+                          "children": [
+                            {
+                              "name": 2, 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "cond"
+                                        }, 
+                                        {
+                                          "name": " ", 
+                                          "children": [
+                                            {
+                                              "name": "isZero a = ", 
+                                              "children": [
+                                                {
+                                                  "name": false, 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "=="
+                                                        }, 
+                                                        {
+                                                          "name": "a = 2"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(int) 0"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "n = 2"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "then not executed"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": 2, 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "*"
+                                        }, 
+                                        {
+                                          "name": "n = 2"
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "fact n = ", 
+                                          "children": [
+                                            {
+                                              "name": 1, 
+                                              "children": [
+                                                {
+                                                  "name": " ", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "cond"
+                                                        }, 
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "isZero a = ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": false, 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "=="
+                                                                        }, 
+                                                                        {
+                                                                          "name": "a = 1"
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 0"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "n = 1"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "then not executed"
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": 1, 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "*"
+                                                        }, 
+                                                        {
+                                                          "name": "n = 1"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "fact n = ", 
+                                                          "children": [
+                                                            {
+                                                              "name": 1, 
+                                                              "children": [
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "cond"
+                                                                        }, 
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "isZero a = ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": true, 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "=="
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "a = 0"
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 0"
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "n = 0"
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 1"
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "else not executed"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": 0, 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "-"
+                                                                }, 
+                                                                {
+                                                                  "name": "n = 1"
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "(int) 1"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": 1, 
+                                          "children": [
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "-"
+                                                }, 
+                                                {
+                                                  "name": "n = 2"
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(int) 1"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": 2, 
+                          "children": [
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": "-"
+                                }, 
+                                {
+                                  "name": "n = 3"
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "(int) 1"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
           ]
-        ],
-        1
-      ],
-      [
-        "fact",
-        [
-          [
-            "-",
-            "n"
-          ],
-          1
-        ]
+        }, 
+        {
+          "name": "(int) 3"
+        }
       ]
-    ]
-  },
-  "args": {
-    "isZero": [
-      "a"
-    ],
-    "main": [],
-    "fact": [
-      "n"
-    ]
-  },
-  "dependence": {
-    "isZero": [],
-    "main": [
-      "fact"
-    ],
-    "fact": [
-      "isZero",
-      "fact"
-    ]
-  }
+    }
+  ]
 }

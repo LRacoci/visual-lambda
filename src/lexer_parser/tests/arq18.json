@@ -1,75 +1,79 @@
 {
-  "functions": {
-    "factorial": [
-      [
-        [
-          "cond",
-          [
-            [
-              ">",
-              "n"
-            ],
-            0
+  "name": "main = 1", 
+  "children": [
+    {
+      "name": "", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "f a = ", 
+              "children": [
+                {
+                  "name": 1, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "cond"
+                            }, 
+                            {
+                              "name": true, 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "<"
+                                    }, 
+                                    {
+                                      "name": "a = 2.5"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "b", 
+                                  "children": [
+                                    {
+                                      "name": "(str) \"MC911\""
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "(int) 1"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "else not executed"
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "(float) 2.5"
+            }
           ]
-        ],
-        [
-          "f",
-          [
-            [
-              "-",
-              "n"
-            ],
-            1
+        }, 
+        {
+          "name": "where b = ", 
+          "children": [
+            {
+              "name": "(str) \"MC911\""
+            }
           ]
-        ]
-      ],
-      1
-    ],
-    "apply": [
-      "y",
-      "y"
-    ],
-    "main": [
-      [
-        "y_combinator",
-        "factorial"
-      ],
-      3
-    ],
-    "y_combinator": [
-      "apply",
-      [
-        "f",
-        "apply"
+        }
       ]
-    ]
-  },
-  "args": {
-    "factorial": [
-      "f",
-      "n"
-    ],
-    "apply": [
-      "y"
-    ],
-    "main": [],
-    "y_combinator": [
-      "f"
-    ]
-  },
-  "dependence": {
-    "factorial": [
-      "f"
-    ],
-    "apply": [
-      "y"
-    ],
-    "main": [
-      "y_combinator"
-    ],
-    "y_combinator": [
-      "apply",
-      "f"
-    ]
-  }
+    }
+  ]
 }

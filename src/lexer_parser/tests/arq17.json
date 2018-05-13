@@ -1,47 +1,74 @@
 {
-  "functions": {
-    "outro": [
-      [
-        "+", 
-        "a"
-      ], 
-      [
-        "outra", 
-        "b"
+  "name": "main = 1", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "outro a b = ", 
+              "children": [
+                {
+                  "name": 1, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "+"
+                        }, 
+                        {
+                          "name": "a = 1"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "outra x = ", 
+                          "children": [
+                            {
+                              "name": 0, 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "/"
+                                    }, 
+                                    {
+                                      "name": "x = 2"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "(int) 3"
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "b = 2"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "(int) 1"
+            }
+          ]
+        }, 
+        {
+          "name": "(int) 2"
+        }
       ]
-    ], 
-    "main": [
-      [
-        "outro", 
-        1
-      ], 
-      2
-    ], 
-    "outra": [
-      [
-        "/", 
-        "x"
-      ], 
-      3
-    ]
-  }, 
-  "args": {
-    "outro": [
-      "a", 
-      "b"
-    ], 
-    "main": [], 
-    "outra": [
-      "x"
-    ]
-  }, 
-  "dependence": {
-    "outro": [
-      "outra"
-    ], 
-    "main": [
-      "outro"
-    ], 
-    "outra": []
-  }
+    }
+  ]
 }

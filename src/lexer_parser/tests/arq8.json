@@ -1,62 +1,48 @@
 {
-  "functions": {
-    "main": [
-      [
-        [
-          "cond",
-          [
-            [
-              "<",
-              0
-            ],
-            1
-          ]
-        ],
-        0
-      ],
-      [
-        [
-          [
-            "cond",
-            [
-              [
-                "==",
-                1
-              ],
-              1
-            ]
-          ],
-          1
-        ],
-        [
-          [
-            [
-              "cond",
-              [
-                [
-                  ">",
-                  2
-                ],
-                1
+  "name": "main = 0", 
+  "children": [
+    {
+      "name": 0, 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": "cond"
+                }, 
+                {
+                  "name": true, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "<"
+                        }, 
+                        {
+                          "name": "(int) 0"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "(int) 1"
+                    }
+                  ]
+                }
               ]
-            ],
-            2
-          ],
-          [
-            [
-              "/",
-              1
-            ],
-            0
+            }, 
+            {
+              "name": "(int) 0"
+            }
           ]
-        ]
+        }, 
+        {
+          "name": "else not executed"
+        }
       ]
-    ]
-  },
-  "args": {
-    "main": []
-  },
-  "dependence": {
-    "main": []
-  }
+    }
+  ]
 }

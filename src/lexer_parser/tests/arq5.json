@@ -1,35 +1,72 @@
 {
-  "functions": {
-    "main": [
-      [
-        "*",
-        [
-          [
-            "-",
-            2
-          ],
-          0
-        ]
-      ],
-      [
-        [
-          "-",
-          [
-            [
-              "+",
-              1
-            ],
-            1
+  "name": "main = 4", 
+  "children": [
+    {
+      "name": 4, 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "*"
+            }, 
+            {
+              "name": -2, 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "-"
+                    }, 
+                    {
+                      "name": "(int) 0"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(int) 2"
+                }
+              ]
+            }
           ]
-        ],
-        0
+        }, 
+        {
+          "name": -2, 
+          "children": [
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": "-"
+                }, 
+                {
+                  "name": "(int) 0"
+                }
+              ]
+            }, 
+            {
+              "name": 2, 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "+"
+                    }, 
+                    {
+                      "name": "(int) 1"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(int) 1"
+                }
+              ]
+            }
+          ]
+        }
       ]
-    ]
-  },
-  "args": {
-    "main": []
-  },
-  "dependence": {
-    "main": []
-  }
+    }
+  ]
 }

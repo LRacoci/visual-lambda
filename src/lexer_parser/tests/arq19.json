@@ -1,0 +1,39 @@
+{
+  "name": "main = {3: 3}", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": "f x = ", 
+          "children": [
+            {
+              "name": "(structure)", 
+              "children": [
+                {
+                  "name": "(int) 3 : (int) 3", 
+                  "children": [
+                    {
+                      "name": "key : (int) 3"
+                    }, 
+                    {
+                      "name": "value : (int) 3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "a = ", 
+          "children": [
+            {
+              "name": "(int) 3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

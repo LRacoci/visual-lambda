@@ -1,68 +1,56 @@
 {
-  "name": "main = 4", 
+  "name": "main = MC911", 
   "children": [
     {
-      "name": 4, 
+      "name": "", 
       "children": [
         {
-          "name": " ", 
+          "name": "main = MC911", 
           "children": [
             {
-              "name": "-"
-            }, 
-            {
-              "name": 12, 
+              "name": " ", 
               "children": [
                 {
-                  "name": " ", 
+                  "name": "conc a = ", 
                   "children": [
                     {
-                      "name": "*"
-                    }, 
-                    {
-                      "name": 3, 
+                      "name": "MC911", 
                       "children": [
                         {
                           "name": " ", 
                           "children": [
                             {
-                              "name": "/"
+                              "name": "+"
                             }, 
                             {
-                              "name": "(int) 6"
+                              "name": "a = MC"
                             }
                           ]
                         }, 
                         {
-                          "name": "(int) 2"
+                          "name": "(str) \"911\""
                         }
                       ]
                     }
                   ]
                 }, 
                 {
-                  "name": "(int) 4"
+                  "name": "a", 
+                  "children": [
+                    {
+                      "name": "(str) \"MC\""
+                    }
+                  ]
                 }
               ]
             }
           ]
         }, 
         {
-          "name": 8, 
+          "name": "where a = ", 
           "children": [
             {
-              "name": " ", 
-              "children": [
-                {
-                  "name": "*"
-                }, 
-                {
-                  "name": "(int) 8"
-                }
-              ]
-            }, 
-            {
-              "name": "(int) 1"
+              "name": "(str) \"MC\""
             }
           ]
         }

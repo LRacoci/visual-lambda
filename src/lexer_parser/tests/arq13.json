@@ -1,34 +1,8 @@
 {
-  "functions": {
-    "outro": [
-      [
-        "+",
-        "a"
-      ],
-      "b"
-    ],
-    "main": 0,
-    "outra": [
-      [
-        "/",
-        "b"
-      ],
-      3
-    ]
-  },
-  "args": {
-    "outro": [
-      "a",
-      "b"
-    ],
-    "main": [],
-    "outra": [
-      "b"
-    ]
-  },
-  "dependence": {
-    "outro": [],
-    "main": [],
-    "outra": []
-  }
+  "name": "main = 0", 
+  "children": [
+    {
+      "name": "(int) 0"
+    }
+  ]
 }
