@@ -10,6 +10,7 @@ reserved = {
     'xor'   : 'XOR',
     'ior'   : 'IOR',
     'where' : 'WHERE',
+    'None'  : 'NONE'
     #'struct' : 'STRUCT'
 
 }

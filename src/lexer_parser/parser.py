@@ -179,19 +179,19 @@ def p_expression_binop(t):
         | expression DIF expression
         | expression LT expression
         | expression GT expression'''
-    t[0] = ast.binop(t[1], t[2], t[3])
+    t[0] = ast.Binop(t[1], t[2], t[3])
 
 def p_expression_ifelse(t):
     '''expression : IF expression THEN expression ELSE expression %prec IFELSE'''
-    t[0] = ast.conditional(t[2], t[4], t[6])
+    t[0] = ast.Conditional(t[2], t[4], t[6])
 
 def p_expression_uminus(t):
     '''expression : MINUS expression %prec UNARY'''
-    t[0] = ast.binop(ast.constant(0, "int"), t[1], t[2])
+    t[0] = ast.Binop(ast.Constant(0, "int"), t[1], t[2])
 
 def p_expression_not(t):
     '''expression : NOT expression %prec UNARY'''
-    t[0] = ast.binop(ast.constant("True", "bool"), "xor", t[2])
+    t[0] = ast.Binop(ast.Constant("True", "bool"), "xor", t[2])
 
 def p_expression_application(t):
     '''expression : application'''
@@ -203,7 +203,7 @@ def p_expression_group(t):
 
 def p_application_nested(t):
     '''application : application LPAREN expression RPAREN'''
-    t[0] = ast.application(t[1], t[3])
+    t[0] = ast.Application(t[1], t[3])
 
 def p_application_expression(t):
     '''application : NAME LPAREN expression RPAREN'''
@@ -211,7 +211,7 @@ def p_application_expression(t):
     _names_aux |= {t[1]}
     global _dependence_aux
     _dependence_aux |= {t[1]}
-    t[0] = ast.application(t[1], t[3])
+    t[0] = ast.Application(t[1], t[3])
 
 def p_application_null(t):
     '''application : NAME LPAREN RPAREN'''
@@ -219,25 +219,29 @@ def p_application_null(t):
     _names_aux |= {t[1]}
     global _dependence_aux
     _dependence_aux |= {t[1]}
-    t[0] = ast.application(t[1], None)
+    t[0] = ast.Application(t[1], None)
 
 def p_constant_real_number(t):
     '''constant : FLOAT'''
-    t[0] = ast.constant(t[1], "float")
+    t[0] = ast.Constant(t[1], "float")
 
 def p_constant_number(t):
     '''constant : NATURAL'''
-    t[0] = ast.constant(t[1], "int")
+    t[0] = ast.Constant(t[1], "int")
 
 def p_constant_string(t):
     '''constant : STRING1
         | STRING2'''
-    t[0] = ast.constant(t[1], "str")
+    t[0] = ast.Constant(t[1], "str")
 
 def p_constant_bool(t):
     '''constant : TRUE
         | FALSE'''
-    t[0] = ast.constant(t[1], "bool")
+    t[0] = ast.Constant(t[1], "bool")
+
+def p_constant_none(t):
+    '''constant : NONE'''
+    t[0] = ast.Constant(t[1], "none")
 
 def p_expression_constant(t):
     '''expression : constant
@@ -246,11 +250,11 @@ def p_expression_constant(t):
 
 def p_structure_null(t):
     '''structure : LBRACKET1 RBRACKET1'''
-    t[0] = ast.structure([])
+    t[0] = ast.Structure([])
 
 def p_structure_kvList(t):
     '''structure : LBRACKET1 kvList RBRACKET1'''
-    t[0] = ast.structure(t[2])
+    t[0] = ast.Structure(t[2])
 
 def p_kvList_nested(t):
     '''kvList : kvTerm COMMA kvList'''
@@ -261,18 +265,18 @@ def p_kvList_kvTerm(t):
     t[0] = [t[1]]
 
 def p_kvTerm(t):
-    '''kvTerm : constant COLON expression'''
+    '''kvTerm : expression COLON expression'''
     t[0] = t[1], t[3]
 
 def p_expression_structure_call(t):
     '''expression : expression LBRACKET2 expression RBRACKET2'''
-    t[0] = ast.structureCall(t[1], t[3])
+    t[0] = ast.StructureCall(t[1], t[3])
 
 def p_expression_name(t):
     '''expression : NAME'''
     global _names_aux
     _names_aux |= {t[1]}
-    t[0] = ast.identifier(t[1])
+    t[0] = ast.Identifier(t[1])
 
 def p_error(t):
     ''''''

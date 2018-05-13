@@ -5,6 +5,14 @@ import json
 
 NOT_IMPLEMENTED = "You should implement this."
 
+def hashable(v):
+    """Determine whether `v` can be hashed."""
+    try:
+        hash(v)
+    except TypeError:
+        return False
+    return True
+
 # Parser rules
 class Node():
     __metaclass__ = ABCMeta
@@ -12,7 +20,7 @@ class Node():
     def visit(self, visitor):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
-class binop(Node):
+class Binop(Node):
     def __init__(self, left, op, right):
         self.left = left
         self.op = op
@@ -21,7 +29,7 @@ class binop(Node):
     def visit(self, visitor):
         return visitor.visit_binop(self)
 
-class conditional(Node):
+class Conditional(Node):
     def __init__(self, cond, ifthen, ifelse):
         self.cond = cond
         self.ifthen = ifthen
@@ -30,14 +38,14 @@ class conditional(Node):
     def visit(self, visitor):
         return visitor.visit_conditional(self)
 
-class structure(Node):
+class Structure(Node):
     def __init__(self, kvPairs):
         self.kvPairs = kvPairs
 
     def visit(self, visitor):
         return visitor.visit_structure(self)
 
-class structureCall(Node):
+class StructureCall(Node):
     def __init__(self, structure, expression):
         self.structure = structure
         self.expression = expression
@@ -46,7 +54,7 @@ class structureCall(Node):
         return visitor.visit_structureCall(self)
 
 
-class constant(Node):
+class Constant(Node):
     def __init__(self, value, type):
         self.value = value
         self.type = type
@@ -55,14 +63,14 @@ class constant(Node):
     def visit(self, visitor):
         return visitor.visit_constant(self)
 
-class identifier(Node):
+class Identifier(Node):
     def __init__(self, name):
         self.name = name
 
     def visit(self, visitor):
         return visitor.visit_identifier(self)
 
-class application(Node):
+class Application(Node):
     def __init__(self, func, arg):
         self.func = func
         self.arg = arg
@@ -225,27 +233,34 @@ class BuildD3Json(NodeVisitor):
         exprFromKey = {}
         children = []
         value = {}
-        for constKey, exprValue in node.kvPairs:
-            expression = exprValue.visit(BuildD3Json())
-            constant = constKey.visit(BuildD3Json())
-            keyJson = dict(constant['json'])
-            keyJson['name'] = "key : " + keyJson['name']
-            valJson = dict(expression['json'])
-            valJson['name'] = "value : " + valJson['name']
+        for exprKey, exprVal in node.kvPairs:
+            valExpr = exprVal.visit(BuildD3Json())
+            keyExpr = exprKey.visit(BuildD3Json())
+            keyJson = dict(keyExpr['json'])
+            keyJson['name'] = "key : " + str(keyJson['name'])
+            valJson = dict(valExpr['json'])
+            valJson['name'] = "value : " + str(valJson['name'])
             child = {
-                "name" : "{} : {}".format(constant['json']['name'], expression['json']['name']),
+                "name" : "{} : {}".format(keyExpr['json']['name'], valExpr['json']['name']),
                 "children" : [
                     keyJson,
                     valJson
                 ]
             }
             children += [child]
-            value[constant['value']] = expression['value']
-            exprFromKey[constant['value']] = expression
+            try:
+                value[keyExpr['value']] = valExpr['value']
+            except:
+                value[str(keyExpr['value'])] = valExpr['value']
+            try:
+                exprFromKey[keyExpr['value']] = valExpr
+            except:
+                exprFromKey[str(keyExpr['value'])] = valExpr
 
         return {
             "type" : "structure",
-            "value" : exprFromKey,
+            "value" : value,
+            "exprFromKey" : exprFromKey,
             #"exprFromKey" : exprFromKey,
             "json" : {
                 "name" : "(structure)",
@@ -256,8 +271,13 @@ class BuildD3Json(NodeVisitor):
     def visit_structureCall(self, node):
         structure = node.structure.visit(BuildD3Json())
         expression = node.expression.visit(BuildD3Json())
+        if structure["type"] != "structure":
+            raise Exception("{} is not a structure".format(structure["value"]))
 
-        key = expression['value']
+        key = expression['exprFromKey']
+        if not hashable(key):
+            key = str(key)
+
         if key in structure["value"]:
             val = structure["value"][key]
         else:
@@ -291,6 +311,10 @@ class BuildD3Json(NodeVisitor):
         elif node.type == "bool":
             value = True if node.value == "True" else False
             show = str(value)
+        elif node.type == "none" and node.value == "None":
+            value = None
+            show = "None"
+
         print value
         return {
             "type" : node.type,
@@ -301,7 +325,7 @@ class BuildD3Json(NodeVisitor):
         }
 
     def visit_identifier(self, node):
-        print "Visiting identifier"
+        print "Visiting Identifier"
         if node.name in symboltable.funcTable:
             entry = symboltable.funcTable[node.name]
             print json.dumps(entry, indent=2)
@@ -331,7 +355,7 @@ class BuildD3Json(NodeVisitor):
         args = []
         trees = []
         types = []
-        while type(node) is application:
+        while type(node) is Application:
             if node.arg != None:
                 exec_tree = node.arg.visit(BuildD3Json())
                 arg = exec_tree['value']
