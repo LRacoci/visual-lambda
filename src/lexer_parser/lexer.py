@@ -91,7 +91,7 @@ def t_NATURAL(t):
 t_ignore = " \t"
 
 def t_STRING1(t):
-    r'\'([^\\"]|(\\.))*\''
+    r'\'([^\\"\']|(\\.))*\''
     escaped = 0
     str = t.value[1:-1]
     new_str = ""

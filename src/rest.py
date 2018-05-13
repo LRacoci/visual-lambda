@@ -15,14 +15,15 @@ def index():
 # Ponto de entrada para traducao de codigo, devolvendo a arvore para visualizacao
 @app.route("/translateCode", methods=['POST'])
 def translateCode():
-	try:
-		dataDict = json.loads(request.data.decode())
-		parser.parse(dataDict['code'])
-		print execOut['tree']
-		return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
-	except Exception as err:
-		print traceback.print_exc()
-		return Response(str(err.args[0]), status=500)
+    try:
+        dataDict = json.loads(request.data.decode())
+        clean()
+        parser.parse(dataDict['code'])
+        print execOut['tree']
+        return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
+    except Exception as err:
+        print traceback.print_exc()
+        return Response(str(err.args[0]), status=500)
 
 # Gera um novo token a cada request para prevenir cache de paginas no browser
 @app.context_processor

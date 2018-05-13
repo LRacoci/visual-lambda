@@ -47,9 +47,9 @@ def diff(a,b):
 if __name__ == "__main__":
     from glob import glob
     import json
-    
+
     # Compare the answer and the output to test
-    for inpFileName in glob('tests/arq2.hs'):
+    for inpFileName in glob('tests/arq*.hs'):
         print inpFileName
 
         with open(inpFileName) as inpFile:
@@ -63,11 +63,16 @@ if __name__ == "__main__":
             outFileName = inpFileName.replace(".hs", "_out.err")
             with open(outFileName, "w") as outFile:
                 outFile.write(output)
-            
+
             answer = inpFileName.replace(".hs", ".err")
+            try:
+                a = open(answer)
+            except:
+                print "No file like {}".format(answer)
+                continue
             with open(answer) as a:
                 answer = a.read()
-            
+
             if answer == output:
                 print "ok"
             else:
@@ -79,21 +84,27 @@ if __name__ == "__main__":
             output = execOut['tree']
             #print json.dumps(output)
             outFileName = inpFileName.replace(".hs", "_out.json")
-        
+
             with open(outFileName, "w") as outFile:
                 json.dump(output, outFile, indent = 2)
-            
             answer = inpFileName.replace(".hs", ".json")
+
+            try:
+                a = open(answer)
+            except:
+                print "No file like {}".format(answer)
+                continue
+
             with open(answer) as a:
                 answer = json.load(a)
-            
+
             ao = diff(answer, output)
             oa = diff(output, answer)
 
             if ao != None:
                 print "answer - output == "
                 print json.dumps(ao, indent = 2)
-            
+
             if oa != None:
                 print "output - answer == "
                 print json.dumps(oa, indent = 2)

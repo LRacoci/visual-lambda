@@ -1,6 +1,7 @@
 from lexer import *
 import ply.yacc as yacc
 import ast
+import symboltable
 from collections import deque
 import json
 
@@ -16,7 +17,9 @@ precedence = (
     ('left', 'PLUS', 'MINUS'),
     ('left', 'TIMES', 'DIVIDE'),
     ('right', 'UNARY'),
-    ('left', 'LBRACKET2')
+    ('left', 'LBRACKET2'),
+    ('left','COMMA'),
+    ('left', 'COLON')
 )
 
 # Auxiliar variables
@@ -100,6 +103,7 @@ def clean():
     _dependence = {}
     _exec_tree = {}
     _whereDict = {}
+    symboltable.clean()
 
 # Parser rules
 def p_start(t):

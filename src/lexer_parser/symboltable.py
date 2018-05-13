@@ -23,3 +23,11 @@ def deleteTable(node):
     for item in scopeStack:
         funcTable = funcTable[item]
     del funcTable[node]
+
+def clean():
+    global symbolTable
+    global scopeStack
+    global funcTable
+    symbolTable = {}
+    scopeStack = []
+    funcTable = {}

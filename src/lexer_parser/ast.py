@@ -237,11 +237,11 @@ class BuildD3Json(NodeVisitor):
             valExpr = exprVal.visit(BuildD3Json())
             keyExpr = exprKey.visit(BuildD3Json())
             keyJson = dict(keyExpr['json'])
-            keyJson['name'] = "key : " + str(keyJson['name'])
+            keyJson['name'] = "key : ({}) {}".format(keyExpr['type'], keyExpr['value'])
             valJson = dict(valExpr['json'])
-            valJson['name'] = "value : " + str(valJson['name'])
+            valJson['name'] = "value : ({}) {}".format(valExpr['type'], valExpr['value'])
             child = {
-                "name" : "{} : {}".format(keyExpr['json']['name'], valExpr['json']['name']),
+                "name" : "({}) {} : ({}) {}".format(keyExpr['type'], keyExpr['value'], valExpr['type'], valExpr['value']),
                 "children" : [
                     keyJson,
                     valJson
@@ -331,9 +331,14 @@ class BuildD3Json(NodeVisitor):
                 ret['json'] = {
                     "name" : node.name,# + " = " + str(entry['value']),
                     "children" : [
-                        entry['json']
+                        entry['json'] if 'json' in entry else {}
                     ]
                 }
+            else:
+                ret["json"] = {
+                    "name" : node.name + " = " + str(entry['value'])
+                }
+
             return ret
 
         elif node.name in parser._functions:
@@ -355,6 +360,7 @@ class BuildD3Json(NodeVisitor):
         while type(node) is Application:
             if node.arg != None:
                 exec_tree = node.arg.visit(BuildD3Json())
+                print exec_tree
                 arg = exec_tree['value']
                 tree = exec_tree['json']
                 tp = exec_tree['type']
@@ -437,11 +443,10 @@ class BuildD3Json(NodeVisitor):
                     ]
                 }
 
-        return {
-            "type" : type(exec_tree['value']).__name__,
-            "value": exec_tree['value'],
-            "json": args_tree
-        }
+        ret = dict(exec_tree)
+        ret['json'] = args_tree
+        #ret['type'] = type(exec_tree['value']).__name__,
+        return ret
 
 def execute(node):
 
