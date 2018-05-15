@@ -13,13 +13,14 @@ def hashable(v):
         return False
     return True
 
-# Parser rules
+# AST nodes
 class Node():
     __metaclass__ = ABCMeta
     @abstractmethod
     def visit(self, visitor):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
+# Binary operation node
 class Binop(Node):
     def __init__(self, left, op, right):
         self.left = left
@@ -29,6 +30,7 @@ class Binop(Node):
     def visit(self, visitor):
         return visitor.visit_binop(self)
 
+# If-then-else conditional node
 class Conditional(Node):
     def __init__(self, cond, ifthen, ifelse):
         self.cond = cond
@@ -38,6 +40,7 @@ class Conditional(Node):
     def visit(self, visitor):
         return visitor.visit_conditional(self)
 
+# Structure json node
 class Structure(Node):
     def __init__(self, kvPairs):
         self.kvPairs = kvPairs
@@ -45,6 +48,7 @@ class Structure(Node):
     def visit(self, visitor):
         return visitor.visit_structure(self)
 
+# Structure json call node
 class StructureCall(Node):
     def __init__(self, structure, expression):
         self.structure = structure
@@ -53,16 +57,16 @@ class StructureCall(Node):
     def visit(self, visitor):
         return visitor.visit_structureCall(self)
 
-
+# Constant node
 class Constant(Node):
     def __init__(self, value, type):
         self.value = value
         self.type = type
 
-
     def visit(self, visitor):
         return visitor.visit_constant(self)
 
+# Identifier node
 class Identifier(Node):
     def __init__(self, name):
         self.name = name
@@ -70,6 +74,7 @@ class Identifier(Node):
     def visit(self, visitor):
         return visitor.visit_identifier(self)
 
+# Function application node
 class Application(Node):
     def __init__(self, func, arg):
         self.func = func
@@ -78,6 +83,7 @@ class Application(Node):
     def visit(self, visitor):
         return visitor.visit_application(self)
 
+# Abstract class to implemente pattern visitor
 class NodeVisitor:
     __metaclass__ = ABCMeta
 
@@ -109,8 +115,10 @@ class NodeVisitor:
     def visit_application(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
+# Concrete class that has the visit methods implementation
 class BuildD3Json(NodeVisitor):
 
+	# Visit a binary operation checking value types
     def visit_binop(self, node):
         left = node.left.visit(BuildD3Json())
         right = node.right.visit(BuildD3Json())
@@ -193,6 +201,7 @@ class BuildD3Json(NodeVisitor):
             }
         }
 
+    # Visit if-then-else executing just one side depending on the condition
     def visit_conditional(self, node):
         cond = node.cond.visit(BuildD3Json())
 
@@ -229,6 +238,7 @@ class BuildD3Json(NodeVisitor):
             }
         }
 
+    # Visit a structure json and build its value
     def visit_structure(self, node):
         exprFromKey = {}
         children = []
@@ -260,13 +270,13 @@ class BuildD3Json(NodeVisitor):
             "type" : "structure",
             "value" : value,
             "exprFromKey" : exprFromKey,
-            #"exprFromKey" : exprFromKey,
             "json" : {
                 "name" : "(structure)",
                 "children" : children
             }
         }
 
+    # Visit a structure json and get its value depending on the key
     def visit_structureCall(self, node):
         structure = node.structure.visit(BuildD3Json())
         expression = node.expression.visit(BuildD3Json())
@@ -295,6 +305,7 @@ class BuildD3Json(NodeVisitor):
         }
         return ret
 
+    # Visit a constant depending on its type
     def visit_constant(self, node):
         if node.type == "int":
             value = int(node.value)
@@ -312,7 +323,6 @@ class BuildD3Json(NodeVisitor):
             value = None
             show = "None"
 
-        print value
         return {
             "type" : node.type,
             "value" : value,
@@ -321,6 +331,7 @@ class BuildD3Json(NodeVisitor):
             }
         }
 
+    # Visit a identifier from the symbol table or function table
     def visit_identifier(self, node):
         print "Visiting Identifier"
         if node.name in symboltable.funcTable:
@@ -340,7 +351,6 @@ class BuildD3Json(NodeVisitor):
                 }
 
             return ret
-
         elif node.name in parser._functions:
             return {
                 "type" : "function",
@@ -353,6 +363,8 @@ class BuildD3Json(NodeVisitor):
             parser.clean()
             raise Exception(node.name + " is not defined")
 
+    # Visit a function application, building the function symbol table
+    # calculating where and checking erros when making the call
     def visit_application(self, node):
         args = []
         trees = []
@@ -448,6 +460,7 @@ class BuildD3Json(NodeVisitor):
         #ret['type'] = type(exec_tree['value']).__name__,
         return ret
 
+# Execute the main function of the program, with where
 def execute(node):
 
     symboltable.getTable('main')

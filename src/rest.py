@@ -18,6 +18,7 @@ def translateCode():
     try:
         dataDict = json.loads(request.data.decode())
         clean()
+        setOptimization(dataDict['eta'])
         parser.parse(dataDict['code'])
         print execOut['tree']
         return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)

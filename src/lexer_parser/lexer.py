@@ -11,8 +11,6 @@ reserved = {
     'ior'   : 'IOR',
     'where' : 'WHERE',
     'None'  : 'NONE'
-    #'struct' : 'STRUCT'
-
 }
 
 tokens = (

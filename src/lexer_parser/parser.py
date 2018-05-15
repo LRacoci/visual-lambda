@@ -37,6 +37,8 @@ _functions_queue = deque(['main'])
 
 _exec_tree = {}
 
+_eta = False;
+
 namesOut = {
     'dependence' : {},
     'functions' : {},
@@ -95,6 +97,7 @@ def reset():
     execOut['tree'] = dict(_exec_tree)
     clean()
 
+# Clean variables and symbol table
 def clean():
     _functions = {}
     _whereDict = {}
@@ -104,6 +107,11 @@ def clean():
     _exec_tree = {}
     _whereDict = {}
     symboltable.clean()
+
+# Set optimization flag
+def setOptimization(flag):
+    global _eta
+    _eta = flag
 
 # Parser rules
 def p_start(t):

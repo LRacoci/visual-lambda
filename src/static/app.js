@@ -280,6 +280,7 @@ app.controller('myCtrl', function($scope, $http, collapse) {
         $scope.code = "";
         $scope.statusText = "";
         $scope.errorText = "";
+        $scope.checkbox = false;
     };
 
     /**
@@ -293,7 +294,8 @@ app.controller('myCtrl', function($scope, $http, collapse) {
                'Content-Type': 'application/json'
             },
             data: {
-                code: $scope.code
+                code: $scope.code,
+                eta: $scope.checkbox
             },
         }).then(function mySuccess(response) {
             $scope.value = response.data.tree;
