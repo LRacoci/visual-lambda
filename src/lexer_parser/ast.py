@@ -5,6 +5,8 @@ import json
 
 NOT_IMPLEMENTED = "You should implement this."
 
+_argMap = {}
+
 def hashable(v):
     """Determine whether `v` can be hashed."""
     try:
@@ -114,6 +116,41 @@ class NodeVisitor:
     @abstractmethod
     def visit_application(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
+
+# Concrete class that goes down the tree changing variables names
+class EtaSearch(NodeVisitor):
+
+    def visit_binop(self, node):
+        node.left.visit(EtaSearch())
+        node.right.visit(EtaSearch())
+
+    def visit_conditional(self, node):
+        node.cond.visit(EtaSearch())
+        node.ifthen(EtaSearch())
+        node.ifelse(EtaSearch())
+
+    def visit_structure(self, node):
+        for exprKey, exprVal in node.kvPairs:
+            exprVal.visit(EtaSearch())
+            exprKey.visit(EtaSearch())
+
+    def visit_structureCall(self, node):
+        node.structure.visit(BuildD3Json())
+        node.expression.visit(BuildD3Json())
+
+    def visit_constant(self, node):
+        pass
+
+    def visit_identifier(self, node):
+        global _argMap
+        if node.name in _argMap:
+            node.name = _argMap[node.name]
+
+    def visit_application(self, node):
+        while type(node) is Application:
+            if node.arg != None:
+                node.arg.visit(EtaSearch())
+            node = node.func
 
 # Concrete class that has the visit methods implementation
 class BuildD3Json(NodeVisitor):
@@ -364,17 +401,20 @@ class BuildD3Json(NodeVisitor):
         args = []
         trees = []
         types = []
+        exprFromKeyS = []
         while type(node) is Application:
             if node.arg != None:
                 exec_tree = node.arg.visit(BuildD3Json())
                 arg = exec_tree['value']
                 tree = exec_tree['json']
                 tp = exec_tree['type']
+                exprFromKey = exec_tree['exprFromKey'] if "exprFromKey" in exec_tree else None
+                execTrees = [exec_tree]
                 args = [arg] + args
                 trees = [tree] + trees
                 types = [tp] + types
+                exprFromKeyS = [exprFromKey] + exprFromKeyS
             node = node.func
-
 
         if node in symboltable.funcTable:
             if symboltable.funcTable[node]['type'] == "function":
@@ -397,11 +437,13 @@ class BuildD3Json(NodeVisitor):
         symboltable.getTable(node)
 
         while len(symboltable.funcTable) < len(args):
-            value = args[len(symboltable.funcTable)]
-            tp = types[len(symboltable.funcTable)]
-            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = {
-                'value' : value, 'type' : tp
-                }
+            entry = {}
+            entry['value'] = args[len(symboltable.funcTable)]
+            entry['type'] = types[len(symboltable.funcTable)]
+            if exprFromKeyS[len(symboltable.funcTable)] != None:
+                entry['exprFromKey'] = exprFromKeyS[len(symboltable.funcTable)]
+
+            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = entry
 
         variables = []
         for entry in parser._whereDict[node]:
@@ -497,3 +539,9 @@ def execute(node):
         out = args_tree
 
     return out
+
+# Do the eta search changing variables names
+def etaSearch(m, node):
+    global _argMap
+    _argMap = m
+    parser._functions[node].visit(EtaSearch())

@@ -2,8 +2,8 @@ from lexer import *
 import ply.yacc as yacc
 import ast
 import symboltable
-from collections import deque
 import json
+import copy
 
 # Parser precende
 
@@ -33,11 +33,11 @@ _whereDict = {}
 _args = {}
 _dependence = {}
 
-_functions_queue = deque(['main'])
-
 _exec_tree = {}
 
-_eta = False;
+_eta = False
+_eta_list = []
+_eta_temp = 0
 
 namesOut = {
     'dependence' : {},
@@ -92,6 +92,10 @@ def reset():
             clean()
             raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
 
+    global _eta
+    if _eta:
+        etaOptimization()
+
     _exec_tree = ast.execute(_functions['main'])
     execOut['tree'] = dict(_exec_tree)
     clean()
@@ -118,11 +122,71 @@ def clean():
     global _exec_tree
     _exec_tree = {}
 
+    global _eta
+    _eta = False
+    global _eta_list
+    _eta_list = []
+    global _eta_temp
+    _eta_temp = 0
 
 # Set optimization flag
 def setOptimization(flag):
     global _eta
     _eta = flag
+
+# Do the eta optimization
+def etaOptimization():
+    global _eta_list
+    global _functions
+    global _eta_temp
+    global _whereDict
+    global _args
+
+    # Search while there is a function to be optimized
+    while len(_eta_list) > 0:
+        # Search one entry that calls a function that is not an Application
+        l = len(_eta_list)
+        i = 0
+        while i < l:
+            node = _functions[_eta_list[i]]
+            args = []
+            while type(node) is ast.Application:
+                args = [node.arg] + args
+                node = node.func
+            if type(_functions[node]).__name__ != "Application":
+                # Build a new where list
+                funcWhere = []
+                init = _eta_temp
+                for arg in args:
+                    funcWhere += [{'var': str(_eta_temp) + "t", 'expression': arg}]
+                    _eta_temp += 1
+
+                # Build an arg map
+                argMap = {}
+                p = 0
+                for num in range(init, _eta_temp):
+                    argMap[_args[node][p]] = str(num) + "t"
+                    p += 1
+
+                # Change variables names in ast
+                _functions[_eta_list[i]] = copy.deepcopy(_functions[node])
+                ast.etaSearch(argMap, _eta_list[i])
+
+                # Change variables names in where
+                where = copy.deepcopy(_whereDict[node])
+                for w in where:
+                    w['expression'].visit(ast.EtaSearch())
+                _whereDict[_eta_list[i]] = funcWhere + where
+
+                break
+            i += 1
+
+        # If none is found, then there is a possible infinite loop
+        if i == l:
+            clean()
+            raise Exception("Infinite loop")
+        else:
+            del _eta_list[i]
 
 # Parser rules
 def p_start(t):
@@ -152,6 +216,10 @@ def p_function_assign(t):
     global _whereDict
     _whereDict[t[1]] = t[4]
 
+    if t[1] != 'main' and type(t[3]).__name__ == "Application" and t[4] == []:
+        global _eta_list
+        _eta_list += [t[1]]
+
 def p_function_args(t):
     '''function : NAME argList DEFINITION expression where_expression'''
     global _names
@@ -171,6 +239,10 @@ def p_function_args(t):
     _args[t[1]] = t[2]
     global _whereDict
     _whereDict[t[1]] = t[5]
+
+    if t[1] != 'main' and type(t[4]).__name__ == "Application" and t[5] == []:
+        global _eta_list
+        _eta_list += [t[1]]
 
 def p_args_list(t):
     '''argList : argList NAME'''
