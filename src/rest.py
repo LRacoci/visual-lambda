@@ -20,10 +20,8 @@ def translateCode():
         clean()
         setOptimization(dataDict['eta'])
         parser.parse(dataDict['code'])
-        print execOut['tree']
         return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
     except Exception as err:
-        print traceback.print_exc()
         return Response(str(err.args[0]), status=500)
 
 # Gera um novo token a cada request para prevenir cache de paginas no browser

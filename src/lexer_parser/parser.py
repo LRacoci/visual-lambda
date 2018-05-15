@@ -86,7 +86,6 @@ def reset():
     for func in namesOut['functions']:
         set_of_args = {arg for arg in namesOut['args'][func]}
         set_of_wheres = {where["var"] for where in _whereDict[func]}
-        print set_of_wheres
         aux = (_names[func] - set_of_args) - set_of_functions - set_of_wheres
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
@@ -99,14 +98,26 @@ def reset():
 
 # Clean variables and symbol table
 def clean():
-    _functions = {}
-    _whereDict = {}
-    print _whereDict
-    _args = {}
-    _dependence = {}
-    _exec_tree = {}
-    _whereDict = {}
     symboltable.clean()
+
+    global _names
+    _names = {}
+    global _names_aux
+    _names_aux = set()
+    global _dependence_aux
+    _dependence_aux = set()
+    global _functions
+    _functions = {}
+    global _whereDict
+    _whereDict = {}
+    global _args
+    _args = {}
+    global _dependence
+    _dependence = {}
+
+    global _exec_tree
+    _exec_tree = {}
+
 
 # Set optimization flag
 def setOptimization(flag):

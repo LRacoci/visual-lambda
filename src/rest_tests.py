@@ -40,14 +40,15 @@ class RestTestCase(unittest.TestCase):
             print fileAddress
             with open(fileAddress) as inpFile:
                 code = inpFile.read()
-            result = self.app.post('/translateCode', data=json.dumps(dict(code=code)), content_type='application/json', follow_redirects=True)
+            result = self.app.post('/translateCode', data=json.dumps(dict(code=code, eta=False)), content_type='application/json', follow_redirects=True)
             if result._status_code == 200:
-                with open(fileAddress.replace("lexer_parser", "tree").replace("arq", "tree").replace(".hs", ".json")) as outFile:
+                with open(fileAddress.replace(".hs", ".json")) as outFile:
                     resp = outFile.read()
                 resultJSON = json.loads(result.data)['tree']
                 respJSON = json.loads(resp)
                 self.assertEqual(resultJSON, respJSON)
             else:
+
                 with open(fileAddress.replace(".hs", ".err")) as outFile:
                     resp = outFile.read()
                 self.assertEqual(result.data.replace("u\'", "\'"), resp)

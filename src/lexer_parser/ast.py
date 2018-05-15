@@ -261,7 +261,6 @@ class BuildD3Json(NodeVisitor):
             key = keyExpr['value']
             if not hashable(key):
                 key = str(key)
-                print "New building key is {}".format(key)
 
             value[key] = valExpr['value']
             exprFromKey[key] = valExpr
@@ -286,8 +285,6 @@ class BuildD3Json(NodeVisitor):
         key = expression['value']
         if not hashable(key):
             key = str(key)
-            print "New key calling is {}".format(key)
-        print "structure : {}".format(json.dumps(structure, indent = 2))
         if key in structure["exprFromKey"]:
             val = structure["exprFromKey"][key]
         else:
@@ -333,10 +330,8 @@ class BuildD3Json(NodeVisitor):
 
     # Visit a identifier from the symbol table or function table
     def visit_identifier(self, node):
-        print "Visiting Identifier"
         if node.name in symboltable.funcTable:
             entry = symboltable.funcTable[node.name]
-            print json.dumps(entry, indent=2)
             ret = dict(entry)
             if 'json' in entry:
                 ret['json'] = {
@@ -372,7 +367,6 @@ class BuildD3Json(NodeVisitor):
         while type(node) is Application:
             if node.arg != None:
                 exec_tree = node.arg.visit(BuildD3Json())
-                print exec_tree
                 arg = exec_tree['value']
                 tree = exec_tree['json']
                 tp = exec_tree['type']
@@ -381,7 +375,6 @@ class BuildD3Json(NodeVisitor):
                 types = [tp] + types
             node = node.func
 
-        print node + ": " + ','.join([str(arg) for arg in args])
 
         if node in symboltable.funcTable:
             if symboltable.funcTable[node]['type'] == "function":
@@ -416,7 +409,6 @@ class BuildD3Json(NodeVisitor):
             symboltable.funcTable[entry['var']] = result
             variables += [(entry['var'], result)]
 
-        print node + " symbolTable == " + json.dumps(symboltable.symbolTable, indent=2)
         exec_tree = parser._functions[node].visit(BuildD3Json())
 
         symboltable.deleteTable(node)
