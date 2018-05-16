@@ -53,6 +53,23 @@ class RestTestCase(unittest.TestCase):
                     resp = outFile.read()
                 self.assertEqual(result.data.replace("u\'", "\'"), resp)
             print "ok"
+        for fileAddress in glob('./lexer_parser/tests/opt*.hs'):
+            print fileAddress
+            with open(fileAddress) as inpFile:
+                code = inpFile.read()
+            result = self.app.post('/translateCode', data=json.dumps(dict(code=code, eta=True)), content_type='application/json', follow_redirects=True)
+            if result._status_code == 200:
+                with open(fileAddress.replace(".hs", ".json")) as outFile:
+                    resp = outFile.read()
+                resultJSON = json.loads(result.data)['tree']
+                respJSON = json.loads(resp)
+                self.assertEqual(resultJSON, respJSON)
+            else:
+
+                with open(fileAddress.replace(".hs", ".err")) as outFile:
+                    resp = outFile.read()
+                self.assertEqual(result.data.replace("u\'", "\'"), resp)
+            print "ok"
 
 if __name__ == '__main__':
     unittest.main()

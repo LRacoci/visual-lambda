@@ -184,7 +184,7 @@ def etaOptimization():
         # If none is found, then there is a possible infinite loop
         if i == l:
             clean()
-            raise Exception("Infinite loop")
+            raise Exception("maximum recursion depth exceeded while calling a Python object")
         else:
             del _eta_list[i]
 

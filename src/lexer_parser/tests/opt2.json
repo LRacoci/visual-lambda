@@ -1,0 +1,120 @@
+{
+  "name": "main = 3", 
+  "children": [
+    {
+      "name": "", 
+      "children": [
+        {
+          "name": "", 
+          "children": [
+            {
+              "name": "", 
+              "children": [
+                {
+                  "name": "h = ", 
+                  "children": [
+                    {
+                      "name": 3, 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "+"
+                            }, 
+                            {
+                              "name": "1t", 
+                              "children": [
+                                {
+                                  "name": "(int) 1"
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "0t", 
+                          "children": [
+                            {
+                              "name": 2, 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "+"
+                                    }, 
+                                    {
+                                      "name": "2t", 
+                                      "children": [
+                                        {
+                                          "name": "(int) 1"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "(int) 1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "where 2t = ", 
+                  "children": [
+                    {
+                      "name": "(int) 1"
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "where 0t = ", 
+              "children": [
+                {
+                  "name": 2, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "+"
+                        }, 
+                        {
+                          "name": "2t", 
+                          "children": [
+                            {
+                              "name": "(int) 1"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "(int) 1"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "where 1t = ", 
+          "children": [
+            {
+              "name": "(int) 1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
