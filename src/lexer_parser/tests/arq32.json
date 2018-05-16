@@ -1,0 +1,169 @@
+{
+  "name": "main = {'{9: 6}': {6: 9}}", 
+  "children": [
+    {
+      "name": "", 
+      "children": [
+        {
+          "name": "main = {'{9: 6}': {6: 9}}", 
+          "children": [
+            {
+              "name": "(structure)", 
+              "children": [
+                {
+                  "name": "(structure) {9: 6} : (structure) {6: 9}", 
+                  "children": [
+                    {
+                      "name": "key : (structure) {9: 6}", 
+                      "children": [
+                        {
+                          "name": "(int) 9 : (int) 6", 
+                          "children": [
+                            {
+                              "name": "key : (int) 9", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "*"
+                                    }, 
+                                    {
+                                      "name": "a", 
+                                      "children": [
+                                        {
+                                          "name": "(int) 3"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "a", 
+                                  "children": [
+                                    {
+                                      "name": "(int) 3"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "value : (int) 6", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "+"
+                                    }, 
+                                    {
+                                      "name": "a", 
+                                      "children": [
+                                        {
+                                          "name": "(int) 3"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "a", 
+                                  "children": [
+                                    {
+                                      "name": "(int) 3"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "value : (structure) {6: 9}", 
+                      "children": [
+                        {
+                          "name": "(int) 6 : (int) 9", 
+                          "children": [
+                            {
+                              "name": "key : (int) 6", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "+"
+                                    }, 
+                                    {
+                                      "name": "a", 
+                                      "children": [
+                                        {
+                                          "name": "(int) 3"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "a", 
+                                  "children": [
+                                    {
+                                      "name": "(int) 3"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "value : (int) 9", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "*"
+                                    }, 
+                                    {
+                                      "name": "a", 
+                                      "children": [
+                                        {
+                                          "name": "(int) 3"
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "a", 
+                                  "children": [
+                                    {
+                                      "name": "(int) 3"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "where a = ", 
+          "children": [
+            {
+              "name": "(int) 3"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

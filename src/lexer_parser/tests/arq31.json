@@ -1,0 +1,133 @@
+{
+  "name": "main = {3.141592654: 42, 'MC911': {True: 3.141592654, '{1: 1, 2: 2}': True}, 911: 'MC911'}", 
+  "children": [
+    {
+      "name": "(structure)", 
+      "children": [
+        {
+          "name": "(int) 911 : (str) MC911", 
+          "children": [
+            {
+              "name": "key : (int) 911", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "+"
+                    }, 
+                    {
+                      "name": "(int) 910"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(int) 1"
+                }
+              ]
+            }, 
+            {
+              "name": "value : (str) MC911"
+            }
+          ]
+        }, 
+        {
+          "name": "(str) MC911 : (structure) {True: 3.141592654, '{1: 1, 2: 2}': True}", 
+          "children": [
+            {
+              "name": "key : (str) MC911"
+            }, 
+            {
+              "name": "value : (structure) {True: 3.141592654, '{1: 1, 2: 2}': True}", 
+              "children": [
+                {
+                  "name": "(structure) {1: 1, 2: 2} : (bool) True", 
+                  "children": [
+                    {
+                      "name": "key : (structure) {1: 1, 2: 2}", 
+                      "children": [
+                        {
+                          "name": "(int) 1 : (int) 1", 
+                          "children": [
+                            {
+                              "name": "key : (int) 1"
+                            }, 
+                            {
+                              "name": "value : (int) 1"
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "(int) 2 : (int) 2", 
+                          "children": [
+                            {
+                              "name": "key : (int) 2"
+                            }, 
+                            {
+                              "name": "value : (int) 2"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "value : (bool) True"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(bool) True : (float) 3.141592654", 
+                  "children": [
+                    {
+                      "name": "key : (bool) True"
+                    }, 
+                    {
+                      "name": "value : (float) 3.141592654", 
+                      "children": [
+                        {
+                          "name": "(float) 3.141592654"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "(float) 3.141592654 : (int) 42", 
+          "children": [
+            {
+              "name": "key : (float) 3.141592654", 
+              "children": [
+                {
+                  "name": "(float) 3.141592654"
+                }
+              ]
+            }, 
+            {
+              "name": "value : (int) 42", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "*"
+                    }, 
+                    {
+                      "name": "(int) 6"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(int) 7"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
