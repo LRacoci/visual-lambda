@@ -160,7 +160,7 @@ class BuildD3Json(NodeVisitor):
         left = node.left.visit(BuildD3Json())
         right = node.right.visit(BuildD3Json())
 
-        arithmetic_op = {"float", "int", "bool"}
+        arithmetic_op = {"float", "int", "bool", "long"}
         lr_types_union = {left['type'], right['type']}
 
         if node.op == '+':
