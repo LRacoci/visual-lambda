@@ -40,4 +40,4 @@ def dated_url_for(endpoint, **values):
     return url_for(endpoint, **values)
 
 if __name__ == "__main__":
-    app.run(port=8080)
+    app.run(debug=True, host='0.0.0.0')
