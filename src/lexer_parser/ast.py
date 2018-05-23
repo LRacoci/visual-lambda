@@ -322,45 +322,73 @@ class BuildD3Json(NodeVisitor):
         if exprFromKey != None:
             ret['exprFromKey'] = exprFromKey
 
+
+        ret['const'] = left['const'] and right['const']
+
+        ret["json"] = {
+            "name" : "({}) {}".format(ret['type'], ret['value'])
+        }
+        global _fold
+        print _fold
+        if not (_fold and ret['const']):
+            ret["json"]["children"] = [
+                {
+                    "name" : " ",
+                    "children" : [
+                        {"name" : node.op},
+                        left['json']
+                    ]
+                },
+                right['json']
+            ]
+
         return ret
 
     # Visit if-then-else executing just one side depending on the condition
     def visit_conditional(self, node):
+        retType = None
         cond = node.cond.visit(BuildD3Json())
 
         if cond['value']:
             ifthen = node.ifthen.visit(BuildD3Json())
+            retType = ifthen['type']
             ifelse = { "json" : { "name" : "else not executed" } }
             value = ifthen['value']
+            const =  ifthen['const']
         else:
             ifthen = { "json" : { "name" : "then not executed" } }
             ifelse = node.ifelse.visit(BuildD3Json())
+            retType = ifelse['type']
             value = ifelse['value']
+            const = ifelse['const']
 
 
         ret = {
-            "type" : type(value).__name__,
+            "type" : retType if retType else type(value).__name__,
             "value" : value,
+            "const" : const,
             "json" : {
-                "name" : value,
-                "children" : [
-                    {
-                        "name" : " ",
-                        "children" : [
-                            {
-                                "name" : " ",
-                                "children" : [
-                                    {"name" : "cond"},
-                                    cond['json']
-                                ]
-                            },
-                            ifthen['json']
-                        ]
-                    },
-                    ifelse['json']
-                ]
+                "name" : "({}) {}".format(retType,value),
+
             }
         }
+        if not (_fold and const):
+            ret['json']['children']  = [
+                {
+                    "name" : " ",
+                    "children" : [
+                        {
+                            "name" : " ",
+                            "children" : [
+                                {"name" : "cond"},
+                                cond['json']
+                            ]
+                        },
+                        ifthen['json']
+                    ]
+                },
+                ifelse['json']
+            ]
         return ret
 
     # Visit a structure json and build its value
