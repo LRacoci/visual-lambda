@@ -50,6 +50,13 @@ class Structure(Node):
     def visit(self, visitor):
         return visitor.visit_structure(self)
 
+class List(Node):
+    def __init__(self, exprs):
+        self.exprs = exprs
+
+    def visit(self, visitor):
+        return visitor.visit_list(self)
+
 # Structure json call node
 class StructureCall(Node):
     def __init__(self, structure, expression):
@@ -135,11 +142,15 @@ class EtaSearch(NodeVisitor):
             exprKey.visit(EtaSearch())
 
     def visit_structureCall(self, node):
-        node.structure.visit(BuildD3Json())
-        node.expression.visit(BuildD3Json())
+        node.structure.visit(EtaSearch())
+        node.expression.visit(EtaSearch())
 
     def visit_constant(self, node):
         pass
+
+    def visit_list(self, node):
+        for expr in node.exprs:
+            expr.visit(EtaSearch())
 
     def visit_identifier(self, node):
         global _argMap
@@ -160,46 +171,102 @@ class BuildD3Json(NodeVisitor):
         left = node.left.visit(BuildD3Json())
         right = node.right.visit(BuildD3Json())
 
+        exprFromKey = None
+        newType = None
+        show = None
+
         arithmetic_op = {"float", "int", "bool", "long"}
         lr_types_union = {left['type'], right['type']}
 
         if node.op == '+':
-            if lr_types_union.issubset(arithmetic_op) == False and lr_types_union != {"str"}:
+            if lr_types_union == {"list"}:
+                exprFromKey = {}
+                for key in left['exprFromKey']:
+                    exprFromKey[key] = left['exprFromKey'][key]
+                for key in right['exprFromKey']:
+                    exprFromKey[len(left['value']) + key] = right['exprFromKey'][key]
+
+            elif not lr_types_union < arithmetic_op and lr_types_union != {"list"}:
                 parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
-
             value = left['value'] + right['value']
+
         if node.op == '-':
-            if lr_types_union.issubset(arithmetic_op) == False:
+            if not lr_types_union < arithmetic_op:
                 parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
-
             value = left['value'] - right['value']
+
         if node.op == '*':
-            if lr_types_union.issubset(arithmetic_op) == False:
+            if not lr_types_union < arithmetic_op:
                 parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
-
             value = left['value'] * right['value']
+
         if node.op == '/':
-            if lr_types_union.issubset(arithmetic_op) == False:
+            if not lr_types_union < arithmetic_op:
                 parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
-
             if right['value'] == 0:
                 parser.clean()
                 raise Exception("Error: division by zero between \'{}:{}\' and \'{}:{}\'".format(left['value'], left['type'], right['value'], right['type']))
-
             value = left['value'] / right['value']
 
         if node.op == 'and':
-            value = left['value'] and right['value']
+            if lr_types_union == {"structure"}:
+                value = {}
+                for key in left['value']:
+                    if key in right['value']:
+                        value[key] = right['value'][key]
+
+                exprFromKey = {}
+                for key in left['exprFromKey']:
+                    if key in right['exprFromKey']:
+                        exprFromKey[key] = right['exprFromKey'][key]
+
+            else:
+                value = left['value'] and right['value']
 
         if node.op == 'xor':
-            value = (left['value'] and not right['value']) or (not left['value'] and right['value'])
+            if lr_types_union == {"structure"}:
+                value = {}
+                for key in left['value']:
+                    if key not in right['value']:
+                        value[key] = left['value'][key]
+
+                for key in right['value']:
+                    if key not in left['value']:
+                        value[key] = right['value'][key]
+
+                exprFromKey = {}
+                for key in left['exprFromKey']:
+                    if key not in right['exprFromKey']:
+                        exprFromKey[key] = left['exprFromKey'][key]
+
+                for key in right['exprFromKey']:
+                    if key not in left['exprFromKey']:
+                        exprFromKey[key] = right['exprFromKey'][key]
+
+            else:
+                value = (left['value'] and not right['value']) or (not left['value'] and right['value'])
 
         if node.op == 'ior':
-            value = left['value'] or right['value']
+            print lr_types_union
+            if lr_types_union == {"structure"}:
+                value = {}
+                for key in left['value']:
+                    value[key] = left['value'][key]
+                for key in right['value']:
+                    value[key] = right['value'][key]
+
+                exprFromKey = {}
+                for key in left['exprFromKey']:
+                    exprFromKey[key] = left['exprFromKey'][key]
+                for key in right['exprFromKey']:
+                    exprFromKey[key] = right['exprFromKey'][key]
+
+            else:
+                value = left['value'] or right['value']
 
         if node.op == '==':
             value = left['value'] == right['value']
@@ -219,12 +286,13 @@ class BuildD3Json(NodeVisitor):
         if node.op == '<':
             value = left['value'] < right['value']
 
+        relOps = {"==", "!=", ">=", "<=", ">", "<"}
 
-        return {
+        ret = {
             "type" : type(value).__name__,
             "value" : value,
             "json" : {
-                "name" : value,
+                "name" : show if show else str(value),
                 "children" : [
                     {
                         "name" : " ",
@@ -237,6 +305,23 @@ class BuildD3Json(NodeVisitor):
                 ]
             }
         }
+
+        if newType:
+            ret['type'] = newType
+        elif node.op in relOps:
+            ret['type'] = "bool"
+        elif left['type'] == right['type']:
+            ret['type'] = left['type']
+
+        import json
+        print "exprFromKey == " + json.dumps(exprFromKey, indent = 2)
+        if exprFromKey != None:
+            ret['exprFromKey'] = exprFromKey
+
+
+        print "ret == " +json.dumps(ret, indent = 2)
+
+        return ret
 
     # Visit if-then-else executing just one side depending on the condition
     def visit_conditional(self, node):
@@ -312,16 +397,33 @@ class BuildD3Json(NodeVisitor):
             }
         }
 
+    def visit_list(self, node):
+        exps = [expr.visit(BuildD3Json()) for expr in node.exprs]
+        return {
+            "type": "list",
+            "value": [exp['value'] for exp in exps],
+            "exprFromKey": {k : exps[k] for k in range(len(exps))},
+            "json": {
+                "name": "(list)",
+                "children" : [exp['json'] for exp in exps]
+            }
+        }
+
     # Visit a structure json and get its value depending on the key
     def visit_structureCall(self, node):
         structure = node.structure.visit(BuildD3Json())
         expression = node.expression.visit(BuildD3Json())
-        if structure["type"] != "structure":
-            raise Exception("{} is not a structure".format(structure["value"]))
 
+        if structure["type"] != "structure"  and structure["type"] != "list":
+            raise Exception("{} is not a structure nor a list".format(structure["value"]))
         key = expression['value']
         if not hashable(key):
             key = str(key)
+
+        if "exprFromKey" not in structure:
+            import json
+            raise Exception("No exprFromKey")
+
         if key in structure["exprFromKey"]:
             val = structure["exprFromKey"][key]
         else:

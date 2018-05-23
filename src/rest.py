@@ -3,6 +3,7 @@ import json
 import os
 import traceback
 from lexer_parser.parser import *
+import sys, traceback
 
 # Define a aplicacao
 app = Flask(__name__)
@@ -22,7 +23,8 @@ def translateCode():
         parser.parse(dataDict['code'])
         return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
     except Exception as err:
-        return Response(str(err.args[0]), status=500)
+        traceback.print_exc(file=sys.stdout)
+        return Response("{}: {}".format(str(err), sys.exc_info()[0]) , status=500)
 
 # Gera um novo token a cada request para prevenir cache de paginas no browser
 @app.context_processor

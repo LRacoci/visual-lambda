@@ -80,7 +80,13 @@ def reset():
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
             clean()
-            raise Exception("Error: {} called inside {} is not defined".format(aux, func))
+            raise Exception(
+                "Error: {} called inside {} is not defined"
+                .format(
+                    ','.join(['"{}"'.format(a) for a in aux]),
+                    func
+                )
+            )
 
     # Check if every name is a function name or an argument in the current function
     for func in namesOut['functions']:
@@ -158,14 +164,14 @@ def etaOptimization():
                 funcWhere = []
                 init = _eta_temp
                 for arg in args:
-                    funcWhere += [{'var': str(_eta_temp) + "t", 'expression': arg}]
+                    funcWhere += [{'var': "arg{}".format(_eta_temp), 'expression': arg}]
                     _eta_temp += 1
 
                 # Build an arg map
                 argMap = {}
                 p = 0
                 for num in range(init, _eta_temp):
-                    argMap[_args[node][p]] = str(num) + "t"
+                    argMap[_args[node][p]] = "arg{}".format(num)
                     p += 1
 
                 # Change variables names in ast
@@ -340,7 +346,8 @@ def p_constant_none(t):
 
 def p_expression_constant(t):
     '''expression : constant
-        | structure'''
+        | structure
+        | list '''
     t[0] = t[1]
 
 def p_structure_null(t):
@@ -366,6 +373,27 @@ def p_kvTerm(t):
 def p_expression_structure_call(t):
     '''expression : expression LBRACKET2 expression RBRACKET2'''
     t[0] = ast.StructureCall(t[1], t[3])
+
+def p_list_null(t):
+    '''list :  LBRACKET2 RBRACKET2'''
+    t[0] = ast.List([])
+
+def p_list_termList(t):
+    '''list : LBRACKET2 termList RBRACKET2'''
+    t[0] = ast.List(t[2])
+
+def p_termList_nested(t):
+    '''termList : term COMMA termList'''
+    t[0] = [t[1]] + t[3]
+
+def p_termList_term(t):
+    '''termList : term'''
+    t[0] = [t[1]]
+
+def p_term_expression(t):
+    '''term : expression'''
+    t[0] = t[1]
+
 
 def p_expression_name(t):
     '''expression : NAME'''
