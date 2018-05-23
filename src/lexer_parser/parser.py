@@ -408,8 +408,8 @@ def p_termTuple_nested(t):
     t[0] = [t[1]] + t[3]
 
 def p_termTuple_term(t):
-    '''termTuple : term'''
-    t[0] = [t[1]]
+    '''termTuple : term COMMA term'''
+    t[0] = [t[1], t[3]]
 
 def p_expression_name(t):
     '''expression : NAME'''
