@@ -348,7 +348,7 @@ def p_expression_constant(t):
     '''expression : constant
         | structure
         | list
-		| tuple'''
+        | tuple'''
     t[0] = t[1]
 
 def p_structure_null(t):
