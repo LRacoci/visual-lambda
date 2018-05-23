@@ -6,6 +6,13 @@ import json
 NOT_IMPLEMENTED = "You should implement this."
 
 _argMap = {}
+_fold = False
+_prop = False
+def setOptimization(fold_flag, prop_flag):
+    global _fold
+    _fold = fold_flag
+    global _prop
+    _prop = prop_flag
 
 def hashable(v):
     """Determine whether `v` can be hashed."""
@@ -301,19 +308,7 @@ class BuildD3Json(NodeVisitor):
         ret = {
             "type" : type(value).__name__,
             "value" : value,
-            "json" : {
-                "name" : show if show else str(value),
-                "children" : [
-                    {
-                        "name" : " ",
-                        "children" : [
-                            {"name" : node.op},
-                            left['json']
-                        ]
-                    },
-                    right['json']
-                ]
-            }
+
         }
 
         if newType:
@@ -342,7 +337,8 @@ class BuildD3Json(NodeVisitor):
             ifelse = node.ifelse.visit(BuildD3Json())
             value = ifelse['value']
 
-        return {
+
+        ret = {
             "type" : type(value).__name__,
             "value" : value,
             "json" : {
@@ -365,6 +361,7 @@ class BuildD3Json(NodeVisitor):
                 ]
             }
         }
+        return ret
 
     # Visit a structure json and build its value
     def visit_structure(self, node):
@@ -480,6 +477,7 @@ class BuildD3Json(NodeVisitor):
         return {
             "type" : node.type,
             "value" : value,
+            "const" : True,
             "json" : {
                 "name" : "({}) {}".format(node.type, show)
             }
@@ -490,6 +488,7 @@ class BuildD3Json(NodeVisitor):
         if node.name in symboltable.funcTable:
             entry = symboltable.funcTable[node.name]
             ret = dict(entry)
+            ret['const'] = False
             if 'json' in entry:
                 ret['json'] = {
                     "name" : node.name,# + " = " + str(entry['value']),
@@ -507,6 +506,7 @@ class BuildD3Json(NodeVisitor):
             return {
                 "type" : "function",
                 "value" : node.name,
+                "const" : False,
                 "json" : {
                     "name" : node.name + " = function"
                 }

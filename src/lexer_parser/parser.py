@@ -136,10 +136,10 @@ def clean():
     _eta_temp = 0
 
 # Set optimization flag
-def setOptimization(flag):
+def setOptimization(eta_flag, fold_flag, prop_flag):
     global _eta
-    _eta = flag
-
+    _eta = eta_flag
+    ast.setOptimization(fold_flag, prop_flag)
 # Do the eta optimization
 def etaOptimization():
     global _eta_list

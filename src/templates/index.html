@@ -22,10 +22,10 @@
 				         <input ng-click="translateCode()" type="button" value="&#9881; Compile" class="submit-button" />
 					   </div>
 						 <div style="display:table-cell">
-								 <!-- <div style="display:table-row;">
+								 <div style="display:table-row;">
 										 <div style="display:table-cell" class="toggle">
 												 <label class="switch">
-												     <input type="checkbox" id="checkCstFolding">
+												     <input type="checkbox" id="checkCstFolding" ng-model="checkbox_fold">
 												     <span class="slider round"></span>
 												 </label>
 									   </div>
@@ -36,18 +36,18 @@
 								 <div style="display:table-row;">
 										 <div style="display:table-cell" class="toggle">
 												 <label class="switch">
-												     <input type="checkbox" id="checkCstPropagation">
+												     <input type="checkbox" id="checkCstPropagation" ng-model="checkbox_prop">
 												     <span class="slider round"></span>
 												 </label>
 									   </div>
 										 <div style="display:table-cell" class="checkDescription">
 						            Constant Propagation
 						         </div>
-							   </div> -->
+							   </div>
 								 <div style="display:table-row;">
 										 <div style="display:table-cell" class="toggle">
 												 <label class="switch">
-												     <input type="checkbox" id="checkRedEta" ng-model="checkbox">
+												     <input type="checkbox" id="checkRedEta" ng-model="checkbox_eta">
 												     <span class="slider round"></span>
 												 </label>
 									   </div>

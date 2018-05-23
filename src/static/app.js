@@ -280,7 +280,9 @@ app.controller('myCtrl', function($scope, $http, collapse) {
         $scope.code = "";
         $scope.statusText = "";
         $scope.errorText = "";
-        $scope.checkbox = false;
+        $scope.checkbox_eta = false;
+        $scope.checkbox_fold = false;
+        $scope.checkbox_prop = false;
     };
 
     /**
@@ -295,7 +297,9 @@ app.controller('myCtrl', function($scope, $http, collapse) {
             },
             data: {
                 code: $scope.code,
-                eta: $scope.checkbox
+                eta: $scope.checkbox_eta,
+                fold: $scope.checkbox_fold,
+                prop: $scope.checkbox_prop
             },
         }).then(function mySuccess(response) {
             $scope.value = response.data.tree;
