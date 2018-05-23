@@ -24,7 +24,7 @@ def translateCode():
         return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
     except Exception as err:
         traceback.print_exc(file=sys.stdout)
-        return Response("{}: {}".format(str(err), sys.exc_info()[0]) , status=500)
+        return Response(str(err) , status=500)
 
 # Gera um novo token a cada request para prevenir cache de paginas no browser
 @app.context_processor
