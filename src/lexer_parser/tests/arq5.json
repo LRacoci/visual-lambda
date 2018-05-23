@@ -2,7 +2,7 @@
   "name": "main = 4", 
   "children": [
     {
-      "name": 4, 
+      "name": "4", 
       "children": [
         {
           "name": " ", 
@@ -11,7 +11,7 @@
               "name": "*"
             }, 
             {
-              "name": -2, 
+              "name": "-2", 
               "children": [
                 {
                   "name": " ", 
@@ -32,7 +32,7 @@
           ]
         }, 
         {
-          "name": -2, 
+          "name": "-2", 
           "children": [
             {
               "name": " ", 
@@ -46,7 +46,7 @@
               ]
             }, 
             {
-              "name": 2, 
+              "name": "2", 
               "children": [
                 {
                   "name": " ", 

@@ -14,7 +14,7 @@
                   "name": "cond"
                 }, 
                 {
-                  "name": true, 
+                  "name": "True", 
                   "children": [
                     {
                       "name": " ", 
@@ -28,7 +28,7 @@
                       ]
                     }, 
                     {
-                      "name": false, 
+                      "name": "False", 
                       "children": [
                         {
                           "name": " ", 

@@ -23,7 +23,7 @@
                               "name": "cond"
                             }, 
                             {
-                              "name": true, 
+                              "name": "True", 
                               "children": [
                                 {
                                   "name": " ", 
