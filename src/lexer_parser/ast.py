@@ -57,6 +57,13 @@ class List(Node):
     def visit(self, visitor):
         return visitor.visit_list(self)
 
+class Tuple(Node):
+    def __init__(self, exprs):
+        self.exprs = exprs
+
+    def visit(self, visitor):
+        return visitor.visit_tuple(self)
+
 # Structure json call node
 class StructureCall(Node):
     def __init__(self, structure, expression):
@@ -147,6 +154,10 @@ class EtaSearch(NodeVisitor):
 
     def visit_constant(self, node):
         pass
+
+    def visit_tuple(self, node):
+        for expr in node.exprs:
+            expr.visit(EtaSearch())
 
     def visit_list(self, node):
         for expr in node.exprs:
@@ -396,6 +407,18 @@ class BuildD3Json(NodeVisitor):
                 "children" : children
             }
         }
+
+    def visit_tuple(self, node):
+        exps = [expr.visit(BuildD3Json()) for expr in node.exprs]
+        return {
+            "type": "tuple",
+            "value": tuple([exp['value'] for exp in exps]),
+            "exprFromKey": {k : exps[k] for k in range(len(exps))},
+            "json": {
+                "name": "(tuple)",
+                "children" : [exp['json'] for exp in exps]
+            }
+       }
 
     def visit_list(self, node):
         exps = [expr.visit(BuildD3Json()) for expr in node.exprs]

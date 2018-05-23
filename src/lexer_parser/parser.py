@@ -347,7 +347,8 @@ def p_constant_none(t):
 def p_expression_constant(t):
     '''expression : constant
         | structure
-        | list '''
+        | list
+		| tuple'''
     t[0] = t[1]
 
 def p_structure_null(t):
@@ -394,6 +395,21 @@ def p_term_expression(t):
     '''term : expression'''
     t[0] = t[1]
 
+def p_tuple_null(t):
+    '''tuple :  LPAREN RPAREN'''
+    t[0] = ast.Tuple([])
+
+def p_tuple_termTuple(t):
+    '''tuple : LPAREN termTuple RPAREN'''
+    t[0] = ast.Tuple(t[2])
+
+def p_termTuple_nested(t):
+    '''termTuple : term COMMA termTuple'''
+    t[0] = [t[1]] + t[3]
+
+def p_termTuple_term(t):
+    '''termTuple : term'''
+    t[0] = [t[1]]
 
 def p_expression_name(t):
     '''expression : NAME'''
