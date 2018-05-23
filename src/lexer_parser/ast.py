@@ -186,7 +186,7 @@ class BuildD3Json(NodeVisitor):
                 for key in right['exprFromKey']:
                     exprFromKey[len(left['value']) + key] = right['exprFromKey'][key]
 
-            elif not lr_types_union < arithmetic_op and lr_types_union != {"list"}:
+            elif not lr_types_union < arithmetic_op and lr_types_union != {"str"}:
                 parser.clean()
                 raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
             value = left['value'] + right['value']
@@ -251,7 +251,6 @@ class BuildD3Json(NodeVisitor):
                 value = (left['value'] and not right['value']) or (not left['value'] and right['value'])
 
         if node.op == 'ior':
-            print lr_types_union
             if lr_types_union == {"structure"}:
                 value = {}
                 for key in left['value']:
@@ -314,12 +313,8 @@ class BuildD3Json(NodeVisitor):
             ret['type'] = left['type']
 
         import json
-        print "exprFromKey == " + json.dumps(exprFromKey, indent = 2)
         if exprFromKey != None:
             ret['exprFromKey'] = exprFromKey
-
-
-        print "ret == " +json.dumps(ret, indent = 2)
 
         return ret
 

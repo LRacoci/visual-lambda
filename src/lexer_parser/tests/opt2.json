@@ -14,7 +14,7 @@
                   "name": "h = ", 
                   "children": [
                     {
-                      "name": 3, 
+                      "name": "3", 
                       "children": [
                         {
                           "name": " ", 
@@ -23,7 +23,7 @@
                               "name": "+"
                             }, 
                             {
-                              "name": "1t", 
+                              "name": "arg1", 
                               "children": [
                                 {
                                   "name": "(int) 1"
@@ -33,10 +33,10 @@
                           ]
                         }, 
                         {
-                          "name": "0t", 
+                          "name": "arg0", 
                           "children": [
                             {
-                              "name": 2, 
+                              "name": "2", 
                               "children": [
                                 {
                                   "name": " ", 
@@ -45,7 +45,7 @@
                                       "name": "+"
                                     }, 
                                     {
-                                      "name": "2t", 
+                                      "name": "arg2", 
                                       "children": [
                                         {
                                           "name": "(int) 1"
@@ -66,7 +66,7 @@
                   ]
                 }, 
                 {
-                  "name": "where 2t = ", 
+                  "name": "where arg2 = ", 
                   "children": [
                     {
                       "name": "(int) 1"
@@ -76,10 +76,10 @@
               ]
             }, 
             {
-              "name": "where 0t = ", 
+              "name": "where arg0 = ", 
               "children": [
                 {
-                  "name": 2, 
+                  "name": "2", 
                   "children": [
                     {
                       "name": " ", 
@@ -88,7 +88,7 @@
                           "name": "+"
                         }, 
                         {
-                          "name": "2t", 
+                          "name": "arg2", 
                           "children": [
                             {
                               "name": "(int) 1"
@@ -107,7 +107,7 @@
           ]
         }, 
         {
-          "name": "where 1t = ", 
+          "name": "where arg1 = ", 
           "children": [
             {
               "name": "(int) 1"
