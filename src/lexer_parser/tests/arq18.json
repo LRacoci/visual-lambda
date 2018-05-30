@@ -11,7 +11,7 @@
               "name": "f a = ", 
               "children": [
                 {
-                  "name": 1, 
+                  "name": "(int) 1", 
                   "children": [
                     {
                       "name": " ", 
@@ -23,7 +23,7 @@
                               "name": "cond"
                             }, 
                             {
-                              "name": "True", 
+                              "name": "(bool) True", 
                               "children": [
                                 {
                                   "name": " ", 

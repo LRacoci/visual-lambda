@@ -35,7 +35,7 @@
                                           "name": "a x = ", 
                                           "children": [
                                             {
-                                              "name": "28", 
+                                              "name": "(int) 28", 
                                               "children": [
                                                 {
                                                   "name": " ", 
@@ -91,7 +91,7 @@
                                           "name": "b x = ", 
                                           "children": [
                                             {
-                                              "name": "42", 
+                                              "name": "(int) 42", 
                                               "children": [
                                                 {
                                                   "name": " ", 
@@ -131,7 +131,7 @@
                                           "name": "c x = ", 
                                           "children": [
                                             {
-                                              "name": "70", 
+                                              "name": "(int) 70", 
                                               "children": [
                                                 {
                                                   "name": " ", 
@@ -187,7 +187,7 @@
                                                   "name": "a x = ", 
                                                   "children": [
                                                     {
-                                                      "name": "14", 
+                                                      "name": "(int) 14", 
                                                       "children": [
                                                         {
                                                           "name": " ", 
@@ -243,7 +243,7 @@
                                                   "name": "b x = ", 
                                                   "children": [
                                                     {
-                                                      "name": "21", 
+                                                      "name": "(int) 21", 
                                                       "children": [
                                                         {
                                                           "name": " ", 
@@ -283,7 +283,7 @@
                                                   "name": "c x = ", 
                                                   "children": [
                                                     {
-                                                      "name": "35", 
+                                                      "name": "(int) 35", 
                                                       "children": [
                                                         {
                                                           "name": " ", 
@@ -332,7 +332,7 @@
                       ]
                     }, 
                     {
-                      "name": "'\"", 
+                      "name": "(str) '\"", 
                       "children": [
                         {
                           "name": " ", 

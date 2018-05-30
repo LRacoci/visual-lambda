@@ -329,7 +329,6 @@ class BuildD3Json(NodeVisitor):
             "name" : "({}) {}".format(ret['type'], ret['value'])
         }
         global _fold
-        print _fold
         if not (_fold and ret['const']):
             ret["json"]["children"] = [
                 {

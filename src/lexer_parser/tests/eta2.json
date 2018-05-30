@@ -14,7 +14,7 @@
                   "name": "h = ", 
                   "children": [
                     {
-                      "name": "3", 
+                      "name": "(int) 3", 
                       "children": [
                         {
                           "name": " ", 
@@ -36,7 +36,7 @@
                           "name": "arg0", 
                           "children": [
                             {
-                              "name": "2", 
+                              "name": "(int) 2", 
                               "children": [
                                 {
                                   "name": " ", 
@@ -79,7 +79,7 @@
               "name": "where arg0 = ", 
               "children": [
                 {
-                  "name": "2", 
+                  "name": "(int) 2", 
                   "children": [
                     {
                       "name": " ", 

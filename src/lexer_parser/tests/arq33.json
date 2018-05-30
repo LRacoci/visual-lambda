@@ -11,7 +11,7 @@
               "name": "main = False", 
               "children": [
                 {
-                  "name": "False", 
+                  "name": "(bool) False", 
                   "children": [
                     {
                       "name": " ", 
@@ -23,7 +23,7 @@
                           "name": "a", 
                           "children": [
                             {
-                              "name": "MC911", 
+                              "name": "(str) MC911", 
                               "children": [
                                 {
                                   "name": " ", 
@@ -49,7 +49,7 @@
                       "name": "b", 
                       "children": [
                         {
-                          "name": "9.86960440367", 
+                          "name": "(float) 9.86960440367", 
                           "children": [
                             {
                               "name": " ", 
@@ -87,7 +87,7 @@
               "name": "where a = ", 
               "children": [
                 {
-                  "name": "MC911", 
+                  "name": "(str) MC911", 
                   "children": [
                     {
                       "name": " ", 
@@ -113,7 +113,7 @@
           "name": "where b = ", 
           "children": [
             {
-              "name": "9.86960440367", 
+              "name": "(float) 9.86960440367", 
               "children": [
                 {
                   "name": " ", 

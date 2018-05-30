@@ -36,28 +36,11 @@ class RestTestCase(unittest.TestCase):
     # returnin the tree (JSON) which would be drawed
     def test_translate_code(self):
         from glob import glob
-        for fileAddress in glob('./lexer_parser/tests/arq*.hs'):
+        for fileAddress in glob('./lexer_parser/tests/*.hs'):
             print fileAddress
             with open(fileAddress) as inpFile:
                 code = inpFile.read()
-            result = self.app.post('/translateCode', data=json.dumps(dict(code=code, eta=False)), content_type='application/json', follow_redirects=True)
-            if result._status_code == 200:
-                with open(fileAddress.replace(".hs", ".json")) as outFile:
-                    resp = outFile.read()
-                resultJSON = json.loads(result.data)['tree']
-                respJSON = json.loads(resp)
-                self.assertEqual(resultJSON, respJSON)
-            else:
-
-                with open(fileAddress.replace(".hs", ".err")) as outFile:
-                    resp = outFile.read()
-                self.assertEqual(result.data.replace("u\'", "\'"), resp)
-            print "ok"
-        for fileAddress in glob('./lexer_parser/tests/opt*.hs'):
-            print fileAddress
-            with open(fileAddress) as inpFile:
-                code = inpFile.read()
-            result = self.app.post('/translateCode', data=json.dumps(dict(code=code, eta=True)), content_type='application/json', follow_redirects=True)
+            result = self.app.post('/translateCode', data=json.dumps(dict(code=code, eta="eta" in fileAddress, fold = "fold" in fileAddress, prop = "prop" in fileAddress)), content_type='application/json', follow_redirects=True)
             if result._status_code == 200:
                 with open(fileAddress.replace(".hs", ".json")) as outFile:
                     resp = outFile.read()

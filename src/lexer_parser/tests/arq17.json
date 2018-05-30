@@ -11,7 +11,7 @@
               "name": "outro a b = ", 
               "children": [
                 {
-                  "name": "1", 
+                  "name": "(int) 1", 
                   "children": [
                     {
                       "name": " ", 
@@ -31,7 +31,7 @@
                           "name": "outra x = ", 
                           "children": [
                             {
-                              "name": "0", 
+                              "name": "(int) 0", 
                               "children": [
                                 {
                                   "name": " ", 

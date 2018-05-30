@@ -8,7 +8,7 @@
           "name": "fact n = ", 
           "children": [
             {
-              "name": 6, 
+              "name": "(int) 6", 
               "children": [
                 {
                   "name": " ", 
@@ -26,7 +26,7 @@
                               "name": "isZero a = ", 
                               "children": [
                                 {
-                                  "name": "False", 
+                                  "name": "(bool) False", 
                                   "children": [
                                     {
                                       "name": " ", 
@@ -59,7 +59,7 @@
                   ]
                 }, 
                 {
-                  "name": "6", 
+                  "name": "(int) 6", 
                   "children": [
                     {
                       "name": " ", 
@@ -79,7 +79,7 @@
                           "name": "fact n = ", 
                           "children": [
                             {
-                              "name": 2, 
+                              "name": "(int) 2", 
                               "children": [
                                 {
                                   "name": " ", 
@@ -97,7 +97,7 @@
                                               "name": "isZero a = ", 
                                               "children": [
                                                 {
-                                                  "name": "False", 
+                                                  "name": "(bool) False", 
                                                   "children": [
                                                     {
                                                       "name": " ", 
@@ -130,7 +130,7 @@
                                   ]
                                 }, 
                                 {
-                                  "name": "2", 
+                                  "name": "(int) 2", 
                                   "children": [
                                     {
                                       "name": " ", 
@@ -150,7 +150,7 @@
                                           "name": "fact n = ", 
                                           "children": [
                                             {
-                                              "name": 1, 
+                                              "name": "(int) 1", 
                                               "children": [
                                                 {
                                                   "name": " ", 
@@ -168,7 +168,7 @@
                                                               "name": "isZero a = ", 
                                                               "children": [
                                                                 {
-                                                                  "name": "False", 
+                                                                  "name": "(bool) False", 
                                                                   "children": [
                                                                     {
                                                                       "name": " ", 
@@ -201,7 +201,7 @@
                                                   ]
                                                 }, 
                                                 {
-                                                  "name": "1", 
+                                                  "name": "(int) 1", 
                                                   "children": [
                                                     {
                                                       "name": " ", 
@@ -221,7 +221,7 @@
                                                           "name": "fact n = ", 
                                                           "children": [
                                                             {
-                                                              "name": 1, 
+                                                              "name": "(int) 1", 
                                                               "children": [
                                                                 {
                                                                   "name": " ", 
@@ -239,7 +239,7 @@
                                                                               "name": "isZero a = ", 
                                                                               "children": [
                                                                                 {
-                                                                                  "name": "True", 
+                                                                                  "name": "(bool) True", 
                                                                                   "children": [
                                                                                     {
                                                                                       "name": " ", 
@@ -279,7 +279,7 @@
                                                           ]
                                                         }, 
                                                         {
-                                                          "name": "0", 
+                                                          "name": "(int) 0", 
                                                           "children": [
                                                             {
                                                               "name": " ", 
@@ -306,7 +306,7 @@
                                           ]
                                         }, 
                                         {
-                                          "name": "1", 
+                                          "name": "(int) 1", 
                                           "children": [
                                             {
                                               "name": " ", 
@@ -333,7 +333,7 @@
                           ]
                         }, 
                         {
-                          "name": "2", 
+                          "name": "(int) 2", 
                           "children": [
                             {
                               "name": " ", 

@@ -2,7 +2,7 @@
   "name": "main = 2", 
   "children": [
     {
-      "name": 2, 
+      "name": "(int) 2", 
       "children": [
         {
           "name": " ", 
@@ -14,7 +14,7 @@
                   "name": "cond"
                 }, 
                 {
-                  "name": "True", 
+                  "name": "(bool) True", 
                   "children": [
                     {
                       "name": " ", 
