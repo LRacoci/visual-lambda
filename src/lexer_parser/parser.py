@@ -95,8 +95,8 @@ def reset():
         aux = (_names[func] - set_of_args) - set_of_functions - set_of_wheres
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
-            clean()
-            raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
+            #clean()
+            #raise Exception ("Error: {} used inside {} not declared".format(str_aux, func))
 
     global _eta
     if _eta:
@@ -205,6 +205,13 @@ def p_functionList(t):
 
 def p_function_assign(t):
     '''function : NAME DEFINITION expression where_expression'''
+    _,name,_,expression,wheres = t
+    print expression
+    for where in wheres:
+        ast.Application(ast.Lambda(where['var'], expression), where['expression'])
+
+    ast.auxSymbols[name] = [expression]
+
     global _names
     global _names_aux
     _names[t[1]] = _names_aux
@@ -228,6 +235,15 @@ def p_function_assign(t):
 
 def p_function_args(t):
     '''function : NAME argList DEFINITION expression where_expression'''
+    _, name, argList, _, expression, wheres = t
+
+    for where in wheres:
+        ast.Application(ast.Lambda(where['var'], expression), where['expression'])
+    for argName in argList:
+        expression = ast.Lambda(argName, expression)
+
+    ast.auxSymbols[name] = [expression]
+
     global _names
     global _names_aux
     _names[t[1]] = _names_aux
@@ -251,12 +267,20 @@ def p_function_args(t):
         _eta_list += [t[1]]
 
 def p_args_list(t):
-    '''argList : argList NAME'''
+    '''argList : argList pattern'''
     t[0] = t[1] + [t[2]]
 
 def p_args(t):
-    '''argList : NAME'''
+    '''argList : pattern'''
     t[0] = [t[1]]
+
+def p_pattern_name(t):
+    '''pattern : NAME'''
+    t[0] = t[1]
+
+# def p_pattern_expression(t):
+#     '''pattern : expression'''
+#     t[0] = 'expression'
 
 def p_where_expression(t):
     '''where_expression : WHERE NAME DEFINITION expression where_expression
@@ -312,7 +336,7 @@ def p_application_expression(t):
     _names_aux |= {t[1]}
     global _dependence_aux
     _dependence_aux |= {t[1]}
-    t[0] = ast.Application(t[1], t[3])
+    t[0] = ast.Application(ast.Identifier(t[1]), t[3])
 
 def p_application_null(t):
     '''application : NAME LPAREN RPAREN'''
@@ -320,7 +344,19 @@ def p_application_null(t):
     _names_aux |= {t[1]}
     global _dependence_aux
     _dependence_aux |= {t[1]}
-    t[0] = ast.Application(t[1], None)
+    t[0] = ast.Application(ast.Identifier(t[1]), None)
+
+def p_application_lambda(t):
+    '''application : lambda LPAREN expression RPAREN'''
+    t[0] = ast.Application(t[1], t[3])
+
+def p_expression_lambda(t):
+    '''expression : lambda'''
+    t[0] = t[1]
+
+def p_lambda_expression(t):
+    '''lambda : LPAREN LAMBDA NAME ARROW expression RPAREN'''
+    t[0] = ast.Lambda(t[3], t[5])
 
 def p_constant_real_number(t):
     '''constant : FLOAT'''

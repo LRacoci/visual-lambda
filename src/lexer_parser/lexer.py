@@ -38,7 +38,9 @@ tokens = (
     'COLON',
     'COMMA',
     'LBRACKET2',
-    'RBRACKET2'
+    'RBRACKET2',
+    'LAMBDA',
+    'ARROW',
 )
 
 # Tokens
@@ -71,6 +73,8 @@ t_COLON = r':'
 t_COMMA = r','
 t_LBRACKET2 = r'\['
 t_RBRACKET2 = r'\]'
+t_LAMBDA = r'\\'
+t_ARROW = r'->'
 
 def t_FLOAT(t):
     r'-?\d+\.\d*(e-?\d+)?'

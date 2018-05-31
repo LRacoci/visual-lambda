@@ -3,6 +3,9 @@ import parser
 import symboltable
 import json
 
+debug = False
+auxSymbols = {}
+
 NOT_IMPLEMENTED = "You should implement this."
 
 _argMap = {}
@@ -97,6 +100,14 @@ class Identifier(Node):
     def visit(self, visitor):
         return visitor.visit_identifier(self)
 
+class Lambda(Node):
+    def __init__(self, arg, expr):
+        self.arg = arg
+        self.expr = expr
+
+    def visit(self, visitor):
+        return visitor.visit_lambda(self)
+
 # Function application node
 class Application(Node):
     def __init__(self, func, arg):
@@ -135,6 +146,10 @@ class NodeVisitor:
         raise NotImplementedError(NOT_IMPLEMENTED)
 
     @abstractmethod
+    def visit_lambda(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
     def visit_application(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
@@ -162,6 +177,10 @@ class EtaSearch(NodeVisitor):
     def visit_constant(self, node):
         pass
 
+    def visit_lambda(self, node):
+        # ???
+        pass
+
     def visit_tuple(self, node):
         for expr in node.exprs:
             expr.visit(EtaSearch())
@@ -184,7 +203,7 @@ class EtaSearch(NodeVisitor):
 # Concrete class that has the visit methods implementation
 class BuildD3Json(NodeVisitor):
 
-	# Visit a binary operation checking value types
+    # Visit a binary operation checking value types
     def visit_binop(self, node):
         left = node.left.visit(BuildD3Json())
         right = node.right.visit(BuildD3Json())
@@ -196,119 +215,124 @@ class BuildD3Json(NodeVisitor):
         arithmetic_op = {"float", "int", "bool", "long"}
         lr_types_union = {left['type'], right['type']}
 
-        if node.op == '+':
-            if lr_types_union == {"list"}:
-                exprFromKey = {}
-                for key in left['exprFromKey']:
-                    exprFromKey[key] = left['exprFromKey'][key]
-                for key in right['exprFromKey']:
-                    exprFromKey[len(left['value']) + key] = right['exprFromKey'][key]
+        if "unbind" in lr_types_union:
+            value = None
+            newType = "unbind"
+            show = "Unbind None"
 
-            elif not lr_types_union < arithmetic_op and lr_types_union != {"str"}:
-                parser.clean()
-                raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
-            value = left['value'] + right['value']
-
-        if node.op == '-':
-            if not lr_types_union < arithmetic_op:
-                parser.clean()
-                raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
-            value = left['value'] - right['value']
-
-        if node.op == '*':
-            if not lr_types_union < arithmetic_op:
-                parser.clean()
-                raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
-            value = left['value'] * right['value']
-
-        if node.op == '/':
-            if not lr_types_union < arithmetic_op:
-                parser.clean()
-                raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
-            if right['value'] == 0:
-                parser.clean()
-                raise Exception("Error: division by zero between \'{}:{}\' and \'{}:{}\'".format(left['value'], left['type'], right['value'], right['type']))
-            value = left['value'] / right['value']
-
-        if node.op == 'and':
-            if lr_types_union == {"structure"}:
-                value = {}
-                for key in left['value']:
-                    if key in right['value']:
-                        value[key] = right['value'][key]
-
-                exprFromKey = {}
-                for key in left['exprFromKey']:
-                    if key in right['exprFromKey']:
-                        exprFromKey[key] = right['exprFromKey'][key]
-
-            else:
-                value = left['value'] and right['value']
-
-        if node.op == 'xor':
-            if lr_types_union == {"structure"}:
-                value = {}
-                for key in left['value']:
-                    if key not in right['value']:
-                        value[key] = left['value'][key]
-
-                for key in right['value']:
-                    if key not in left['value']:
-                        value[key] = right['value'][key]
-
-                exprFromKey = {}
-                for key in left['exprFromKey']:
-                    if key not in right['exprFromKey']:
+        else:
+            if node.op == '+':
+                if lr_types_union == {"list"}:
+                    exprFromKey = {}
+                    for key in left['exprFromKey']:
                         exprFromKey[key] = left['exprFromKey'][key]
+                    for key in right['exprFromKey']:
+                        exprFromKey[len(left['value']) + key] = right['exprFromKey'][key]
 
-                for key in right['exprFromKey']:
-                    if key not in left['exprFromKey']:
+                elif not lr_types_union < arithmetic_op and lr_types_union != {"str"}:
+                    parser.clean()
+                    raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
+                value = left['value'] + right['value']
+
+            if node.op == '-':
+                if not lr_types_union < arithmetic_op:
+                    parser.clean()
+                    raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
+                value = left['value'] - right['value']
+
+            if node.op == '*':
+                if not lr_types_union < arithmetic_op:
+                    parser.clean()
+                    raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
+                value = left['value'] * right['value']
+
+            if node.op == '/':
+                if not lr_types_union < arithmetic_op:
+                    parser.clean()
+                    raise Exception("Error: invalid operation \'{}\' between \'{}:{}\' and \'{}:{}\'".format(node.op, left['value'], left['type'], right['value'], right['type']))
+                if right['value'] == 0:
+                    parser.clean()
+                    raise Exception("Error: division by zero between \'{}:{}\' and \'{}:{}\'".format(left['value'], left['type'], right['value'], right['type']))
+                value = left['value'] / right['value']
+
+            if node.op == 'and':
+                if lr_types_union == {"structure"}:
+                    value = {}
+                    for key in left['value']:
+                        if key in right['value']:
+                            value[key] = right['value'][key]
+
+                    exprFromKey = {}
+                    for key in left['exprFromKey']:
+                        if key in right['exprFromKey']:
+                            exprFromKey[key] = right['exprFromKey'][key]
+
+                else:
+                    value = left['value'] and right['value']
+
+            if node.op == 'xor':
+                if lr_types_union == {"structure"}:
+                    value = {}
+                    for key in left['value']:
+                        if key not in right['value']:
+                            value[key] = left['value'][key]
+
+                    for key in right['value']:
+                        if key not in left['value']:
+                            value[key] = right['value'][key]
+
+                    exprFromKey = {}
+                    for key in left['exprFromKey']:
+                        if key not in right['exprFromKey']:
+                            exprFromKey[key] = left['exprFromKey'][key]
+
+                    for key in right['exprFromKey']:
+                        if key not in left['exprFromKey']:
+                            exprFromKey[key] = right['exprFromKey'][key]
+
+                else:
+                    value = (left['value'] and not right['value']) or (not left['value'] and right['value'])
+
+            if node.op == 'ior':
+                if lr_types_union == {"structure"}:
+                    value = {}
+                    for key in left['value']:
+                        value[key] = left['value'][key]
+                    for key in right['value']:
+                        value[key] = right['value'][key]
+
+                    exprFromKey = {}
+                    for key in left['exprFromKey']:
+                        exprFromKey[key] = left['exprFromKey'][key]
+                    for key in right['exprFromKey']:
                         exprFromKey[key] = right['exprFromKey'][key]
 
-            else:
-                value = (left['value'] and not right['value']) or (not left['value'] and right['value'])
+                else:
+                    value = left['value'] or right['value']
 
-        if node.op == 'ior':
-            if lr_types_union == {"structure"}:
-                value = {}
-                for key in left['value']:
-                    value[key] = left['value'][key]
-                for key in right['value']:
-                    value[key] = right['value'][key]
+            if node.op == '==':
+                value = left['value'] == right['value']
 
-                exprFromKey = {}
-                for key in left['exprFromKey']:
-                    exprFromKey[key] = left['exprFromKey'][key]
-                for key in right['exprFromKey']:
-                    exprFromKey[key] = right['exprFromKey'][key]
+            if node.op == '!=':
+                value = left['value'] != right['value']
 
-            else:
-                value = left['value'] or right['value']
+            if node.op == '>=':
+                value = left['value'] >= right['value']
 
-        if node.op == '==':
-            value = left['value'] == right['value']
+            if node.op == '<=':
+                value = left['value'] <= right['value']
 
-        if node.op == '!=':
-            value = left['value'] != right['value']
+            if node.op == '>':
+                value = left['value'] > right['value']
 
-        if node.op == '>=':
-            value = left['value'] >= right['value']
+            if node.op == '<':
+                value = left['value'] < right['value']
 
-        if node.op == '<=':
-            value = left['value'] <= right['value']
-
-        if node.op == '>':
-            value = left['value'] > right['value']
-
-        if node.op == '<':
-            value = left['value'] < right['value']
 
         relOps = {"==", "!=", ">=", "<=", ">", "<"}
 
         ret = {
-            "type" : type(value).__name__,
             "value" : value,
-
         }
 
         if newType:
@@ -317,18 +341,25 @@ class BuildD3Json(NodeVisitor):
             ret['type'] = "bool"
         elif left['type'] == right['type']:
             ret['type'] = left['type']
+        else:
+            ret['type'] = type(value).__name__
 
         import json
         if exprFromKey != None:
             ret['exprFromKey'] = exprFromKey
 
-
-        ret['const'] = left['const'] and right['const']
-
-        ret["json"] = {
-            "name" : "({}) {}".format(ret['type'], ret['value'])
-        }
         global _fold
+
+
+        ret["json"] = {}
+        if show:
+            ret["json"]["name"] = show
+        else:
+            ret["json"]["name"] = "({}) {}".format(ret['type'], ret['value'])
+
+        if _fold:
+            ret['const'] = left['const'] and right['const']
+
         if not (_fold and ret['const']):
             ret["json"]["children"] = [
                 {
@@ -348,29 +379,42 @@ class BuildD3Json(NodeVisitor):
         retType = None
         cond = node.cond.visit(BuildD3Json())
 
-        if cond['value']:
+        const = None
+
+        if cond['type'] == 'unbind':
+            value = None
+            ifelse = node.ifelse.visit(BuildD3Json())
+            ifthen = node.ifthen.visit(BuildD3Json())
+            retType = 'unbind'
+            const  = False
+        elif cond['value']:
             ifthen = node.ifthen.visit(BuildD3Json())
             retType = ifthen['type']
             ifelse = { "json" : { "name" : "else not executed" } }
             value = ifthen['value']
-            const =  ifthen['const']
+            if _fold:
+                const =  ifthen['const']
         else:
             ifthen = { "json" : { "name" : "then not executed" } }
             ifelse = node.ifelse.visit(BuildD3Json())
             retType = ifelse['type']
             value = ifelse['value']
-            const = ifelse['const']
+            if _fold:
+                const = ifelse['const']
 
 
         ret = {
             "type" : retType if retType else type(value).__name__,
             "value" : value,
-            "const" : const,
             "json" : {
                 "name" : "({}) {}".format(retType,value),
 
             }
         }
+
+        if _fold:
+            ret['const'] = const
+
         if not (_fold and const):
             ret['json']['children']  = [
                 {
@@ -437,7 +481,7 @@ class BuildD3Json(NodeVisitor):
                 "name": "(tuple)",
                 "children" : [exp['json'] for exp in exps]
             }
-       }
+        }
 
     def visit_list(self, node):
         exps = [expr.visit(BuildD3Json()) for expr in node.exprs]
@@ -512,6 +556,34 @@ class BuildD3Json(NodeVisitor):
 
     # Visit a identifier from the symbol table or function table
     def visit_identifier(self, node):
+        global auxSymbols
+        if node.name in auxSymbols and len(auxSymbols[node.name]) > 0:
+            arg = auxSymbols[node.name][-1]
+            d3Arg = arg.visit(BuildD3Json())
+            print "d3Arg : ", d3Arg
+
+            if 'json' in d3Arg:
+                d3Arg['json'] = {
+                    "name" : node.name,
+                    "children" : [
+                        {"name":  d3Arg['json']['name']}
+                    ]
+                }
+            else :
+                d3Arg['json'] = {
+                    "name" : node.name
+                }
+            return d3Arg
+        else:
+            return {
+                "const" : False,
+                "value" : None,
+                "type" : "unbind",
+                "json" : {
+                    "name" : "(unbind) " +  node.name
+                }
+            }
+
         if node.name in symboltable.funcTable:
             entry = symboltable.funcTable[node.name]
             ret = dict(entry)
@@ -520,7 +592,7 @@ class BuildD3Json(NodeVisitor):
                 ret['json'] = {
                     "name" : node.name,# + " = " + str(entry['value']),
                     "children" : [
-                        entry['json'] if 'json' in entry else {}
+                        {"name":  node.name + " = " + entry['json']['name']}
                     ]
                 }
             else:
@@ -542,9 +614,75 @@ class BuildD3Json(NodeVisitor):
             parser.clean()
             raise Exception(node.name + " is not defined")
 
+    # Visit a lambda expression, returns an applicable function as 'value'
+    def visit_lambda(self, node):
+        closure = {}
+        global auxSymbols
+        for var in auxSymbols:
+            if len(auxSymbols[var]) > 0 :
+                closure[var] = auxSymbols[var][-1]
+
+        def bind(arg):
+
+            global auxSymbols
+            if node.arg not in auxSymbols:
+                auxSymbols[node.arg] = []
+
+            auxSymbols[node.arg] += [arg]
+
+            func = node.expr.visit(BuildD3Json())
+
+            #auxSymbols[node.arg].pop()
+
+            func['json'] = {
+                    "name": "(lambda)",
+                    "children" : [
+                        func['json'],
+                        {"name" : node.arg}
+                    ]
+                }
+
+            return func
+
+        ret = node.expr.visit(BuildD3Json())
+
+        ret['bind'] = bind
+        ret['type'] = "function"
+        ret['closure'] = closure
+
+        return ret
+
     # Visit a function application, building the function symbol table
     # calculating where and checking erros when making the call
     def visit_application(self, node):
+        print "658: node.func: ", node.func
+        func = node.func.visit(BuildD3Json())
+        print "660: func: ", func
+        arg = node.arg.visit(BuildD3Json())
+        if "unbind" in {func["type"], arg["type"]}:
+            return {
+                "value" : None,
+                "type" : "unbind",
+                "const" : False,
+                "json" : {
+                    "name" : "",
+                    "children" : [
+                        func['json'],
+                        arg['json']
+                    ]
+                }
+            }
+
+        ret = func['bind'](node.arg)
+        ret['json'] = {
+            "name" : "({}) {}".format(ret['type'], ret['value']),
+            "children" : [
+                ret['json'],
+                arg['json']
+            ]
+        }
+        return ret
+'''
         args = []
         trees = []
         types = []
@@ -568,9 +706,9 @@ class BuildD3Json(NodeVisitor):
                 funcName = node
                 node = symboltable.funcTable[node]['value']
                 funcName = "(" + funcName + " = " + node + ")"
-            else:
-                parser.clean()
-                raise Exception(node + " is not a function")
+            # else:
+            #     parser.clean()
+            #     raise Exception(node + " is not a function")
         else:
             funcName = node
 
@@ -591,6 +729,17 @@ class BuildD3Json(NodeVisitor):
                 entry['exprFromKey'] = exprFromKeyS[len(symboltable.funcTable)]
 
             symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = entry
+
+        if debug:
+            import json
+            try:
+                print json.dumps({
+                    "symbolTable" : symboltable.symbolTable,
+                    "scopeStack" : symboltable.scopeStack,
+                    "funcTable" : symboltable.funcTable
+                }, indent = 2)
+            except:
+                print "Error"
 
         variables = []
         for entry in parser._whereDict[node]:
@@ -640,9 +789,22 @@ class BuildD3Json(NodeVisitor):
         ret['json'] = args_tree
         #ret['type'] = type(exec_tree['value']).__name__,
         return ret
+'''
 
 # Execute the main function of the program, with where
 def execute(node):
+    global auxSymbols
+    if "main" in auxSymbols and len(auxSymbols["main"]) == 1:
+        main = auxSymbols["main"][0]
+        print "main", main
+        ret = main.visit(BuildD3Json())
+        print ret
+        return {
+            "name" : "main",
+            "children" : [
+                ret['json']
+            ]
+        }
 
     symboltable.getTable('main')
 
