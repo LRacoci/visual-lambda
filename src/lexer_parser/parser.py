@@ -109,7 +109,8 @@ def reset():
 # Clean variables and symbol table
 def clean():
     symboltable.clean()
-
+    if ast._memo:
+        ast.memoized = {}
     global _names
     _names = {}
     global _names_aux
@@ -136,10 +137,10 @@ def clean():
     _eta_temp = 0
 
 # Set optimization flag
-def setOptimization(eta_flag, fold_flag, prop_flag):
+def setOptimization(eta_flag, fold_flag, prop_flag, memo_flag):
     global _eta
     _eta = eta_flag
-    ast.setOptimization(fold_flag, prop_flag)
+    ast.setOptimization(fold_flag, prop_flag, memo_flag)
 # Do the eta optimization
 def etaOptimization():
     global _eta_list

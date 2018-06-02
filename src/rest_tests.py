@@ -40,7 +40,19 @@ class RestTestCase(unittest.TestCase):
             print fileAddress
             with open(fileAddress) as inpFile:
                 code = inpFile.read()
-            result = self.app.post('/translateCode', data=json.dumps(dict(code=code, eta="eta" in fileAddress, fold = "fold" in fileAddress, prop = "prop" in fileAddress)), content_type='application/json', follow_redirects=True)
+            result = self.app.post(
+                '/translateCode', data=json.dumps(
+                    dict(
+                        code=code,
+                        eta="eta" in fileAddress,
+                        fold = "fold" in fileAddress,
+                        prop = "prop" in fileAddress,
+                        memo = "memo" in fileAddress
+                    )
+                ),
+                content_type='application/json',
+                follow_redirects=True
+            )
             if result._status_code == 200:
                 with open(fileAddress.replace(".hs", ".json")) as outFile:
                     resp = outFile.read()

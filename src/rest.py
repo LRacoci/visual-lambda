@@ -19,7 +19,7 @@ def translateCode():
     try:
         dataDict = json.loads(request.data.decode())
         clean()
-        setOptimization(dataDict['eta'], dataDict['fold'], dataDict['prop'])
+        setOptimization(dataDict['eta'], dataDict['fold'], dataDict['prop'], dataDict['memo'])
         parser.parse(dataDict['code'])
         return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
     except Exception as err:

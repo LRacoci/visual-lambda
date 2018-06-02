@@ -8,11 +8,17 @@ NOT_IMPLEMENTED = "You should implement this."
 _argMap = {}
 _fold = False
 _prop = False
-def setOptimization(fold_flag, prop_flag):
+_memo = False
+
+memoized = {}
+
+def setOptimization(fold_flag, prop_flag, memo_flag):
     global _fold
     _fold = fold_flag
     global _prop
     _prop = prop_flag
+    global _memo
+    _memo = memo_flag
 
 def hashable(v):
     """Determine whether `v` can be hashed."""
@@ -459,7 +465,7 @@ class BuildD3Json(NodeVisitor):
                 "name": "(tuple)",
                 "children" : [exp['json'] for exp in exps]
             }
-       }
+        }
 
     # Visit a list definition and get the values
     def visit_list(self, node):
@@ -576,6 +582,7 @@ class BuildD3Json(NodeVisitor):
     # Visit a function application, building the function symbol table
     # calculating where and checking erros when making the call
     def visit_application(self, node):
+        memoFlag = False
         args = []
         trees = []
         types = []
@@ -628,21 +635,36 @@ class BuildD3Json(NodeVisitor):
             result = entry['expression'].visit(BuildD3Json())
             symboltable.funcTable[entry['var']] = result
             variables += [(entry['var'], result)]
+        global _memo
+        if _memo:
+            memoKey = tuple([node] + args)
+            global memoized
+            if memoKey not in memoized:
+                memoized[memoKey] = parser._functions[node].visit(BuildD3Json())
+            else:
+                memoFlag = True
 
-        exec_tree = parser._functions[node].visit(BuildD3Json())
+            exec_tree = memoized[memoKey]
+        else:
+            exec_tree = parser._functions[node].visit(BuildD3Json())
 
         symboltable.deleteTable(node)
 
-        args_string = ""
-        for arg in parser._args[node]:
-            args_string += " " + arg
+        if memoFlag:
+            args_tree = {
+                "name": "(memoized) {} = {}".format(' '.join([str(x) for x in memoKey]),str(exec_tree['json']['name'])),
+            }
+        else :
+            args_string = ""
+            for arg in parser._args[node]:
+                args_string += " " + arg
 
-        args_tree = {
-            "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
-            "children": [
-                exec_tree['json']
-            ]
-        }
+            args_tree = {
+                "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
+                "children": [
+                    exec_tree['json']
+                ]
+            }
 
         for tree in trees:
             args_tree = {

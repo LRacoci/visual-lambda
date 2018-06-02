@@ -286,6 +286,7 @@ app.controller('myCtrl', function($scope, $http, collapse) {
         $scope.errorText = "";
         $scope.checkbox_eta = false;
         $scope.checkbox_fold = false;
+        $scope.checkbox_memo = false;
         $scope.checkbox_prop = false;
     };
 
@@ -303,6 +304,7 @@ app.controller('myCtrl', function($scope, $http, collapse) {
                 code: $scope.code,
                 eta: $scope.checkbox_eta,
                 fold: $scope.checkbox_fold,
+                memo: $scope.checkbox_memo,
                 prop: $scope.checkbox_prop
             },
         }).then(function mySuccess(response) {
