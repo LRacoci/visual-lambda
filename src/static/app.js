@@ -20,7 +20,7 @@ app.service('collapse', function() {
       var filename = (this.value).replace(/^.*[\\\/]/, '')
       if (filename != "") {
 
-      console.log(filename);
+      //console.log(filename);
       the_return.innerHTML = filename;
     }
   });
@@ -28,7 +28,7 @@ app.service('collapse', function() {
     var treeData;
 
     this.drawTree = function(tree) {
-        console.log(tree);
+        //console.log(tree);
         treeData = tree;
         constructRoot();
     }
@@ -71,18 +71,22 @@ app.service('collapse', function() {
       root.x0 = height / 2;
       root.y0 = 0;
 
-      // Collapse after the second level
-      // root.children.forEach(collapse);
+      // Collapse
+      root.children.forEach(collapse);
 
       update(root);
     }
-    // Collapse the node and all it's children
+
+    // Collapse specific the node and all it's children
     function collapse(d) {
-      if(d.children) {
-        d._children = d.children
-        d._children.forEach(collapse)
-        d.children = null
-      }
+        if(d.children && d.data.collapse == true) {
+          d._children = d.children;
+          d._children.forEach(collapse);
+          d.children = null;
+        }
+        else if(d.children){
+          d.children.forEach(collapse);
+        }
     }
 
     function update(source) {
