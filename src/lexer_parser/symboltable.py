@@ -11,7 +11,7 @@ def getTable(node):
     funcTable = symbolTable
     for item in scopeStack:
         funcTable = funcTable[item]
-    auxNode = "_" + node
+    auxNode = "*" + node
     scopeStack.append(auxNode)
     funcTable[auxNode] = {}
     funcTable = funcTable[auxNode]
@@ -25,7 +25,7 @@ def deleteTable(node):
     funcTable = symbolTable
     for item in scopeStack:
         funcTable = funcTable[item]
-    del funcTable["_" + node]
+    del funcTable["*" + node]
 
 # Clean all the tables and variables
 def clean():
