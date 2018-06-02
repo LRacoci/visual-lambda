@@ -307,8 +307,7 @@ class BuildD3Json(NodeVisitor):
 
         ret = {
             "type" : type(value).__name__,
-            "value" : value,
-
+            "value" : value
         }
 
         if newType:
@@ -347,20 +346,23 @@ class BuildD3Json(NodeVisitor):
     def visit_conditional(self, node):
         retType = None
         cond = node.cond.visit(BuildD3Json())
-
+        exprFromKey = None
         if cond['value']:
             ifthen = node.ifthen.visit(BuildD3Json())
             retType = ifthen['type']
             ifelse = { "json" : { "name" : "else not executed" } }
             value = ifthen['value']
             const =  ifthen['const']
+            if 'exprFromKey' in ifthen:
+                exprFromKey = ifthen['exprFromKey']
         else:
             ifthen = { "json" : { "name" : "then not executed" } }
             ifelse = node.ifelse.visit(BuildD3Json())
             retType = ifelse['type']
             value = ifelse['value']
             const = ifelse['const']
-
+            if 'exprFromKey' in ifelse:
+                exprFromKey = ifelse['exprFromKey']
 
         ret = {
             "type" : retType if retType else type(value).__name__,
@@ -371,6 +373,8 @@ class BuildD3Json(NodeVisitor):
 
             }
         }
+        if exprFromKey != None:
+            ret['exprFromKey'] = exprFromKey
         if not (_fold and const):
             ret['json']['children']  = [
                 {
@@ -395,6 +399,7 @@ class BuildD3Json(NodeVisitor):
         exprFromKey = {}
         children = []
         value = {}
+        const = True
         for exprKey, exprVal in node.kvPairs:
             valExpr = exprVal.visit(BuildD3Json())
             keyExpr = exprKey.visit(BuildD3Json())
@@ -416,35 +421,47 @@ class BuildD3Json(NodeVisitor):
 
             value[key] = valExpr['value']
             exprFromKey[key] = valExpr
+            const &= keyExpr['const'] & valExpr['const']
 
         return {
             "type" : "structure",
             "value" : value,
             "exprFromKey" : exprFromKey,
+            "const": const,
             "json" : {
                 "name" : "(structure)",
                 "children" : children
             }
         }
 
+    # Visit a tuple definition and get the values
     def visit_tuple(self, node):
         exps = [expr.visit(BuildD3Json()) for expr in node.exprs]
+        const = True
+        for exp in exps:
+            const &= exp['const']
         return {
             "type": "tuple",
             "value": tuple([exp['value'] for exp in exps]),
             "exprFromKey": {k : exps[k] for k in range(len(exps))},
+            "const": const,
             "json": {
                 "name": "(tuple)",
                 "children" : [exp['json'] for exp in exps]
             }
        }
 
+    # Visit a list definition and get the values
     def visit_list(self, node):
         exps = [expr.visit(BuildD3Json()) for expr in node.exprs]
+        const = True
+        for exp in exps:
+            const &= exp['const']
         return {
             "type": "list",
             "value": [exp['value'] for exp in exps],
             "exprFromKey": {k : exps[k] for k in range(len(exps))},
+            "const": const,
             "json": {
                 "name": "(list)",
                 "children" : [exp['json'] for exp in exps]
@@ -455,8 +472,8 @@ class BuildD3Json(NodeVisitor):
     def visit_structureCall(self, node):
         structure = node.structure.visit(BuildD3Json())
         expression = node.expression.visit(BuildD3Json())
-
-        if structure["type"] != "structure"  and structure["type"] != "list":
+        const = structure['const'] & expression['const']
+        if structure["type"] != "structure" and structure["type"] != "list" and structure["type"] != "tuple":
             raise Exception("{} is not a structure nor a list".format(structure["value"]))
         key = expression['value']
         if not hashable(key):
@@ -473,14 +490,18 @@ class BuildD3Json(NodeVisitor):
                 'type' : "ERROR",
                 'value' : None
             }
+
         ret = dict(val)
+        ret['const'] = const
         ret["json"] = {
-            "name" : "({}) {}".format(val['type'], val['value']),
-            "children" : [
+            "name" : "({}) {}".format(val['type'], val['value'])
+        }
+        global _fold
+        if not (_fold and ret['const']):
+            ret['json']['children'] = [
                 structure['json'],
                 expression['json']
             ]
-        }
         return ret
 
     # Visit a constant depending on its type
@@ -638,6 +659,7 @@ class BuildD3Json(NodeVisitor):
 
         ret = dict(exec_tree)
         ret['json'] = args_tree
+        ret['const'] = False
         #ret['type'] = type(exec_tree['value']).__name__,
         return ret
 
