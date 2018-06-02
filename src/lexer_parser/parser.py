@@ -164,8 +164,9 @@ def etaOptimization():
                 funcWhere = []
                 init = _eta_temp
                 for arg in args:
-                    funcWhere += [{'var': "arg{}".format(_eta_temp), 'expression': arg}]
-                    _eta_temp += 1
+                    if arg != None:
+                        funcWhere += [{'var': "arg{}".format(_eta_temp), 'expression': arg}]
+                        _eta_temp += 1
 
                 # Build an arg map
                 argMap = {}
