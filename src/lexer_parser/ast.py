@@ -344,7 +344,6 @@ class BuildD3Json(NodeVisitor):
         else:
             ret['type'] = type(value).__name__
 
-        import json
         if exprFromKey != None:
             ret['exprFromKey'] = exprFromKey
 
@@ -507,7 +506,6 @@ class BuildD3Json(NodeVisitor):
             key = str(key)
 
         if "exprFromKey" not in structure:
-            import json
             raise Exception("No exprFromKey")
 
         if key in structure["exprFromKey"]:
@@ -560,7 +558,6 @@ class BuildD3Json(NodeVisitor):
         if node.name in auxSymbols and len(auxSymbols[node.name]) > 0:
             arg = auxSymbols[node.name][-1]
             d3Arg = arg.visit(BuildD3Json())
-            print "d3Arg : ", d3Arg
 
             if 'json' in d3Arg:
                 d3Arg['json'] = {
@@ -584,36 +581,6 @@ class BuildD3Json(NodeVisitor):
                 }
             }
 
-        if node.name in symboltable.funcTable:
-            entry = symboltable.funcTable[node.name]
-            ret = dict(entry)
-            ret['const'] = False
-            if 'json' in entry:
-                ret['json'] = {
-                    "name" : node.name,# + " = " + str(entry['value']),
-                    "children" : [
-                        {"name":  node.name + " = " + entry['json']['name']}
-                    ]
-                }
-            else:
-                ret["json"] = {
-                    "name" : node.name + " = " + str(entry['value'])
-                }
-
-            return ret
-        elif node.name in parser._functions:
-            return {
-                "type" : "function",
-                "value" : node.name,
-                "const" : False,
-                "json" : {
-                    "name" : node.name + " = function"
-                }
-            }
-        else:
-            parser.clean()
-            raise Exception(node.name + " is not defined")
-
     # Visit a lambda expression, returns an applicable function as 'value'
     def visit_lambda(self, node):
         closure = {}
@@ -632,7 +599,7 @@ class BuildD3Json(NodeVisitor):
 
             func = node.expr.visit(BuildD3Json())
 
-            #auxSymbols[node.arg].pop()
+            auxSymbols[node.arg].pop()
 
             func['json'] = {
                     "name": "(lambda)",
@@ -655,9 +622,7 @@ class BuildD3Json(NodeVisitor):
     # Visit a function application, building the function symbol table
     # calculating where and checking erros when making the call
     def visit_application(self, node):
-        print "658: node.func: ", node.func
         func = node.func.visit(BuildD3Json())
-        print "660: func: ", func
         arg = node.arg.visit(BuildD3Json())
         if "unbind" in {func["type"], arg["type"]}:
             return {
@@ -673,6 +638,7 @@ class BuildD3Json(NodeVisitor):
                 }
             }
 
+        print "bind function : ", func['bind']
         ret = func['bind'](node.arg)
         ret['json'] = {
             "name" : "({}) {}".format(ret['type'], ret['value']),
@@ -682,172 +648,27 @@ class BuildD3Json(NodeVisitor):
             ]
         }
         return ret
-'''
-        args = []
-        trees = []
-        types = []
-        exprFromKeyS = []
-        while type(node) is Application:
-            if node.arg != None:
-                exec_tree = node.arg.visit(BuildD3Json())
-                arg = exec_tree['value']
-                tree = exec_tree['json']
-                tp = exec_tree['type']
-                exprFromKey = exec_tree['exprFromKey'] if "exprFromKey" in exec_tree else None
-                execTrees = [exec_tree]
-                args = [arg] + args
-                trees = [tree] + trees
-                types = [tp] + types
-                exprFromKeyS = [exprFromKey] + exprFromKeyS
-            node = node.func
-
-        if node in symboltable.funcTable:
-            if symboltable.funcTable[node]['type'] == "function":
-                funcName = node
-                node = symboltable.funcTable[node]['value']
-                funcName = "(" + funcName + " = " + node + ")"
-            # else:
-            #     parser.clean()
-            #     raise Exception(node + " is not a function")
-        else:
-            funcName = node
-
-        if len(args) > len(parser._args[node]):
-            parser.clean()
-            raise Exception(node + " is called with more arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
-        if len(args) < len(parser._args[node]):
-            parser.clean()
-            raise Exception(node + " is called with less arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
-
-        symboltable.getTable(node)
-
-        while len(symboltable.funcTable) < len(args):
-            entry = {}
-            entry['value'] = args[len(symboltable.funcTable)]
-            entry['type'] = types[len(symboltable.funcTable)]
-            if exprFromKeyS[len(symboltable.funcTable)] != None:
-                entry['exprFromKey'] = exprFromKeyS[len(symboltable.funcTable)]
-
-            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = entry
-
-        if debug:
-            import json
-            try:
-                print json.dumps({
-                    "symbolTable" : symboltable.symbolTable,
-                    "scopeStack" : symboltable.scopeStack,
-                    "funcTable" : symboltable.funcTable
-                }, indent = 2)
-            except:
-                print "Error"
-
-        variables = []
-        for entry in parser._whereDict[node]:
-            result = entry['expression'].visit(BuildD3Json())
-            symboltable.funcTable[entry['var']] = result
-            variables += [(entry['var'], result)]
-
-        exec_tree = parser._functions[node].visit(BuildD3Json())
-
-        symboltable.deleteTable(node)
-
-        args_string = ""
-        for arg in parser._args[node]:
-            args_string += " " + arg
-
-        args_tree = {
-            "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
-            "children": [
-                exec_tree['json']
-            ]
-        }
-
-        for tree in trees:
-            args_tree = {
-                "name": " ",
-                "children": [
-                    args_tree,
-                    tree
-                ]
-            }
-
-        for v in variables:
-            args_tree = {
-                    "name": "",
-                    "children": [
-                        args_tree,
-                        {
-                            "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
-                            "children": [
-                                v[1]['json']
-                            ]
-                        }
-                    ]
-                }
-
-        ret = dict(exec_tree)
-        ret['json'] = args_tree
-        #ret['type'] = type(exec_tree['value']).__name__,
-        return ret
-'''
 
 # Execute the main function of the program, with where
 def execute(node):
     global auxSymbols
+
+    print json.dumps(
+        auxSymbols,
+        default = lambda o : {type(o).__name__ : vars(o)},
+        indent = 1
+    )
+
     if "main" in auxSymbols and len(auxSymbols["main"]) == 1:
         main = auxSymbols["main"][0]
-        print "main", main
         ret = main.visit(BuildD3Json())
-        print ret
+
         return {
             "name" : "main",
             "children" : [
                 ret['json']
             ]
         }
-
-    symboltable.getTable('main')
-
-    variables = []
-    for entry in parser._whereDict['main']:
-        result = entry['expression'].visit(BuildD3Json())
-        symboltable.funcTable[entry['var']] = result
-        variables += [(entry['var'], result)]
-
-    exec_tree = node.visit(BuildD3Json())
-    symboltable.deleteTable('main')
-
-    args_tree = {
-        "name": "main = " + str(exec_tree['value']),
-        "children": [
-            exec_tree['json']
-        ]
-    }
-
-    if len(variables) > 0:
-        for v in variables:
-            args_tree = {
-                    "name": "",
-                    "children": [
-                        args_tree,
-                        {
-                            "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
-                            "children": [
-                                v[1]['json']
-                            ]
-                        }
-                    ]
-                }
-        out = {
-            "name": "main = " + str(exec_tree['value']),
-            "children": [
-                args_tree
-            ]
-        }
-    else:
-        out = args_tree
-
-    return out
 
 # Do the eta search changing variables names
 def etaSearch(m, node):

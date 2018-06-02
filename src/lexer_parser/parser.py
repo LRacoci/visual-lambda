@@ -110,6 +110,8 @@ def reset():
 def clean():
     symboltable.clean()
 
+    auxSymbols = {}
+
     global _names
     _names = {}
     global _names_aux
