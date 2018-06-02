@@ -57,6 +57,7 @@ class Structure(Node):
     def visit(self, visitor):
         return visitor.visit_structure(self)
 
+# List definition node
 class List(Node):
     def __init__(self, exprs):
         self.exprs = exprs
@@ -64,6 +65,7 @@ class List(Node):
     def visit(self, visitor):
         return visitor.visit_list(self)
 
+# Tuple definition node
 class Tuple(Node):
     def __init__(self, exprs):
         self.exprs = exprs
@@ -71,7 +73,7 @@ class Tuple(Node):
     def visit(self, visitor):
         return visitor.visit_tuple(self)
 
-# Structure json call node
+# Structure, list and tuple json call node
 class StructureCall(Node):
     def __init__(self, structure, expression):
         self.structure = structure
@@ -106,7 +108,7 @@ class Application(Node):
     def visit(self, visitor):
         return visitor.visit_application(self)
 
-# Abstract class to implemente pattern visitor
+# Abstract class to implement pattern visitor
 class NodeVisitor:
     __metaclass__ = ABCMeta
 
@@ -120,6 +122,14 @@ class NodeVisitor:
 
     @abstractmethod
     def visit_structure(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_list(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_tuple(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
     @abstractmethod
@@ -644,18 +654,32 @@ class BuildD3Json(NodeVisitor):
             }
 
         for v in variables:
-            args_tree = {
-                    "name": "",
-                    "children": [
-                        args_tree,
-                        {
-                            "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
-                            "children": [
-                                v[1]['json']
-                            ]
-                        }
-                    ]
-                }
+            if not (_fold and v[1]['const']):
+                args_tree = {
+                        "name": "",
+                        "children": [
+                            args_tree,
+                            {
+                                "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                                "children": [
+                                    v[1]['json']
+                                ]
+                            }
+                        ]
+                    }
+            else:
+                args_tree = {
+                        "name": "",
+                        "children": [
+                            args_tree,
+                            {
+                                "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                                "children": [{
+                                    "name": v[1]['json']['name']
+                                }]
+                            }
+                        ]
+                    }
 
         ret = dict(exec_tree)
         ret['json'] = args_tree
@@ -685,19 +709,34 @@ def execute(node):
     }
 
     if len(variables) > 0:
+        global _fold
         for v in variables:
-            args_tree = {
-                    "name": "",
-                    "children": [
-                        args_tree,
-                        {
-                            "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
-                            "children": [
-                                v[1]['json']
-                            ]
-                        }
-                    ]
-                }
+            if not (_fold and v[1]['const']):
+                args_tree = {
+                        "name": "",
+                        "children": [
+                            args_tree,
+                            {
+                                "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                                "children": [
+                                    v[1]['json']
+                                ]
+                            }
+                        ]
+                    }
+            else:
+                args_tree = {
+                        "name": "",
+                        "children": [
+                            args_tree,
+                            {
+                                "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                                "children": [{
+                                    "name": v[1]['json']['name']
+                                }]
+                            }
+                        ]
+                    }
         out = {
             "name": "main = " + str(exec_tree['value']),
             "children": [

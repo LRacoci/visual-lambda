@@ -164,14 +164,15 @@ def etaOptimization():
                 funcWhere = []
                 init = _eta_temp
                 for arg in args:
-                    funcWhere += [{'var': "arg{}".format(_eta_temp), 'expression': arg}]
-                    _eta_temp += 1
+                    if arg != None:
+                        funcWhere += [{'var': "{}arg".format(_eta_temp), 'expression': arg}]
+                        _eta_temp += 1
 
                 # Build an arg map
                 argMap = {}
                 p = 0
                 for num in range(init, _eta_temp):
-                    argMap[_args[node][p]] = "arg{}".format(num)
+                    argMap[_args[node][p]] = "{}arg".format(num)
                     p += 1
 
                 # Change variables names in ast
