@@ -20,7 +20,7 @@
                           "name": "+"
                         }, 
                         {
-                          "name": "arg1", 
+                          "name": "1arg", 
                           "children": [
                             {
                               "name": "(int) 1"
@@ -30,7 +30,7 @@
                       ]
                     }, 
                     {
-                      "name": "arg0", 
+                      "name": "0arg", 
                       "children": [
                         {
                           "name": "(int) 2"
@@ -42,7 +42,7 @@
               ]
             }, 
             {
-              "name": "where arg0 = ", 
+              "name": "where 0arg = ", 
               "children": [
                 {
                   "name": "(int) 2"
@@ -52,7 +52,7 @@
           ]
         }, 
         {
-          "name": "where arg1 = ", 
+          "name": "where 1arg = ", 
           "children": [
             {
               "name": "(int) 1"

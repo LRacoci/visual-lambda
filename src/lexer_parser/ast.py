@@ -57,6 +57,7 @@ class Structure(Node):
     def visit(self, visitor):
         return visitor.visit_structure(self)
 
+# List definition node
 class List(Node):
     def __init__(self, exprs):
         self.exprs = exprs
@@ -64,6 +65,7 @@ class List(Node):
     def visit(self, visitor):
         return visitor.visit_list(self)
 
+# Tuple definition node
 class Tuple(Node):
     def __init__(self, exprs):
         self.exprs = exprs
@@ -71,7 +73,7 @@ class Tuple(Node):
     def visit(self, visitor):
         return visitor.visit_tuple(self)
 
-# Structure json call node
+# Structure, list and tuple json call node
 class StructureCall(Node):
     def __init__(self, structure, expression):
         self.structure = structure
@@ -106,7 +108,7 @@ class Application(Node):
     def visit(self, visitor):
         return visitor.visit_application(self)
 
-# Abstract class to implemente pattern visitor
+# Abstract class to implement pattern visitor
 class NodeVisitor:
     __metaclass__ = ABCMeta
 
@@ -120,6 +122,14 @@ class NodeVisitor:
 
     @abstractmethod
     def visit_structure(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_list(self, node):
+        raise NotImplementedError(NOT_IMPLEMENTED)
+
+    @abstractmethod
+    def visit_tuple(self, node):
         raise NotImplementedError(NOT_IMPLEMENTED)
 
     @abstractmethod
