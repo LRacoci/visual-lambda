@@ -16,11 +16,19 @@ def index():
 # Ponto de entrada para traducao de codigo, devolvendo a arvore para visualizacao
 @app.route("/translateCode", methods=['POST'])
 def translateCode():
+    # Try to load the header
+    try:
+        with open("./lexer_parser/header.hs") as headerFile:
+            header = headerFile.read()
+    except:
+        header = ""
+
     try:
         dataDict = json.loads(request.data.decode())
         clean()
         setOptimization(dataDict['eta'], dataDict['fold'], dataDict['prop'], dataDict['memo'])
-        parser.parse(dataDict['code'])
+        print "dataDict['code'] : ", dataDict['code']
+        parser.parse(header + '\n' + dataDict['code'])
         return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
     except Exception as err:
         traceback.print_exc(file=sys.stdout)

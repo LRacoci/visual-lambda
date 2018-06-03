@@ -10,6 +10,8 @@ _fold = False
 _prop = False
 _memo = False
 
+specialNames = {"fold", "map", "filter", "first", "rest", "len"}
+
 memoized = {}
 
 def setOptimization(fold_flag, prop_flag, memo_flag):
@@ -657,7 +659,7 @@ class BuildD3Json(NodeVisitor):
                 "collapse" : True,
                 "children": [
                     {
-                        "collapse" : funcName in {"map", "filter", "first", "rest", "len"},
+                        "collapse" : funcName in specialNames,
                         "children" : exec_tree['json']['children'],
                         "name" : exec_tree['json']['name']
                     }
@@ -672,7 +674,7 @@ class BuildD3Json(NodeVisitor):
                 "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
                 "children": [
                     {
-                        "collapse" : funcName in {"map", "filter", "first", "rest", "len"},
+                        "collapse" : funcName in specialNames,
                         "children" : exec_tree['json']['children'],
                         "name" : exec_tree['json']['name']
                     }
