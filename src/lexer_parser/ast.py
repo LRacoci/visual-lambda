@@ -556,6 +556,7 @@ class BuildD3Json(NodeVisitor):
             if 'json' in entry:
                 ret['json'] = {
                     "name" : node.name,# + " = " + str(entry['value']),
+                    "collapse": True,
                     "children" : [
                         entry['json'] if 'json' in entry else {}
                     ]
@@ -655,7 +656,11 @@ class BuildD3Json(NodeVisitor):
                 "name": "(memoized) {}".format(memoKey),
                 "collapse" : True,
                 "children": [
-                    exec_tree['json']
+                    {
+                        "collapse" : funcName in {"map", "filter", "first", "rest", "len"},
+                        "children" : exec_tree['json']['children'],
+                        "name" : exec_tree['json']['name']
+                    }
                 ]
             }
         else :
@@ -666,7 +671,11 @@ class BuildD3Json(NodeVisitor):
             args_tree = {
                 "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
                 "children": [
-                    exec_tree['json']
+                    {
+                        "collapse" : funcName in {"map", "filter", "first", "rest", "len"},
+                        "children" : exec_tree['json']['children'],
+                        "name" : exec_tree['json']['name']
+                    }
                 ]
             }
 
