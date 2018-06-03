@@ -653,7 +653,7 @@ class BuildD3Json(NodeVisitor):
         if memoFlag:
             args_tree = {
                 "name": "(memoized) {}".format(memoKey),
-                "colapsed" : True,
+                "collapse" : True,
                 "children": [
                     exec_tree['json']
                 ]
