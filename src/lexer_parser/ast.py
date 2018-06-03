@@ -10,7 +10,7 @@ _fold = False
 _prop = False
 _memo = False
 
-specialNames = {"fold", "map", "filter", "first", "rest", "len"}
+specialNames = {"fold", "map", "filter", "first", "rest"}
 
 memoized = {}
 
@@ -492,7 +492,7 @@ class BuildD3Json(NodeVisitor):
         expression = node.expression.visit(BuildD3Json())
         const = structure['const'] & expression['const']
         if structure["type"] != "structure" and structure["type"] != "list" and structure["type"] != "tuple":
-            raise Exception("{} is not a structure nor a list".format(structure["value"]))
+            raise Exception("{} is not a structure nor a list nor a tuple".format(structure["value"]))
         key = expression['value']
         if not hashable(key):
             key = str(key)

@@ -44,7 +44,7 @@ class RestTestCase(unittest.TestCase):
                 '/translateCode', data=json.dumps(
                     dict(
                         code=code,
-                        eta="eta" in fileAddress,
+                        eta = "eta" in fileAddress,
                         fold = "fold" in fileAddress,
                         prop = "prop" in fileAddress,
                         memo = "memo" in fileAddress

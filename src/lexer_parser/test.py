@@ -57,7 +57,7 @@ if __name__ == "__main__":
         with open(inpFileName) as inpFile:
             problem = inpFile.read()
         try:
-            setOptimization("eta" in inpFileName,"prop" in inpFileName,"fold" in inpFileName)
+            setOptimization("eta" in inpFileName,"prop" in inpFileName,"fold" in inpFileName,"memo" in inpFileName)
             parser.parse(problem)
         except Exception as err:
 
