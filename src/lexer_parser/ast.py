@@ -637,7 +637,7 @@ class BuildD3Json(NodeVisitor):
             variables += [(entry['var'], result)]
         global _memo
         if _memo:
-            memoKey = tuple([node] + args)
+            memoKey = node + ' ' + ' '.join(["({} {})".format(x,y) for x,y in zip(types,args)])
             global memoized
             if memoKey not in memoized:
                 memoized[memoKey] = parser._functions[node].visit(BuildD3Json())
@@ -652,7 +652,11 @@ class BuildD3Json(NodeVisitor):
 
         if memoFlag:
             args_tree = {
-                "name": "(memoized) {} = {}".format(' '.join([str(x) for x in memoKey]),str(exec_tree['json']['name'])),
+                "name": "(memoized) {}".format(memoKey),
+                "colapsed" : True,
+                "children": [
+                    exec_tree['json']
+                ]
             }
         else :
             args_string = ""

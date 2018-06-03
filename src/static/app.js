@@ -1,40 +1,40 @@
 var app = angular.module('myApp', []);
 
-app.service('collapse', function() {
-  document.querySelector("html").classList.add('js');
+app.service('collapse', function () {
+    document.querySelector("html").classList.add('js');
 
-  var fileInput  = document.querySelector( ".input-file" ),
-      button     = document.querySelector( ".input-file-trigger" ),
-      the_return = document.querySelector(".input-file-trigger");
+    var fileInput = document.querySelector(".input-file"),
+        button = document.querySelector(".input-file-trigger"),
+        the_return = document.querySelector(".input-file-trigger");
 
-  button.addEventListener( "keydown", function( event ) {
-      if ( event.keyCode == 13 || event.keyCode == 32 ) {
-          fileInput.focus();
-      }
-  });
-  button.addEventListener( "click", function( event ) {
-     fileInput.focus();
-     return false;
-  });
-  fileInput.addEventListener( "change", function( event ) {
-      var filename = (this.value).replace(/^.*[\\\/]/, '')
-      if (filename != "") {
+    button.addEventListener("keydown", function (event) {
+        if (event.keyCode == 13 || event.keyCode == 32) {
+            fileInput.focus();
+        }
+    });
+    button.addEventListener("click", function (event) {
+        fileInput.focus();
+        return false;
+    });
+    fileInput.addEventListener("change", function (event) {
+        var filename = (this.value).replace(/^.*[\\\/]/, '')
+        if (filename != "") {
 
-      //console.log(filename);
-      the_return.innerHTML = filename;
-    }
-  });
+            //console.log(filename);
+            the_return.innerHTML = filename;
+        }
+    });
 
     var treeData;
 
-    this.drawTree = function(tree) {
+    this.drawTree = function (tree) {
         //console.log(tree);
         treeData = tree;
         constructRoot();
     }
 
     // Set the dimensions and margins of the diagram
-    var margin = {top: 20, right: 90, bottom: 30, left: 90},
+    var margin = { top: 20, right: 90, bottom: 30, left: 90 },
         width = 790 - margin.left - margin.right,
         height = 600 - margin.top - margin.bottom;
 
@@ -44,19 +44,19 @@ app.service('collapse', function() {
     var svg = d3.select("#tree").append("svg")
         .attr("width", width + margin.right + margin.left)
         .attr("height", height + margin.top + margin.bottom)
-      .call(d3.zoom().on("zoom", function () {
-        svg.attr("transform", d3.event.transform)
-     }))
-      .append("g")
+        .call(d3.zoom().on("zoom", function () {
+            svg.attr("transform", d3.event.transform)
+        }))
+        .append("g")
         .attr("transform", "translate("
-              + margin.left + "," + margin.top + ")");
+            + margin.left + "," + margin.top + ")");
 
     // //checkbox activate Constant Propagation
     // d3.select("#checkCstFolding").on("change",activateCF);
     // //checkbox activate Constant Propagation
     // d3.select("#checkCstPropagation").on("change",activateCP);
     //checkbox activate Constant Propagation
-    d3.select("#checkRedEta").on("change",activateRE);
+    d3.select("#checkRedEta").on("change", activateRE);
 
     var i = 0,
         duration = 750,
@@ -65,170 +65,170 @@ app.service('collapse', function() {
     // declares a tree layout and assigns the size
     var treemap = d3.tree().size([height, width]);
 
-    function constructRoot(){
-      // Assigns parent, children, height, depth
-      root = d3.hierarchy(treeData, function(d) { return d.children; });
-      root.x0 = height / 2;
-      root.y0 = 0;
+    function constructRoot() {
+        // Assigns parent, children, height, depth
+        root = d3.hierarchy(treeData, function (d) { return d.children; });
+        root.x0 = height / 2;
+        root.y0 = 0;
 
-      // Collapse
-      root.children.forEach(collapse);
+        // Collapse
+        root.children.forEach(collapse);
 
-      update(root);
+        update(root);
     }
 
     // Collapse specific the node and all it's children
     function collapse(d) {
-        if(d.children && d.data.collapse == true) {
-          d._children = d.children;
-          d._children.forEach(collapse);
-          d.children = null;
+        if (d.children && d.data.collapse == true) {
+            d._children = d.children;
+            d._children.forEach(collapse);
+            d.children = null;
         }
-        else if(d.children){
-          d.children.forEach(collapse);
+        else if (d.children) {
+            d.children.forEach(collapse);
         }
     }
 
     function update(source) {
 
-      // Assigns the x and y position for the nodes
-      var treeData = treemap(root);
+        // Assigns the x and y position for the nodes
+        var treeData = treemap(root);
 
-      // Compute the new tree layout.
-      var nodes = treeData.descendants(),
-          links = treeData.descendants().slice(1);
+        // Compute the new tree layout.
+        var nodes = treeData.descendants(),
+            links = treeData.descendants().slice(1);
 
-      // Normalize for fixed-depth.
-      nodes.forEach(function(d){ d.y = d.depth * 180});
+        // Normalize for fixed-depth.
+        nodes.forEach(function (d) { d.y = d.depth * 180 });
 
-      // ****************** Nodes section ***************************
+        // ****************** Nodes section ***************************
 
-      // Update the nodes...
-      var node = svg.selectAll('g.node')
-          .data(nodes, function(d) {return d.id || (d.id = ++i); });
+        // Update the nodes...
+        var node = svg.selectAll('g.node')
+            .data(nodes, function (d) { return d.id || (d.id = ++i); });
 
-      // Enter any new modes at the parent's previous position.
-      var nodeEnter = node.enter().append('g')
-          .attr('class', 'node')
-          .attr("transform", function(d) {
-            return "translate(" + source.y0 + "," + source.x0 + ")";
-        })
-        .on('click', click);
+        // Enter any new modes at the parent's previous position.
+        var nodeEnter = node.enter().append('g')
+            .attr('class', 'node')
+            .attr("transform", function (d) {
+                return "translate(" + source.y0 + "," + source.x0 + ")";
+            })
+            .on('click', click);
 
-      // Add Circle for the nodes
-      nodeEnter.append('circle')
-          .attr('class', 'node')
-          .attr('r', 1e-6)
-          .style("fill", function(d) {
-              return d._children ? "lightsteelblue" : "#fff";
-          });
+        // Add Circle for the nodes
+        nodeEnter.append('circle')
+            .attr('class', 'node')
+            .attr('r', 1e-6)
+            .style("fill", function (d) {
+                return d._children ? "lightsteelblue" : "#fff";
+            });
 
-      // Add labels for the nodes
-      nodeEnter.append('text')
-          .attr("style","font-size:18px;font-weight:bold;")
-          .attr("dy", "0.35em")
-          .attr("x", function(d) {
-              return d.children || d._children ? -13 : 13;
-          })
-          .attr("text-anchor", function(d) {
-              return d.children || d._children ? "end" : "start";
-          })
-          .text(function(d) { return d.data.name; });
+        // Add labels for the nodes
+        nodeEnter.append('text')
+            .attr("style", "font-size:18px;font-weight:bold;")
+            .attr("dy", "0.35em")
+            .attr("x", function (d) {
+                return d.children || d._children ? -13 : 13;
+            })
+            .attr("text-anchor", function (d) {
+                return d.children || d._children ? "end" : "start";
+            })
+            .text(function (d) { return d.data.name; });
 
-      // UPDATE
-      var nodeUpdate = nodeEnter.merge(node);
+        // UPDATE
+        var nodeUpdate = nodeEnter.merge(node);
 
-      // Transition to the proper position for the node
-      nodeUpdate.transition()
-        .duration(duration)
-        .attr("transform", function(d) {
-            return "translate(" + d.y + "," + d.x + ")";
-         });
+        // Transition to the proper position for the node
+        nodeUpdate.transition()
+            .duration(duration)
+            .attr("transform", function (d) {
+                return "translate(" + d.y + "," + d.x + ")";
+            });
 
-      // Update the node attributes and style
-      nodeUpdate.select('circle.node')
-        .attr('r', 10)
-        .style("fill", function(d) {
-            return d._children ? "lightsteelblue" : "#fff";
-        })
-        .attr('cursor', 'pointer');
+        // Update the node attributes and style
+        nodeUpdate.select('circle.node')
+            .attr('r', 10)
+            .style("fill", function (d) {
+                return d._children ? "lightsteelblue" : "#fff";
+            })
+            .attr('cursor', 'pointer');
 
 
-      // Remove any exiting nodes
-      var nodeExit = node.exit().transition()
-          .duration(duration)
-          .attr("transform", function(d) {
-              return "translate(" + source.y + "," + source.x + ")";
-          })
-          .remove();
+        // Remove any exiting nodes
+        var nodeExit = node.exit().transition()
+            .duration(duration)
+            .attr("transform", function (d) {
+                return "translate(" + source.y + "," + source.x + ")";
+            })
+            .remove();
 
-      // On exit reduce the node circles size to 0
-      nodeExit.select('circle')
-        .attr('r', 1e-6);
+        // On exit reduce the node circles size to 0
+        nodeExit.select('circle')
+            .attr('r', 1e-6);
 
-      // On exit reduce the opacity of text labels
-      nodeExit.select('text')
-        .style('fill-opacity', 1e-6);
+        // On exit reduce the opacity of text labels
+        nodeExit.select('text')
+            .style('fill-opacity', 1e-6);
 
-      // ****************** links section ***************************
+        // ****************** links section ***************************
 
-      // Update the links...
-      var link = svg.selectAll('path.link')
-          .data(links, function(d) { return d.id; });
+        // Update the links...
+        var link = svg.selectAll('path.link')
+            .data(links, function (d) { return d.id; });
 
-      // Enter any new links at the parent's previous position.
-      var linkEnter = link.enter().insert('path', "g")
-          .attr("class", "link")
-          .attr('d', function(d){
-            var o = {x: source.x0, y: source.y0}
-            return diagonal(o, o)
-          });
+        // Enter any new links at the parent's previous position.
+        var linkEnter = link.enter().insert('path', "g")
+            .attr("class", "link")
+            .attr('d', function (d) {
+                var o = { x: source.x0, y: source.y0 }
+                return diagonal(o, o)
+            });
 
-      // UPDATE
-      var linkUpdate = linkEnter.merge(link);
+        // UPDATE
+        var linkUpdate = linkEnter.merge(link);
 
-      // Transition back to the parent element position
-      linkUpdate.transition()
-          .duration(duration)
-          .attr('d', function(d){ return diagonal(d, d.parent) });
+        // Transition back to the parent element position
+        linkUpdate.transition()
+            .duration(duration)
+            .attr('d', function (d) { return diagonal(d, d.parent) });
 
-      // Remove any exiting links
-      var linkExit = link.exit().transition()
-          .duration(duration)
-          .attr('d', function(d) {
-            var o = {x: source.x, y: source.y}
-            return diagonal(o, o)
-          })
-          .remove();
+        // Remove any exiting links
+        var linkExit = link.exit().transition()
+            .duration(duration)
+            .attr('d', function (d) {
+                var o = { x: source.x, y: source.y }
+                return diagonal(o, o)
+            })
+            .remove();
 
-      // Store the old positions for transition.
-      nodes.forEach(function(d){
-        d.x0 = d.x;
-        d.y0 = d.y;
-      });
+        // Store the old positions for transition.
+        nodes.forEach(function (d) {
+            d.x0 = d.x;
+            d.y0 = d.y;
+        });
 
-      // Creates a curved (diagonal) path from parent to the child nodes
-      function diagonal(s, d) {
+        // Creates a curved (diagonal) path from parent to the child nodes
+        function diagonal(s, d) {
 
-        path = `M ${s.y} ${s.x}
-                C ${(s.y + d.y) / 2} ${s.x},
-                  ${(s.y + d.y) / 2} ${d.x},
-                  ${d.y} ${d.x}`
+            path = `M ${s.y} ${s.x}
+                C   ${(s.y + d.y) / 2} ${s.x},
+                    ${(s.y + d.y) / 2} ${d.x},
+                    ${d.y} ${d.x}`
 
-        return path
-      }
+            return path
+        }
 
-      // Toggle children on click.
-      function click(d) {
-        if (d.children) {
-            d._children = d.children;
-            d.children = null;
-          } else {
-            d.children = d._children;
-            d._children = null;
-          }
-        update(d);
-      }
+        // Toggle children on click.
+        function click(d) {
+            if (d.children) {
+                d._children = d.children;
+                d.children = null;
+            } else {
+                d.children = d._children;
+                d._children = null;
+            }
+            update(d);
+        }
     }
 
     // function activateCF(){
@@ -245,12 +245,12 @@ app.service('collapse', function() {
     //     console.log("desabilitou CP");
     //   }
     // }
-    function activateRE(){
-      if(d3.select("#checkRedEta").property("checked")){
-        console.log("habilitou RE");
-      }else{
-        console.log("desabilitou RE");
-      }
+    function activateRE() {
+        if (d3.select("#checkRedEta").property("checked")) {
+            console.log("habilitou RE");
+        } else {
+            console.log("desabilitou RE");
+        }
     }
 });
 
@@ -259,13 +259,13 @@ app.directive('onReadFile', function ($parse) {
     return {
         restrict: 'A',
         scope: false,
-        link: function($scope, $element, $attrs) {
+        link: function ($scope, $element, $attrs) {
             var functionToBeCalled = $parse($attrs.onReadFile);
-            $element.on('change', function(onChangeEvent) {
+            $element.on('change', function (onChangeEvent) {
                 var reader = new FileReader();
-                reader.onload = function(onLoadEvent) {
-                    $scope.$apply(function() {
-                        functionToBeCalled($scope, {$fileContent:onLoadEvent.target.result});
+                reader.onload = function (onLoadEvent) {
+                    $scope.$apply(function () {
+                        functionToBeCalled($scope, { $fileContent: onLoadEvent.target.result });
                     });
                 };
                 reader.readAsText((onChangeEvent.srcElement || onChangeEvent.target).files[0]);
@@ -274,12 +274,12 @@ app.directive('onReadFile', function ($parse) {
     };
 });
 
-app.controller('myCtrl', function($scope, $http, collapse) {
+app.controller('myCtrl', function ($scope, $http, collapse) {
 
     /**
      * Função chamada quando a página é criada de inicialização
      */
-    $scope.init = function() {
+    $scope.init = function () {
         $scope.value = null;
         $scope.code = "";
         $scope.statusText = "";
@@ -293,12 +293,12 @@ app.controller('myCtrl', function($scope, $http, collapse) {
     /**
      * Função chamada para fazer uma requisição http para traduzir o código
      */
-    $scope.translateCode = function() {
+    $scope.translateCode = function () {
         $http({
-            method : "POST",
-            url : "/translateCode",
+            method: "POST",
+            url: "/translateCode",
             headers: {
-               'Content-Type': 'application/json'
+                'Content-Type': 'application/json'
             },
             data: {
                 code: $scope.code,
@@ -323,7 +323,7 @@ app.controller('myCtrl', function($scope, $http, collapse) {
      * Passa o conteúdo do arquivo para o campo de texto
      * @param $fileContent: conteúdo lido do arquivo
      */
-    $scope.showContent = function($fileContent){
+    $scope.showContent = function ($fileContent) {
         $scope.code = $fileContent;
     };
 
