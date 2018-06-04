@@ -12,6 +12,7 @@
               "children": [
                 {
                   "name": "(bool) False", 
+                  "collapse": false, 
                   "children": [
                     {
                       "name": " ", 

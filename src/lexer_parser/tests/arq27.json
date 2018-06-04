@@ -9,6 +9,7 @@
           "children": [
             {
               "name": "(int) 42", 
+              "collapse": false, 
               "children": [
                 {
                   "name": "", 
@@ -24,9 +25,9 @@
                               "children": [
                                 {
                                   "name": "(structure) {28: 42}", 
+                                  "collapse": false, 
                                   "children": [
                                     {
-                                      "name": "m", 
                                       "children": [
                                         {
                                           "name": "(structure)", 
@@ -45,6 +46,7 @@
                                                       "children": [
                                                         {
                                                           "name": "(structure)", 
+                                                          "collapse": false, 
                                                           "children": [
                                                             {
                                                               "name": "(int) 28 : (int) 42", 
@@ -57,6 +59,7 @@
                                                                       "children": [
                                                                         {
                                                                           "name": "(int) 28", 
+                                                                          "collapse": false, 
                                                                           "children": [
                                                                             {
                                                                               "name": " ", 
@@ -105,6 +108,7 @@
                                                                       "children": [
                                                                         {
                                                                           "name": "(int) 42", 
+                                                                          "collapse": false, 
                                                                           "children": [
                                                                             {
                                                                               "name": " ", 
@@ -160,7 +164,9 @@
                                             }
                                           ]
                                         }
-                                      ]
+                                      ], 
+                                      "name": "m", 
+                                      "collapse": true
                                     }, 
                                     {
                                       "name": "x = 42"
@@ -199,6 +205,7 @@
                                       "children": [
                                         {
                                           "name": "(structure)", 
+                                          "collapse": false, 
                                           "children": [
                                             {
                                               "name": "(int) 28 : (int) 42", 
@@ -211,6 +218,7 @@
                                                       "children": [
                                                         {
                                                           "name": "(int) 28", 
+                                                          "collapse": false, 
                                                           "children": [
                                                             {
                                                               "name": " ", 
@@ -259,6 +267,7 @@
                                                       "children": [
                                                         {
                                                           "name": "(int) 42", 
+                                                          "collapse": false, 
                                                           "children": [
                                                             {
                                                               "name": " ", 

@@ -20,7 +20,6 @@
                           "name": "=="
                         }, 
                         {
-                          "name": "a", 
                           "children": [
                             {
                               "name": "(str) MC911", 
@@ -41,12 +40,13 @@
                                 }
                               ]
                             }
-                          ]
+                          ], 
+                          "name": "a", 
+                          "collapse": true
                         }
                       ]
                     }, 
                     {
-                      "name": "b", 
                       "children": [
                         {
                           "name": "(float) 9.86960440367", 
@@ -61,7 +61,8 @@
                                   "name": "pi = ", 
                                   "children": [
                                     {
-                                      "name": "(float) 3.141592654"
+                                      "name": "(float) 3.141592654", 
+                                      "collapse": false
                                     }
                                   ]
                                 }
@@ -71,13 +72,16 @@
                               "name": "pi = ", 
                               "children": [
                                 {
-                                  "name": "(float) 3.141592654"
+                                  "name": "(float) 3.141592654", 
+                                  "collapse": false
                                 }
                               ]
                             }
                           ]
                         }
-                      ]
+                      ], 
+                      "name": "b", 
+                      "collapse": true
                     }
                   ]
                 }
@@ -125,7 +129,8 @@
                       "name": "pi = ", 
                       "children": [
                         {
-                          "name": "(float) 3.141592654"
+                          "name": "(float) 3.141592654", 
+                          "collapse": false
                         }
                       ]
                     }
@@ -135,7 +140,8 @@
                   "name": "pi = ", 
                   "children": [
                     {
-                      "name": "(float) 3.141592654"
+                      "name": "(float) 3.141592654", 
+                      "collapse": false
                     }
                   ]
                 }

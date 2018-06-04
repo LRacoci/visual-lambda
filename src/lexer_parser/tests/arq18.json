@@ -12,6 +12,7 @@
               "children": [
                 {
                   "name": "(int) 1", 
+                  "collapse": false, 
                   "children": [
                     {
                       "name": " ", 
@@ -37,12 +38,13 @@
                                   ]
                                 }, 
                                 {
-                                  "name": "b", 
                                   "children": [
                                     {
                                       "name": "(str) \"MC911\""
                                     }
-                                  ]
+                                  ], 
+                                  "name": "b", 
+                                  "collapse": true
                                 }
                               ]
                             }

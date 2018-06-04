@@ -21,6 +21,7 @@
                           "children": [
                             {
                               "name": "(structure)", 
+                              "collapse": false, 
                               "children": [
                                 {
                                   "name": "(str) \" : (int) 28", 
@@ -36,6 +37,7 @@
                                           "children": [
                                             {
                                               "name": "(int) 28", 
+                                              "collapse": false, 
                                               "children": [
                                                 {
                                                   "name": " ", 
@@ -92,6 +94,7 @@
                                           "children": [
                                             {
                                               "name": "(int) 42", 
+                                              "collapse": false, 
                                               "children": [
                                                 {
                                                   "name": " ", 
@@ -132,6 +135,7 @@
                                           "children": [
                                             {
                                               "name": "(int) 70", 
+                                              "collapse": false, 
                                               "children": [
                                                 {
                                                   "name": " ", 
@@ -173,6 +177,7 @@
                                   "children": [
                                     {
                                       "name": "(structure)", 
+                                      "collapse": false, 
                                       "children": [
                                         {
                                           "name": "(str) \" : (int) 14", 
@@ -188,6 +193,7 @@
                                                   "children": [
                                                     {
                                                       "name": "(int) 14", 
+                                                      "collapse": false, 
                                                       "children": [
                                                         {
                                                           "name": " ", 
@@ -244,6 +250,7 @@
                                                   "children": [
                                                     {
                                                       "name": "(int) 21", 
+                                                      "collapse": false, 
                                                       "children": [
                                                         {
                                                           "name": " ", 
@@ -284,6 +291,7 @@
                                                   "children": [
                                                     {
                                                       "name": "(int) 35", 
+                                                      "collapse": false, 
                                                       "children": [
                                                         {
                                                           "name": " ", 
@@ -320,12 +328,13 @@
                               ]
                             }, 
                             {
-                              "name": "y", 
                               "children": [
                                 {
                                   "name": "(str) \"\"\""
                                 }
-                              ]
+                              ], 
+                              "name": "y", 
+                              "collapse": true
                             }
                           ]
                         }
@@ -341,22 +350,24 @@
                               "name": "+"
                             }, 
                             {
-                              "name": "x", 
                               "children": [
                                 {
                                   "name": "(str) \"'\""
                                 }
-                              ]
+                              ], 
+                              "name": "x", 
+                              "collapse": true
                             }
                           ]
                         }, 
                         {
-                          "name": "y", 
                           "children": [
                             {
                               "name": "(str) \"\"\""
                             }
-                          ]
+                          ], 
+                          "name": "y", 
+                          "collapse": true
                         }
                       ]
                     }

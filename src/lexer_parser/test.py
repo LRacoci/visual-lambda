@@ -57,7 +57,11 @@ if __name__ == "__main__":
         with open(inpFileName) as inpFile:
             problem = inpFile.read()
         try:
+<<<<<<< 214cfacbbe289c4677f294733f80d775ba488727
             setOptimization("eta" in inpFileName,"prop" in inpFileName,"fold" in inpFileName,"memo" in inpFileName)
+=======
+            setOptimization("eta" in inpFileName,"prop" in inpFileName,"fold" in inpFileName, "memo" in inpFileName)
+>>>>>>> [Tests] Adapting to collapsed nodes
             parser.parse(problem)
         except Exception as err:
 

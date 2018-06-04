@@ -85,7 +85,8 @@
                       "name": "value : (float) 3.141592654", 
                       "children": [
                         {
-                          "name": "(float) 3.141592654"
+                          "name": "(float) 3.141592654", 
+                          "collapse": false
                         }
                       ]
                     }
@@ -102,7 +103,8 @@
               "name": "key : (float) 3.141592654", 
               "children": [
                 {
-                  "name": "(float) 3.141592654"
+                  "name": "(float) 3.141592654", 
+                  "collapse": false
                 }
               ]
             }, 

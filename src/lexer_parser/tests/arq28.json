@@ -15,6 +15,7 @@
                   "children": [
                     {
                       "name": "(structure)", 
+                      "collapse": false, 
                       "children": [
                         {
                           "name": "(int) 1 : (int) 1", 
@@ -44,6 +45,7 @@
                   "children": [
                     {
                       "name": "(structure)", 
+                      "collapse": false, 
                       "children": [
                         {
                           "name": "(int) 2 : (int) 2", 

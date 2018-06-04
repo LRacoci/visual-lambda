@@ -12,6 +12,7 @@
               "children": [
                 {
                   "name": "(int) 1", 
+                  "collapse": false, 
                   "children": [
                     {
                       "name": " ", 
@@ -32,6 +33,7 @@
                           "children": [
                             {
                               "name": "(int) 0", 
+                              "collapse": false, 
                               "children": [
                                 {
                                   "name": " ", 

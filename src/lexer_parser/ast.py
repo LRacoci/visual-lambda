@@ -654,30 +654,22 @@ class BuildD3Json(NodeVisitor):
         symboltable.deleteTable(node)
 
         if memoFlag:
+            exec_tree['json']['collapse'] = True
             args_tree = {
                 "name": "(memoized) {}".format(memoKey),
-                "collapse" : True,
                 "children": [
-                    {
-                        "collapse" : funcName in specialNames,
-                        "children" : exec_tree['json']['children'],
-                        "name" : exec_tree['json']['name']
-                    }
+                    exec_tree['json']
                 ]
             }
         else :
             args_string = ""
             for arg in parser._args[node]:
                 args_string += " " + arg
-
+            exec_tree['json']['collapse'] = funcName in specialNames
             args_tree = {
                 "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
                 "children": [
-                    {
-                        "collapse" : funcName in specialNames,
-                        "children" : exec_tree['json']['children'],
-                        "name" : exec_tree['json']['name']
-                    }
+                    exec_tree['json']
                 ]
             }
 

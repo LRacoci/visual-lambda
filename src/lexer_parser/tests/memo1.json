@@ -1,0 +1,1154 @@
+{
+  "name": "main = 8", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": "fib n = ", 
+          "children": [
+            {
+              "name": "(int) 8", 
+              "collapse": false, 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "cond"
+                        }, 
+                        {
+                          "name": "(bool) False", 
+                          "children": [
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": "<"
+                                }, 
+                                {
+                                  "name": "n = 5"
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "(int) 2"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "then not executed"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(int) 8", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "+"
+                        }, 
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "fib n = ", 
+                              "children": [
+                                {
+                                  "name": "(int) 5", 
+                                  "collapse": false, 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": " ", 
+                                          "children": [
+                                            {
+                                              "name": "cond"
+                                            }, 
+                                            {
+                                              "name": "(bool) False", 
+                                              "children": [
+                                                {
+                                                  "name": " ", 
+                                                  "children": [
+                                                    {
+                                                      "name": "<"
+                                                    }, 
+                                                    {
+                                                      "name": "n = 4"
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "(int) 2"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": "then not executed"
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "(int) 5", 
+                                      "children": [
+                                        {
+                                          "name": " ", 
+                                          "children": [
+                                            {
+                                              "name": "+"
+                                            }, 
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "fib n = ", 
+                                                  "children": [
+                                                    {
+                                                      "name": "(int) 3", 
+                                                      "collapse": true, 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "cond"
+                                                                }, 
+                                                                {
+                                                                  "name": "(bool) False", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "<"
+                                                                        }, 
+                                                                        {
+                                                                          "name": "n = 3"
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 2"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "then not executed"
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 3", 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "+"
+                                                                }, 
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "fib n = ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "(int) 2", 
+                                                                          "collapse": true, 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": " ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "cond"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(bool) False", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": " ", 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "<"
+                                                                                            }, 
+                                                                                            {
+                                                                                              "name": "n = 2"
+                                                                                            }
+                                                                                          ]
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(int) 2"
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "then not executed"
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(int) 2", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "+"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "fib n = ", 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "(int) 1", 
+                                                                                              "collapse": true, 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": " ", 
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": " ", 
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "name": "cond"
+                                                                                                        }, 
+                                                                                                        {
+                                                                                                          "name": "(bool) True", 
+                                                                                                          "children": [
+                                                                                                            {
+                                                                                                              "name": " ", 
+                                                                                                              "children": [
+                                                                                                                {
+                                                                                                                  "name": "<"
+                                                                                                                }, 
+                                                                                                                {
+                                                                                                                  "name": "n = 1"
+                                                                                                                }
+                                                                                                              ]
+                                                                                                            }, 
+                                                                                                            {
+                                                                                                              "name": "(int) 2"
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }, 
+                                                                                                    {
+                                                                                                      "name": "(int) 1"
+                                                                                                    }
+                                                                                                  ]
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "else not executed"
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(int) 1", 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "-"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "n = 2"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "name": "(int) 1"
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "fib n = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 1", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": " ", 
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "cond"
+                                                                                                    }, 
+                                                                                                    {
+                                                                                                      "name": "(bool) True", 
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "name": " ", 
+                                                                                                          "children": [
+                                                                                                            {
+                                                                                                              "name": "<"
+                                                                                                            }, 
+                                                                                                            {
+                                                                                                              "name": "n = 0"
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }, 
+                                                                                                        {
+                                                                                                          "name": "(int) 2"
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ]
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 1"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "name": "else not executed"
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 0", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": " ", 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "-"
+                                                                                            }, 
+                                                                                            {
+                                                                                              "name": "n = 2"
+                                                                                            }
+                                                                                          ]
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(int) 2"
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 2", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "-"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "n = 3"
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(int) 1"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "(memoized) fib (int 1)", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "(int) 1", 
+                                                                      "collapse": true, 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": " ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "cond"
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "(bool) True", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "<"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "n = 1"
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 2"
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(int) 1"
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "else not executed"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 1", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "-"
+                                                                        }, 
+                                                                        {
+                                                                          "name": "n = 3"
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 2"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "(int) 3", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "-"
+                                                        }, 
+                                                        {
+                                                          "name": "n = 4"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(int) 1"
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": " ", 
+                                          "children": [
+                                            {
+                                              "name": "(memoized) fib (int 2)", 
+                                              "children": [
+                                                {
+                                                  "name": "(int) 2", 
+                                                  "collapse": true, 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "cond"
+                                                            }, 
+                                                            {
+                                                              "name": "(bool) False", 
+                                                              "children": [
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "<"
+                                                                    }, 
+                                                                    {
+                                                                      "name": "n = 2"
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 2"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "then not executed"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(int) 2", 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "+"
+                                                            }, 
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "fib n = ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "(int) 1", 
+                                                                      "collapse": true, 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": " ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "cond"
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "(bool) True", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "<"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "n = 1"
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 2"
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(int) 1"
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "else not executed"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 1", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "-"
+                                                                        }, 
+                                                                        {
+                                                                          "name": "n = 2"
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 1"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "fib n = ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "(int) 1", 
+                                                                  "collapse": false, 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "cond"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(bool) True", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "<"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "n = 0"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "(int) 2"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(int) 1"
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "else not executed"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "(int) 0", 
+                                                              "children": [
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "-"
+                                                                    }, 
+                                                                    {
+                                                                      "name": "n = 2"
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 2"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(int) 2", 
+                                              "children": [
+                                                {
+                                                  "name": " ", 
+                                                  "children": [
+                                                    {
+                                                      "name": "-"
+                                                    }, 
+                                                    {
+                                                      "name": "n = 4"
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "(int) 2"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "(int) 4", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "-"
+                                    }, 
+                                    {
+                                      "name": "n = 5"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "(int) 1"
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "(memoized) fib (int 3)", 
+                          "children": [
+                            {
+                              "name": "(int) 3", 
+                              "collapse": true, 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "cond"
+                                        }, 
+                                        {
+                                          "name": "(bool) False", 
+                                          "children": [
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "<"
+                                                }, 
+                                                {
+                                                  "name": "n = 3"
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(int) 2"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": "then not executed"
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "(int) 3", 
+                                  "children": [
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "+"
+                                        }, 
+                                        {
+                                          "name": " ", 
+                                          "children": [
+                                            {
+                                              "name": "fib n = ", 
+                                              "children": [
+                                                {
+                                                  "name": "(int) 2", 
+                                                  "collapse": true, 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "cond"
+                                                            }, 
+                                                            {
+                                                              "name": "(bool) False", 
+                                                              "children": [
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "<"
+                                                                    }, 
+                                                                    {
+                                                                      "name": "n = 2"
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 2"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "then not executed"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(int) 2", 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "+"
+                                                            }, 
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "fib n = ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "(int) 1", 
+                                                                      "collapse": true, 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": " ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "cond"
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "(bool) True", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "<"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "n = 1"
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 2"
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(int) 1"
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "else not executed"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 1", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "-"
+                                                                        }, 
+                                                                        {
+                                                                          "name": "n = 2"
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 1"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "fib n = ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "(int) 1", 
+                                                                  "collapse": false, 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "cond"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(bool) True", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "<"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "n = 0"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "(int) 2"
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(int) 1"
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "else not executed"
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "(int) 0", 
+                                                              "children": [
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "-"
+                                                                    }, 
+                                                                    {
+                                                                      "name": "n = 2"
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(int) 2"
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(int) 2", 
+                                              "children": [
+                                                {
+                                                  "name": " ", 
+                                                  "children": [
+                                                    {
+                                                      "name": "-"
+                                                    }, 
+                                                    {
+                                                      "name": "n = 3"
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "(int) 1"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }, 
+                                    {
+                                      "name": " ", 
+                                      "children": [
+                                        {
+                                          "name": "(memoized) fib (int 1)", 
+                                          "children": [
+                                            {
+                                              "name": "(int) 1", 
+                                              "collapse": true, 
+                                              "children": [
+                                                {
+                                                  "name": " ", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "cond"
+                                                        }, 
+                                                        {
+                                                          "name": "(bool) True", 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "<"
+                                                                }, 
+                                                                {
+                                                                  "name": "n = 1"
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "name": "(int) 2"
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(int) 1"
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "else not executed"
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": "(int) 1", 
+                                          "children": [
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "-"
+                                                }, 
+                                                {
+                                                  "name": "n = 3"
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "(int) 2"
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "(int) 3", 
+                          "children": [
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": "-"
+                                }, 
+                                {
+                                  "name": "n = 5"
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "(int) 2"
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "(int) 5"
+        }
+      ]
+    }
+  ]
+}
