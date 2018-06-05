@@ -51,6 +51,9 @@ execOut = {
 
 # Reset variables
 def reset():
+
+    patternMatching()
+
     global _functions
     global _args
     global _dependence
@@ -136,11 +139,37 @@ def clean():
     global _eta_temp
     _eta_temp = 0
 
+# Do the pattern matching
+def patternMatching():
+    global _functions
+    global _args
+
+    for func in _functions:
+        if len(_functions[func]) == 1:
+            _functions[func] = _functions[func][func]
+            _args[func] = _args[func][func]
+        else:
+            tree = _functions[func][func]
+            argsList = _args[func][func]
+            for patternKey in _functions[func]:
+                if patternKey != func:
+                    argsValues = _args[func][patternKey]
+                    eqs = []
+                    for (arg, value) in zip(argsList, argsValues):
+                        eqs += [ast.Binop(ast.Identifier(arg), "==", ast.Constant(value, type(value).__name__))]
+                    cond = eqs[0]
+                    for i in range(1,len(eqs)):
+                        cond = ast.Binop(cond, "and", eqs[i])
+                    tree = ast.Conditional(cond, _functions[func][patternKey], tree)
+            _functions[func] = tree
+            _args[func] = argsList
+
 # Set optimization flag
 def setOptimization(eta_flag, fold_flag, prop_flag, memo_flag):
     global _eta
     _eta = eta_flag
     ast.setOptimization(fold_flag, prop_flag, memo_flag)
+
 # Do the eta optimization
 def etaOptimization():
     global _eta_list
@@ -219,8 +248,9 @@ def p_function_assign(t):
 
     _dependence_aux = set()
     global _functions
-    _functions[t[1]] = t[3]
-    _args[t[1]] = []
+    _functions[t[1]] = {t[1]:t[3]}
+    global _args
+    _args[t[1]] = {t[1]:[]}
     global _whereDict
     _whereDict[t[1]] = t[4]
 
@@ -230,6 +260,20 @@ def p_function_assign(t):
 
 def p_function_args(t):
     '''function : NAME argList DEFINITION expression where_expression'''
+
+    name = ""
+    primal = True
+    for arg in t[2]:
+        tp = type(arg).__name__
+        if tp == "unicode":
+            vl = arg
+        else:
+            primal = False
+            vl = str(arg)
+        name += "(" + tp + ")" + vl
+    if primal:
+        name = t[1]
+
     global _names
     global _names_aux
     _names[t[1]] = _names_aux
@@ -243,8 +287,15 @@ def p_function_args(t):
     _dependence_aux = set()
 
     global _functions
-    _functions[t[1]] = t[4]
-    _args[t[1]] = t[2]
+    if t[1] in _functions:
+        _functions[t[1]][name] = t[4]
+    else:
+        _functions[t[1]] = {name:t[4]}
+    global _args
+    if t[1] in _args:
+        _args[t[1]][name] = t[2]
+    else:
+        _args[t[1]] = {name:t[2]}
     global _whereDict
     _whereDict[t[1]] = t[5]
 
@@ -253,12 +304,20 @@ def p_function_args(t):
         _eta_list += [t[1]]
 
 def p_args_list(t):
-    '''argList : argList NAME'''
+    '''argList : argList argExpr'''
     t[0] = t[1] + [t[2]]
 
 def p_args(t):
-    '''argList : NAME'''
+    '''argList : argExpr'''
     t[0] = [t[1]]
+
+def p_arg_expr_name(t):
+    '''argExpr : NAME'''
+    t[0] = t[1]
+
+def p_arg_expr_constant(t):
+    '''argExpr : constant'''
+    t[0] = t[1].value
 
 def p_where_expression(t):
     '''where_expression : WHERE NAME DEFINITION expression where_expression
@@ -421,7 +480,7 @@ def p_expression_name(t):
 
 def p_error(t):
     ''''''
-    reset()
+    clean()
     raise Exception("Syntax error at %s" % t)
 
 parser = yacc.yacc()

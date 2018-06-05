@@ -343,7 +343,8 @@ class BuildD3Json(NodeVisitor):
         ret['const'] = left['const'] and right['const']
 
         ret["json"] = {
-            "name" : "({}) {}".format(ret['type'], ret['value'])
+            "name" : "({}) {}".format(ret['type'], ret['value']),
+            "children" : []
         }
         global _fold
         if not (_fold and ret['const']):
@@ -388,7 +389,7 @@ class BuildD3Json(NodeVisitor):
             "const" : const,
             "json" : {
                 "name" : "({}) {}".format(retType,value),
-
+                "children" : []
             }
         }
         if exprFromKey != None:
@@ -512,7 +513,8 @@ class BuildD3Json(NodeVisitor):
         ret = dict(val)
         ret['const'] = const
         ret["json"] = {
-            "name" : "({}) {}".format(val['type'], val['value'])
+            "name" : "({}) {}".format(val['type'], val['value']),
+            "children" : []
         }
         global _fold
         if not (_fold and ret['const']):
@@ -545,7 +547,8 @@ class BuildD3Json(NodeVisitor):
             "value" : value,
             "const" : True,
             "json" : {
-                "name" : "({}) {}".format(node.type, show)
+                "name" : "({}) {}".format(node.type, show),
+                "children" : []
             }
         }
 
@@ -565,7 +568,8 @@ class BuildD3Json(NodeVisitor):
                 }
             else:
                 ret["json"] = {
-                    "name" : node.name + " = " + str(entry['value'])
+                    "name" : node.name + " = " + str(entry['value']),
+                    "children" : []
                 }
 
             return ret
@@ -575,7 +579,8 @@ class BuildD3Json(NodeVisitor):
                 "value" : node.name,
                 "const" : False,
                 "json" : {
-                    "name" : node.name + " = function"
+                    "name" : node.name + " = function",
+                    "children" : []
                 }
             }
         else:
