@@ -57,11 +57,12 @@ if __name__ == "__main__":
         with open(inpFileName) as inpFile:
             problem = inpFile.read()
         try:
+            clean()
             setOptimization("eta" in inpFileName,"prop" in inpFileName,"fold" in inpFileName, "memo" in inpFileName)
-
             parser.parse(problem)
         except Exception as err:
-
+            import traceback
+            #traceback.print_exc(file=sys.stdout)
             output = err.args[0]
 
             outFileName = inpFileName.replace(".hs", outFileSufix + ".err")

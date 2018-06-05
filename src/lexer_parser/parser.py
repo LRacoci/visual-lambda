@@ -156,7 +156,7 @@ def patternMatching():
                     argsValues = _args[func][patternKey]
                     eqs = []
                     for (arg, value) in zip(argsList, argsValues):
-                        eqs += [ast.Binop(ast.Identifier(arg), "==", ast.Constant(value, type(value).__name__))]
+                        eqs += [ast.Binop(ast.Identifier(arg), "==", ast.Constant(value.value, type(value.value).__name__))]
                     cond = eqs[0]
                     for i in range(1,len(eqs)):
                         cond = ast.Binop(cond, "and", eqs[i])
@@ -265,11 +265,11 @@ def p_function_args(t):
     primal = True
     for arg in t[2]:
         tp = type(arg).__name__
-        if tp == "unicode":
+        if tp != "Constant":
             vl = arg
         else:
             primal = False
-            vl = str(arg)
+            vl = str(arg.value)
         name += "(" + tp + ")" + vl
     if primal:
         name = t[1]
@@ -317,7 +317,7 @@ def p_arg_expr_name(t):
 
 def p_arg_expr_constant(t):
     '''argExpr : constant'''
-    t[0] = t[1].value
+    t[0] = t[1]
 
 def p_where_expression(t):
     '''where_expression : WHERE NAME DEFINITION expression where_expression
