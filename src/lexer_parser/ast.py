@@ -6,7 +6,6 @@ import json
 NOT_IMPLEMENTED = "You should implement this."
 
 _argMap = {}
-_prop_search = False
 _fold = False
 _prop = False
 _memo = False
@@ -170,28 +169,71 @@ class NodeVisitor:
         raise NotImplementedError(NOT_IMPLEMENTED)
 
 # Concrete class that goes down the tree changing variables names
-class Search(NodeVisitor):
+class EtaSearch(NodeVisitor):
 
     def visit_binop(self, node):
-        node.left = node.left.visit(Search())
-        node.right = node.right.visit(Search())
+        node.left.visit(EtaSearch())
+        node.right.visit(EtaSearch())
+
+    def visit_conditional(self, node):
+        node.cond.visit(EtaSearch())
+        node.ifthen.visit(EtaSearch())
+        node.ifelse.visit(EtaSearch())
+
+    def visit_structure(self, node):
+        for exprKey, exprVal in node.kvPairs:
+            exprVal.visit(EtaSearch())
+            exprKey.visit(EtaSearch())
+
+    def visit_structureCall(self, node):
+        node.structure.visit(EtaSearch())
+        node.expression.visit(EtaSearch())
+
+    def visit_constant(self, node):
+        pass
+
+    def visit_tuple(self, node):
+        for expr in node.exprs:
+            expr.visit(EtaSearch())
+
+    def visit_list(self, node):
+        for expr in node.exprs:
+            expr.visit(EtaSearch())
+
+    def visit_identifier(self, node):
+        global _argMap
+        if node.name in _argMap:
+            node.name = _argMap[node.name]
+
+    def visit_application(self, node):
+        while type(node) is Application:
+            if node.arg != None:
+                node.arg.visit(EtaSearch())
+            node = node.func
+
+# Concrete class that goes down the tree changing variables structures
+class PropSearch(NodeVisitor):
+
+    def visit_binop(self, node):
+        node.left = node.left.visit(PropSearch())
+        node.right = node.right.visit(PropSearch())
         return node
 
     def visit_conditional(self, node):
-        node.cond = node.cond.visit(Search())
-        node.ifthen = node.ifthen.visit(Search())
-        node.ifelse = node.ifelse.visit(Search())
+        node.cond = node.cond.visit(PropSearch())
+        node.ifthen = node.ifthen.visit(PropSearch())
+        node.ifelse = node.ifelse.visit(PropSearch())
         return node
 
     def visit_structure(self, node):
         for exprKey, exprVal in node.kvPairs:
-            exprVal = exprVal.visit(Search())
-            exprKey = exprKey.visit(Search())
+            exprVal = exprVal.visit(PropSearch())
+            exprKey = exprKey.visit(PropSearch())
         return node
 
     def visit_structureCall(self, node):
-        node.structure = node.structure.visit(Search())
-        node.expression = node.expression.visit(Search())
+        node.structure = node.structure.visit(PropSearch())
+        node.expression = node.expression.visit(PropSearch())
         return node
 
     def visit_constant(self, node):
@@ -199,32 +241,27 @@ class Search(NodeVisitor):
 
     def visit_tuple(self, node):
         for expr in node.exprs:
-            expr = expr.visit(Search())
+            expr = expr.visit(PropSearch())
         return node
 
     def visit_list(self, node):
         for expr in node.exprs:
-            expr = expr.visit(Search())
+            expr = expr.visit(PropSearch())
         return node
 
     def visit_identifier(self, node):
         global _argMap
-        global _prop_search
-        if _prop_search:
-            if node.name in _argMap:
-                entry = _argMap[node.name]
-                return Constant(entry['value'], entry['type'])
-            else:
-                return node
-        elif node.name in _argMap:
-            node.name = _argMap[node.name]
+        if node.name in _argMap:
+            entry = _argMap[node.name]
+            return Constant(entry['value'], entry['type'])
+        else:
             return node
 
     def visit_application(self, node):
         nodeFirst = node
         while type(node) is Application:
             if node.arg != None:
-                node.arg = node.arg.visit(Search())
+                node.arg = node.arg.visit(PropSearch())
             node = node.func
         return nodeFirst
 
@@ -771,10 +808,8 @@ def execute(node):
     variables = []
     global _prop
     global _argMap
-    global _prop_search
     global _fold
     _argMap = {}
-    _prop_search = True
     tam = len(parser._whereDict['main'])
     for i in range(tam):
         entry = parser._whereDict['main'][i]
@@ -782,13 +817,13 @@ def execute(node):
         if result['const'] and _prop:
             _argMap[entry['var']] = result
             for j in range(i+1, tam):
-                parser._whereDict['main'][j]['expression'] = parser._whereDict['main'][j]['expression'].visit(Search())
+                parser._whereDict['main'][j]['expression'] = parser._whereDict['main'][j]['expression'].visit(PropSearch())
         else:
             symboltable.funcTable[entry['var']] = result
             variables += [(entry['var'], result)]
 
     if _prop:
-        node = node.visit(Search())
+        node = node.visit(PropSearch())
 
     exec_tree = node.visit(BuildD3Json())
     symboltable.deleteTable('main')
@@ -844,6 +879,4 @@ def execute(node):
 def etaSearch(m, node):
     global _argMap
     _argMap = m
-    global _prop_search
-    _prop_search = False
-    parser._functions[node].visit(Search())
+    parser._functions[node].visit(EtaSearch())

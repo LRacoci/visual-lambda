@@ -143,8 +143,7 @@ def clean():
 def patternMatching():
     global _functions
     global _args
-    print _functions
-    print _args
+
     for func in _functions:
         if len(_functions[func]) == 1:
             _functions[func] = _functions[func][func]
@@ -212,9 +211,8 @@ def etaOptimization():
 
                 # Change variables names in where
                 where = copy.deepcopy(_whereDict[node])
-                ast._prop_search = False
                 for w in where:
-                    w['expression'].visit(ast.Search())
+                    w['expression'].visit(ast.EtaSearch())
                 _whereDict[_eta_list[i]] = funcWhere + where
 
                 break
