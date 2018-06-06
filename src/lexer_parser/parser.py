@@ -156,7 +156,7 @@ def patternMatching():
                     argsValues = _args[func][patternKey]
                     eqs = []
                     for (arg, value) in zip(argsList, argsValues):
-                        eqs += [ast.Binop(ast.Identifier(arg), "==", ast.Constant(value.value, type(value.value).__name__))]
+                        eqs += [ast.Binop(ast.Identifier(arg), "==", ast.Constant(value.value, value.type))]
                     cond = eqs[0]
                     for i in range(1,len(eqs)):
                         cond = ast.Binop(cond, "and", eqs[i])
