@@ -6,6 +6,7 @@ import json
 NOT_IMPLEMENTED = "You should implement this."
 
 _argMap = {}
+_prop_search = False
 _fold = False
 _prop = False
 _memo = False
@@ -169,47 +170,63 @@ class NodeVisitor:
         raise NotImplementedError(NOT_IMPLEMENTED)
 
 # Concrete class that goes down the tree changing variables names
-class EtaSearch(NodeVisitor):
+class Search(NodeVisitor):
 
     def visit_binop(self, node):
-        node.left.visit(EtaSearch())
-        node.right.visit(EtaSearch())
+        node.left = node.left.visit(Search())
+        node.right = node.right.visit(Search())
+        return node
 
     def visit_conditional(self, node):
-        node.cond.visit(EtaSearch())
-        node.ifthen(EtaSearch())
-        node.ifelse(EtaSearch())
+        node.cond = node.cond.visit(Search())
+        node.ifthen = node.ifthen.visit(Search())
+        node.ifelse = node.ifelse.visit(Search())
+        return node
 
     def visit_structure(self, node):
         for exprKey, exprVal in node.kvPairs:
-            exprVal.visit(EtaSearch())
-            exprKey.visit(EtaSearch())
+            exprVal = exprVal.visit(Search())
+            exprKey = exprKey.visit(Search())
+        return node
 
     def visit_structureCall(self, node):
-        node.structure.visit(EtaSearch())
-        node.expression.visit(EtaSearch())
+        node.structure = node.structure.visit(Search())
+        node.expression = node.expression.visit(Search())
+        return node
 
     def visit_constant(self, node):
-        pass
+        return node
 
     def visit_tuple(self, node):
         for expr in node.exprs:
-            expr.visit(EtaSearch())
+            expr = expr.visit(Search())
+        return node
 
     def visit_list(self, node):
         for expr in node.exprs:
-            expr.visit(EtaSearch())
+            expr = expr.visit(Search())
+        return node
 
     def visit_identifier(self, node):
         global _argMap
-        if node.name in _argMap:
+        global _prop_search
+        if _prop_search:
+            if node.name in _argMap:
+                entry = _argMap[node.name]
+                return Constant(entry['value'], entry['type'])
+            else:
+                return node
+        elif node.name in _argMap:
             node.name = _argMap[node.name]
+            return node
 
     def visit_application(self, node):
+        nodeFirst = node
         while type(node) is Application:
             if node.arg != None:
-                node.arg.visit(EtaSearch())
+                node.arg = node.arg.visit(Search())
             node = node.func
+        return nodeFirst
 
 # Concrete class that has the visit methods implementation
 class BuildD3Json(NodeVisitor):
@@ -221,7 +238,7 @@ class BuildD3Json(NodeVisitor):
 
         exprFromKey = None
         newType = None
-        show = None
+        #show = None
 
         arithmetic_op = {"float", "int", "bool", "long"}
         lr_types_union = {left['type'], right['type']}
@@ -347,17 +364,19 @@ class BuildD3Json(NodeVisitor):
         elif left['type'] == right['type']:
             ret['type'] = left['type']
 
-        import json
         if exprFromKey != None:
             ret['exprFromKey'] = exprFromKey
 
-
-        ret['const'] = left['const'] and right['const']
+        global _fold
+        if _fold:
+            ret['const'] = left['const'] and right['const']
+        else:
+            ret['const'] = False
 
         ret["json"] = {
             "name" : "({}) {}".format(ret['type'], ret['value'])
         }
-        global _fold
+
         if not (_fold and ret['const']):
             ret["json"]["children"] = [
                 {
@@ -393,7 +412,11 @@ class BuildD3Json(NodeVisitor):
             answer = ifelse['json']
             if 'exprFromKey' in ifelse:
                 exprFromKey = ifelse['exprFromKey']
-        const = cond['const']
+        global _fold
+        if _fold:
+            const = cond['const']
+        else:
+            const = False
         ret = {
             "type" : retType if retType else type(value).__name__,
             "value" : value,
@@ -455,6 +478,9 @@ class BuildD3Json(NodeVisitor):
             exprFromKey[key] = valExpr
             const &= keyExpr['const'] & valExpr['const']
 
+        global _fold
+        if not _fold:
+            const = False
         return {
             "type" : "structure",
             "value" : value,
@@ -472,6 +498,9 @@ class BuildD3Json(NodeVisitor):
         const = True
         for exp in exps:
             const &= exp['const']
+        global _fold
+        if not _fold:
+            const = False
         return {
             "type": "tuple",
             "value": tuple([exp['value'] for exp in exps]),
@@ -489,6 +518,9 @@ class BuildD3Json(NodeVisitor):
         const = True
         for exp in exps:
             const &= exp['const']
+        global _fold
+        if not _fold:
+            const = False
         return {
             "type": "list",
             "value": [exp['value'] for exp in exps],
@@ -512,7 +544,6 @@ class BuildD3Json(NodeVisitor):
             key = str(key)
 
         if "exprFromKey" not in structure:
-            import json
             raise Exception("No exprFromKey")
 
         if key in structure["exprFromKey"]:
@@ -524,11 +555,13 @@ class BuildD3Json(NodeVisitor):
             }
 
         ret = dict(val)
+        global _fold
+        if not _fold:
+            const = False
         ret['const'] = const
         ret["json"] = {
             "name" : "({}) {}".format(val['type'], val['value'])
         }
-        global _fold
         if not (_fold and ret['const']):
             ret['json']['children'] = [
                 structure['json'],
@@ -611,7 +644,7 @@ class BuildD3Json(NodeVisitor):
                 tree = exec_tree['json']
                 tp = exec_tree['type']
                 exprFromKey = exec_tree['exprFromKey'] if "exprFromKey" in exec_tree else None
-                execTrees = [exec_tree]
+                #execTrees = [exec_tree]
                 args = [arg] + args
                 trees = [tree] + trees
                 types = [tp] + types
@@ -736,10 +769,26 @@ def execute(node):
     symboltable.getTable('main')
 
     variables = []
-    for entry in parser._whereDict['main']:
+    global _prop
+    global _argMap
+    global _prop_search
+    global _fold
+    _argMap = {}
+    _prop_search = True
+    tam = len(parser._whereDict['main'])
+    for i in range(tam):
+        entry = parser._whereDict['main'][i]
         result = entry['expression'].visit(BuildD3Json())
-        symboltable.funcTable[entry['var']] = result
-        variables += [(entry['var'], result)]
+        if result['const'] and _prop:
+            _argMap[entry['var']] = result
+            for j in range(i+1, tam):
+                parser._whereDict['main'][j]['expression'] = parser._whereDict['main'][j]['expression'].visit(Search())
+        else:
+            symboltable.funcTable[entry['var']] = result
+            variables += [(entry['var'], result)]
+
+    if _prop:
+        node = node.visit(Search())
 
     exec_tree = node.visit(BuildD3Json())
     symboltable.deleteTable('main')
@@ -795,4 +844,6 @@ def execute(node):
 def etaSearch(m, node):
     global _argMap
     _argMap = m
-    parser._functions[node].visit(EtaSearch())
+    global _prop_search
+    _prop_search = False
+    parser._functions[node].visit(Search())

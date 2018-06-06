@@ -212,8 +212,9 @@ def etaOptimization():
 
                 # Change variables names in where
                 where = copy.deepcopy(_whereDict[node])
+                ast._prop_search = False
                 for w in where:
-                    w['expression'].visit(ast.EtaSearch())
+                    w['expression'].visit(ast.Search())
                 _whereDict[_eta_list[i]] = funcWhere + where
 
                 break
