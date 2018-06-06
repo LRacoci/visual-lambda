@@ -260,10 +260,11 @@ def p_function_assign(t):
 
 def p_function_args(t):
     '''function : NAME argList DEFINITION expression where_expression'''
+    _, funcName, args, _, expression, wheres = t
 
     name = ""
     primal = True
-    for arg in t[2]:
+    for arg in args:
         tp = type(arg).__name__
         if tp != "Constant":
             vl = arg
@@ -273,36 +274,98 @@ def p_function_args(t):
             vl = str(arg.value)
         name += "(" + tp + ")" + vl
     if primal:
-        name = t[1]
+        name = funcName
 
     global _names
     global _names_aux
-    _names[t[1]] = _names_aux
+    _names[funcName] = _names_aux
 
     _names_aux = set()
 
     global _dependence
     global _dependence_aux
-    _dependence[t[1]] = list(_dependence_aux)
+    _dependence[funcName] = list(_dependence_aux)
 
     _dependence_aux = set()
 
     global _functions
-    if t[1] in _functions:
-        _functions[t[1]][name] = t[4]
+    if funcName in _functions:
+        _functions[funcName][name] = expression
     else:
-        _functions[t[1]] = {name:t[4]}
+        _functions[funcName] = {name:expression}
     global _args
-    if t[1] in _args:
-        _args[t[1]][name] = t[2]
+    if funcName in _args:
+        _args[funcName][name] = args
     else:
-        _args[t[1]] = {name:t[2]}
+        _args[funcName] = {name:args}
     global _whereDict
-    _whereDict[t[1]] = t[5]
+    _whereDict[funcName] = wheres
 
-    if t[1] != 'main' and type(t[4]).__name__ == "Application" and t[5] == []:
+    if funcName != 'main' and type(expression).__name__ == "Application" and wheres == []:
         global _eta_list
-        _eta_list += [t[1]]
+        _eta_list += [funcName]
+
+lambdaCounter = 0
+def p_lambda_expression(t):
+    '''lambda : LAMBDA argList ARROW expression'''
+    _,_, args, _, expression = t;
+    global lambdaCounter
+    funcName = "lambda {}".format(lambdaCounter)
+    lambdaCounter += 1
+
+    name = ""
+    primal = True
+    for arg in args:
+        tp = type(arg).__name__
+        if tp != "Constant":
+            vl = arg
+        else:
+            primal = False
+            tp += "(" + arg.type + ")"
+            vl = str(arg.value)
+        name += "(" + tp + ")" + vl
+    if primal:
+        name = funcName
+
+    global _names
+    global _names_aux
+    _names[funcName] = _names_aux
+
+    _names_aux = set()
+
+    global _dependence
+    global _dependence_aux
+    _dependence[funcName] = list(_dependence_aux)
+
+    _dependence_aux = set()
+
+    global _functions
+    if funcName in _functions:
+        _functions[funcName][name] = expression
+    else:
+        _functions[funcName] = {name:expression}
+    global _args
+    if funcName in _args:
+        _args[funcName][name] = args
+    else:
+        _args[funcName] = {name:args}
+    global _whereDict
+    _whereDict[funcName] = wheres
+
+    if funcName != 'main' and type(expression).__name__ == "Application" and wheres == []:
+        global _eta_list
+        _eta_list += [funcName]
+
+    t[0] = ast.Identifier(funcName)
+
+def p_application_lambda(t):
+    '''application : lambda LPAREN expression RPAREN
+        | lambda LPAREN lambda RPAREN'''
+    t[0] = ast.Application(t[1], t[3])
+
+# def p_expression_lambda(t):
+#     '''expression : lambda'''
+#     t[0] = t[1]
 
 def p_args_list(t):
     '''argList : argList argExpr'''
@@ -369,7 +432,8 @@ def p_application_nested(t):
     t[0] = ast.Application(t[1], t[3])
 
 def p_application_expression(t):
-    '''application : NAME LPAREN expression RPAREN'''
+    '''application : NAME LPAREN expression RPAREN
+        | NAME LPAREN lambda RPAREN'''
     global _names_aux
     _names_aux |= {t[1]}
     global _dependence_aux
