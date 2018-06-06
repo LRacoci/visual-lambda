@@ -1,0 +1,115 @@
+{
+  "name": "main = a", 
+  "children": [
+    {
+      "name": "", 
+      "children": [
+        {
+          "name": "", 
+          "children": [
+            {
+              "name": "main = a", 
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "(str) a", 
+                      "children": [
+                        {
+                          "children": [
+                            {
+                              "name": "(tuple)", 
+                              "children": [
+                                {
+                                  "name": "(float) 2.5"
+                                }, 
+                                {
+                                  "name": "(float) 5.7"
+                                }, 
+                                {
+                                  "name": "(str) \"a\""
+                                }, 
+                                {
+                                  "name": "(int) 3"
+                                }
+                              ]
+                            }
+                          ], 
+                          "name": "b", 
+                          "collapse": true
+                        }, 
+                        {
+                          "name": "(int) 2"
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "a", 
+                  "collapse": true
+                }
+              ]
+            }, 
+            {
+              "name": "where b = ", 
+              "children": [
+                {
+                  "name": "(tuple)", 
+                  "children": [
+                    {
+                      "name": "(float) 2.5"
+                    }, 
+                    {
+                      "name": "(float) 5.7"
+                    }, 
+                    {
+                      "name": "(str) \"a\""
+                    }, 
+                    {
+                      "name": "(int) 3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "where a = ", 
+          "children": [
+            {
+              "name": "(str) a", 
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "(tuple)", 
+                      "children": [
+                        {
+                          "name": "(float) 2.5"
+                        }, 
+                        {
+                          "name": "(float) 5.7"
+                        }, 
+                        {
+                          "name": "(str) \"a\""
+                        }, 
+                        {
+                          "name": "(int) 3"
+                        }
+                      ]
+                    }
+                  ], 
+                  "name": "b", 
+                  "collapse": true
+                }, 
+                {
+                  "name": "(int) 2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

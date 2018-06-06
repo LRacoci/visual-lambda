@@ -1,0 +1,191 @@
+{
+  "name": "main = ((1, 5), ('M', 'C'))", 
+  "children": [
+    {
+      "name": "", 
+      "children": [
+        {
+          "name": "", 
+          "children": [
+            {
+              "name": "", 
+              "children": [
+                {
+                  "name": "", 
+                  "children": [
+                    {
+                      "name": "", 
+                      "children": [
+                        {
+                          "name": "", 
+                          "children": [
+                            {
+                              "name": "main = ((1, 5), ('M', 'C'))", 
+                              "children": [
+                                {
+                                  "name": "(tuple)", 
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "name": "(tuple)", 
+                                          "children": [
+                                            {
+                                              "children": [
+                                                {
+                                                  "name": "(int) 1"
+                                                }
+                                              ], 
+                                              "name": "c", 
+                                              "collapse": true
+                                            }, 
+                                            {
+                                              "children": [
+                                                {
+                                                  "name": "(int) 5"
+                                                }
+                                              ], 
+                                              "name": "d", 
+                                              "collapse": true
+                                            }
+                                          ]
+                                        }
+                                      ], 
+                                      "name": "a", 
+                                      "collapse": true
+                                    }, 
+                                    {
+                                      "children": [
+                                        {
+                                          "name": "(tuple)", 
+                                          "children": [
+                                            {
+                                              "children": [
+                                                {
+                                                  "name": "(str) \"M\""
+                                                }
+                                              ], 
+                                              "name": "e", 
+                                              "collapse": true
+                                            }, 
+                                            {
+                                              "children": [
+                                                {
+                                                  "name": "(str) \"C\""
+                                                }
+                                              ], 
+                                              "name": "f", 
+                                              "collapse": true
+                                            }
+                                          ]
+                                        }
+                                      ], 
+                                      "name": "b", 
+                                      "collapse": true
+                                    }
+                                  ]
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "where c = ", 
+                              "children": [
+                                {
+                                  "name": "(int) 1"
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "where d = ", 
+                          "children": [
+                            {
+                              "name": "(int) 5"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "where a = ", 
+                      "children": [
+                        {
+                          "name": "(tuple)", 
+                          "children": [
+                            {
+                              "children": [
+                                {
+                                  "name": "(int) 1"
+                                }
+                              ], 
+                              "name": "c", 
+                              "collapse": true
+                            }, 
+                            {
+                              "children": [
+                                {
+                                  "name": "(int) 5"
+                                }
+                              ], 
+                              "name": "d", 
+                              "collapse": true
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "where e = ", 
+                  "children": [
+                    {
+                      "name": "(str) \"M\""
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "where f = ", 
+              "children": [
+                {
+                  "name": "(str) \"C\""
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "where b = ", 
+          "children": [
+            {
+              "name": "(tuple)", 
+              "children": [
+                {
+                  "children": [
+                    {
+                      "name": "(str) \"M\""
+                    }
+                  ], 
+                  "name": "e", 
+                  "collapse": true
+                }, 
+                {
+                  "children": [
+                    {
+                      "name": "(str) \"C\""
+                    }
+                  ], 
+                  "name": "f", 
+                  "collapse": true
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
