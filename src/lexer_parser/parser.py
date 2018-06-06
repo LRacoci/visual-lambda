@@ -143,7 +143,8 @@ def clean():
 def patternMatching():
     global _functions
     global _args
-
+    print _functions
+    print _args
     for func in _functions:
         if len(_functions[func]) == 1:
             _functions[func] = _functions[func][func]
@@ -269,6 +270,7 @@ def p_function_args(t):
             vl = arg
         else:
             primal = False
+            tp += "(" + arg.type + ")"
             vl = str(arg.value)
         name += "(" + tp + ")" + vl
     if primal:
