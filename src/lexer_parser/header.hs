@@ -23,7 +23,22 @@ fold func list initial =
         (initial)
     )
 
-rest list = if list == [] then [] else restAux(list)(1)
-restAux list x = if list[x] == None then [] else [list[x]] + restAux(list)(x+1)
+rest list = if list == []
+  then []
+  else end(list)(1)
+
+end list x = if list[x] == None
+  then []
+  else [list[x]] + end(list)(x+1)
 
 first list = if list == [] then [] else list[0]
+
+init list n = if list[n] == None
+  then []
+  else init(list)(n-1) + [list[n]]
+
+len ls = if ls == []
+  then 0
+  else 1 + len(rest(ls))
+
+last ls = ls[len(ls)-1]

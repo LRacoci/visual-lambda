@@ -10,7 +10,19 @@ _fold = False
 _prop = False
 _memo = False
 
-specialNames = {"fold", "map", "filter", "first", "rest"}
+specialNames = {
+    "map",
+    "filter",
+    "fold",
+    "first",
+    "rest",
+    "rest",
+    "end",
+    "first",
+    "init",
+    "len",
+    "last"
+}
 
 memoized = {}
 
