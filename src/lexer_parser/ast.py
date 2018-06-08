@@ -269,8 +269,6 @@ class PropSearch(NodeVisitor):
                     'value' : nodeEntry['value'],
                     'exprFromKey' : exprFromKey
                 })
-                if node == None:
-                    return None
                 nodes.append(node)
             return List(nodes)
         elif entry['type'] == 'tuple':
@@ -285,27 +283,27 @@ class PropSearch(NodeVisitor):
                     'value' : nodeEntry['value'],
                     'exprFromKey' : exprFromKey
                 })
-                if node == None:
-                    return None
                 nodes.append(node)
             return Tuple(nodes)
         elif entry['type'] == 'structure':
             nodes = []
             for k in entry['value']:
                 if entry['exprFromKey'][k]['keyType'] in {'structure', 'list', 'tuple'}:
-                    return None
-                print entry['exprFromKey'][k]
-                node = (self.process({
-                    'type' : entry['exprFromKey'][k]['keyType'],
-                    'value' : k,
-                    'exprFromKey' : None
-                }), self.process({
+                    keyNode = entry['exprFromKey'][k]['keyAst'].visit(PropSearch())
+                else:
+                    keyNode = self.process({
+                        'type' : entry['exprFromKey'][k]['keyType'],
+                        'value' : k,
+                        'exprFromKey' : None
+                    })
+                exprFromKey = None
+                if 'exprFromKey' in entry['exprFromKey'][k]:
+                    exprFromKey = entry['exprFromKey'][k]['exprFromKey']
+                node = (keyNode, self.process({
                     'type' : entry['exprFromKey'][k]['type'],
                     'value' : entry['exprFromKey'][k]['value'],
-                    'exprFromKey' : entry['exprFromKey'][k]['exprFromKey']
+                    'exprFromKey' : exprFromKey
                 }))
-                if node[0] == None or node[1] == None:
-                    return None
                 nodes.append(node)
             return Structure(nodes)
 
@@ -313,11 +311,7 @@ class PropSearch(NodeVisitor):
         global _argMap
         if node.name in _argMap:
             entry = _argMap[node.name]
-            out = self.process(entry)
-            if out == None:
-                return node
-            else:
-                return out
+            return self.process(entry)
         else:
             return node
 
@@ -578,9 +572,8 @@ class BuildD3Json(NodeVisitor):
             value[key] = valExpr['value']
             exprFromKey[key] = valExpr
             exprFromKey[key]['keyType'] = keyExpr['type']
+            exprFromKey[key]['keyAst'] = exprKey
             const &= keyExpr['const'] & valExpr['const']
-            if keyExpr['type'] in {'structure', 'list', 'tuple'}:
-                const = False
 
         return {
             "type" : "structure",
