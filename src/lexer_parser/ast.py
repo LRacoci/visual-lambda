@@ -226,9 +226,10 @@ class PropSearch(NodeVisitor):
         return node
 
     def visit_structure(self, node):
+        newKvPairs = []
         for exprKey, exprVal in node.kvPairs:
-            exprVal = exprVal.visit(PropSearch())
-            exprKey = exprKey.visit(PropSearch())
+            newKvPairs.append((exprKey.visit(PropSearch()), exprVal.visit(PropSearch())))
+        node.kvPairs = newKvPairs
         return node
 
     def visit_structureCall(self, node):
@@ -240,20 +241,83 @@ class PropSearch(NodeVisitor):
         return node
 
     def visit_tuple(self, node):
+        newExprs = []
         for expr in node.exprs:
-            expr = expr.visit(PropSearch())
+            newExprs.append(expr.visit(PropSearch()))
+        node.exprs = newExprs
         return node
 
     def visit_list(self, node):
+        newExprs = []
         for expr in node.exprs:
-            expr = expr.visit(PropSearch())
+            newExprs.append(expr.visit(PropSearch()))
+        node.exprs = newExprs
         return node
+
+    def process(self, entry):
+        if entry['type'] in {'int', 'bool', 'float', 'str', 'none'}:
+            return Constant(entry['value'], entry['type'])
+        elif entry['type'] == 'list':
+            nodes = []
+            for i in range(len(entry['value'])):
+                nodeEntry = entry['exprFromKey'][i]
+                exprFromKey = None
+                if 'exprFromKey' in nodeEntry:
+                    exprFromKey = nodeEntry['exprFromKey']
+                node = self.process({
+                    'type' : nodeEntry['type'],
+                    'value' : nodeEntry['value'],
+                    'exprFromKey' : exprFromKey
+                })
+                if node == None:
+                    return None
+                nodes.append(node)
+            return List(nodes)
+        elif entry['type'] == 'tuple':
+            nodes = []
+            for i in range(len(entry['value'])):
+                nodeEntry = entry['exprFromKey'][i]
+                exprFromKey = None
+                if 'exprFromKey' in nodeEntry:
+                    exprFromKey = nodeEntry['exprFromKey']
+                node = self.process({
+                    'type' : nodeEntry['type'],
+                    'value' : nodeEntry['value'],
+                    'exprFromKey' : exprFromKey
+                })
+                if node == None:
+                    return None
+                nodes.append(node)
+            return Tuple(nodes)
+        elif entry['type'] == 'structure':
+            nodes = []
+            for k in entry['value']:
+                if entry['exprFromKey'][k]['keyType'] in {'structure', 'list', 'tuple'}:
+                    return None
+                print entry['exprFromKey'][k]
+                node = (self.process({
+                    'type' : entry['exprFromKey'][k]['keyType'],
+                    'value' : k,
+                    'exprFromKey' : None
+                }), self.process({
+                    'type' : entry['exprFromKey'][k]['type'],
+                    'value' : entry['exprFromKey'][k]['value'],
+                    'exprFromKey' : entry['exprFromKey'][k]['exprFromKey']
+                }))
+                if node[0] == None or node[1] == None:
+                    return None
+                nodes.append(node)
+            return Structure(nodes)
 
     def visit_identifier(self, node):
         global _argMap
         if node.name in _argMap:
             entry = _argMap[node.name]
-            return Constant(entry['value'], entry['type'])
+            out = self.process(entry)
+            if out == None:
+                return node
+            else:
+                return out
         else:
             return node
 
@@ -513,11 +577,11 @@ class BuildD3Json(NodeVisitor):
 
             value[key] = valExpr['value']
             exprFromKey[key] = valExpr
+            exprFromKey[key]['keyType'] = keyExpr['type']
             const &= keyExpr['const'] & valExpr['const']
+            if keyExpr['type'] in {'structure', 'list', 'tuple'}:
+                const = False
 
-        global _fold
-        if not _fold:
-            const = False
         return {
             "type" : "structure",
             "value" : value,
@@ -535,9 +599,6 @@ class BuildD3Json(NodeVisitor):
         const = True
         for exp in exps:
             const &= exp['const']
-        global _fold
-        if not _fold:
-            const = False
         return {
             "type": "tuple",
             "value": tuple([exp['value'] for exp in exps]),
@@ -555,9 +616,6 @@ class BuildD3Json(NodeVisitor):
         const = True
         for exp in exps:
             const &= exp['const']
-        global _fold
-        if not _fold:
-            const = False
         return {
             "type": "list",
             "value": [exp['value'] for exp in exps],
@@ -718,10 +776,24 @@ class BuildD3Json(NodeVisitor):
             symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = entry
 
         variables = []
-        for entry in parser._whereDict[node]:
+        global _prop
+        global _argMap
+        global _fold
+        _argMap = {}
+        tam = len(parser._whereDict[node])
+        for i in range(tam):
+            entry = parser._whereDict[node][i]
             result = entry['expression'].visit(BuildD3Json())
-            symboltable.funcTable[entry['var']] = result
-            variables += [(entry['var'], result)]
+            if result['const'] and _prop:
+                _argMap[entry['var']] = result
+                for j in range(i+1, tam):
+                    parser._whereDict[node][j]['expression'] = parser._whereDict[node][j]['expression'].visit(PropSearch())
+            else:
+                symboltable.funcTable[entry['var']] = result
+                variables += [(entry['var'], result)]
+
+        if _prop:
+            parser._functions[node] = parser._functions[node].visit(PropSearch())
         global _memo
         if _memo:
             memoKey = node + ' ' + ' '.join(["({} {})".format(x,y) for x,y in zip(types,args)])
