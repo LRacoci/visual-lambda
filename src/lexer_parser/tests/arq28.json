@@ -21,9 +21,21 @@
                           "name": "(int) 1 : (int) 1", 
                           "children": [
                             {
+                              "children": [
+                                {
+                                  "name": "(int) 1"
+                                }
+                              ], 
+                              "collapse": true, 
                               "name": "key : (int) 1"
                             }, 
                             {
+                              "children": [
+                                {
+                                  "name": "(int) 1"
+                                }
+                              ], 
+                              "collapse": true, 
                               "name": "value : (int) 1"
                             }
                           ]
@@ -51,9 +63,21 @@
                           "name": "(int) 2 : (int) 2", 
                           "children": [
                             {
+                              "children": [
+                                {
+                                  "name": "(int) 2"
+                                }
+                              ], 
+                              "collapse": true, 
                               "name": "key : (int) 2"
                             }, 
                             {
+                              "children": [
+                                {
+                                  "name": "(int) 2"
+                                }
+                              ], 
+                              "collapse": true, 
                               "name": "value : (int) 2"
                             }
                           ]

@@ -36,6 +36,18 @@
                                               "name": "(int) 42 : (structure) {28: 42}", 
                                               "children": [
                                                 {
+                                                  "children": [
+                                                    {
+                                                      "children": [
+                                                        {
+                                                          "name": "(int) 42"
+                                                        }
+                                                      ], 
+                                                      "name": "x", 
+                                                      "collapse": true
+                                                    }
+                                                  ], 
+                                                  "collapse": true, 
                                                   "name": "key : (int) 42"
                                                 }, 
                                                 {
@@ -68,7 +80,47 @@
                                                                                   "name": "/"
                                                                                 }, 
                                                                                 {
-                                                                                  "name": "x = 84"
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "(int) 84", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": " ", 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "*"
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "name": "(int) 42"
+                                                                                                        }
+                                                                                                      ], 
+                                                                                                      "name": "x", 
+                                                                                                      "collapse": true
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(int) 2"
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
                                                                                 }
                                                                               ]
                                                                             }, 
@@ -89,7 +141,25 @@
                                                                               "name": "*"
                                                                             }, 
                                                                             {
-                                                                              "name": "x = 42"
+                                                                              "children": [
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 42"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ], 
+                                                                              "name": "x", 
+                                                                              "collapse": true
                                                                             }
                                                                           ]
                                                                         }, 
@@ -117,7 +187,47 @@
                                                                                   "name": "/"
                                                                                 }, 
                                                                                 {
-                                                                                  "name": "x = 126"
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "(int) 126", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": " ", 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "*"
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "name": "(int) 42"
+                                                                                                        }
+                                                                                                      ], 
+                                                                                                      "name": "x", 
+                                                                                                      "collapse": true
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(int) 3"
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
                                                                                 }
                                                                               ]
                                                                             }, 
@@ -138,7 +248,25 @@
                                                                               "name": "*"
                                                                             }, 
                                                                             {
-                                                                              "name": "x = 42"
+                                                                              "children": [
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 42"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ], 
+                                                                              "name": "x", 
+                                                                              "collapse": true
                                                                             }
                                                                           ]
                                                                         }, 
@@ -156,7 +284,19 @@
                                                       ]
                                                     }, 
                                                     {
-                                                      "name": "x = 42"
+                                                      "children": [
+                                                        {
+                                                          "children": [
+                                                            {
+                                                              "name": "(int) 42"
+                                                            }
+                                                          ], 
+                                                          "name": "x", 
+                                                          "collapse": true
+                                                        }
+                                                      ], 
+                                                      "name": "x", 
+                                                      "collapse": true
                                                     }
                                                   ]
                                                 }
@@ -169,7 +309,19 @@
                                       "collapse": true
                                     }, 
                                     {
-                                      "name": "x = 42"
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "name": "(int) 42"
+                                            }
+                                          ], 
+                                          "name": "x", 
+                                          "collapse": true
+                                        }
+                                      ], 
+                                      "name": "x", 
+                                      "collapse": true
                                     }
                                   ]
                                 }
@@ -181,7 +333,13 @@
                           ]
                         }, 
                         {
-                          "name": "x = 42"
+                          "children": [
+                            {
+                              "name": "(int) 42"
+                            }
+                          ], 
+                          "name": "x", 
+                          "collapse": true
                         }
                       ]
                     }, 
@@ -195,6 +353,18 @@
                               "name": "(int) 42 : (structure) {28: 42}", 
                               "children": [
                                 {
+                                  "children": [
+                                    {
+                                      "children": [
+                                        {
+                                          "name": "(int) 42"
+                                        }
+                                      ], 
+                                      "name": "x", 
+                                      "collapse": true
+                                    }
+                                  ], 
+                                  "collapse": true, 
                                   "name": "key : (int) 42"
                                 }, 
                                 {
@@ -227,7 +397,47 @@
                                                                   "name": "/"
                                                                 }, 
                                                                 {
-                                                                  "name": "x = 84"
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "(int) 84", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "*"
+                                                                            }, 
+                                                                            {
+                                                                              "children": [
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 42"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ], 
+                                                                              "name": "x", 
+                                                                              "collapse": true
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(int) 2"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ], 
+                                                                  "name": "x", 
+                                                                  "collapse": true
                                                                 }
                                                               ]
                                                             }, 
@@ -248,7 +458,25 @@
                                                               "name": "*"
                                                             }, 
                                                             {
-                                                              "name": "x = 42"
+                                                              "children": [
+                                                                {
+                                                                  "children": [
+                                                                    {
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "(int) 42"
+                                                                        }
+                                                                      ], 
+                                                                      "name": "x", 
+                                                                      "collapse": true
+                                                                    }
+                                                                  ], 
+                                                                  "name": "x", 
+                                                                  "collapse": true
+                                                                }
+                                                              ], 
+                                                              "name": "x", 
+                                                              "collapse": true
                                                             }
                                                           ]
                                                         }, 
@@ -276,7 +504,47 @@
                                                                   "name": "/"
                                                                 }, 
                                                                 {
-                                                                  "name": "x = 126"
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "(int) 126", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "*"
+                                                                            }, 
+                                                                            {
+                                                                              "children": [
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 42"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ], 
+                                                                              "name": "x", 
+                                                                              "collapse": true
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(int) 3"
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ], 
+                                                                  "name": "x", 
+                                                                  "collapse": true
                                                                 }
                                                               ]
                                                             }, 
@@ -297,7 +565,25 @@
                                                               "name": "*"
                                                             }, 
                                                             {
-                                                              "name": "x = 42"
+                                                              "children": [
+                                                                {
+                                                                  "children": [
+                                                                    {
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "(int) 42"
+                                                                        }
+                                                                      ], 
+                                                                      "name": "x", 
+                                                                      "collapse": true
+                                                                    }
+                                                                  ], 
+                                                                  "name": "x", 
+                                                                  "collapse": true
+                                                                }
+                                                              ], 
+                                                              "name": "x", 
+                                                              "collapse": true
                                                             }
                                                           ]
                                                         }, 
@@ -315,7 +601,19 @@
                                       ]
                                     }, 
                                     {
-                                      "name": "x = 42"
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "name": "(int) 42"
+                                            }
+                                          ], 
+                                          "name": "x", 
+                                          "collapse": true
+                                        }
+                                      ], 
+                                      "name": "x", 
+                                      "collapse": true
                                     }
                                   ]
                                 }
@@ -346,7 +644,13 @@
                                   "name": "*"
                                 }, 
                                 {
-                                  "name": "x = 42"
+                                  "children": [
+                                    {
+                                      "name": "(int) 42"
+                                    }
+                                  ], 
+                                  "name": "x", 
+                                  "collapse": true
                                 }
                               ]
                             }, 

@@ -33,7 +33,13 @@
                                       "name": "<"
                                     }, 
                                     {
-                                      "name": "a = 2.5"
+                                      "children": [
+                                        {
+                                          "name": "(float) 2.5"
+                                        }
+                                      ], 
+                                      "name": "a", 
+                                      "collapse": true
                                     }
                                   ]
                                 }, 

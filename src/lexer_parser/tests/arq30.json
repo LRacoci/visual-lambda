@@ -70,14 +70,530 @@
                                                       ]
                                                     }, 
                                                     {
-                                                      "name": "x = 14"
+                                                      "children": [
+                                                        {
+                                                          "children": [
+                                                            {
+                                                              "name": "(int) 14", 
+                                                              "children": [
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "f x = ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "(structure)", 
+                                                                          "collapse": false, 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(str) acbc : (int) 14", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) acbc", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"ac\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"bc\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 14", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "a x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 14", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 2"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) baca : (int) 21", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) baca", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"ba\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"ca\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 21", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "b x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 21", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 3"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) cbab : (int) 35", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) cbab", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"cb\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"ab\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 35", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "c x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 35", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 5"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 7"
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) \"acbc\""
+                                                                }
+                                                              ]
+                                                            }
+                                                          ], 
+                                                          "name": "x", 
+                                                          "collapse": true
+                                                        }
+                                                      ], 
+                                                      "name": "x", 
+                                                      "collapse": true
                                                     }
                                                   ]
                                                 }
                                               ]
                                             }, 
                                             {
-                                              "name": "x = 14"
+                                              "children": [
+                                                {
+                                                  "name": "(int) 14", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "f x = ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "(structure)", 
+                                                              "collapse": false, 
+                                                              "children": [
+                                                                {
+                                                                  "name": "(str) acbc : (int) 14", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) acbc", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"ac\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"bc\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 14", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "a x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 14", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 2"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) baca : (int) 21", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) baca", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"ba\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"ca\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 21", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "b x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 21", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 3"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) cbab : (int) 35", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) cbab", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"cb\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"ab\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 35", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "c x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 35", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 5"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 7"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(str) \"acbc\""
+                                                    }
+                                                  ]
+                                                }
+                                              ], 
+                                              "name": "x", 
+                                              "collapse": true
                                             }
                                           ]
                                         }
@@ -127,14 +643,530 @@
                                                       ]
                                                     }, 
                                                     {
-                                                      "name": "x = 14"
+                                                      "children": [
+                                                        {
+                                                          "children": [
+                                                            {
+                                                              "name": "(int) 14", 
+                                                              "children": [
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "f x = ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "(structure)", 
+                                                                          "collapse": false, 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(str) acbc : (int) 14", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) acbc", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"ac\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"bc\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 14", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "a x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 14", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 2"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) baca : (int) 21", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) baca", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"ba\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"ca\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 21", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "b x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 21", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 3"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) cbab : (int) 35", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) cbab", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"cb\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"ab\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 35", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "c x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 35", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 5"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 7"
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) \"acbc\""
+                                                                }
+                                                              ]
+                                                            }
+                                                          ], 
+                                                          "name": "x", 
+                                                          "collapse": true
+                                                        }
+                                                      ], 
+                                                      "name": "x", 
+                                                      "collapse": true
                                                     }
                                                   ]
                                                 }
                                               ]
                                             }, 
                                             {
-                                              "name": "x = 14"
+                                              "children": [
+                                                {
+                                                  "name": "(int) 14", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "f x = ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "(structure)", 
+                                                              "collapse": false, 
+                                                              "children": [
+                                                                {
+                                                                  "name": "(str) acbc : (int) 14", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) acbc", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"ac\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"bc\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 14", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "a x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 14", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 2"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) baca : (int) 21", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) baca", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"ba\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"ca\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 21", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "b x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 21", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 3"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) cbab : (int) 35", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) cbab", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"cb\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"ab\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 35", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "c x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 35", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 5"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 7"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(str) \"acbc\""
+                                                    }
+                                                  ]
+                                                }
+                                              ], 
+                                              "name": "x", 
+                                              "collapse": true
                                             }
                                           ]
                                         }
@@ -184,14 +1216,530 @@
                                                       ]
                                                     }, 
                                                     {
-                                                      "name": "x = 14"
+                                                      "children": [
+                                                        {
+                                                          "children": [
+                                                            {
+                                                              "name": "(int) 14", 
+                                                              "children": [
+                                                                {
+                                                                  "name": " ", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "f x = ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "(structure)", 
+                                                                          "collapse": false, 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(str) acbc : (int) 14", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) acbc", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"ac\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"bc\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 14", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "a x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 14", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 2"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) baca : (int) 21", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) baca", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"ba\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"ca\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 21", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "b x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 21", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 3"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) cbab : (int) 35", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "key : (str) cbab", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "name": "(str) \"cb\""
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(str) \"ab\""
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "value : (int) 35", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "c x = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 35", 
+                                                                                          "collapse": false, 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": " ", 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": "*"
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "(int) 5"
+                                                                                                }
+                                                                                              ]
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "(int) 7"
+                                                                                                    }
+                                                                                                  ], 
+                                                                                                  "name": "x", 
+                                                                                                  "collapse": true
+                                                                                                }
+                                                                                              ], 
+                                                                                              "name": "x", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "(int) 7"
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) \"acbc\""
+                                                                }
+                                                              ]
+                                                            }
+                                                          ], 
+                                                          "name": "x", 
+                                                          "collapse": true
+                                                        }
+                                                      ], 
+                                                      "name": "x", 
+                                                      "collapse": true
                                                     }
                                                   ]
                                                 }
                                               ]
                                             }, 
                                             {
-                                              "name": "x = 14"
+                                              "children": [
+                                                {
+                                                  "name": "(int) 14", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "f x = ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "(structure)", 
+                                                              "collapse": false, 
+                                                              "children": [
+                                                                {
+                                                                  "name": "(str) acbc : (int) 14", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) acbc", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"ac\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"bc\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 14", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "a x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 14", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 2"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) baca : (int) 21", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) baca", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"ba\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"ca\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 21", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "b x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 21", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 3"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }, 
+                                                                {
+                                                                  "name": "(str) cbab : (int) 35", 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "key : (str) cbab", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "+"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(str) \"cb\""
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "(str) \"ab\""
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "value : (int) 35", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "c x = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 35", 
+                                                                              "collapse": false, 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "*"
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 5"
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(int) 7"
+                                                                                        }
+                                                                                      ], 
+                                                                                      "name": "x", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ], 
+                                                                                  "name": "x", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "(int) 7"
+                                                                            }
+                                                                          ], 
+                                                                          "name": "x", 
+                                                                          "collapse": true
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 7"
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(str) \"acbc\""
+                                                    }
+                                                  ]
+                                                }
+                                              ], 
+                                              "name": "x", 
+                                              "collapse": true
                                             }
                                           ]
                                         }
@@ -258,14 +1806,32 @@
                                                               ]
                                                             }, 
                                                             {
-                                                              "name": "x = 7"
+                                                              "children": [
+                                                                {
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "(int) 7"
+                                                                    }
+                                                                  ], 
+                                                                  "name": "x", 
+                                                                  "collapse": true
+                                                                }
+                                                              ], 
+                                                              "name": "x", 
+                                                              "collapse": true
                                                             }
                                                           ]
                                                         }
                                                       ]
                                                     }, 
                                                     {
-                                                      "name": "x = 7"
+                                                      "children": [
+                                                        {
+                                                          "name": "(int) 7"
+                                                        }
+                                                      ], 
+                                                      "name": "x", 
+                                                      "collapse": true
                                                     }
                                                   ]
                                                 }
@@ -315,14 +1881,32 @@
                                                               ]
                                                             }, 
                                                             {
-                                                              "name": "x = 7"
+                                                              "children": [
+                                                                {
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "(int) 7"
+                                                                    }
+                                                                  ], 
+                                                                  "name": "x", 
+                                                                  "collapse": true
+                                                                }
+                                                              ], 
+                                                              "name": "x", 
+                                                              "collapse": true
                                                             }
                                                           ]
                                                         }
                                                       ]
                                                     }, 
                                                     {
-                                                      "name": "x = 7"
+                                                      "children": [
+                                                        {
+                                                          "name": "(int) 7"
+                                                        }
+                                                      ], 
+                                                      "name": "x", 
+                                                      "collapse": true
                                                     }
                                                   ]
                                                 }
@@ -372,14 +1956,32 @@
                                                               ]
                                                             }, 
                                                             {
-                                                              "name": "x = 7"
+                                                              "children": [
+                                                                {
+                                                                  "children": [
+                                                                    {
+                                                                      "name": "(int) 7"
+                                                                    }
+                                                                  ], 
+                                                                  "name": "x", 
+                                                                  "collapse": true
+                                                                }
+                                                              ], 
+                                                              "name": "x", 
+                                                              "collapse": true
                                                             }
                                                           ]
                                                         }
                                                       ]
                                                     }, 
                                                     {
-                                                      "name": "x = 7"
+                                                      "children": [
+                                                        {
+                                                          "name": "(int) 7"
+                                                        }
+                                                      ], 
+                                                      "name": "x", 
+                                                      "collapse": true
                                                     }
                                                   ]
                                                 }

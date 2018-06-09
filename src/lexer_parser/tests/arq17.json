@@ -21,7 +21,13 @@
                           "name": "+"
                         }, 
                         {
-                          "name": "a = 1"
+                          "children": [
+                            {
+                              "name": "(int) 1"
+                            }
+                          ], 
+                          "name": "a", 
+                          "collapse": true
                         }
                       ]
                     }, 
@@ -42,7 +48,19 @@
                                       "name": "/"
                                     }, 
                                     {
-                                      "name": "x = 2"
+                                      "children": [
+                                        {
+                                          "children": [
+                                            {
+                                              "name": "(int) 2"
+                                            }
+                                          ], 
+                                          "name": "b", 
+                                          "collapse": true
+                                        }
+                                      ], 
+                                      "name": "x", 
+                                      "collapse": true
                                     }
                                   ]
                                 }, 
@@ -54,7 +72,13 @@
                           ]
                         }, 
                         {
-                          "name": "b = 2"
+                          "children": [
+                            {
+                              "name": "(int) 2"
+                            }
+                          ], 
+                          "name": "b", 
+                          "collapse": true
                         }
                       ]
                     }

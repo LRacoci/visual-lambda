@@ -722,21 +722,10 @@ class BuildD3Json(NodeVisitor):
     def visit_application(self, node):
         memoFlag = False
         args = []
-        trees = []
-        types = []
-        exprFromKeyS = []
+
         while type(node) is Application:
             if node.arg != None:
-                exec_tree = node.arg.visit(BuildD3Json())
-                arg = exec_tree['value']
-                tree = exec_tree['json']
-                tp = exec_tree['type']
-                exprFromKey = exec_tree['exprFromKey'] if "exprFromKey" in exec_tree else None
-                #execTrees = [exec_tree]
-                args = [arg] + args
-                trees = [tree] + trees
-                types = [tp] + types
-                exprFromKeyS = [exprFromKey] + exprFromKeyS
+                args = [node.arg.visit(BuildD3Json())] + args
             node = node.func
 
         if node in symboltable.funcTable:
@@ -760,12 +749,7 @@ class BuildD3Json(NodeVisitor):
         symboltable.getTable(node)
 
         while len(symboltable.funcTable) < len(args):
-            entry = {}
-            entry['value'] = args[len(symboltable.funcTable)]
-            entry['type'] = types[len(symboltable.funcTable)]
-            if exprFromKeyS[len(symboltable.funcTable)] != None:
-                entry['exprFromKey'] = exprFromKeyS[len(symboltable.funcTable)]
-
+            entry = dict(args[len(symboltable.funcTable)])
             symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = entry
 
         variables = []
@@ -789,7 +773,7 @@ class BuildD3Json(NodeVisitor):
             parser._functions[node] = parser._functions[node].visit(PropSearch())
         global _memo
         if _memo:
-            memoKey = node + ' ' + ' '.join(["({} {})".format(x,y) for x,y in zip(types,args)])
+            memoKey = node + ' ' + ' '.join(["({} {})".format(arg['type'],arg['value']) for arg in args])
             global memoized
             if memoKey not in memoized:
                 memoized[memoKey] = parser._functions[node].visit(BuildD3Json())
@@ -800,7 +784,8 @@ class BuildD3Json(NodeVisitor):
         else:
             exec_tree = parser._functions[node].visit(BuildD3Json())
 
-        symboltable.deleteTable(node)
+        if "lambda " not in node:
+            symboltable.deleteTable(node)
 
         if memoFlag:
             exec_tree['json']['collapse'] = True
@@ -822,12 +807,12 @@ class BuildD3Json(NodeVisitor):
                 ]
             }
 
-        for tree in trees:
+        for arg in args:
             args_tree = {
                 "name": " ",
                 "children": [
                     args_tree,
-                    tree
+                    arg['json']
                 ]
             }
 

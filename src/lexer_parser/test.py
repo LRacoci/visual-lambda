@@ -44,7 +44,7 @@ def diff(a,b):
 
     return a
 
-outFileSufix = "_out"
+outFileSufix = ""
 
 if __name__ == "__main__":
     from glob import glob

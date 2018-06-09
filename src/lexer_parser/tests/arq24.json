@@ -24,7 +24,19 @@
                               "name": "+"
                             }, 
                             {
-                              "name": "a = MC"
+                              "children": [
+                                {
+                                  "children": [
+                                    {
+                                      "name": "(str) \"MC\""
+                                    }
+                                  ], 
+                                  "name": "a", 
+                                  "collapse": true
+                                }
+                              ], 
+                              "name": "a", 
+                              "collapse": true
                             }
                           ]
                         }, 
