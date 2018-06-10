@@ -96,8 +96,8 @@ def reset():
                     func
                 )
             )
-
-    # Check if every name is a function name or an argument in the current function
+    #print json.dumps({"_lambda_closure":_lambda_closure}, indent = 1, default = lambda o : o.__dict__)
+    #Check if every name is a function name or an argument in the current function
     for func in namesOut['functions']:
         set_of_args = {arg for arg in namesOut['args'][func]}
         set_of_wheres = {where["var"] for where in _whereDict[func]}
@@ -111,13 +111,15 @@ def reset():
     global _eta
     if _eta:
         etaOptimization()
-
+    #print json.dumps(_functions, default = lambda o : {type(o).__name__ : o.__dict__}, indent = 1)
     _exec_tree = ast.execute(_functions['main'])
     execOut['tree'] = dict(_exec_tree)
     clean()
 
 # Clean variables and symbol table
 def clean():
+    global lambdaCounter
+    lambdaCounter = 0
     global _lambda_childrens
     _lambda_childrens = []
     global _lambda_closure
@@ -262,6 +264,12 @@ def p_functionList(t):
 
 def p_function_assign(t):
     '''function : NAME DEFINITION expression where_expression'''
+    for fName in _lambda_childrens:
+        if fName not in _lambda_closure:
+            _lambda_closure[fName] = []
+
+        _lambda_closure[fName] += [w['var'] for w in t[4]]
+
     global _names
     global _names_aux
     _names[t[1]] = _names_aux
@@ -322,14 +330,6 @@ def p_function_args(t):
     '''function : NAME argList DEFINITION expression where_expression'''
     _, funcName, args, _, expression, wheres = t
 
-    global _lambda_childrens
-    global _lambda_closure
-    for fName in _lambda_childrens:
-        if fName in _lambda_closure:
-            _lambda_closure[fName] += args
-        else:
-            _lambda_closure[fName] = args
-
     name = ""
     primal = True
     for arg in args:
@@ -368,6 +368,16 @@ def p_function_args(t):
     if funcName != 'main' and type(expression).__name__ == "Application" and wheres == []:
         global _eta_list
         _eta_list += [funcName]
+        global _lambda_childrens
+
+    global _lambda_closure
+    for fName in _lambda_childrens:
+        if fName not in _lambda_closure:
+            _lambda_closure[fName] = []
+
+        _lambda_closure[fName] += [w['var'] for w in wheres] + args
+
+
 
 lambdaCounter = 0
 def p_lambda_expression(t):
@@ -377,23 +387,14 @@ def p_lambda_expression(t):
     funcName = "lambda {}".format(lambdaCounter)
     lambdaCounter += 1
 
-    #print json.dumps({funcName:_lambda_childrens}, indent = 2, default = lambda o : o.__dict__)
+
     global _lambda_childrens
     global _lambda_closure
     for fName in _lambda_childrens:
-        if fName in _lambda_closure:
-            _lambda_closure[fName] += [funcName]
-        else:
-            _lambda_closure[fName] = args
-        '''
-        _whereDict[fName] = [
-            {
-                "var": arg,
-                "expression": ast.Identifier(arg)
-            }
-            for arg in args
-        ]
-        '''
+        if fName not in _lambda_closure:
+            _lambda_closure[fName] = []
+
+        _lambda_closure[fName] += args
 
     _lambda_childrens += [funcName]
 
