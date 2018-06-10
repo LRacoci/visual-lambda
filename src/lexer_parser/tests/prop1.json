@@ -1,0 +1,103 @@
+{
+  "name": "main = [({(1, 2): (2, 1), '{1: 2}': 2, '[1]': [2]}, (3, 2))]", 
+  "children": [
+    {
+      "name": "(list)", 
+      "children": [
+        {
+          "name": "(tuple)", 
+          "children": [
+            {
+              "name": "(structure)", 
+              "children": [
+                {
+                  "name": "(tuple) (1, 2) : (tuple) (2, 1)", 
+                  "children": [
+                    {
+                      "name": "key : (tuple) (1, 2)", 
+                      "children": [
+                        {
+                          "name": "(int) 1"
+                        }, 
+                        {
+                          "name": "(int) 2"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "value : (tuple) (2, 1)", 
+                      "children": [
+                        {
+                          "name": "(int) 2"
+                        }, 
+                        {
+                          "name": "(int) 1"
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(structure) {1: 2} : (int) 2", 
+                  "children": [
+                    {
+                      "name": "key : (structure) {1: 2}", 
+                      "children": [
+                        {
+                          "name": "(int) 1 : (int) 2", 
+                          "children": [
+                            {
+                              "name": "key : (int) 1"
+                            }, 
+                            {
+                              "name": "value : (int) 2"
+                            }
+                          ]
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "value : (int) 2"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(list) [1] : (list) [2]", 
+                  "children": [
+                    {
+                      "name": "key : (list) [1]", 
+                      "children": [
+                        {
+                          "name": "(int) 1"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "value : (list) [2]", 
+                      "children": [
+                        {
+                          "name": "(int) 2"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "(tuple)", 
+              "children": [
+                {
+                  "name": "(int) 3"
+                }, 
+                {
+                  "name": "(int) 2"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

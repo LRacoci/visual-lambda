@@ -805,6 +805,8 @@ class BuildD3Json(NodeVisitor):
 
         if memoFlag:
             exec_tree['json']['collapse'] = True
+            del exec_tree['json']['children']
+
             args_tree = {
                 "name": "(memoized) {}".format(memoKey),
                 "children": [
@@ -816,6 +818,9 @@ class BuildD3Json(NodeVisitor):
             for arg in parser._args[node]:
                 args_string += " " + arg
             exec_tree['json']['collapse'] = funcName in specialNames
+            if funcName in specialNames:
+                del exec_tree['json']['children']
+
             args_tree = {
                 "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
                 "children": [

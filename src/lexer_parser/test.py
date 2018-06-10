@@ -53,12 +53,21 @@ if __name__ == "__main__":
     # Compare the answer and the output to test
     for inpFileName in glob('tests/*.hs'):
         print inpFileName
+        with open("header.hs") as headerFile:
+            header = headerFile.read();
 
         with open(inpFileName) as inpFile:
             problem = inpFile.read()
+
+        problem = header + problem
         try:
             clean()
-            setOptimization("eta" in inpFileName,"prop" in inpFileName,"fold" in inpFileName, "memo" in inpFileName)
+            setOptimization(
+                "eta" in inpFileName,
+                "fold" in inpFileName,
+                "prop" in inpFileName,
+                "memo" in inpFileName
+            )
             parser.parse(problem)
         except Exception as err:
             import traceback

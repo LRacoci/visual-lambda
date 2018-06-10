@@ -1,0 +1,44 @@
+{
+  "name": "main = [2, 1]", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "filter f list = ", 
+              "children": [
+                {
+                  "name": "(list) [2, 1]", 
+                  "collapse": true
+                }
+              ]
+            }, 
+            {
+              "name": "lambda 0 = function"
+            }
+          ]
+        }, 
+        {
+          "name": "(list)", 
+          "children": [
+            {
+              "name": "(int) 4"
+            }, 
+            {
+              "name": "(int) 2"
+            }, 
+            {
+              "name": "(int) 3"
+            }, 
+            {
+              "name": "(int) 1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

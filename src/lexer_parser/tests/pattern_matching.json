@@ -1,0 +1,96 @@
+{
+  "name": "main = oi", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "f a b = ", 
+              "children": [
+                {
+                  "name": "(str) oi", 
+                  "collapse": false, 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "cond"
+                            }, 
+                            {
+                              "name": "(bool) True", 
+                              "children": [
+                                {
+                                  "name": " ", 
+                                  "children": [
+                                    {
+                                      "name": "=="
+                                    }, 
+                                    {
+                                      "children": [
+                                        {
+                                          "name": "(list)", 
+                                          "children": [
+                                            {
+                                              "name": "(int) 1"
+                                            }
+                                          ]
+                                        }
+                                      ], 
+                                      "name": "b", 
+                                      "collapse": true
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "name": "(list)", 
+                                  "children": [
+                                    {
+                                      "name": "(int) 1"
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "(str) \"oi\""
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "else not executed"
+                    }
+                  ]
+                }
+              ]
+            }, 
+            {
+              "name": "(list)", 
+              "children": [
+                {
+                  "name": "(int) 2"
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "(list)", 
+          "children": [
+            {
+              "name": "(int) 1"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -368,7 +368,6 @@ def p_function_args(t):
     if funcName != 'main' and type(expression).__name__ == "Application" and wheres == []:
         global _eta_list
         _eta_list += [funcName]
-        global _lambda_childrens
 
     global _lambda_closure
     for fName in _lambda_childrens:

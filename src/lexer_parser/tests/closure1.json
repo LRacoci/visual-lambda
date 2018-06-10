@@ -1,0 +1,55 @@
+{
+  "name": "main = [2, 3, 4]", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": "f x = ", 
+          "children": [
+            {
+              "name": " ", 
+              "collapse": false, 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "map f list = ", 
+                      "children": [
+                        {
+                          "name": "(list) [2, 3, 4]", 
+                          "collapse": true
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "lambda 0 = function"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(list)", 
+                  "children": [
+                    {
+                      "name": "(int) 1"
+                    }, 
+                    {
+                      "name": "(int) 2"
+                    }, 
+                    {
+                      "name": "(int) 3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "(int) 1"
+        }
+      ]
+    }
+  ]
+}
