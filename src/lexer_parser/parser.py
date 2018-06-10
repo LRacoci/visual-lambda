@@ -156,7 +156,8 @@ def patternMatching():
                     argsValues = _args[func][patternKey]
                     eqs = []
                     for (arg, value) in zip(argsList, argsValues):
-                        eqs += [ast.Binop(ast.Identifier(arg), "==", ast.Constant(value.value, value.type))]
+                        if arg != value:
+                            eqs += [ast.Binop(ast.Identifier(arg), "==", value)]
                     cond = eqs[0]
                     for i in range(1,len(eqs)):
                         cond = ast.Binop(cond, "and", eqs[i])
@@ -258,6 +259,40 @@ def p_function_assign(t):
         global _eta_list
         _eta_list += [t[1]]
 
+# Get a unique name of a function definition
+def getName(arg):
+    primal = True
+    tp = type(arg).__name__
+    if tp == "Constant":
+        primal = False
+        tp += "(" + arg.type + ")"
+        vl = str(arg.value)
+    elif tp == "List":
+        primal = False
+        vl = ""
+        for v in arg.exprs:
+            tpAux, vlAux, _ = getName(v)
+            tp += tpAux
+            vl += vlAux
+    elif tp == "Tuple":
+        primal = False
+        vl = ""
+        for v in arg.exprs:
+            tpAux, vlAux, _ = getName(v)
+            tp += tpAux
+            vl += vlAux
+    elif tp == "Structure":
+        primal = False
+        vl = ""
+        for v in arg.kvPairs:
+            tpAuxKey, vlAuxKey, _ = getName(v[0])
+            tpAuxValue, vlAuxValue, _ = getName(v[1])
+            tp += tpAuxKey + ":" + tpAuxValue
+            vl += vlAuxKey + ":" + vlAuxValue
+    else:
+        vl = arg
+    return tp, vl, primal
+
 def p_function_args(t):
     '''function : NAME argList DEFINITION expression where_expression'''
     _, funcName, args, _, expression, wheres = t
@@ -265,14 +300,10 @@ def p_function_args(t):
     name = ""
     primal = True
     for arg in args:
-        tp = type(arg).__name__
-        if tp != "Constant":
-            vl = arg
-        else:
-            primal = False
-            tp += "(" + arg.type + ")"
-            vl = str(arg.value)
+        tp, vl, check = getName(arg)
         name += "(" + tp + ")" + vl
+        if not check:
+            primal = False
     if primal:
         name = funcName
 
@@ -316,14 +347,10 @@ def p_lambda_expression(t):
     name = ""
     primal = True
     for arg in args:
-        tp = type(arg).__name__
-        if tp != "Constant":
-            vl = arg
-        else:
-            primal = False
-            tp += "(" + arg.type + ")"
-            vl = str(arg.value)
+        tp, vl, check = getName(arg)
         name += "(" + tp + ")" + vl
+        if not check:
+            primal = False
     if primal:
         name = funcName
 
@@ -379,9 +406,72 @@ def p_arg_expr_name(t):
     '''argExpr : NAME'''
     t[0] = t[1]
 
-def p_arg_expr_constant(t):
-    '''argExpr : constant'''
+def p_arg_expr_constant_expr(t):
+    '''argExpr : constantExpr'''
     t[0] = t[1]
+
+def p_constant_expr(t):
+    '''constantExpr : constant
+        | constList
+        | constTuple
+        | constStructure'''
+    t[0] = t[1]
+
+def p_const_structure_null(t):
+    '''constStructure : LBRACKET1 RBRACKET1'''
+    t[0] = ast.Structure([])
+
+def p_const_structure_kvList(t):
+    '''constStructure : LBRACKET1 constKvList RBRACKET1'''
+    t[0] = ast.Structure(t[2])
+
+def p_const_kvList_nested(t):
+    '''constKvList : constKvTerm COMMA constKvList'''
+    t[0] = [t[1]] + t[3]
+
+def p_const_kvList_kvTerm(t):
+    '''constKvList : constKvTerm'''
+    t[0] = [t[1]]
+
+def p_const_kvTerm(t):
+    '''constKvTerm : constantExpr COLON constantExpr'''
+    t[0] = t[1], t[3]
+
+def p_const_list_null(t):
+    '''constList :  LBRACKET2 RBRACKET2'''
+    t[0] = ast.List([])
+
+def p_const_list_termList(t):
+    '''constList : LBRACKET2 constTermList RBRACKET2'''
+    t[0] = ast.List(t[2])
+
+def p_const_termList_nested(t):
+    '''constTermList : constTerm COMMA constTermList'''
+    t[0] = [t[1]] + t[3]
+
+def p_const_termList_term(t):
+    '''constTermList : constTerm'''
+    t[0] = [t[1]]
+
+def p_const_term_expression(t):
+    '''constTerm : constantExpr'''
+    t[0] = t[1]
+
+def p_const_tuple_null(t):
+    '''constTuple :  LPAREN RPAREN'''
+    t[0] = ast.Tuple([])
+
+def p_const_tuple_termTuple(t):
+    '''constTuple : LPAREN constTermTuple RPAREN'''
+    t[0] = ast.Tuple(t[2])
+
+def p_const_termTuple_nested(t):
+    '''constTermTuple : constTerm COMMA constTermTuple'''
+    t[0] = [t[1]] + t[3]
+
+def p_const_termTuple_term(t):
+    '''constTermTuple : constTerm COMMA constTerm'''
+    t[0] = [t[1], t[3]]
 
 def p_where_expression(t):
     '''where_expression : WHERE NAME DEFINITION expression where_expression
