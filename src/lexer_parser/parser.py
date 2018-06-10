@@ -28,6 +28,9 @@ _names_aux = set()
 
 _dependence_aux = set()
 
+_lambda_childrens = []
+_lambda_closure = {}
+
 _functions = {}
 _whereDict = {}
 _args = {}
@@ -61,6 +64,7 @@ def reset():
     global _dependence
     global _exec_tree
     global _whereDict
+    global _lambda_closure
 
     namesOut['functions'] = dict(_functions)
     namesOut['args'] = dict(_args)
@@ -97,7 +101,8 @@ def reset():
     for func in namesOut['functions']:
         set_of_args = {arg for arg in namesOut['args'][func]}
         set_of_wheres = {where["var"] for where in _whereDict[func]}
-        aux = (_names[func] - set_of_args) - set_of_functions - set_of_wheres
+        set_of_lambda_vars = {var for var in _lambda_closure[func]} if func in _lambda_closure else set()
+        aux = (_names[func] - set_of_args) - set_of_functions - set_of_wheres - set_of_lambda_vars
         if len(aux) > 0:
             str_aux = ", ".join(list(aux))
             clean()
@@ -113,6 +118,11 @@ def reset():
 
 # Clean variables and symbol table
 def clean():
+    global _lambda_childrens
+    _lambda_childrens = []
+    global _lambda_closure
+    _lambda_closure = {}
+
     symboltable.clean()
     if ast._memo:
         ast.memoized = {}
@@ -312,6 +322,14 @@ def p_function_args(t):
     '''function : NAME argList DEFINITION expression where_expression'''
     _, funcName, args, _, expression, wheres = t
 
+    global _lambda_childrens
+    global _lambda_closure
+    for fName in _lambda_childrens:
+        if fName in _lambda_closure:
+            _lambda_closure[fName] += args
+        else:
+            _lambda_closure[fName] = args
+
     name = ""
     primal = True
     for arg in args:
@@ -359,6 +377,28 @@ def p_lambda_expression(t):
     funcName = "lambda {}".format(lambdaCounter)
     lambdaCounter += 1
 
+    #print json.dumps({funcName:_lambda_childrens}, indent = 2, default = lambda o : o.__dict__)
+    global _lambda_childrens
+    global _lambda_closure
+    for fName in _lambda_childrens:
+        if fName in _lambda_closure:
+            _lambda_closure[fName] += [funcName]
+        else:
+            _lambda_closure[fName] = args
+        '''
+        _whereDict[fName] = [
+            {
+                "var": arg,
+                "expression": ast.Identifier(arg)
+            }
+            for arg in args
+        ]
+        '''
+
+    _lambda_childrens += [funcName]
+
+    wheres = []
+
     name = ""
     primal = True
     for arg in args:
@@ -401,9 +441,9 @@ def p_lambda_expression(t):
     t[0] = ast.Identifier(funcName)
 
 def p_application_lambda(t):
-    '''application : lambda LPAREN expression RPAREN
-        | lambda LPAREN lambda RPAREN'''
-    t[0] = ast.Application(t[1], t[3])
+    '''application  : LPAREN lambda RPAREN LPAREN expression RPAREN
+                    | LPAREN lambda RPAREN LPAREN lambda RPAREN'''
+    t[0] = ast.Application(t[2].name, t[5])
 
 # def p_expression_lambda(t):
 #     '''expression : lambda'''

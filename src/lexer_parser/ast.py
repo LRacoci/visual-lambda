@@ -686,6 +686,12 @@ class BuildD3Json(NodeVisitor):
 
     # Visit a identifier from the symbol table or function table
     def visit_identifier(self, node):
+        # print json.dumps({
+        #     "symbolTable" : symboltable.symbolTable,
+        #     "scopeStack" : symboltable.scopeStack,
+        #     "funcTable" : symboltable.funcTable
+        # }, indent = 2, default = lambda o : o.__dict__)
+
         if node.name in symboltable.funcTable:
             entry = symboltable.funcTable[node.name]
             ret = dict(entry)
@@ -747,10 +753,20 @@ class BuildD3Json(NodeVisitor):
             raise Exception(node + " is called with less arguments ({}) than what is defined ({})".format(len(args), len(parser._args[node])))
 
         symboltable.getTable(node)
+        k = 0
+        while k < len(args):
+            entry = dict(args[k])
+            argName = parser._args[node][k]
+            symboltable.funcTable[argName] = entry
+            k += 1
 
-        while len(symboltable.funcTable) < len(args):
-            entry = dict(args[len(symboltable.funcTable)])
-            symboltable.funcTable[parser._args[node][len(symboltable.funcTable)]] = entry
+        if node in parser._lambda_closure:
+            closure = parser._lambda_closure[node]
+            for argName in closure:
+                entry = symboltable.getHighterValues(argName)
+                if entry:
+                    symboltable.funcTable[argName] = entry
+
 
         variables = []
         global _prop
@@ -784,8 +800,8 @@ class BuildD3Json(NodeVisitor):
         else:
             exec_tree = parser._functions[node].visit(BuildD3Json())
 
-        if "lambda " not in node:
-            symboltable.deleteTable(node)
+
+        symboltable.deleteTable(node)
 
         if memoFlag:
             exec_tree['json']['collapse'] = True
