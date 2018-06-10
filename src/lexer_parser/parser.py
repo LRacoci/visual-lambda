@@ -39,6 +39,8 @@ _eta = False
 _eta_list = []
 _eta_temp = 0
 
+_pattern_functions = {}
+
 namesOut = {
     'dependence' : {},
     'functions' : {},
@@ -139,16 +141,21 @@ def clean():
     global _eta_temp
     _eta_temp = 0
 
+    global _pattern_functions
+    _pattern_functions = {}
+
 # Do the pattern matching
 def patternMatching():
     global _functions
     global _args
+    global _pattern_functions
 
     for func in _functions:
         if len(_functions[func]) == 1:
             _functions[func] = _functions[func][func]
             _args[func] = _args[func][func]
         else:
+            _pattern_functions[func] = True
             tree = _functions[func][func]
             argsList = _args[func][func]
             for patternKey in _functions[func]:
@@ -178,6 +185,14 @@ def etaOptimization():
     global _eta_temp
     global _whereDict
     global _args
+    global _pattern_functions
+
+    toRemove = []
+    for func in _eta_list:
+        if func in _pattern_functions:
+            toRemove.append(func)
+    for func in toRemove:
+        _eta_list.remove(func)
 
     # Search while there is a function to be optimized
     while len(_eta_list) > 0:
