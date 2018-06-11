@@ -701,7 +701,7 @@ class BuildD3Json(NodeVisitor):
                     "name" : node.name,# + " = " + str(entry['value']),
                     "collapse": True,
                     "children" : [
-                        entry['json'] if 'json' in entry else {}
+                        #entry['json'] if 'json' in entry else {}
                     ]
                 }
             else:
@@ -805,7 +805,8 @@ class BuildD3Json(NodeVisitor):
 
         if memoFlag:
             exec_tree['json']['collapse'] = True
-            del exec_tree['json']['children']
+            if 'children' in exec_tree['json']:
+                del exec_tree['json']['children']
 
             args_tree = {
                 "name": "(memoized) {}".format(memoKey),
@@ -818,7 +819,7 @@ class BuildD3Json(NodeVisitor):
             for arg in parser._args[node]:
                 args_string += " " + arg
             exec_tree['json']['collapse'] = funcName in specialNames
-            if funcName in specialNames:
+            if funcName in specialNames and 'children' in exec_tree['json']:
                 del exec_tree['json']['children']
 
             args_tree = {
