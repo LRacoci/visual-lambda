@@ -1,0 +1,1047 @@
+{
+  "name": "main = 6.0", 
+  "children": [
+    {
+      "name": " ", 
+      "children": [
+        {
+          "name": "avg l = ", 
+          "children": [
+            {
+              "name": "", 
+              "collapse": false, 
+              "children": [
+                {
+                  "name": "", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": " ", 
+                              "children": [
+                                {
+                                  "name": "aux l s t = ", 
+                                  "children": [
+                                    {
+                                      "name": "(float) 6.0", 
+                                      "collapse": false, 
+                                      "children": [
+                                        {
+                                          "name": " ", 
+                                          "children": [
+                                            {
+                                              "name": " ", 
+                                              "children": [
+                                                {
+                                                  "name": "cond"
+                                                }, 
+                                                {
+                                                  "name": "(bool) False", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "=="
+                                                        }, 
+                                                        {
+                                                          "children": [], 
+                                                          "name": "l", 
+                                                          "collapse": true
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(list)", 
+                                                      "children": []
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "then not executed"
+                                            }
+                                          ]
+                                        }, 
+                                        {
+                                          "name": "", 
+                                          "children": [
+                                            {
+                                              "name": "", 
+                                              "children": [
+                                                {
+                                                  "name": " ", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "aux l s t = ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "(float) 6.0", 
+                                                                  "collapse": false, 
+                                                                  "children": [
+                                                                    {
+                                                                      "name": " ", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": " ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": "cond"
+                                                                            }, 
+                                                                            {
+                                                                              "name": "(bool) False", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "=="
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [], 
+                                                                                      "name": "l", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "(list)", 
+                                                                                  "children": []
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "then not executed"
+                                                                        }
+                                                                      ]
+                                                                    }, 
+                                                                    {
+                                                                      "name": "", 
+                                                                      "children": [
+                                                                        {
+                                                                          "name": "", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": " ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "aux l s t = ", 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "(float) 6.0", 
+                                                                                              "collapse": false, 
+                                                                                              "children": [
+                                                                                                {
+                                                                                                  "name": " ", 
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": " ", 
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "name": "cond"
+                                                                                                        }, 
+                                                                                                        {
+                                                                                                          "name": "(bool) False", 
+                                                                                                          "children": [
+                                                                                                            {
+                                                                                                              "name": " ", 
+                                                                                                              "children": [
+                                                                                                                {
+                                                                                                                  "name": "=="
+                                                                                                                }, 
+                                                                                                                {
+                                                                                                                  "children": [], 
+                                                                                                                  "name": "l", 
+                                                                                                                  "collapse": true
+                                                                                                                }
+                                                                                                              ]
+                                                                                                            }, 
+                                                                                                            {
+                                                                                                              "name": "(list)", 
+                                                                                                              "children": []
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }, 
+                                                                                                    {
+                                                                                                      "name": "then not executed"
+                                                                                                    }
+                                                                                                  ]
+                                                                                                }, 
+                                                                                                {
+                                                                                                  "name": "", 
+                                                                                                  "children": [
+                                                                                                    {
+                                                                                                      "name": "", 
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "name": " ", 
+                                                                                                          "children": [
+                                                                                                            {
+                                                                                                              "name": " ", 
+                                                                                                              "children": [
+                                                                                                                {
+                                                                                                                  "name": " ", 
+                                                                                                                  "children": [
+                                                                                                                    {
+                                                                                                                      "name": "aux l s t = ", 
+                                                                                                                      "children": [
+                                                                                                                        {
+                                                                                                                          "name": "(float) 6.0", 
+                                                                                                                          "collapse": false, 
+                                                                                                                          "children": [
+                                                                                                                            {
+                                                                                                                              "name": " ", 
+                                                                                                                              "children": [
+                                                                                                                                {
+                                                                                                                                  "name": " ", 
+                                                                                                                                  "children": [
+                                                                                                                                    {
+                                                                                                                                      "name": "cond"
+                                                                                                                                    }, 
+                                                                                                                                    {
+                                                                                                                                      "name": "(bool) False", 
+                                                                                                                                      "children": [
+                                                                                                                                        {
+                                                                                                                                          "name": " ", 
+                                                                                                                                          "children": [
+                                                                                                                                            {
+                                                                                                                                              "name": "=="
+                                                                                                                                            }, 
+                                                                                                                                            {
+                                                                                                                                              "children": [], 
+                                                                                                                                              "name": "l", 
+                                                                                                                                              "collapse": true
+                                                                                                                                            }
+                                                                                                                                          ]
+                                                                                                                                        }, 
+                                                                                                                                        {
+                                                                                                                                          "name": "(list)", 
+                                                                                                                                          "children": []
+                                                                                                                                        }
+                                                                                                                                      ]
+                                                                                                                                    }
+                                                                                                                                  ]
+                                                                                                                                }, 
+                                                                                                                                {
+                                                                                                                                  "name": "then not executed"
+                                                                                                                                }
+                                                                                                                              ]
+                                                                                                                            }, 
+                                                                                                                            {
+                                                                                                                              "name": "", 
+                                                                                                                              "children": [
+                                                                                                                                {
+                                                                                                                                  "name": "", 
+                                                                                                                                  "children": [
+                                                                                                                                    {
+                                                                                                                                      "name": " ", 
+                                                                                                                                      "children": [
+                                                                                                                                        {
+                                                                                                                                          "name": " ", 
+                                                                                                                                          "children": [
+                                                                                                                                            {
+                                                                                                                                              "name": " ", 
+                                                                                                                                              "children": [
+                                                                                                                                                {
+                                                                                                                                                  "name": "aux l s t = ", 
+                                                                                                                                                  "children": [
+                                                                                                                                                    {
+                                                                                                                                                      "name": "(float) 6.0", 
+                                                                                                                                                      "collapse": false, 
+                                                                                                                                                      "children": [
+                                                                                                                                                        {
+                                                                                                                                                          "name": " ", 
+                                                                                                                                                          "children": [
+                                                                                                                                                            {
+                                                                                                                                                              "name": " ", 
+                                                                                                                                                              "children": [
+                                                                                                                                                                {
+                                                                                                                                                                  "name": "cond"
+                                                                                                                                                                }, 
+                                                                                                                                                                {
+                                                                                                                                                                  "name": "(bool) False", 
+                                                                                                                                                                  "children": [
+                                                                                                                                                                    {
+                                                                                                                                                                      "name": " ", 
+                                                                                                                                                                      "children": [
+                                                                                                                                                                        {
+                                                                                                                                                                          "name": "=="
+                                                                                                                                                                        }, 
+                                                                                                                                                                        {
+                                                                                                                                                                          "children": [], 
+                                                                                                                                                                          "name": "l", 
+                                                                                                                                                                          "collapse": true
+                                                                                                                                                                        }
+                                                                                                                                                                      ]
+                                                                                                                                                                    }, 
+                                                                                                                                                                    {
+                                                                                                                                                                      "name": "(list)", 
+                                                                                                                                                                      "children": []
+                                                                                                                                                                    }
+                                                                                                                                                                  ]
+                                                                                                                                                                }
+                                                                                                                                                              ]
+                                                                                                                                                            }, 
+                                                                                                                                                            {
+                                                                                                                                                              "name": "then not executed"
+                                                                                                                                                            }
+                                                                                                                                                          ]
+                                                                                                                                                        }, 
+                                                                                                                                                        {
+                                                                                                                                                          "name": "", 
+                                                                                                                                                          "children": [
+                                                                                                                                                            {
+                                                                                                                                                              "name": "", 
+                                                                                                                                                              "children": [
+                                                                                                                                                                {
+                                                                                                                                                                  "name": " ", 
+                                                                                                                                                                  "children": [
+                                                                                                                                                                    {
+                                                                                                                                                                      "name": " ", 
+                                                                                                                                                                      "children": [
+                                                                                                                                                                        {
+                                                                                                                                                                          "name": " ", 
+                                                                                                                                                                          "children": [
+                                                                                                                                                                            {
+                                                                                                                                                                              "name": "aux l s t = ", 
+                                                                                                                                                                              "children": [
+                                                                                                                                                                                {
+                                                                                                                                                                                  "name": "(float) 6.0", 
+                                                                                                                                                                                  "collapse": false, 
+                                                                                                                                                                                  "children": [
+                                                                                                                                                                                    {
+                                                                                                                                                                                      "name": " ", 
+                                                                                                                                                                                      "children": [
+                                                                                                                                                                                        {
+                                                                                                                                                                                          "name": " ", 
+                                                                                                                                                                                          "children": [
+                                                                                                                                                                                            {
+                                                                                                                                                                                              "name": "cond"
+                                                                                                                                                                                            }, 
+                                                                                                                                                                                            {
+                                                                                                                                                                                              "name": "(bool) True", 
+                                                                                                                                                                                              "children": [
+                                                                                                                                                                                                {
+                                                                                                                                                                                                  "name": " ", 
+                                                                                                                                                                                                  "children": [
+                                                                                                                                                                                                    {
+                                                                                                                                                                                                      "name": "=="
+                                                                                                                                                                                                    }, 
+                                                                                                                                                                                                    {
+                                                                                                                                                                                                      "children": [], 
+                                                                                                                                                                                                      "name": "l", 
+                                                                                                                                                                                                      "collapse": true
+                                                                                                                                                                                                    }
+                                                                                                                                                                                                  ]
+                                                                                                                                                                                                }, 
+                                                                                                                                                                                                {
+                                                                                                                                                                                                  "name": "(list)", 
+                                                                                                                                                                                                  "children": []
+                                                                                                                                                                                                }
+                                                                                                                                                                                              ]
+                                                                                                                                                                                            }
+                                                                                                                                                                                          ]
+                                                                                                                                                                                        }, 
+                                                                                                                                                                                        {
+                                                                                                                                                                                          "name": "(float) 6.0", 
+                                                                                                                                                                                          "children": [
+                                                                                                                                                                                            {
+                                                                                                                                                                                              "name": " ", 
+                                                                                                                                                                                              "children": [
+                                                                                                                                                                                                {
+                                                                                                                                                                                                  "name": "/"
+                                                                                                                                                                                                }, 
+                                                                                                                                                                                                {
+                                                                                                                                                                                                  "children": [], 
+                                                                                                                                                                                                  "name": "s", 
+                                                                                                                                                                                                  "collapse": true
+                                                                                                                                                                                                }
+                                                                                                                                                                                              ]
+                                                                                                                                                                                            }, 
+                                                                                                                                                                                            {
+                                                                                                                                                                                              "children": [], 
+                                                                                                                                                                                              "name": "t", 
+                                                                                                                                                                                              "collapse": true
+                                                                                                                                                                                            }
+                                                                                                                                                                                          ]
+                                                                                                                                                                                        }
+                                                                                                                                                                                      ]
+                                                                                                                                                                                    }, 
+                                                                                                                                                                                    {
+                                                                                                                                                                                      "name": "else not executed"
+                                                                                                                                                                                    }
+                                                                                                                                                                                  ]
+                                                                                                                                                                                }
+                                                                                                                                                                              ]
+                                                                                                                                                                            }, 
+                                                                                                                                                                            {
+                                                                                                                                                                              "children": [], 
+                                                                                                                                                                              "name": "xs", 
+                                                                                                                                                                              "collapse": true
+                                                                                                                                                                            }
+                                                                                                                                                                          ]
+                                                                                                                                                                        }, 
+                                                                                                                                                                        {
+                                                                                                                                                                          "name": "(float) 30.0", 
+                                                                                                                                                                          "children": [
+                                                                                                                                                                            {
+                                                                                                                                                                              "name": " ", 
+                                                                                                                                                                              "children": [
+                                                                                                                                                                                {
+                                                                                                                                                                                  "name": "+"
+                                                                                                                                                                                }, 
+                                                                                                                                                                                {
+                                                                                                                                                                                  "children": [], 
+                                                                                                                                                                                  "name": "s", 
+                                                                                                                                                                                  "collapse": true
+                                                                                                                                                                                }
+                                                                                                                                                                              ]
+                                                                                                                                                                            }, 
+                                                                                                                                                                            {
+                                                                                                                                                                              "children": [], 
+                                                                                                                                                                              "name": "x", 
+                                                                                                                                                                              "collapse": true
+                                                                                                                                                                            }
+                                                                                                                                                                          ]
+                                                                                                                                                                        }
+                                                                                                                                                                      ]
+                                                                                                                                                                    }, 
+                                                                                                                                                                    {
+                                                                                                                                                                      "name": "(int) 5", 
+                                                                                                                                                                      "children": [
+                                                                                                                                                                        {
+                                                                                                                                                                          "name": " ", 
+                                                                                                                                                                          "children": [
+                                                                                                                                                                            {
+                                                                                                                                                                              "name": "+"
+                                                                                                                                                                            }, 
+                                                                                                                                                                            {
+                                                                                                                                                                              "children": [], 
+                                                                                                                                                                              "name": "t", 
+                                                                                                                                                                              "collapse": true
+                                                                                                                                                                            }
+                                                                                                                                                                          ]
+                                                                                                                                                                        }, 
+                                                                                                                                                                        {
+                                                                                                                                                                          "name": "(int) 1"
+                                                                                                                                                                        }
+                                                                                                                                                                      ]
+                                                                                                                                                                    }
+                                                                                                                                                                  ]
+                                                                                                                                                                }, 
+                                                                                                                                                                {
+                                                                                                                                                                  "name": "where x = ", 
+                                                                                                                                                                  "children": [
+                                                                                                                                                                    {
+                                                                                                                                                                      "name": " ", 
+                                                                                                                                                                      "children": [
+                                                                                                                                                                        {
+                                                                                                                                                                          "name": "first list = ", 
+                                                                                                                                                                          "children": [
+                                                                                                                                                                            {
+                                                                                                                                                                              "name": "(list) []", 
+                                                                                                                                                                              "collapse": true
+                                                                                                                                                                            }
+                                                                                                                                                                          ]
+                                                                                                                                                                        }, 
+                                                                                                                                                                        {
+                                                                                                                                                                          "children": [], 
+                                                                                                                                                                          "name": "l", 
+                                                                                                                                                                          "collapse": true
+                                                                                                                                                                        }
+                                                                                                                                                                      ]
+                                                                                                                                                                    }
+                                                                                                                                                                  ]
+                                                                                                                                                                }
+                                                                                                                                                              ]
+                                                                                                                                                            }, 
+                                                                                                                                                            {
+                                                                                                                                                              "name": "where xs = ", 
+                                                                                                                                                              "children": [
+                                                                                                                                                                {
+                                                                                                                                                                  "name": " ", 
+                                                                                                                                                                  "children": [
+                                                                                                                                                                    {
+                                                                                                                                                                      "name": "rest list = ", 
+                                                                                                                                                                      "children": [
+                                                                                                                                                                        {
+                                                                                                                                                                          "name": "(list) []", 
+                                                                                                                                                                          "collapse": true
+                                                                                                                                                                        }
+                                                                                                                                                                      ]
+                                                                                                                                                                    }, 
+                                                                                                                                                                    {
+                                                                                                                                                                      "children": [], 
+                                                                                                                                                                      "name": "l", 
+                                                                                                                                                                      "collapse": true
+                                                                                                                                                                    }
+                                                                                                                                                                  ]
+                                                                                                                                                                }
+                                                                                                                                                              ]
+                                                                                                                                                            }
+                                                                                                                                                          ]
+                                                                                                                                                        }
+                                                                                                                                                      ]
+                                                                                                                                                    }
+                                                                                                                                                  ]
+                                                                                                                                                }, 
+                                                                                                                                                {
+                                                                                                                                                  "children": [], 
+                                                                                                                                                  "name": "xs", 
+                                                                                                                                                  "collapse": true
+                                                                                                                                                }
+                                                                                                                                              ]
+                                                                                                                                            }, 
+                                                                                                                                            {
+                                                                                                                                              "name": "(float) 25.0", 
+                                                                                                                                              "children": [
+                                                                                                                                                {
+                                                                                                                                                  "name": " ", 
+                                                                                                                                                  "children": [
+                                                                                                                                                    {
+                                                                                                                                                      "name": "+"
+                                                                                                                                                    }, 
+                                                                                                                                                    {
+                                                                                                                                                      "children": [], 
+                                                                                                                                                      "name": "s", 
+                                                                                                                                                      "collapse": true
+                                                                                                                                                    }
+                                                                                                                                                  ]
+                                                                                                                                                }, 
+                                                                                                                                                {
+                                                                                                                                                  "children": [], 
+                                                                                                                                                  "name": "x", 
+                                                                                                                                                  "collapse": true
+                                                                                                                                                }
+                                                                                                                                              ]
+                                                                                                                                            }
+                                                                                                                                          ]
+                                                                                                                                        }, 
+                                                                                                                                        {
+                                                                                                                                          "name": "(int) 4", 
+                                                                                                                                          "children": [
+                                                                                                                                            {
+                                                                                                                                              "name": " ", 
+                                                                                                                                              "children": [
+                                                                                                                                                {
+                                                                                                                                                  "name": "+"
+                                                                                                                                                }, 
+                                                                                                                                                {
+                                                                                                                                                  "children": [], 
+                                                                                                                                                  "name": "t", 
+                                                                                                                                                  "collapse": true
+                                                                                                                                                }
+                                                                                                                                              ]
+                                                                                                                                            }, 
+                                                                                                                                            {
+                                                                                                                                              "name": "(int) 1"
+                                                                                                                                            }
+                                                                                                                                          ]
+                                                                                                                                        }
+                                                                                                                                      ]
+                                                                                                                                    }, 
+                                                                                                                                    {
+                                                                                                                                      "name": "where x = ", 
+                                                                                                                                      "children": [
+                                                                                                                                        {
+                                                                                                                                          "name": " ", 
+                                                                                                                                          "children": [
+                                                                                                                                            {
+                                                                                                                                              "name": "first list = ", 
+                                                                                                                                              "children": [
+                                                                                                                                                {
+                                                                                                                                                  "name": "(float) 5.0", 
+                                                                                                                                                  "collapse": true
+                                                                                                                                                }
+                                                                                                                                              ]
+                                                                                                                                            }, 
+                                                                                                                                            {
+                                                                                                                                              "children": [], 
+                                                                                                                                              "name": "l", 
+                                                                                                                                              "collapse": true
+                                                                                                                                            }
+                                                                                                                                          ]
+                                                                                                                                        }
+                                                                                                                                      ]
+                                                                                                                                    }
+                                                                                                                                  ]
+                                                                                                                                }, 
+                                                                                                                                {
+                                                                                                                                  "name": "where xs = ", 
+                                                                                                                                  "children": [
+                                                                                                                                    {
+                                                                                                                                      "name": " ", 
+                                                                                                                                      "children": [
+                                                                                                                                        {
+                                                                                                                                          "name": "rest list = ", 
+                                                                                                                                          "children": [
+                                                                                                                                            {
+                                                                                                                                              "name": "(list) []", 
+                                                                                                                                              "collapse": true
+                                                                                                                                            }
+                                                                                                                                          ]
+                                                                                                                                        }, 
+                                                                                                                                        {
+                                                                                                                                          "children": [], 
+                                                                                                                                          "name": "l", 
+                                                                                                                                          "collapse": true
+                                                                                                                                        }
+                                                                                                                                      ]
+                                                                                                                                    }
+                                                                                                                                  ]
+                                                                                                                                }
+                                                                                                                              ]
+                                                                                                                            }
+                                                                                                                          ]
+                                                                                                                        }
+                                                                                                                      ]
+                                                                                                                    }, 
+                                                                                                                    {
+                                                                                                                      "children": [], 
+                                                                                                                      "name": "xs", 
+                                                                                                                      "collapse": true
+                                                                                                                    }
+                                                                                                                  ]
+                                                                                                                }, 
+                                                                                                                {
+                                                                                                                  "name": "(float) 21.0", 
+                                                                                                                  "children": [
+                                                                                                                    {
+                                                                                                                      "name": " ", 
+                                                                                                                      "children": [
+                                                                                                                        {
+                                                                                                                          "name": "+"
+                                                                                                                        }, 
+                                                                                                                        {
+                                                                                                                          "children": [], 
+                                                                                                                          "name": "s", 
+                                                                                                                          "collapse": true
+                                                                                                                        }
+                                                                                                                      ]
+                                                                                                                    }, 
+                                                                                                                    {
+                                                                                                                      "children": [], 
+                                                                                                                      "name": "x", 
+                                                                                                                      "collapse": true
+                                                                                                                    }
+                                                                                                                  ]
+                                                                                                                }
+                                                                                                              ]
+                                                                                                            }, 
+                                                                                                            {
+                                                                                                              "name": "(int) 3", 
+                                                                                                              "children": [
+                                                                                                                {
+                                                                                                                  "name": " ", 
+                                                                                                                  "children": [
+                                                                                                                    {
+                                                                                                                      "name": "+"
+                                                                                                                    }, 
+                                                                                                                    {
+                                                                                                                      "children": [], 
+                                                                                                                      "name": "t", 
+                                                                                                                      "collapse": true
+                                                                                                                    }
+                                                                                                                  ]
+                                                                                                                }, 
+                                                                                                                {
+                                                                                                                  "name": "(int) 1"
+                                                                                                                }
+                                                                                                              ]
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }, 
+                                                                                                        {
+                                                                                                          "name": "where x = ", 
+                                                                                                          "children": [
+                                                                                                            {
+                                                                                                              "name": " ", 
+                                                                                                              "children": [
+                                                                                                                {
+                                                                                                                  "name": "first list = ", 
+                                                                                                                  "children": [
+                                                                                                                    {
+                                                                                                                      "name": "(float) 4.0", 
+                                                                                                                      "collapse": true
+                                                                                                                    }
+                                                                                                                  ]
+                                                                                                                }, 
+                                                                                                                {
+                                                                                                                  "children": [], 
+                                                                                                                  "name": "l", 
+                                                                                                                  "collapse": true
+                                                                                                                }
+                                                                                                              ]
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }, 
+                                                                                                    {
+                                                                                                      "name": "where xs = ", 
+                                                                                                      "children": [
+                                                                                                        {
+                                                                                                          "name": " ", 
+                                                                                                          "children": [
+                                                                                                            {
+                                                                                                              "name": "rest list = ", 
+                                                                                                              "children": [
+                                                                                                                {
+                                                                                                                  "name": "(list) [5.0]", 
+                                                                                                                  "collapse": true
+                                                                                                                }
+                                                                                                              ]
+                                                                                                            }, 
+                                                                                                            {
+                                                                                                              "children": [], 
+                                                                                                              "name": "l", 
+                                                                                                              "collapse": true
+                                                                                                            }
+                                                                                                          ]
+                                                                                                        }
+                                                                                                      ]
+                                                                                                    }
+                                                                                                  ]
+                                                                                                }
+                                                                                              ]
+                                                                                            }
+                                                                                          ]
+                                                                                        }, 
+                                                                                        {
+                                                                                          "children": [], 
+                                                                                          "name": "xs", 
+                                                                                          "collapse": true
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(float) 18.0", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": " ", 
+                                                                                          "children": [
+                                                                                            {
+                                                                                              "name": "+"
+                                                                                            }, 
+                                                                                            {
+                                                                                              "children": [], 
+                                                                                              "name": "s", 
+                                                                                              "collapse": true
+                                                                                            }
+                                                                                          ]
+                                                                                        }, 
+                                                                                        {
+                                                                                          "children": [], 
+                                                                                          "name": "x", 
+                                                                                          "collapse": true
+                                                                                        }
+                                                                                      ]
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "name": "(int) 2", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": " ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "+"
+                                                                                        }, 
+                                                                                        {
+                                                                                          "children": [], 
+                                                                                          "name": "t", 
+                                                                                          "collapse": true
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "name": "(int) 1"
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }, 
+                                                                            {
+                                                                              "name": "where x = ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": " ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "first list = ", 
+                                                                                      "children": [
+                                                                                        {
+                                                                                          "name": "(float) 3.0", 
+                                                                                          "collapse": true
+                                                                                        }
+                                                                                      ]
+                                                                                    }, 
+                                                                                    {
+                                                                                      "children": [], 
+                                                                                      "name": "l", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }, 
+                                                                        {
+                                                                          "name": "where xs = ", 
+                                                                          "children": [
+                                                                            {
+                                                                              "name": " ", 
+                                                                              "children": [
+                                                                                {
+                                                                                  "name": "rest list = ", 
+                                                                                  "children": [
+                                                                                    {
+                                                                                      "name": "(list) [4.0, 5.0]", 
+                                                                                      "collapse": true
+                                                                                    }
+                                                                                  ]
+                                                                                }, 
+                                                                                {
+                                                                                  "children": [], 
+                                                                                  "name": "l", 
+                                                                                  "collapse": true
+                                                                                }
+                                                                              ]
+                                                                            }
+                                                                          ]
+                                                                        }
+                                                                      ]
+                                                                    }
+                                                                  ]
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "children": [], 
+                                                              "name": "xs", 
+                                                              "collapse": true
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "(float) 10.0", 
+                                                          "children": [
+                                                            {
+                                                              "name": " ", 
+                                                              "children": [
+                                                                {
+                                                                  "name": "+"
+                                                                }, 
+                                                                {
+                                                                  "children": [], 
+                                                                  "name": "s", 
+                                                                  "collapse": true
+                                                                }
+                                                              ]
+                                                            }, 
+                                                            {
+                                                              "children": [], 
+                                                              "name": "x", 
+                                                              "collapse": true
+                                                            }
+                                                          ]
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "name": "(int) 1", 
+                                                      "children": [
+                                                        {
+                                                          "name": " ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "+"
+                                                            }, 
+                                                            {
+                                                              "children": [], 
+                                                              "name": "t", 
+                                                              "collapse": true
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "name": "(int) 1"
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }, 
+                                                {
+                                                  "name": "where x = ", 
+                                                  "children": [
+                                                    {
+                                                      "name": " ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "first list = ", 
+                                                          "children": [
+                                                            {
+                                                              "name": "(float) 8.0", 
+                                                              "collapse": true
+                                                            }
+                                                          ]
+                                                        }, 
+                                                        {
+                                                          "children": [], 
+                                                          "name": "l", 
+                                                          "collapse": true
+                                                        }
+                                                      ]
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }, 
+                                            {
+                                              "name": "where xs = ", 
+                                              "children": [
+                                                {
+                                                  "name": " ", 
+                                                  "children": [
+                                                    {
+                                                      "name": "rest list = ", 
+                                                      "children": [
+                                                        {
+                                                          "name": "(list) [3.0, 4.0, 5.0]", 
+                                                          "collapse": true
+                                                        }
+                                                      ]
+                                                    }, 
+                                                    {
+                                                      "children": [], 
+                                                      "name": "l", 
+                                                      "collapse": true
+                                                    }
+                                                  ]
+                                                }
+                                              ]
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }, 
+                                {
+                                  "children": [], 
+                                  "name": "l", 
+                                  "collapse": true
+                                }
+                              ]
+                            }, 
+                            {
+                              "name": "(int) 0"
+                            }
+                          ]
+                        }, 
+                        {
+                          "name": "(int) 0"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "where x = ", 
+                      "children": [
+                        {
+                          "name": " ", 
+                          "children": [
+                            {
+                              "name": "first list = ", 
+                              "children": [
+                                {
+                                  "name": "(float) 10.0", 
+                                  "collapse": true
+                                }
+                              ]
+                            }, 
+                            {
+                              "children": [], 
+                              "name": "l", 
+                              "collapse": true
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }, 
+                {
+                  "name": "where xs = ", 
+                  "children": [
+                    {
+                      "name": " ", 
+                      "children": [
+                        {
+                          "name": "rest list = ", 
+                          "children": [
+                            {
+                              "name": "(list) [8.0, 3.0, 4.0, 5.0]", 
+                              "collapse": true
+                            }
+                          ]
+                        }, 
+                        {
+                          "children": [], 
+                          "name": "l", 
+                          "collapse": true
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "(list)", 
+          "children": [
+            {
+              "name": "(float) 10.0"
+            }, 
+            {
+              "name": "(float) 8.0"
+            }, 
+            {
+              "name": "(float) 3.0"
+            }, 
+            {
+              "name": "(float) 4.0"
+            }, 
+            {
+              "name": "(float) 5.0"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

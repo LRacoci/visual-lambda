@@ -29,22 +29,14 @@
                                       "name": "*"
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(int) 3"
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "a", 
                                       "collapse": true
                                     }
                                   ]
                                 }, 
                                 {
-                                  "children": [
-                                    {
-                                      "name": "(int) 3"
-                                    }
-                                  ], 
+                                  "children": [], 
                                   "name": "a", 
                                   "collapse": true
                                 }
@@ -60,22 +52,14 @@
                                       "name": "+"
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(int) 3"
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "a", 
                                       "collapse": true
                                     }
                                   ]
                                 }, 
                                 {
-                                  "children": [
-                                    {
-                                      "name": "(int) 3"
-                                    }
-                                  ], 
+                                  "children": [], 
                                   "name": "a", 
                                   "collapse": true
                                 }
@@ -101,22 +85,14 @@
                                       "name": "+"
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(int) 3"
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "a", 
                                       "collapse": true
                                     }
                                   ]
                                 }, 
                                 {
-                                  "children": [
-                                    {
-                                      "name": "(int) 3"
-                                    }
-                                  ], 
+                                  "children": [], 
                                   "name": "a", 
                                   "collapse": true
                                 }
@@ -132,22 +108,14 @@
                                       "name": "*"
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(int) 3"
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "a", 
                                       "collapse": true
                                     }
                                   ]
                                 }, 
                                 {
-                                  "children": [
-                                    {
-                                      "name": "(int) 3"
-                                    }
-                                  ], 
+                                  "children": [], 
                                   "name": "a", 
                                   "collapse": true
                                 }

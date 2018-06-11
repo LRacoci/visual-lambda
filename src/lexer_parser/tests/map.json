@@ -1,0 +1,72 @@
+{
+  "name": "main = [[5, 6], [7, 8]]", 
+  "children": [
+    {
+      "name": "", 
+      "children": [
+        {
+          "name": "main = [[5, 6], [7, 8]]", 
+          "children": [
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "map f list = ", 
+                      "children": [
+                        {
+                          "name": "(list) [[5, 6], [7, 8]]", 
+                          "collapse": true
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "lambda 1 = function"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(list)", 
+                  "children": [
+                    {
+                      "name": "(list)", 
+                      "children": [
+                        {
+                          "name": "(int) 1"
+                        }, 
+                        {
+                          "name": "(int) 2"
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "(list)", 
+                      "children": [
+                        {
+                          "name": "(int) 3"
+                        }, 
+                        {
+                          "name": "(int) 4"
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": "where z = ", 
+          "children": [
+            {
+              "name": "(int) 4"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

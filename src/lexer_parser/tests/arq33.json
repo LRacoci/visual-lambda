@@ -20,66 +20,14 @@
                           "name": "=="
                         }, 
                         {
-                          "children": [
-                            {
-                              "name": "(str) MC911", 
-                              "children": [
-                                {
-                                  "name": " ", 
-                                  "children": [
-                                    {
-                                      "name": "+"
-                                    }, 
-                                    {
-                                      "name": "(str) \"MC\""
-                                    }
-                                  ]
-                                }, 
-                                {
-                                  "name": "(str) \"911\""
-                                }
-                              ]
-                            }
-                          ], 
+                          "children": [], 
                           "name": "a", 
                           "collapse": true
                         }
                       ]
                     }, 
                     {
-                      "children": [
-                        {
-                          "name": "(float) 9.86960440367", 
-                          "children": [
-                            {
-                              "name": " ", 
-                              "children": [
-                                {
-                                  "name": "*"
-                                }, 
-                                {
-                                  "name": "pi = ", 
-                                  "children": [
-                                    {
-                                      "name": "(float) 3.141592654", 
-                                      "collapse": false
-                                    }
-                                  ]
-                                }
-                              ]
-                            }, 
-                            {
-                              "name": "pi = ", 
-                              "children": [
-                                {
-                                  "name": "(float) 3.141592654", 
-                                  "collapse": false
-                                }
-                              ]
-                            }
-                          ]
-                        }
-                      ], 
+                      "children": [], 
                       "name": "b", 
                       "collapse": true
                     }

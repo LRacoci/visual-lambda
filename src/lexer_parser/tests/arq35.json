@@ -26,60 +26,12 @@
                                   "name": "(tuple)", 
                                   "children": [
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(tuple)", 
-                                          "children": [
-                                            {
-                                              "children": [
-                                                {
-                                                  "name": "(int) 1"
-                                                }
-                                              ], 
-                                              "name": "c", 
-                                              "collapse": true
-                                            }, 
-                                            {
-                                              "children": [
-                                                {
-                                                  "name": "(int) 5"
-                                                }
-                                              ], 
-                                              "name": "d", 
-                                              "collapse": true
-                                            }
-                                          ]
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "a", 
                                       "collapse": true
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(tuple)", 
-                                          "children": [
-                                            {
-                                              "children": [
-                                                {
-                                                  "name": "(str) \"M\""
-                                                }
-                                              ], 
-                                              "name": "e", 
-                                              "collapse": true
-                                            }, 
-                                            {
-                                              "children": [
-                                                {
-                                                  "name": "(str) \"C\""
-                                                }
-                                              ], 
-                                              "name": "f", 
-                                              "collapse": true
-                                            }
-                                          ]
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "b", 
                                       "collapse": true
                                     }
@@ -114,20 +66,12 @@
                           "name": "(tuple)", 
                           "children": [
                             {
-                              "children": [
-                                {
-                                  "name": "(int) 1"
-                                }
-                              ], 
+                              "children": [], 
                               "name": "c", 
                               "collapse": true
                             }, 
                             {
-                              "children": [
-                                {
-                                  "name": "(int) 5"
-                                }
-                              ], 
+                              "children": [], 
                               "name": "d", 
                               "collapse": true
                             }
@@ -164,20 +108,12 @@
               "name": "(tuple)", 
               "children": [
                 {
-                  "children": [
-                    {
-                      "name": "(str) \"M\""
-                    }
-                  ], 
+                  "children": [], 
                   "name": "e", 
                   "collapse": true
                 }, 
                 {
-                  "children": [
-                    {
-                      "name": "(str) \"C\""
-                    }
-                  ], 
+                  "children": [], 
                   "name": "f", 
                   "collapse": true
                 }

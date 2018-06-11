@@ -33,22 +33,14 @@
                                       "name": "<"
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(float) 2.5"
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "a", 
                                       "collapse": true
                                     }
                                   ]
                                 }, 
                                 {
-                                  "children": [
-                                    {
-                                      "name": "(str) \"MC911\""
-                                    }
-                                  ], 
+                                  "children": [], 
                                   "name": "b", 
                                   "collapse": true
                                 }

@@ -45,22 +45,14 @@
                                                   "name": "<"
                                                 }, 
                                                 {
-                                                  "children": [
-                                                    {
-                                                      "name": "(int) 1"
-                                                    }
-                                                  ], 
+                                                  "children": [], 
                                                   "name": "a", 
                                                   "collapse": true
                                                 }
                                               ]
                                             }, 
                                             {
-                                              "children": [
-                                                {
-                                                  "name": "(int) 2"
-                                                }
-                                              ], 
+                                              "children": [], 
                                               "name": "b", 
                                               "collapse": true
                                             }

@@ -30,11 +30,7 @@
                                   "name": "<"
                                 }, 
                                 {
-                                  "children": [
-                                    {
-                                      "name": "(int) 5"
-                                    }
-                                  ], 
+                                  "children": [], 
                                   "name": "n", 
                                   "collapse": true
                                 }
@@ -90,33 +86,7 @@
                                                       "name": "<"
                                                     }, 
                                                     {
-                                                      "children": [
-                                                        {
-                                                          "name": "(int) 4", 
-                                                          "children": [
-                                                            {
-                                                              "name": " ", 
-                                                              "children": [
-                                                                {
-                                                                  "name": "-"
-                                                                }, 
-                                                                {
-                                                                  "children": [
-                                                                    {
-                                                                      "name": "(int) 5"
-                                                                    }
-                                                                  ], 
-                                                                  "name": "n", 
-                                                                  "collapse": true
-                                                                }
-                                                              ]
-                                                            }, 
-                                                            {
-                                                              "name": "(int) 1"
-                                                            }
-                                                          ]
-                                                        }
-                                                      ], 
+                                                      "children": [], 
                                                       "name": "n", 
                                                       "collapse": true
                                                     }
@@ -165,33 +135,7 @@
                                                           "name": "-"
                                                         }, 
                                                         {
-                                                          "children": [
-                                                            {
-                                                              "name": "(int) 4", 
-                                                              "children": [
-                                                                {
-                                                                  "name": " ", 
-                                                                  "children": [
-                                                                    {
-                                                                      "name": "-"
-                                                                    }, 
-                                                                    {
-                                                                      "children": [
-                                                                        {
-                                                                          "name": "(int) 5"
-                                                                        }
-                                                                      ], 
-                                                                      "name": "n", 
-                                                                      "collapse": true
-                                                                    }
-                                                                  ]
-                                                                }, 
-                                                                {
-                                                                  "name": "(int) 1"
-                                                                }
-                                                              ]
-                                                            }
-                                                          ], 
+                                                          "children": [], 
                                                           "name": "n", 
                                                           "collapse": true
                                                         }
@@ -228,33 +172,7 @@
                                                       "name": "-"
                                                     }, 
                                                     {
-                                                      "children": [
-                                                        {
-                                                          "name": "(int) 4", 
-                                                          "children": [
-                                                            {
-                                                              "name": " ", 
-                                                              "children": [
-                                                                {
-                                                                  "name": "-"
-                                                                }, 
-                                                                {
-                                                                  "children": [
-                                                                    {
-                                                                      "name": "(int) 5"
-                                                                    }
-                                                                  ], 
-                                                                  "name": "n", 
-                                                                  "collapse": true
-                                                                }
-                                                              ]
-                                                            }, 
-                                                            {
-                                                              "name": "(int) 1"
-                                                            }
-                                                          ]
-                                                        }
-                                                      ], 
+                                                      "children": [], 
                                                       "name": "n", 
                                                       "collapse": true
                                                     }
@@ -283,11 +201,7 @@
                                       "name": "-"
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(int) 5"
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "n", 
                                       "collapse": true
                                     }
@@ -324,11 +238,7 @@
                                   "name": "-"
                                 }, 
                                 {
-                                  "children": [
-                                    {
-                                      "name": "(int) 5"
-                                    }
-                                  ], 
+                                  "children": [], 
                                   "name": "n", 
                                   "collapse": true
                                 }

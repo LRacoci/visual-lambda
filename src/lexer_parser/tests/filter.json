@@ -1,0 +1,102 @@
+{
+  "name": "main = [3, 3, 1, 1]", 
+  "children": [
+    {
+      "name": "(list) [3, 3, 1, 1]", 
+      "children": [
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": "+"
+            }, 
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": " ", 
+                  "children": [
+                    {
+                      "name": "filter f list = ", 
+                      "children": [
+                        {
+                          "name": "(list) [3, 3]", 
+                          "collapse": true
+                        }
+                      ]
+                    }, 
+                    {
+                      "name": "lambda 0 = function"
+                    }
+                  ]
+                }, 
+                {
+                  "name": "(list)", 
+                  "children": [
+                    {
+                      "name": "(int) 1"
+                    }, 
+                    {
+                      "name": "(int) 1"
+                    }, 
+                    {
+                      "name": "(int) 2"
+                    }, 
+                    {
+                      "name": "(int) 3"
+                    }, 
+                    {
+                      "name": "(int) 3"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }, 
+        {
+          "name": " ", 
+          "children": [
+            {
+              "name": " ", 
+              "children": [
+                {
+                  "name": "filter f list = ", 
+                  "children": [
+                    {
+                      "name": "(list) [1, 1]", 
+                      "collapse": true
+                    }
+                  ]
+                }, 
+                {
+                  "name": "lambda 1 = function"
+                }
+              ]
+            }, 
+            {
+              "name": "(list)", 
+              "children": [
+                {
+                  "name": "(int) 1"
+                }, 
+                {
+                  "name": "(int) 1"
+                }, 
+                {
+                  "name": "(int) 2"
+                }, 
+                {
+                  "name": "(int) 3"
+                }, 
+                {
+                  "name": "(int) 3"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

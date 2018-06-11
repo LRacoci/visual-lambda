@@ -24,44 +24,14 @@
                               "name": "+"
                             }, 
                             {
-                              "children": [
-                                {
-                                  "name": "(int) 1"
-                                }
-                              ], 
+                              "children": [], 
                               "name": "1arg", 
                               "collapse": true
                             }
                           ]
                         }, 
                         {
-                          "children": [
-                            {
-                              "name": "(int) 2", 
-                              "children": [
-                                {
-                                  "name": " ", 
-                                  "children": [
-                                    {
-                                      "name": "+"
-                                    }, 
-                                    {
-                                      "children": [
-                                        {
-                                          "name": "(int) 1"
-                                        }
-                                      ], 
-                                      "name": "2arg", 
-                                      "collapse": true
-                                    }
-                                  ]
-                                }, 
-                                {
-                                  "name": "(int) 1"
-                                }
-                              ]
-                            }
-                          ], 
+                          "children": [], 
                           "name": "0arg", 
                           "collapse": true
                         }
@@ -92,11 +62,7 @@
                           "name": "+"
                         }, 
                         {
-                          "children": [
-                            {
-                              "name": "(int) 1"
-                            }
-                          ], 
+                          "children": [], 
                           "name": "2arg", 
                           "collapse": true
                         }

@@ -21,11 +21,7 @@
                           "name": "+"
                         }, 
                         {
-                          "children": [
-                            {
-                              "name": "(int) 1"
-                            }
-                          ], 
+                          "children": [], 
                           "name": "a", 
                           "collapse": true
                         }
@@ -48,17 +44,7 @@
                                       "name": "/"
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "children": [
-                                            {
-                                              "name": "(int) 2"
-                                            }
-                                          ], 
-                                          "name": "b", 
-                                          "collapse": true
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "x", 
                                       "collapse": true
                                     }
@@ -72,11 +58,7 @@
                           ]
                         }, 
                         {
-                          "children": [
-                            {
-                              "name": "(int) 2"
-                            }
-                          ], 
+                          "children": [], 
                           "name": "b", 
                           "collapse": true
                         }

@@ -24,17 +24,7 @@
                               "name": "+"
                             }, 
                             {
-                              "children": [
-                                {
-                                  "children": [
-                                    {
-                                      "name": "(str) \"MC\""
-                                    }
-                                  ], 
-                                  "name": "a", 
-                                  "collapse": true
-                                }
-                              ], 
+                              "children": [], 
                               "name": "a", 
                               "collapse": true
                             }
@@ -48,11 +38,7 @@
                   ]
                 }, 
                 {
-                  "children": [
-                    {
-                      "name": "(str) \"MC\""
-                    }
-                  ], 
+                  "children": [], 
                   "name": "a", 
                   "collapse": true
                 }

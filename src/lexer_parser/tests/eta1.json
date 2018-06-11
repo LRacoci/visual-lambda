@@ -21,22 +21,14 @@
                           "name": "+"
                         }, 
                         {
-                          "children": [
-                            {
-                              "name": "(int) 1"
-                            }
-                          ], 
+                          "children": [], 
                           "name": "1arg", 
                           "collapse": true
                         }
                       ]
                     }, 
                     {
-                      "children": [
-                        {
-                          "name": "(int) 2"
-                        }
-                      ], 
+                      "children": [], 
                       "name": "0arg", 
                       "collapse": true
                     }

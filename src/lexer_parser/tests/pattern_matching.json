@@ -33,16 +33,7 @@
                                       "name": "=="
                                     }, 
                                     {
-                                      "children": [
-                                        {
-                                          "name": "(list)", 
-                                          "children": [
-                                            {
-                                              "name": "(int) 1"
-                                            }
-                                          ]
-                                        }
-                                      ], 
+                                      "children": [], 
                                       "name": "b", 
                                       "collapse": true
                                     }

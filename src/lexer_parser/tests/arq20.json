@@ -37,17 +37,7 @@
                                           "name": "=="
                                         }, 
                                         {
-                                          "children": [
-                                            {
-                                              "children": [
-                                                {
-                                                  "name": "(int) 3"
-                                                }
-                                              ], 
-                                              "name": "n", 
-                                              "collapse": true
-                                            }
-                                          ], 
+                                          "children": [], 
                                           "name": "a", 
                                           "collapse": true
                                         }
@@ -61,11 +51,7 @@
                               ]
                             }, 
                             {
-                              "children": [
-                                {
-                                  "name": "(int) 3"
-                                }
-                              ], 
+                              "children": [], 
                               "name": "n", 
                               "collapse": true
                             }
@@ -88,11 +74,7 @@
                           "name": "*"
                         }, 
                         {
-                          "children": [
-                            {
-                              "name": "(int) 3"
-                            }
-                          ], 
+                          "children": [], 
                           "name": "n", 
                           "collapse": true
                         }
@@ -134,39 +116,7 @@
                                                           "name": "=="
                                                         }, 
                                                         {
-                                                          "children": [
-                                                            {
-                                                              "children": [
-                                                                {
-                                                                  "name": "(int) 2", 
-                                                                  "children": [
-                                                                    {
-                                                                      "name": " ", 
-                                                                      "children": [
-                                                                        {
-                                                                          "name": "-"
-                                                                        }, 
-                                                                        {
-                                                                          "children": [
-                                                                            {
-                                                                              "name": "(int) 3"
-                                                                            }
-                                                                          ], 
-                                                                          "name": "n", 
-                                                                          "collapse": true
-                                                                        }
-                                                                      ]
-                                                                    }, 
-                                                                    {
-                                                                      "name": "(int) 1"
-                                                                    }
-                                                                  ]
-                                                                }
-                                                              ], 
-                                                              "name": "n", 
-                                                              "collapse": true
-                                                            }
-                                                          ], 
+                                                          "children": [], 
                                                           "name": "a", 
                                                           "collapse": true
                                                         }
@@ -180,33 +130,7 @@
                                               ]
                                             }, 
                                             {
-                                              "children": [
-                                                {
-                                                  "name": "(int) 2", 
-                                                  "children": [
-                                                    {
-                                                      "name": " ", 
-                                                      "children": [
-                                                        {
-                                                          "name": "-"
-                                                        }, 
-                                                        {
-                                                          "children": [
-                                                            {
-                                                              "name": "(int) 3"
-                                                            }
-                                                          ], 
-                                                          "name": "n", 
-                                                          "collapse": true
-                                                        }
-                                                      ]
-                                                    }, 
-                                                    {
-                                                      "name": "(int) 1"
-                                                    }
-                                                  ]
-                                                }
-                                              ], 
+                                              "children": [], 
                                               "name": "n", 
                                               "collapse": true
                                             }
@@ -229,33 +153,7 @@
                                           "name": "*"
                                         }, 
                                         {
-                                          "children": [
-                                            {
-                                              "name": "(int) 2", 
-                                              "children": [
-                                                {
-                                                  "name": " ", 
-                                                  "children": [
-                                                    {
-                                                      "name": "-"
-                                                    }, 
-                                                    {
-                                                      "children": [
-                                                        {
-                                                          "name": "(int) 3"
-                                                        }
-                                                      ], 
-                                                      "name": "n", 
-                                                      "collapse": true
-                                                    }
-                                                  ]
-                                                }, 
-                                                {
-                                                  "name": "(int) 1"
-                                                }
-                                              ]
-                                            }
-                                          ], 
+                                          "children": [], 
                                           "name": "n", 
                                           "collapse": true
                                         }
@@ -297,61 +195,7 @@
                                                                           "name": "=="
                                                                         }, 
                                                                         {
-                                                                          "children": [
-                                                                            {
-                                                                              "children": [
-                                                                                {
-                                                                                  "name": "(int) 1", 
-                                                                                  "children": [
-                                                                                    {
-                                                                                      "name": " ", 
-                                                                                      "children": [
-                                                                                        {
-                                                                                          "name": "-"
-                                                                                        }, 
-                                                                                        {
-                                                                                          "children": [
-                                                                                            {
-                                                                                              "name": "(int) 2", 
-                                                                                              "children": [
-                                                                                                {
-                                                                                                  "name": " ", 
-                                                                                                  "children": [
-                                                                                                    {
-                                                                                                      "name": "-"
-                                                                                                    }, 
-                                                                                                    {
-                                                                                                      "children": [
-                                                                                                        {
-                                                                                                          "name": "(int) 3"
-                                                                                                        }
-                                                                                                      ], 
-                                                                                                      "name": "n", 
-                                                                                                      "collapse": true
-                                                                                                    }
-                                                                                                  ]
-                                                                                                }, 
-                                                                                                {
-                                                                                                  "name": "(int) 1"
-                                                                                                }
-                                                                                              ]
-                                                                                            }
-                                                                                          ], 
-                                                                                          "name": "n", 
-                                                                                          "collapse": true
-                                                                                        }
-                                                                                      ]
-                                                                                    }, 
-                                                                                    {
-                                                                                      "name": "(int) 1"
-                                                                                    }
-                                                                                  ]
-                                                                                }
-                                                                              ], 
-                                                                              "name": "n", 
-                                                                              "collapse": true
-                                                                            }
-                                                                          ], 
+                                                                          "children": [], 
                                                                           "name": "a", 
                                                                           "collapse": true
                                                                         }
@@ -365,55 +209,7 @@
                                                               ]
                                                             }, 
                                                             {
-                                                              "children": [
-                                                                {
-                                                                  "name": "(int) 1", 
-                                                                  "children": [
-                                                                    {
-                                                                      "name": " ", 
-                                                                      "children": [
-                                                                        {
-                                                                          "name": "-"
-                                                                        }, 
-                                                                        {
-                                                                          "children": [
-                                                                            {
-                                                                              "name": "(int) 2", 
-                                                                              "children": [
-                                                                                {
-                                                                                  "name": " ", 
-                                                                                  "children": [
-                                                                                    {
-                                                                                      "name": "-"
-                                                                                    }, 
-                                                                                    {
-                                                                                      "children": [
-                                                                                        {
-                                                                                          "name": "(int) 3"
-                                                                                        }
-                                                                                      ], 
-                                                                                      "name": "n", 
-                                                                                      "collapse": true
-                                                                                    }
-                                                                                  ]
-                                                                                }, 
-                                                                                {
-                                                                                  "name": "(int) 1"
-                                                                                }
-                                                                              ]
-                                                                            }
-                                                                          ], 
-                                                                          "name": "n", 
-                                                                          "collapse": true
-                                                                        }
-                                                                      ]
-                                                                    }, 
-                                                                    {
-                                                                      "name": "(int) 1"
-                                                                    }
-                                                                  ]
-                                                                }
-                                                              ], 
+                                                              "children": [], 
                                                               "name": "n", 
                                                               "collapse": true
                                                             }
@@ -436,55 +232,7 @@
                                                           "name": "*"
                                                         }, 
                                                         {
-                                                          "children": [
-                                                            {
-                                                              "name": "(int) 1", 
-                                                              "children": [
-                                                                {
-                                                                  "name": " ", 
-                                                                  "children": [
-                                                                    {
-                                                                      "name": "-"
-                                                                    }, 
-                                                                    {
-                                                                      "children": [
-                                                                        {
-                                                                          "name": "(int) 2", 
-                                                                          "children": [
-                                                                            {
-                                                                              "name": " ", 
-                                                                              "children": [
-                                                                                {
-                                                                                  "name": "-"
-                                                                                }, 
-                                                                                {
-                                                                                  "children": [
-                                                                                    {
-                                                                                      "name": "(int) 3"
-                                                                                    }
-                                                                                  ], 
-                                                                                  "name": "n", 
-                                                                                  "collapse": true
-                                                                                }
-                                                                              ]
-                                                                            }, 
-                                                                            {
-                                                                              "name": "(int) 1"
-                                                                            }
-                                                                          ]
-                                                                        }
-                                                                      ], 
-                                                                      "name": "n", 
-                                                                      "collapse": true
-                                                                    }
-                                                                  ]
-                                                                }, 
-                                                                {
-                                                                  "name": "(int) 1"
-                                                                }
-                                                              ]
-                                                            }
-                                                          ], 
+                                                          "children": [], 
                                                           "name": "n", 
                                                           "collapse": true
                                                         }
@@ -526,83 +274,7 @@
                                                                                           "name": "=="
                                                                                         }, 
                                                                                         {
-                                                                                          "children": [
-                                                                                            {
-                                                                                              "children": [
-                                                                                                {
-                                                                                                  "name": "(int) 0", 
-                                                                                                  "children": [
-                                                                                                    {
-                                                                                                      "name": " ", 
-                                                                                                      "children": [
-                                                                                                        {
-                                                                                                          "name": "-"
-                                                                                                        }, 
-                                                                                                        {
-                                                                                                          "children": [
-                                                                                                            {
-                                                                                                              "name": "(int) 1", 
-                                                                                                              "children": [
-                                                                                                                {
-                                                                                                                  "name": " ", 
-                                                                                                                  "children": [
-                                                                                                                    {
-                                                                                                                      "name": "-"
-                                                                                                                    }, 
-                                                                                                                    {
-                                                                                                                      "children": [
-                                                                                                                        {
-                                                                                                                          "name": "(int) 2", 
-                                                                                                                          "children": [
-                                                                                                                            {
-                                                                                                                              "name": " ", 
-                                                                                                                              "children": [
-                                                                                                                                {
-                                                                                                                                  "name": "-"
-                                                                                                                                }, 
-                                                                                                                                {
-                                                                                                                                  "children": [
-                                                                                                                                    {
-                                                                                                                                      "name": "(int) 3"
-                                                                                                                                    }
-                                                                                                                                  ], 
-                                                                                                                                  "name": "n", 
-                                                                                                                                  "collapse": true
-                                                                                                                                }
-                                                                                                                              ]
-                                                                                                                            }, 
-                                                                                                                            {
-                                                                                                                              "name": "(int) 1"
-                                                                                                                            }
-                                                                                                                          ]
-                                                                                                                        }
-                                                                                                                      ], 
-                                                                                                                      "name": "n", 
-                                                                                                                      "collapse": true
-                                                                                                                    }
-                                                                                                                  ]
-                                                                                                                }, 
-                                                                                                                {
-                                                                                                                  "name": "(int) 1"
-                                                                                                                }
-                                                                                                              ]
-                                                                                                            }
-                                                                                                          ], 
-                                                                                                          "name": "n", 
-                                                                                                          "collapse": true
-                                                                                                        }
-                                                                                                      ]
-                                                                                                    }, 
-                                                                                                    {
-                                                                                                      "name": "(int) 1"
-                                                                                                    }
-                                                                                                  ]
-                                                                                                }
-                                                                                              ], 
-                                                                                              "name": "n", 
-                                                                                              "collapse": true
-                                                                                            }
-                                                                                          ], 
+                                                                                          "children": [], 
                                                                                           "name": "a", 
                                                                                           "collapse": true
                                                                                         }
@@ -616,77 +288,7 @@
                                                                               ]
                                                                             }, 
                                                                             {
-                                                                              "children": [
-                                                                                {
-                                                                                  "name": "(int) 0", 
-                                                                                  "children": [
-                                                                                    {
-                                                                                      "name": " ", 
-                                                                                      "children": [
-                                                                                        {
-                                                                                          "name": "-"
-                                                                                        }, 
-                                                                                        {
-                                                                                          "children": [
-                                                                                            {
-                                                                                              "name": "(int) 1", 
-                                                                                              "children": [
-                                                                                                {
-                                                                                                  "name": " ", 
-                                                                                                  "children": [
-                                                                                                    {
-                                                                                                      "name": "-"
-                                                                                                    }, 
-                                                                                                    {
-                                                                                                      "children": [
-                                                                                                        {
-                                                                                                          "name": "(int) 2", 
-                                                                                                          "children": [
-                                                                                                            {
-                                                                                                              "name": " ", 
-                                                                                                              "children": [
-                                                                                                                {
-                                                                                                                  "name": "-"
-                                                                                                                }, 
-                                                                                                                {
-                                                                                                                  "children": [
-                                                                                                                    {
-                                                                                                                      "name": "(int) 3"
-                                                                                                                    }
-                                                                                                                  ], 
-                                                                                                                  "name": "n", 
-                                                                                                                  "collapse": true
-                                                                                                                }
-                                                                                                              ]
-                                                                                                            }, 
-                                                                                                            {
-                                                                                                              "name": "(int) 1"
-                                                                                                            }
-                                                                                                          ]
-                                                                                                        }
-                                                                                                      ], 
-                                                                                                      "name": "n", 
-                                                                                                      "collapse": true
-                                                                                                    }
-                                                                                                  ]
-                                                                                                }, 
-                                                                                                {
-                                                                                                  "name": "(int) 1"
-                                                                                                }
-                                                                                              ]
-                                                                                            }
-                                                                                          ], 
-                                                                                          "name": "n", 
-                                                                                          "collapse": true
-                                                                                        }
-                                                                                      ]
-                                                                                    }, 
-                                                                                    {
-                                                                                      "name": "(int) 1"
-                                                                                    }
-                                                                                  ]
-                                                                                }
-                                                                              ], 
+                                                                              "children": [], 
                                                                               "name": "n", 
                                                                               "collapse": true
                                                                             }
@@ -716,55 +318,7 @@
                                                                   "name": "-"
                                                                 }, 
                                                                 {
-                                                                  "children": [
-                                                                    {
-                                                                      "name": "(int) 1", 
-                                                                      "children": [
-                                                                        {
-                                                                          "name": " ", 
-                                                                          "children": [
-                                                                            {
-                                                                              "name": "-"
-                                                                            }, 
-                                                                            {
-                                                                              "children": [
-                                                                                {
-                                                                                  "name": "(int) 2", 
-                                                                                  "children": [
-                                                                                    {
-                                                                                      "name": " ", 
-                                                                                      "children": [
-                                                                                        {
-                                                                                          "name": "-"
-                                                                                        }, 
-                                                                                        {
-                                                                                          "children": [
-                                                                                            {
-                                                                                              "name": "(int) 3"
-                                                                                            }
-                                                                                          ], 
-                                                                                          "name": "n", 
-                                                                                          "collapse": true
-                                                                                        }
-                                                                                      ]
-                                                                                    }, 
-                                                                                    {
-                                                                                      "name": "(int) 1"
-                                                                                    }
-                                                                                  ]
-                                                                                }
-                                                                              ], 
-                                                                              "name": "n", 
-                                                                              "collapse": true
-                                                                            }
-                                                                          ]
-                                                                        }, 
-                                                                        {
-                                                                          "name": "(int) 1"
-                                                                        }
-                                                                      ]
-                                                                    }
-                                                                  ], 
+                                                                  "children": [], 
                                                                   "name": "n", 
                                                                   "collapse": true
                                                                 }
@@ -793,33 +347,7 @@
                                                   "name": "-"
                                                 }, 
                                                 {
-                                                  "children": [
-                                                    {
-                                                      "name": "(int) 2", 
-                                                      "children": [
-                                                        {
-                                                          "name": " ", 
-                                                          "children": [
-                                                            {
-                                                              "name": "-"
-                                                            }, 
-                                                            {
-                                                              "children": [
-                                                                {
-                                                                  "name": "(int) 3"
-                                                                }
-                                                              ], 
-                                                              "name": "n", 
-                                                              "collapse": true
-                                                            }
-                                                          ]
-                                                        }, 
-                                                        {
-                                                          "name": "(int) 1"
-                                                        }
-                                                      ]
-                                                    }
-                                                  ], 
+                                                  "children": [], 
                                                   "name": "n", 
                                                   "collapse": true
                                                 }
@@ -848,11 +376,7 @@
                                   "name": "-"
                                 }, 
                                 {
-                                  "children": [
-                                    {
-                                      "name": "(int) 3"
-                                    }
-                                  ], 
+                                  "children": [], 
                                   "name": "n", 
                                   "collapse": true
                                 }

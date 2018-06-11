@@ -11,39 +11,7 @@
               "name": "main = a", 
               "children": [
                 {
-                  "children": [
-                    {
-                      "name": "(str) a", 
-                      "children": [
-                        {
-                          "children": [
-                            {
-                              "name": "(tuple)", 
-                              "children": [
-                                {
-                                  "name": "(float) 2.5"
-                                }, 
-                                {
-                                  "name": "(float) 5.7"
-                                }, 
-                                {
-                                  "name": "(str) \"a\""
-                                }, 
-                                {
-                                  "name": "(int) 3"
-                                }
-                              ]
-                            }
-                          ], 
-                          "name": "b", 
-                          "collapse": true
-                        }, 
-                        {
-                          "name": "(int) 2"
-                        }
-                      ]
-                    }
-                  ], 
+                  "children": [], 
                   "name": "a", 
                   "collapse": true
                 }
@@ -80,25 +48,7 @@
               "name": "(str) a", 
               "children": [
                 {
-                  "children": [
-                    {
-                      "name": "(tuple)", 
-                      "children": [
-                        {
-                          "name": "(float) 2.5"
-                        }, 
-                        {
-                          "name": "(float) 5.7"
-                        }, 
-                        {
-                          "name": "(str) \"a\""
-                        }, 
-                        {
-                          "name": "(int) 3"
-                        }
-                      ]
-                    }
-                  ], 
+                  "children": [], 
                   "name": "b", 
                   "collapse": true
                 }, 
