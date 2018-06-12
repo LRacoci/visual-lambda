@@ -16,6 +16,7 @@ def getTable(node):
     funcTable[auxNode] = {}
     funcTable = funcTable[auxNode]
 
+# Get values from higher levels of the symbol table
 def getHighterValues(argName):
     global symbolTable
     global scopeStack

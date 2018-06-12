@@ -96,8 +96,8 @@ def reset():
                     func
                 )
             )
-    #print json.dumps({"_lambda_closure":_lambda_closure}, indent = 1, default = lambda o : o.__dict__)
-    #Check if every name is a function name or an argument in the current function
+
+    # Check if every name is a function name or an argument in the current function
     for func in namesOut['functions']:
         set_of_args = {arg for arg in namesOut['args'][func]}
         set_of_wheres = {where["var"] for where in _whereDict[func]}
@@ -111,7 +111,7 @@ def reset():
     global _eta
     if _eta:
         etaOptimization()
-    #print json.dumps(_functions, default = lambda o : {type(o).__name__ : o.__dict__}, indent = 1)
+
     _exec_tree = ast.execute(_functions['main'])
     execOut['tree'] = dict(_exec_tree)
     clean()
@@ -376,8 +376,6 @@ def p_function_args(t):
 
         _lambda_closure[fName] += [w['var'] for w in wheres] + args
 
-
-
 lambdaCounter = 0
 def p_lambda_expression(t):
     '''lambda : LAMBDA argList ARROW expression'''
@@ -385,7 +383,6 @@ def p_lambda_expression(t):
     global lambdaCounter
     funcName = "lambda {}".format(lambdaCounter)
     lambdaCounter += 1
-
 
     global _lambda_childrens
     global _lambda_closure
@@ -444,10 +441,6 @@ def p_application_lambda(t):
     '''application  : LPAREN lambda RPAREN LPAREN expression RPAREN
                     | LPAREN lambda RPAREN LPAREN lambda RPAREN'''
     t[0] = ast.Application(t[2].name, t[5])
-
-# def p_expression_lambda(t):
-#     '''expression : lambda'''
-#     t[0] = t[1]
 
 def p_args_list(t):
     '''argList : argList argExpr'''

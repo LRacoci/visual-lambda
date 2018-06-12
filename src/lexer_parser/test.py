@@ -70,8 +70,6 @@ if __name__ == "__main__":
             )
             parser.parse(problem)
         except Exception as err:
-            import traceback
-            #traceback.print_exc(file=sys.stdout)
             output = err.args[0]
 
             outFileName = inpFileName.replace(".hs", outFileSufix + ".err")
@@ -96,7 +94,7 @@ if __name__ == "__main__":
 
         else:
             output = execOut['tree']
-            #print json.dumps(output)
+
             outFileName = inpFileName.replace(".hs", outFileSufix + ".json")
 
             with open(outFileName, "w") as outFile:

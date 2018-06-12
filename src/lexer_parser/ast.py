@@ -333,7 +333,6 @@ class BuildD3Json(NodeVisitor):
 
         exprFromKey = None
         newType = None
-        #show = None
 
         arithmetic_op = {"float", "int", "bool", "long"}
         lr_types_union = {left['type'], right['type']}
@@ -686,29 +685,20 @@ class BuildD3Json(NodeVisitor):
 
     # Visit a identifier from the symbol table or function table
     def visit_identifier(self, node):
-        # print json.dumps({
-        #     "symbolTable" : symboltable.symbolTable,
-        #     "scopeStack" : symboltable.scopeStack,
-        #     "funcTable" : symboltable.funcTable
-        # }, indent = 2, default = lambda o : o.__dict__)
-
         if node.name in symboltable.funcTable:
             entry = symboltable.funcTable[node.name]
             ret = dict(entry)
             ret['const'] = False
             if 'json' in entry:
                 ret['json'] = {
-                    "name" : node.name,# + " = " + str(entry['value']),
+                    "name" : node.name,
                     "collapse": True,
-                    "children" : [
-                        #entry['json'] if 'json' in entry else {}
-                    ]
+                    "children" : []
                 }
             else:
                 ret["json"] = {
                     "name" : node.name + " = " + str(entry['value'])
                 }
-
             return ret
         elif node.name in parser._functions:
             return {
@@ -767,7 +757,6 @@ class BuildD3Json(NodeVisitor):
                 if entry:
                     symboltable.funcTable[argName] = entry
 
-
         variables = []
         global _prop
         global _argMap
@@ -800,7 +789,6 @@ class BuildD3Json(NodeVisitor):
         else:
             exec_tree = parser._functions[node].visit(BuildD3Json())
 
-
         symboltable.deleteTable(node)
 
         if memoFlag:
@@ -823,7 +811,7 @@ class BuildD3Json(NodeVisitor):
                 del exec_tree['json']['children']
 
             args_tree = {
-                "name": funcName + args_string + " = ", #+ str(exec_tree['value']),
+                "name": funcName + args_string + " = ",
                 "children": [
                     exec_tree['json']
                 ]
@@ -845,7 +833,7 @@ class BuildD3Json(NodeVisitor):
                         "children": [
                             args_tree,
                             {
-                                "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                                "name" : "where " + v[0] + " = ",
                                 "children": [
                                     v[1]['json']
                                 ]
@@ -858,7 +846,7 @@ class BuildD3Json(NodeVisitor):
                         "children": [
                             args_tree,
                             {
-                                "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                                "name" : "where " + v[0] + " = ",
                                 "children": [{
                                     "name": v[1]['json']['name']
                                 }]
@@ -869,7 +857,7 @@ class BuildD3Json(NodeVisitor):
         ret = dict(exec_tree)
         ret['json'] = args_tree
         ret['const'] = False
-        #ret['type'] = type(exec_tree['value']).__name__,
+
         return ret
 
 # Execute the main function of the program, with where
@@ -916,7 +904,7 @@ def execute(node):
                         "children": [
                             args_tree,
                             {
-                                "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                                "name" : "where " + v[0] + " = ",
                                 "children": [
                                     v[1]['json']
                                 ]
@@ -929,7 +917,7 @@ def execute(node):
                         "children": [
                             args_tree,
                             {
-                                "name" : "where " + v[0] + " = ",# + str(v[1]['value']),
+                                "name" : "where " + v[0] + " = ",
                                 "children": [{
                                     "name": v[1]['json']['name']
                                 }]

@@ -30,7 +30,6 @@ def translateCode():
         parser.parse(header + '\n' + dataDict['code'])
         return Response(json.dumps({ 'tree' : execOut['tree'] }), status=200)
     except Exception as err:
-        #traceback.print_exc(file=sys.stdout)
         return Response(str(err) , status=500)
 
 # Gera um novo token a cada request para prevenir cache de paginas no browser
