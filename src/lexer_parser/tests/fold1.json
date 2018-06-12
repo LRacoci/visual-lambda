@@ -1,0 +1,13 @@
+{
+  "name": "main = 0", 
+  "children": [
+    {
+      "name": "(int) 0", 
+      "children": [
+        {
+          "name": "(int) 0"
+        }
+      ]
+    }
+  ]
+}
